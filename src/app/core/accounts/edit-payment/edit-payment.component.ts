@@ -17,7 +17,7 @@ export class EditPaymentComponent {
   selectedList1: data[] = [
     {value: 'Enter Doctor Name'},
     {value: 'Dr.Galaviz Lalema'},
-    {value: 'Dr.Bernardo James'},
+    {value: 'Dr.Bernardoo James'},
     {value: 'Dr.Mark Hay Smith'},
   ];
   selectedList2: data[] = [

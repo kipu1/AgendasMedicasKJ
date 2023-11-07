@@ -242,6 +242,9 @@ export class routes {
   public static get addPatient(): string {
     return this.baseUrl + '/patient/add-patient';
   }
+  public static get AntecendetesPatient(): string {
+    return this.baseUrl + '/patient/add-patient';
+  }
   public static get editPatient(): string {
     return this.baseUrl + '/patient/edit-patient';
   }

@@ -218,7 +218,7 @@ export class DataService {
               base: routes.doctorDashboard,
             },
             {
-              menuValue: 'Patient Dashboard',
+              menuValue: 'Paciente Dashboard',
               route: routes.patientDashboard,
               base: routes.patientDashboard,
             },
@@ -254,29 +254,29 @@ export class DataService {
           ],
         },
         {
-          menuValue: 'Patients',
+          menuValue: 'Paciente',
           hasSubRoute: true,
           showSubRoute: false,
           base: 'patient',
           img: 'assets/img/icons/menu-icon-03.svg',
           subMenus: [
             {
-              menuValue: 'Patients List',
+              menuValue: 'Paciente List',
               route: routes.patientsList,
               base: routes.patientsList,
             },
             {
-              menuValue: 'Add Patients',
+              menuValue: 'Agregar Paciente',
               route: routes.addPatient,
               base: routes.addPatient,
             },
             {
-              menuValue: 'Edit Patients',
+              menuValue: 'Editar Paciente',
               route: routes.editPatient,
               base: routes.editPatient,
             },
             {
-              menuValue: 'Patients Profile',
+              menuValue: 'Paciente perfil',
               route: routes.patientProfile,
               base: routes.patientProfile,
             },
@@ -936,7 +936,7 @@ export class DataService {
     },
     {
       date : "19/09/2022",
-      doctor : "Andrea Lalema",
+      doctor : "Andrea Lalemaaaaa",
       treatment : "	Blood Test",
       charges : "$ 50"
     },

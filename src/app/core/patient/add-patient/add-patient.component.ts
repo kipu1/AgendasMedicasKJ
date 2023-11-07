@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { routes } from 'src/app/shared/routes/routes';
+import { Paciente } from '../paciente';
+import { MatTableDataSource } from '@angular/material/table';
+import { AuthService } from 'src/app/shared/auth/auth.service';
+import { patientService } from '../patient.service';
+import { Router } from '@angular/router';
 interface data {
   value: string ;
 }
@@ -10,6 +15,10 @@ interface data {
 })
 export class AddPatientComponent {
   public routes = routes;
+  dataSource = new MatTableDataSource<Paciente>;
+paciente:Paciente = new Paciente();
+registros: Paciente[] = [];
+constructor(private auth:AuthService, private pacienteservice:patientService,private router:Router) { }
   public selectedValue! : string  ;
   selectedList1: data[] = [
     {value: 'Select  Department'},
@@ -18,7 +27,7 @@ export class AddPatientComponent {
     {value: 'Dentist'},
   ];
   selectedList2: data[] = [
-    {value: 'Select City'},
+    {value: 'Seleccionar '},
     {value: 'Alaska'},
     {value: 'Los Angeles'},
   ];
@@ -33,4 +42,12 @@ export class AddPatientComponent {
     {value: 'Alaska'},
     {value: 'California'},
   ];
+  
 }
+// public routes = routes;
+// dataSource = new MatTableDataSource<Paciente>;
+// paciente:Paciente = new Paciente();
+// registros: Paciente[] = [];
+
+
+// constructor(private auth:AuthService, private pacienteservice:patientService,private router:Router) { }
