@@ -38,7 +38,7 @@ export class PatientsListComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.Obtenerpaciente();
+    this.obtenerPersona();
     this.getTableData();
   }
   private getTableData(): void {
@@ -69,12 +69,10 @@ export class PatientsListComponent implements OnInit {
 
    
   }
-  Obtenerpaciente(){
+  obtenerPersona(){
     this.pacienteService.obtenerListaPersona().subscribe(dato => {
   this.paciente=dato;
-    });
-  
-    }
+    });}
   public getMoreData(event: string): void {
     if (event == 'next') {
       this.currentPage++;
