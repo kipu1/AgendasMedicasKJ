@@ -11,19 +11,38 @@ import { Paciente } from './paciente';
 export class patientService {
   //esta url obtiene el listado de las maquinas en el backend
   url: string = 'http://localhost:8080/api/paciente';
-  constructor(private _httpClient : HttpClient) { }
+  constructor(private httpClient : HttpClient) { }
  
-  savePersona(paciente: Paciente): Observable<Paciente>{
-    return this._httpClient.post<Paciente>(this.url+'/crear',paciente);
-  }
-  
-  obtenerListaPersona(): Observable<Paciente[]> {
-    return this._httpClient.get<Paciente[]>(`${this.url}/listar`);
-  }
+ 
 
-  updatePersona(id: number, paciente: Paciente): Observable<object> {
-    return this._httpClient.put(`${this.url}/actualizar/${id}`, paciente);
-  }
+  actualizarPersona(id:number,persona:Paciente):Observable<object>{
+    return this.httpClient.put(this.url+'/paciente/actualizar/'+id,persona);
+    }
+    guardarPersona(persona: any) {
+      return this.httpClient.post(this.url+'/paciente/listar', persona);
+    }
+    
+      //este metodo trae las maquinas
+    obtenerListaPersona(): Observable<Paciente[]>{
+      return this.httpClient.get<Paciente[]>(this.url+'/paciente/listar');
+    }  
+    
+    eliminarPersona(id:number): Observable<object>{
+      return this.httpClient.delete(this.url+'/paciente/delete/'+id);
+    }
+    
+    registrarPersona(persona:Paciente): Observable<Object>{
+    return this.httpClient.post(this.url+'/paciente/crear',persona);
+    }
+    
+    obtenerPersonaPorId(id:number): Observable<Paciente>{
+      return this.httpClient.get<Paciente>(this.url+'/paciente/porid/'+id);
+    }
+    
+    
+    obtenerPersonaPoridentificacion(identificacion:string): Observable<Paciente>{
+      return this.httpClient.get<Paciente>(this.url+'/paciente/personas/'+identificacion);
+    }
 
 
 // actualizarPersona(id:number,persona:Persona):Observable<object>{

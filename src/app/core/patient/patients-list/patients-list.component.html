@@ -60,6 +60,13 @@
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </th>
+                                        <th mat-sort-header="apellido">Apellido</th>
+                                        <th mat-sort-header="nombre">Nombre</th>
+                                        <!-- <th mat-sort-header="tipodocumento">Tipo de documento</th> -->
+                                        <th mat-sort-header="documento">Documento</th>
+                                        <!-- <th mat-sort-header="civil">Estado civil</th>
+                                        <th mat-sort-header="email">Email</th>
+                                        <th mat-sort-header="joiningDate">Joining Date</th>
                                         <th mat-sort-header="name">Name</th>
                                         <th mat-sort-header="department">Department</th>
                                         <th mat-sort-header="specialization">Specialization</th>
@@ -67,23 +74,34 @@
                                         <th mat-sort-header="mobile">Mobile</th>
                                         <th mat-sort-header="email">Email</th>
                                         <th mat-sort-header="joiningDate">Joining Date</th>
+                                        <th mat-sort-header="name">Name</th>
+                                        <th mat-sort-header="department">Department</th>
+                                        <th mat-sort-header="specialization">Specialization</th>
+                                        <th mat-sort-header="degree">Degree</th>
+                                        <th mat-sort-header="mobile">Mobile</th>
+                                        <th mat-sort-header="email">Email</th>
+                                        <th mat-sort-header="joiningDate">Joining Date</th>
+                                        <th mat-sort-header="name">Name</th>
+                                        <th mat-sort-header="department">Department</th>
+                                        <th mat-sort-header="specialization">Specialization</th>
+                                        <th mat-sort-header="degree">Degree</th>
+                                        <th mat-sort-header="mobile">Mobile</th>
+                                        <th mat-sort-header="email">Email</th>
+                                        <th mat-sort-header="joiningDate">Joining Date</th> -->
                                         <th ></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let data of patientsList">
+                                  <tr *ngFor="let paciente paciente">
+                                    <td>{{ paciente.apellido }}</td>
+                                    <td>{{ paciente.nombre }}</td>
+                                    <td>{{ paciente.documento }}</td>
                                         <td>
                                             <div class="form-check check-tables">
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </td>
-                                        <td class="profile-image"><a [routerLink]="routes.profile"><img width="28" height="28" [src]="data.img" class="rounded-circle m-r-5" alt=""> {{data.name}}</a></td>
-                                        <td>{{data.department}}</td>
-                                        <td>{{data.specialization}}</td>
-                                        <td>{{data.degree}}</td>
-                                        <td><a href="javascript:;">{{data.mobile}}</a></td>
-                                        <td>{{data.email}}</td>
-                                        <td>{{data.joiningDate}}</td>
+                                        
                                         <td class="text-end">
                                             <div class="dropdown dropdown-action">
                                                 <a href="javascript:void(0);" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
@@ -93,7 +111,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr>
+                                      </tr>
                                 </tbody>
                             </table>
                             <div class="table_footer">
@@ -183,22 +201,7 @@
                                         </li>
                                       </ng-container>
                 
-                                      <li
-                                        class="page-item"
-                                        [ngClass]="{
-                                          disabled:
-                                            currentPage ===
-                                              pageNumberArray[pageNumberArray.length - 1] ||
-                                              patientsList.length === 0
-                                        }"
-                                      >
-                                        <a
-                                          (click)="getMoreData('next')"
-                                          class="page-link"
-                                          href="javascript:void(0);"
-                                          >Next
-                                        </a>
-                                      </li>
+                                     
                                     </ul>
                                   </div>
                                 </div>
