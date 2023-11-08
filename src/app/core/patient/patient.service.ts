@@ -15,11 +15,11 @@ export class patientService {
  
  
 
-  actualizarPersona(id:number,persona:Paciente):Observable<object>{
-    return this.httpClient.put(this.url+'/paciente/actualizar/'+id,persona);
+  actualizarPersona(id:number,paciente:Paciente):Observable<object>{
+    return this.httpClient.put(this.url+'/paciente/actualizar/'+id,paciente);
     }
-    guardarPersona(persona: any) {
-      return this.httpClient.post(this.url+'/paciente/listar', persona);
+    guardarPersona(paciente: any) {
+      return this.httpClient.post(this.url+'/paciente/listar', paciente);
     }
     
       //este metodo trae las maquinas
@@ -31,8 +31,8 @@ export class patientService {
       return this.httpClient.delete(this.url+'/paciente/delete/'+id);
     }
     
-    registrarPersona(persona:Paciente): Observable<Object>{
-    return this.httpClient.post(this.url+'/paciente/crear',persona);
+    registrarPersona(paciente:Paciente): Observable<Object>{
+    return this.httpClient.post(this.url+'/paciente/crear',paciente);
     }
     
     obtenerPersonaPorId(id:number): Observable<Paciente>{
