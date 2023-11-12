@@ -283,42 +283,42 @@ export class DataService {
           ],
         },
         {
-          menuValue: 'Staff',
+          menuValue: 'Antropometria',
           hasSubRoute: true,
           showSubRoute: false,
-          base: 'staff',
+          base: 'Antropometria',
           img: 'assets/img/icons/menu-icon-08.svg',
           subMenus: [
             {
-              menuValue: 'Staff List',
+              menuValue: 'Lista',
               route: routes.staffList,
               base: routes.staffList,
             },
             {
-              menuValue: 'Add Staff',
+              menuValue: 'Crear',
               route: routes.addStaff,
               base: routes.addStaff,
             },
-            {
-              menuValue: 'Staff Profile',
-              route: routes.staffProfile,
-              base: routes.staffProfile,
-            },
-            {
-              menuValue: 'Leaves',
-              route: routes.staffLeave,
-              base: routes.staffLeave,
-            },
-            {
-              menuValue: 'Holidays',
-              route: routes.staffHoliday,
-              base: routes.staffHoliday,
-            },
-            {
-              menuValue: 'Attendance',
-              route: routes.staffAttendance,
-              base: routes.staffAttendance,
-            },
+            // {
+            //   menuValue: 'Staff Profile',
+            //   route: routes.staffProfile,
+            //   base: routes.staffProfile,
+            // },
+            // {
+            //   menuValue: 'Leaves',
+            //   route: routes.staffLeave,
+            //   base: routes.staffLeave,
+            // },
+            // {
+            //   menuValue: 'Holidays',
+            //   route: routes.staffHoliday,
+            //   base: routes.staffHoliday,
+            // },
+            // {
+            //   menuValue: 'Attendance',
+            //   route: routes.staffAttendance,
+            //   base: routes.staffAttendance,
+            // },
           ],
         },
         {

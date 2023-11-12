@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { EmailSettingsRoutingModule } from './email-settings-routing.module';
 import { EmailSettingsComponent } from './email-settings.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { EmailSettingsComponent } from './email-settings.component';
   ],
   imports: [
     CommonModule,
-    EmailSettingsRoutingModule
+    EmailSettingsRoutingModule,
+    SharedModule
   ]
 })
 export class EmailSettingsModule { }
