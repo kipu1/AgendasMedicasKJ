@@ -2,7 +2,7 @@
 
 export class Paciente {
 
-    idPaciente?: number;
+    idPaciente!: number;
     idRol?: number;
     apellido: string='';
     nombre: string='';

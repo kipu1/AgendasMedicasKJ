@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { EditPatientRoutingModule } from './edit-patient-routing.module';
 import { EditPatientComponent } from './edit-patient.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     EditPatientRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
   ]
 })
 export class EditPatientModule { }

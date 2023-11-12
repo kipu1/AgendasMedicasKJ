@@ -17,8 +17,12 @@ import { Paciente } from '../paciente';
 })
 export class PatientsListComponent implements OnInit {
   paciente: Paciente[] = [];
+  public PacienteList: Array<Paciente> = [];
   public routes = routes;
+  dataSource = new MatTableDataSource<Paciente>;
 
+  
+  pacientes: Paciente[] = [];
 
   public showFilter = false;
   public searchDataValue = '';
@@ -35,92 +39,128 @@ export class PatientsListComponent implements OnInit {
   public totalPages = 0;
  
   constructor(public data : DataService,private auth:AuthService, private pacienteService:patientService,private router:Router){
-
+    this.pacientes = [];
+    this.dataSource = new MatTableDataSource<Paciente>(this.pacientes);
   }
   ngOnInit() {
     this.obtenerPersona();
     this.getTableData();
   }
   private getTableData(): void {
+    this.PacienteList=[];
   this.serialNumberArray = [];
 
     this.data.getPatientsList().subscribe((data: apiResultFormat) => {
       this.totalData = data.totalData;
-      data.data.map(( index: number) => {
+      data.data.map((res: Paciente, index: number) => {
         const serialNumber = index + 1;
         if (index >= this.skip && serialNumber <= this.limit) {
-          
-        
+         
+          this.PacienteList.push(res);
           this.serialNumberArray.push(serialNumber);
         }
       });
-    
+      this.dataSource = new MatTableDataSource<Paciente>(this.PacienteList);
       this.calculateTotalPages(this.totalData, this.pageSize);
     });
   }
  
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public searchData(value: any): void {
-   
+    this.dataSource.filter = value.trim().toLowerCase();
+    this.PacienteList = this.dataSource.filteredData;
   }
-
+  applyFilter(event: Event) {
+    console.log('Filtering...'); // Verifica si este mensaje aparece en la consola
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.PacienteList = this.dataSource.filteredData;
+  }
   public sortData(sort: Sort) {
-   
+    const data = this.PacienteList.slice();
 
-   
+    if (!sort.active || sort.direction === '') {
+      this.PacienteList = data;
+    } else {
+      this.PacienteList = data.sort((a, b) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const aValue = (a as any)[sort.active];
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const bValue = (b as any)[sort.active];
+        return (aValue < bValue ? -1 : 1) * (sort.direction === 'asc' ? 1 : -1);
+      });
+    }
   }
+   actualizarPersona(id:number){
+    //aqui solo dirige ala pagina de actualizar maquina
+    this.router.navigate(['edit-patient',id]);
+  }
+  // actualizarPersona(id:number){
+  //   //aqui solo dirige ala pagina de actualizar maquina
+  //   this.router.navigate([routes.editPatient,id]);
+  // }
+
   obtenerPersona(){
     this.pacienteService.obtenerListaPersona().subscribe(dato => {
   this.paciente=dato;
     });}
-  public getMoreData(event: string): void {
-    if (event == 'next') {
-      this.currentPage++;
-      this.pageIndex = this.currentPage - 1;
-      this.limit += this.pageSize;
-      this.skip = this.pageSize * this.pageIndex;
+    eliminarPersona(id: number) {
+      this.pacienteService.eliminarPersona(id).subscribe(() => {
+        this.obtenerPersona(); // Para actualizar la lista después de la eliminación
+      });
+    }
+  
+  
+    
+    public getMoreData(event: string): void {
+      if (event == 'next') {
+        this.currentPage++;
+        this.pageIndex = this.currentPage - 1;
+        this.limit += this.pageSize;
+        this.skip = this.pageSize * this.pageIndex;
+        this.getTableData();
+      } else if (event == 'previous') {
+        this.currentPage--;
+        this.pageIndex = this.currentPage - 1;
+        this.limit -= this.pageSize;
+        this.skip = this.pageSize * this.pageIndex;
+        this.getTableData();
+      }
+    }
+  
+    public moveToPage(pageNumber: number): void {
+      this.currentPage = pageNumber;
+      this.skip = this.pageSelection[pageNumber - 1].skip;
+      this.limit = this.pageSelection[pageNumber - 1].limit;
+      if (pageNumber > this.currentPage) {
+        this.pageIndex = pageNumber - 1;
+      } else if (pageNumber < this.currentPage) {
+        this.pageIndex = pageNumber + 1;
+      }
       this.getTableData();
-    } else if (event == 'previous') {
-      this.currentPage--;
-      this.pageIndex = this.currentPage - 1;
-      this.limit -= this.pageSize;
-      this.skip = this.pageSize * this.pageIndex;
+    }
+  
+    public PageSize(): void {
+      this.pageSelection = [];
+      this.limit = this.pageSize;
+      this.skip = 0;
+      this.currentPage = 1;
       this.getTableData();
     }
-  }
-
-  public moveToPage(pageNumber: number): void {
-    this.currentPage = pageNumber;
-    this.skip = this.pageSelection[pageNumber - 1].skip;
-    this.limit = this.pageSelection[pageNumber - 1].limit;
-    if (pageNumber > this.currentPage) {
-      this.pageIndex = pageNumber - 1;
-    } else if (pageNumber < this.currentPage) {
-      this.pageIndex = pageNumber + 1;
-    }
-    this.getTableData();
-  }
-
-  public PageSize(): void {
-    this.pageSelection = [];
-    this.limit = this.pageSize;
-    this.skip = 0;
-    this.currentPage = 1;
-    this.getTableData();
-  }
-
-  private calculateTotalPages(totalData: number, pageSize: number): void {
-    this.pageNumberArray = [];
-    this.totalPages = totalData / pageSize;
-    if (this.totalPages % 1 != 0) {
-      this.totalPages = Math.trunc(this.totalPages + 1);
-    }
-    /* eslint no-var: off */
-    for (var i = 1; i <= this.totalPages; i++) {
-      var limit = pageSize * i;
-      var skip = limit - pageSize;
-      this.pageNumberArray.push(i);
-      this.pageSelection.push({ skip: skip, limit: limit });
+  
+    private calculateTotalPages(totalData: number, pageSize: number): void {
+      this.pageNumberArray = [];
+      this.totalPages = totalData / pageSize;
+      if (this.totalPages % 1 != 0) {
+        this.totalPages = Math.trunc(this.totalPages + 1);
+      }
+      /* eslint no-var: off */
+      for (var i = 1; i <= this.totalPages; i++) {
+        const limit = pageSize * i;
+        const skip = limit - pageSize;
+        this.pageNumberArray.push(i);
+        this.pageSelection.push({ skip: skip, limit: limit });
+      }
     }
   }
-}
+  

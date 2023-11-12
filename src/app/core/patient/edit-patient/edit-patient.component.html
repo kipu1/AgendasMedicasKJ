@@ -1,14 +1,14 @@
 <div class="page-wrapper">
     <div class="content">
-    
+
         <!-- Page Header -->
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a [routerLink]="routes.patientsList">Patients </a></li>
+                        <li class="breadcrumb-item"><a [routerLink]="routes.patientsList">Paciente </a></li>
                         <li class="breadcrumb-item"><i class="feather icon-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Edit Patient</li>
+                        <li class="breadcrumb-item active">Agregar Paciente</li>
                     </ul>
                 </div>
             </div>
@@ -16,193 +16,337 @@
         <!-- /Page Header -->
         <div class="row">
             <div class="col-sm-12">
-            
+
                 <div class="card">
                     <div class="card-body">
-                        <form>
+                        <form >
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-heading">
-                                        <h4>Patinets Details</h4>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-4">  
-                                    <div class="form-group local-forms">
-                                        <label >First Name <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" value="Daniel"  >
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="form-group local-forms">
-                                        <label >Last Name <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" value="Bruk" >
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="form-group local-forms">
-                                        <label >User Name <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" value="Daniel Bruk" >
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="form-group local-forms">
-                                        <label >Mobile <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" value="+1 23 456890" >
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="form-group local-forms">
-                                        <label >Email <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="email" value="example@email.com" >
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="form-group local-forms">
-                                        <label >Password <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="password" value="password" >
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="form-group local-forms">
-                                        <label >Confirm Password <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="password" value="password" >
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="form-group local-forms">
-                                        <label >Date Of Birth  <span class="login-danger">*</span></label>
-                                        <input class="form-control datetimepicker" type="text"  [formControl]="date" matInput [matDatepicker]="picker">
-                                        <mat-datepicker #picker></mat-datepicker>
-                                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="form-group select-gender">
-                                        <label class="gen-label">Gender<span class="login-danger">*</span></label>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" name="gender" class="form-check-input" checked>Male
-                                            </label>
-                                        </div>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" name="gender" class="form-check-input">Female
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="form-group local-forms">
-                                        <label >Education <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" value="M.B.B.S, M.S." >
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="form-group local-forms">
-                                        <label >Designation <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" value="Physician" >
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="form-group local-forms">
-                                        <label >Department <span class="login-danger">*</span></label>
-                                        <mat-select [(ngModel)]="selectedValue" [ngModelOptions]="{standalone: true}" class="form-control select"  placeholder="Select  Department">
-                                            <mat-option *ngFor="let data of selectedList1" [value]="data.value">
-                                            {{data.value}}
-                                            </mat-option>
-                                        </mat-select>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12">
-                                    <div class="form-group local-forms">
-                                        <label>Address  <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" rows="3" cols="30">101, Elanxa Apartments, 340 N Madison Avenue</textarea>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-3">
-                                    <div class="form-group local-forms">
-                                        <label >City <span class="login-danger">*</span></label>
-                                        <mat-select [(ngModel)]="selectedValue" [ngModelOptions]="{standalone: true}" class="form-control select"  placeholder="Select City">
-                                            <mat-option *ngFor="let data of selectedList2" [value]="data.value">
-                                            {{data.value}}
-                                            </mat-option>
-                                        </mat-select>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-3">
-                                    <div class="form-group local-forms">
-                                        <label >Country  <span class="login-danger">*</span></label>
-                                        <mat-select [(ngModel)]="selectedValue" [ngModelOptions]="{standalone: true}" class="form-control select"  placeholder="Select Country">
-                                            <mat-option *ngFor="let data of selectedList3" [value]="data.value">
-                                            {{data.value}}
-                                            </mat-option>
-                                        </mat-select>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-3">
-                                    <div class="form-group local-forms">
-                                        <label >State/Province <span class="login-danger">*</span></label>
-                                        <mat-select [(ngModel)]="selectedValue" [ngModelOptions]="{standalone: true}" class="form-control select"  placeholder="Select State">
-                                            <mat-option *ngFor="let data of selectedList4" [value]="data.value">
-                                            {{data.value}}
-                                            </mat-option>
-                                        </mat-select>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-3">
-                                    <div class="form-group local-forms">
-                                        <label >Postal Code <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" value="91403" >
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12">
-                                    <div class="form-group local-forms">
-                                        <label>Start Biography  <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" rows="3" cols="30">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquat enim ad minim veniam, quriesstrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</textarea>
+                                        <h4>Detalles de paciente</h4>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="form-group local-top-form">
                                         <label class="local-top">Avatar <span class="login-danger">*</span></label>
                                         <div class="settings-btn upload-files-avator">
-                                            <input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)" class="hide-input">
+                                            <input type="file" accept="image/*" name="image" id="file"
+                                                onchange="loadFile(event)" class="hide-input">
                                             <label for="file" class="upload">Choose File</label>
                                         </div>
-                                        <div class="upload-images upload-size"  [ngClass]="{'d-none':deleteIcon === false}">
-                                            <img src="assets/img/favicon.png" alt="Image">
-                                            <a (click)="deleteIconFunc()" href="javascript:void(0);" class="btn-icon logo-hide-btn">
-                                                <i class="feather icon-x-circle"></i>
-                                            </a>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Apellido <span class="login-danger">*</span></label>
+
+                                        <input class="form-control" type="text"  placeholder="" id="apellido" name="apellido"
+                                            [(ngModel)]="paciente.apellido" #apellido = "ngModel">
+                                    </div>
+                                </div>
+                             
+                                
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Nombre <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="nombre" name="nombre"
+                                            [(ngModel)]="paciente.nombre">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-3">
+                                    <div class="form-group local-forms">
+                                        <label>Tipo de documento <span class="login-danger">*</span></label>
+
+                                        <mat-select id="tipodocumento" name="tipodocumento"
+                                            [(ngModel)]="paciente.tipodocumento"  placeholder="" class="form-control select"
+                                            placeholder="Seleccione">
+                                            <mat-option value="CI">CI</mat-option>
+                                            <mat-option value="Pasaporte">Pasaporte</mat-option>
+                                        </mat-select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Documento <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="documento" name="documento"
+                                        [(ngModel)]="paciente.documento">
+                                </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-3">
+                                    <div class="form-group local-forms">
+                                        <label>Estado civil <span class="login-danger">*</span></label>
+
+                                        <mat-select id="civil" name="civil" [(ngModel)]="paciente.civil"
+                                            class="form-control select" placeholder="Seleccione">
+                                            <mat-option value="Soltero">Soltero</mat-option>
+                                            <mat-option value="Casado">Casado</mat-option>
+                                            <mat-option value="Divorciado">Divorciado</mat-option>
+                                            <mat-option value="Viudo">Viudo</mat-option>
+                                            <mat-option value="Unión libre">Unión libre</mat-option>
+                                            <!-- Agrega más estados civiles aquí -->
+                                        </mat-select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-3">
+                                    <div class="form-group local-forms">
+                                        <label>Fecha de nacimiento <span class="login-danger">*</span></label>
+                                        <input class="form-control datetimepicker" type="text" placeholder="" matInput
+                                            [matDatepicker]="picker"  [value]="paciente.fechanacimiento | date:'yyyy-MM-dd'"
+                                            (input)="paciente.fechanacimiento" >
+                                            
+                                        <mat-datepicker #picker></mat-datepicker>
+                                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-3">
+                                    <div class="form-group local-forms">
+                                        <label>Grupo sanguíneo <span class="login-danger">*</span></label>
+
+                                        <mat-select id="grupo" name="grupo" [(ngModel)]="paciente.grupo"
+                                            class="form-control select" placeholder="Seleccione">
+                                            <mat-option value="A+">A+</mat-option>
+                                            <mat-option value="A-">A-</mat-option>
+                                            <mat-option value="B+">B+</mat-option>
+                                            <mat-option value="B-">B-</mat-option>
+                                            <mat-option value="AB+">AB+</mat-option>
+                                            <mat-option value="AB-">AB-</mat-option>
+                                            <mat-option value="O+">O+</mat-option>
+
+
+
+
+                                        </mat-select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-3">
+                                    <div class="form-group select-gender">
+                                        <label class="gen-label">Genero<span class="login-danger">*</span></label>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" name="gender" class="form-check-input" value="masculino" [(ngModel)]="paciente.sexo">Masculino
+                                            </label>
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" name="gender" class="form-check-input" value="femenino" [(ngModel)]="paciente.sexo">Femenino
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="form-group select-gender">
-                                        <label class="gen-label">Status <span class="login-danger">*</span></label>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" name="gender1" class="form-check-input" checked>Active
-                                            </label>
-                                        </div>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" name="gender1" class="form-check-input">In Active
-                                            </label>
-                                        </div>
+                                    <div class="form-group local-forms">
+                                        <label>Direccion <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="direccion" name="direccion"
+                                        [(ngModel)]="paciente.direccion">
+                                </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-6">
+                                    <div class="form-group local-forms">
+                                        <label>Correo <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="cp" name="cp"
+                                        [(ngModel)]="paciente.cp">
+                                </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-3">
+                                    <div class="form-group local-forms">
+                                        <label>Obra social <span class="login-danger">*</span></label>
+
+                                        <mat-select id="obra" name="obra" [(ngModel)]="paciente.obra"
+                                            class="form-control select" placeholder="Seleccione">
+                                            <mat-option value="Galeno">Galeno</mat-option>
+                                            <mat-option value="IOMA">IOMA</mat-option>
+                                            <mat-option value="IOSE">IOSE</mat-option>
+                                            <mat-option value="MAPFRE">MAPFRE</mat-option>
+                                            <mat-option value="Medicals">Medicals</mat-option>
+                                            <mat-option value="Medicus">Medicus</mat-option>
+                                            <mat-option value="OSDE">OSDE</mat-option>
+                                            <mat-option value="OSDEPYM">OSDEPYM</mat-option>
+                                            <mat-option value="OSECAC">OSECAC</mat-option>
+                                            <mat-option value="PAMI">PAMI</mat-option>
+                                            <mat-option value="Particular / Privado">Particular / Privado</mat-option>
+                                            <mat-option value="SUTEBA">SUTEBA</mat-option>
+                                            <mat-option value="Swiss Medical Group">Swiss Medical Group</mat-option>
+
+
+
+                                        </mat-select>
                                     </div>
                                 </div>
+                                <div class="col-12 col-md-6 col-xl-3">
+                                    <div class="form-group local-forms">
+                                        <label>Numero de Afiliado <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="afiliado" name="afiliado"
+                                        [(ngModel)]="paciente.afiliado">
+                                </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Telofono 1 <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="telefono1" name="telefono1"
+                                        [(ngModel)]="paciente.telefono1">
+                                </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Telofono 2 <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text" placeholder="" id="telefono2" name="telefono2"
+                                        [(ngModel)]="paciente.telefono2">
+                                </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Telofono 3 <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="telefono3" name="telefono3"
+                                        [(ngModel)]="paciente.telefono3">
+                                </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>campoCfg 1<span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="campoCfg1" name="campoCfg1"
+                                        [(ngModel)]="paciente.campoCfg1">
+                                </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>campoCfg 2 <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="campoCfg2" name="campoCfg2"
+                                        [(ngModel)]="paciente.campoCfg2">
+                                </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>campoCfg 3 <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="campoCfg3" name="campoCfg3"
+                                        [(ngModel)]="paciente.campoCfg3">
+                                </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Antecedentes clinicos <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="clinicos" name="clinicos"[(ngModel)]="paciente.clinicos"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Antecedentes familiares <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="familiar" name="familiar"[(ngModel)]="paciente.familiar"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Diagnostico principal <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="diagnostico" name="diagnostico"[(ngModel)]="paciente.diagnostico"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Cormobilidades <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="cormobilidades" name="cormobilidades"[(ngModel)]="paciente.cormobilidades"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Hepatitis <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="extra1" name="extra1"[(ngModel)]="paciente.extra1"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Enf infecciosas <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="extra2" name="extra2"[(ngModel)]="paciente.extra2"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Alergias <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="extra3" name="extra3"[(ngModel)]="paciente.extra3"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Enf Neurologicas <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="extra4" name="extra4"[(ngModel)]="paciente.extra4"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Medicamentos <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="extra5" name="extra5"[(ngModel)]="paciente.extra5"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Cardiopatías <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="extra6" name="extra6"[(ngModel)]="paciente.extra6"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Diabetes <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="extra7" name="extra7"[(ngModel)]="paciente.extra7"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Intev Quirurgicas <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="extra8" name="extra8"[(ngModel)]="paciente.extra8"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Adicciones <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="extra9" name="extra9"[(ngModel)]="paciente.extra9"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Otros <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="extra10" name="extra10"[(ngModel)]="paciente.extra10"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Comentarios <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="comentarios" name="comentarios"[(ngModel)]="paciente.comentarios"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+
+
+
+
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
-                                        <button type="submit" class="btn btn-primary submit-form me-2">Submit</button>
-                                        <button type="submit" class="btn btn-primary cancel-form">Cancel</button>
+                                        <button type="submit" class="btn btn-primary submit-form me-2" (click)="actualizarDatos(id)" [routerLink]="routes.patientsList">Guardar</button>
+                                         
+                                        <button type="submit" class="btn btn-primary cancel-form"[routerLink]="routes.patientsList">Cancel</button>
                                     </div>
                                 </div>
                             </div>
                         </form>
                     </div>
-                </div>							
-            </div>					
+                </div>
+            </div>
         </div>
     </div>
 </div>
- 

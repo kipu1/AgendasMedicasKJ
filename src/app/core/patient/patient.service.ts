@@ -15,35 +15,32 @@ export class patientService {
  
  
 
-  actualizarPersona(id:number,paciente:Paciente):Observable<object>{
-    return this.httpClient.put(this.url+'/paciente/actualizar/'+id,paciente);
-    }
+  actualizarPersona( paciente: Paciente): Observable<object> {
+    return this.httpClient.put(this.url + '/actualizar/', paciente);
+  }
     guardarPersona(paciente: any) {
-      return this.httpClient.post(this.url+'/paciente/listar', paciente);
+      return this.httpClient.post(this.url+'/listar', paciente);
     }
     
       //este metodo trae las maquinas
     obtenerListaPersona(): Observable<Paciente[]>{
-      return this.httpClient.get<Paciente[]>(this.url+'/paciente/listar');
+      return this.httpClient.get<Paciente[]>(this.url+'/listar');
     }  
     
     eliminarPersona(id:number): Observable<object>{
-      return this.httpClient.delete(this.url+'/paciente/delete/'+id);
+      return this.httpClient.delete(this.url+'/eliminar/'+id);
     }
     
     registrarPersona(paciente:Paciente): Observable<Object>{
-    return this.httpClient.post(this.url+'/paciente/crear',paciente);
+    return this.httpClient.post(this.url+'/crear',paciente);
     }
     
-    obtenerPersonaPorId(id:number): Observable<Paciente>{
-      return this.httpClient.get<Paciente>(this.url+'/paciente/porid/'+id);
-    }
+    // actualizarpaciente(id:number): Observable<Paciente>{
+    //   return this.httpClient.get<Paciente>(this.url+'/actualizar/'+id);
+    // }
     
     
-    obtenerPersonaPoridentificacion(identificacion:string): Observable<Paciente>{
-      return this.httpClient.get<Paciente>(this.url+'/paciente/personas/'+identificacion);
-    }
-
+   
 
 // actualizarPersona(id:number,persona:Persona):Observable<object>{
 // return this.httpClient.put(environment.api_uri+'/persona/actualizar/'+id,persona);
