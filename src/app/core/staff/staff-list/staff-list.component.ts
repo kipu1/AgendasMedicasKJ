@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { AuthService } from 'src/app/shared/auth/auth.service';
 import { DataService } from 'src/app/shared/data/data.service';
 import { apiResultFormat, pageSelection, staffList } from 'src/app/shared/models/models';
 import { routes } from 'src/app/shared/routes/routes';
+import { AntropometriaService } from '../antropometria.service';
+import { Router } from '@angular/router';
+import { Antropometria } from '../antropometria';
+import { Paciente } from '../../patient/paciente';
 
 @Component({
   selector: 'app-staff-list',
@@ -14,6 +19,9 @@ export class StaffListComponent implements OnInit{
   public routes = routes;
   public staffList: Array<staffList> = [];
   dataSource!: MatTableDataSource<staffList>;
+  paciente: Paciente[] = [];
+  antropometria: Antropometria[] = [];
+  antropometrias: Antropometria[] = [];
 
   public showFilter = false;
   public searchDataValue = '';
@@ -29,12 +37,34 @@ export class StaffListComponent implements OnInit{
   public pageSelection: Array<pageSelection> = [];
   public totalPages = 0;
 
-  constructor(public data : DataService){
+  constructor(public data : DataService,private auth:AuthService, private antropometriaService:AntropometriaService,private router:Router){
 
   }
   ngOnInit() {
+    this.obtenerPersona();
     this.getTableData();
   }
+  actualizarPersona(id: number) {
+    // Ejemplo: Llamada a un servicio para obtener los detalles del paciente por ID
+    this.antropometriaService.Buscarid(id).subscribe((antropometria: any) => {
+      this.antropometria = antropometria;
+      this.router.navigate([this.routes.editPatient, { id }]);
+    });
+  }
+  
+
+
+  obtenerPersona(){
+    this.antropometriaService.obtenerListaPersona().subscribe(dato => {
+  this.antropometria=dato;
+    });}
+    eliminarPersona(id: number) {
+      this.antropometriaService.eliminarPersona(id).subscribe(() => {
+        this.obtenerPersona(); // Para actualizar la lista después de la eliminación
+      });
+    }
+  
+  
   private getTableData(): void {
     this.staffList = [];
     this.serialNumberArray = [];

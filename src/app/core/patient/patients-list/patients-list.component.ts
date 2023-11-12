@@ -93,7 +93,7 @@ export class PatientsListComponent implements OnInit {
   }
    actualizarPersona(id:number){
     //aqui solo dirige ala pagina de actualizar maquina
-    this.router.navigate(['edit-patient',id]);
+    this.router.navigate([routes.editPatient,{id}]);
   }
   // actualizarPersona(id:number){
   //   //aqui solo dirige ala pagina de actualizar maquina

@@ -4,7 +4,7 @@ import { routes } from 'src/app/shared/routes/routes';
 import { patientService } from '../patient.service';
 import { Paciente } from '../paciente';
 import { AuthService } from 'src/app/shared/auth/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
 interface data {
   value: string ;
@@ -20,48 +20,25 @@ export class EditPatientComponent {
   paciente: Paciente = new Paciente();
   pacientes: Paciente[] = [];
   validador: boolean = false;
-  pacientec: Paciente = {
-    apellido: '',
-    idPaciente: 0,
-    nombre: '',
-    documento: '',
-    grupo: '',
-    sexo: '',
-    direccion: '',
-    cp: '',
-    obra: '',
-    afiliado: '',
-    telefono1: '',
-    telefono2: '',
-    telefono3: '',
-    clinicos: '',
-    diagnostico: '',
-    cormobilidades: '',
-    familiar: '',
-    comentarios: '',
-    extra1: '',
-    extra2: '',
-    extra3: '',
-    extra4: '',
-    extra5: '',
-    extra6: '',
-    extra7: '',
-    extra8: '',
-    extra9: '',
-    extra10: '',
-    civil: '',
-    campoCfg1: '',
-    campoCfg2: '',
-    campoCfg3: '',
-    tipodocumento: '',
-    abrir: ''
-  };
+  
 
   // identificacion: String;
    pacienteActualizado= new Paciente ();
-  constructor(private auth: AuthService, private pacienteService: patientService, private router: Router) { }
+  constructor(private auth: AuthService, private pacienteService: patientService, private router: Router,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+      this.obtenerpersona(); // Actualizar la lista después de la actualización
+      this.pacienteService.Buscarid(this.id).subscribe(
+        response => {
+            this.paciente=response
+       // Asigna los datos del paciente al modelo
+      });
+      // Ahora puedes usar el ID como desees en tu componente
+    })
 
     
       this.obtenerpersona(); // Actualizar la lista después de la actualización

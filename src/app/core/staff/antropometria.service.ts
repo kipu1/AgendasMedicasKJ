@@ -1,41 +1,42 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Paciente } from './paciente';
+import { Antropometria } from './antropometria';
+
 
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class patientService {
+export class AntropometriaService {
   //esta url obtiene el listado de las maquinas en el backend
-  url: string = 'http://localhost:8080/api/paciente';
+  url: string = 'http://localhost:8080/api/antropometria';
   constructor(private httpClient : HttpClient) { }
  
  
 
-  actualizarPersona( paciente: Paciente): Observable<object> {
-    return this.httpClient.put(this.url + '/actualizar/', paciente);
+  actualizarPersona( antropometria: Antropometria): Observable<object> {
+    return this.httpClient.put(this.url + '/actualizar/', antropometria);
   }
-    guardarPersona(paciente: any) {
-      return this.httpClient.post(this.url+'/listar', paciente);
+    guardarPersona(antropometria: any) {
+      return this.httpClient.post(this.url+'/listar', antropometria);
     }
     
       //este metodo trae las maquinas
-    obtenerListaPersona(): Observable<Paciente[]>{
-      return this.httpClient.get<Paciente[]>(this.url+'/listar');
+    obtenerListaPersona(): Observable<Antropometria[]>{
+      return this.httpClient.get<Antropometria[]>(this.url+'/listar');
     }  
-    Buscarid(id:number): Observable<Paciente>{
-      return this.httpClient.get<Paciente>(this.url+'/listar/'+id);
+    Buscarid(id:number): Observable<Antropometria>{
+      return this.httpClient.get<Antropometria>(this.url+'/listar/'+id);
     }
     
     eliminarPersona(id:number): Observable<object>{
       return this.httpClient.delete(this.url+'/eliminar/'+id);
     }
     
-    registrarPersona(paciente:Paciente): Observable<Object>{
-    return this.httpClient.post(this.url+'/crear',paciente);
+    registrarPersona(antropometria:Antropometria): Observable<Object>{
+    return this.httpClient.post(this.url+'/crear',antropometria);
     }
     
     // actualizarpaciente(id:number): Observable<Paciente>{
