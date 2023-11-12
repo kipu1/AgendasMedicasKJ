@@ -14,6 +14,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     EmailSettingsRoutingModule,
     SharedModule
+  ],exports:[
+    EmailSettingsComponent
   ]
 })
 export class EmailSettingsModule { }

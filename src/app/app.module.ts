@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { EditPatientModule } from './core/patient/edit-patient/edit-patient.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { MatSortModule } from '@angular/material/sort';
     FormsModule,
     MatPaginatorModule,
     MatTableModule,
-
+    EditPatientModule, 
     MatSortModule,
     
   ],

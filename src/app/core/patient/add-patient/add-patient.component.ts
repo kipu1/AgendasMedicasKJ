@@ -21,6 +21,11 @@ export class AddPatientComponent {
   pacientes: Paciente[] = [];
   validador: boolean = false;
   // identificacion: String;
+  //change components
+  bCompntNew:boolean =true;
+  bCompntAntece:boolean=false;
+  bCompntClinc:boolean=false;
+  bCompontGmail:boolean=false;
 
   constructor(private auth: AuthService, private personaServicio: patientService, private router: Router) { }
 
@@ -79,6 +84,36 @@ export class AddPatientComponent {
 
   }
 
+  changeInterface(interfaceSelec: string){
+    switch (interfaceSelec) {
+      case "new":
+        this.bCompntNew=true;
+        this.bCompntAntece=false;
+        this.bCompntClinc=false;
+        this.bCompontGmail=false;
+        break;
+      case "antecedentes":
+        this.bCompntNew=false;
+        this.bCompntAntece=true;
+        this.bCompntClinc=false;
+        this.bCompontGmail=false;
+        break;
+      case "clinico":
+        this.bCompntNew=false;
+        this.bCompntAntece=false;
+        this.bCompntClinc=true;
+        this.bCompontGmail=false;
+        break
+      case "gmail":
+        this.bCompntNew=false;
+        this.bCompntAntece=false;
+        this.bCompntClinc=false;
+        this.bCompontGmail=true;
+        break;
+      default:
+        break;
+    }
+  }
 
   guardarPersona() {
     console.log(this.paciente); // Verificar los valores de los campos

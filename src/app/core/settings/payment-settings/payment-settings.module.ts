@@ -15,6 +15,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     PaymentSettingsRoutingModule,
 
     SharedModule
+  ],exports:[
+    PaymentSettingsComponent
   ]
 })
 export class PaymentSettingsModule { }

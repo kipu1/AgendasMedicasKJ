@@ -306,6 +306,17 @@ Version      : 1.0
 /*-----------------
 	19. Events
 -----------------------*/
+//change and desactivate ui add pacient
+.correctMargin {
+   
+  padding-top: 0 !important;
+ 
+}
+
+app-hidden[hidden] {
+  display: none;
+}
+
 /*-----------------
 	20. Profile
 -----------------------*/

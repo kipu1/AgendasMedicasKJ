@@ -14,6 +14,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     LocalizationDetailsRoutingModule,
     SharedModule
+  ],
+  exports:[
+    LocalizationDetailsComponent
   ]
 })
 export class LocalizationDetailsModule { }
