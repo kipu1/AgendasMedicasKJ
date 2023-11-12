@@ -15,8 +15,8 @@ export class patientService {
  
  
 
-  actualizarPersona( paciente: Paciente): Observable<object> {
-    return this.httpClient.put(this.url + '/actualizar/', paciente);
+  actualizarPersona( id:number,paciente: Paciente): Observable<object> {
+    return this.httpClient.put(this.url + '/actualizar/'+id, paciente);
   }
     guardarPersona(paciente: any) {
       return this.httpClient.post(this.url+'/listar', paciente);
