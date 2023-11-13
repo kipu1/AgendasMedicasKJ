@@ -55,8 +55,8 @@ export class EditDoctorComponent {
 
 
 
-  actualizarDatos(idPaciente: number): void {
-    console.log('Datos actualizados:', idPaciente);
+  actualizarDatos(idDoctor: number): void {
+    console.log('Datos actualizados:', idDoctor);
     const nuevonombre = this.doctor.nombre;
     const nuevoclavesecre = this.doctor.clavesecreta;
     const nuevocomentario = this.doctor.comentarios;

@@ -5,6 +5,7 @@ import { AddDoctorRoutingModule } from './add-doctor-routing.module';
 import { AddDoctorComponent } from './add-doctor.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { materialModule } from 'src/app/shared/material.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { materialModule } from 'src/app/shared/material.module';
     CommonModule,
     AddDoctorRoutingModule,
     SharedModule,
-    materialModule
+    materialModule,
+    FormsModule
   ]
 })
 export class AddDoctorModule { }

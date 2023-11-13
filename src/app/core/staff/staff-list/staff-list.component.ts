@@ -44,12 +44,9 @@ export class StaffListComponent implements OnInit{
     this.obtenerPersona();
     this.getTableData();
   }
-  actualizarPersona(id: number) {
-    // Ejemplo: Llamada a un servicio para obtener los detalles del paciente por ID
-    this.antropometriaService.Buscarid(id).subscribe((antropometria: any) => {
-      this.antropometria = antropometria;
-      this.router.navigate([this.routes.editPatient, { id }]);
-    });
+ actualizarPersona(id:number){
+    //aqui solo dirige ala pagina de actualizar maquina
+    this.router.navigate([routes.addLeave,{id}]);
   }
   
 
