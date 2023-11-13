@@ -299,26 +299,26 @@ export class DataService {
               route: routes.addStaff,
               base: routes.addStaff,
             },
-            {
-               menuValue: 'Staff Profile',
-             route: routes.staffProfile,
-               base: routes.staffProfile,
-             },
-             {
-               menuValue: 'Leaves',
-               route: routes.staffLeave,
-               base: routes.staffLeave,
-             },
-             {
-             menuValue: 'Holidays',
-               route: routes.staffHoliday,
-               base: routes.staffHoliday,
-             },
-             {
-               menuValue: 'Attendance',
-               route: routes.staffAttendance,
-               base: routes.staffAttendance,
-             },
+            // {
+            //    menuValue: 'Staff Profile',
+            //  route: routes.staffProfile,
+            //    base: routes.staffProfile,
+            //  },
+            //  {
+            //    menuValue: 'Leaves',
+            //    route: routes.staffLeave,
+            //    base: routes.staffLeave,
+            //  },
+            //  {
+            //  menuValue: 'Holidays',
+            //    route: routes.staffHoliday,
+            //    base: routes.staffHoliday,
+            //  },
+            //  {
+            //    menuValue: 'Attendance',
+            //    route: routes.staffAttendance,
+            //    base: routes.staffAttendance,
+            //  },
           ],
         },
         {

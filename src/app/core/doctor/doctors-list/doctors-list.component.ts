@@ -4,6 +4,10 @@ import { routes } from 'src/app/shared/routes/routes';
 import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from "@angular/material/table";
 import { pageSelection, apiResultFormat, doctorlist } from 'src/app/shared/models/models';
+import { Doctor } from '../doctor';
+import { DoctorService } from '../doctor.service';
+import { AuthService } from 'src/app/shared/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-doctors-list',
@@ -12,9 +16,16 @@ import { pageSelection, apiResultFormat, doctorlist } from 'src/app/shared/model
 })
 export class DoctorsListComponent implements OnInit{
   public routes = routes;
-  public doctorsList: Array<doctorlist> = [];
-  dataSource!: MatTableDataSource<doctorlist>;
+  // public doctorsList: Array<Doctor> = [];
+  dataSource!: MatTableDataSource<Doctor>;
+  doctor: Doctor[] = [];
+  // public PacienteList: Array<Paciente> = [];
 
+  // dataSource = new MatTableDataSource<Paciente>;
+
+
+  
+  doctores: Doctor[] = [];
   public showFilter = false;
   public searchDataValue = '';
   public lastIndex = 0;
@@ -29,43 +40,58 @@ export class DoctorsListComponent implements OnInit{
   public pageSelection: Array<pageSelection> = [];
   public totalPages = 0;
 
-  constructor(public data : DataService){
-
+  constructor(public data : DataService,private auth:AuthService, private doctorservice:DoctorService,private router:Router){
+    this.doctores = [];
+    this.dataSource = new MatTableDataSource<Doctor>(this.doctores);
   }
   ngOnInit() {
+    this.obtenerdoctor();
     this.getTableData();
   }
+  obtenerdoctor(){
+    this.doctorservice.obtenerListaPersona().subscribe(dato => {
+  this.doctor=dato;
+    });}
+    eliminarPersona(id: number) {
+      this.doctorservice.eliminarPersona(id).subscribe(() => {
+        this.obtenerdoctor(); // Para actualizar la lista después de la eliminación
+      });
+    }
+    actualizarPersona(id:number){
+      //aqui solo dirige ala pagina de actualizar maquina
+      this.router.navigate([routes.editDoctor,{id}]);
+    }
   private getTableData(): void {
-    this.doctorsList = [];
+    this.doctor = [];
     this.serialNumberArray = [];
 
     this.data.getDoctorsList().subscribe((data: apiResultFormat) => {
       this.totalData = data.totalData;
-      data.data.map((res: doctorlist, index: number) => {
+      data.data.map((res: Doctor, index: number) => {
         const serialNumber = index + 1;
         if (index >= this.skip && serialNumber <= this.limit) {
          
-          this.doctorsList.push(res);
+          this.doctor.push(res);
           this.serialNumberArray.push(serialNumber);
         }
       });
-      this.dataSource = new MatTableDataSource<doctorlist>(this.doctorsList);
+      this.dataSource = new MatTableDataSource<Doctor>(this.doctor);
       this.calculateTotalPages(this.totalData, this.pageSize);
     });
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public searchData(value: any): void {
     this.dataSource.filter = value.trim().toLowerCase();
-    this.doctorsList = this.dataSource.filteredData;
+    this.doctor = this.dataSource.filteredData;
   }
 
   public sortData(sort: Sort) {
-    const data = this.doctorsList.slice();
+    const data = this.doctor.slice();
 
     if (!sort.active || sort.direction === '') {
-      this.doctorsList = data;
+      this.doctor = data;
     } else {
-      this.doctorsList = data.sort((a, b) => {
+      this.doctor = data.sort((a, b) => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const aValue = (a as any)[sort.active];
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

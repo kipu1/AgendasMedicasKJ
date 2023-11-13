@@ -17,9 +17,10 @@ import { Paciente } from '../paciente';
 })
 export class PatientsListComponent implements OnInit {
   paciente: Paciente[] = [];
-  public PacienteList: Array<Paciente> = [];
+  // public PacienteList: Array<Paciente> = [];
   public routes = routes;
-  dataSource = new MatTableDataSource<Paciente>;
+  // dataSource = new MatTableDataSource<Paciente>;
+  dataSource!: MatTableDataSource<Paciente>;
 
   
   pacientes: Paciente[] = [];
@@ -47,7 +48,7 @@ export class PatientsListComponent implements OnInit {
     this.getTableData();
   }
   private getTableData(): void {
-    this.PacienteList=[];
+    this.paciente=[];
   this.serialNumberArray = [];
 
     this.data.getPatientsList().subscribe((data: apiResultFormat) => {
@@ -56,11 +57,11 @@ export class PatientsListComponent implements OnInit {
         const serialNumber = index + 1;
         if (index >= this.skip && serialNumber <= this.limit) {
          
-          this.PacienteList.push(res);
+          this.paciente.push(res);
           this.serialNumberArray.push(serialNumber);
         }
       });
-      this.dataSource = new MatTableDataSource<Paciente>(this.PacienteList);
+      this.dataSource = new MatTableDataSource<Paciente>(this.paciente);
       this.calculateTotalPages(this.totalData, this.pageSize);
     });
   }
@@ -68,21 +69,21 @@ export class PatientsListComponent implements OnInit {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public searchData(value: any): void {
     this.dataSource.filter = value.trim().toLowerCase();
-    this.PacienteList = this.dataSource.filteredData;
+    this.paciente = this.dataSource.filteredData;
   }
   applyFilter(event: Event) {
     console.log('Filtering...'); // Verifica si este mensaje aparece en la consola
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-    this.PacienteList = this.dataSource.filteredData;
+    this.paciente = this.dataSource.filteredData;
   }
   public sortData(sort: Sort) {
-    const data = this.PacienteList.slice();
+    const data = this.paciente.slice();
 
     if (!sort.active || sort.direction === '') {
-      this.PacienteList = data;
+      this.paciente = data;
     } else {
-      this.PacienteList = data.sort((a, b) => {
+      this.paciente = data.sort((a, b) => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const aValue = (a as any)[sort.active];
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

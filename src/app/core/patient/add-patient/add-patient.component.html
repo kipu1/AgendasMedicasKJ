@@ -24,8 +24,8 @@
                 <li class="nav-item ">
                     <a class="nav-link" (click)="changeInterface('clinico')">Clinico</a>
                 </li>
-               
-                
+
+
                 <!-- <li class="nav-item">
                     <a class="nav-link" [routerLink]="routes.emailSettings">Consultas</a>
                 </li>
@@ -43,10 +43,10 @@
                     <!-- <li class="nav-item">
                         <a class="nav-link" [routerLink]="routes.othersSettings">E-mail/WA</a>
                     </li> -->
-                
-            </ul> 
+
+            </ul>
         </div>
-        
+
         <!-- /Page Header -->
         <div class="row" *ngIf="bCompntNew">
             <div class="col-sm-12">
@@ -74,14 +74,14 @@
                                     <div class="form-group local-forms">
                                         <label>Apellido <span class="login-danger">*</span></label>
 
-                                        <input class="form-control" type="text"  placeholder="" id="apellido" name="apellido"
-                                            [(ngModel)]="paciente.apellido">
+                                        <input class="form-control" type="text" placeholder="" id="apellido"
+                                            name="apellido" [(ngModel)]="paciente.apellido">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Nombre <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text"  placeholder="" id="nombre" name="nombre"
+                                        <input class="form-control" type="text" placeholder="" id="nombre" name="nombre"
                                             [(ngModel)]="paciente.nombre">
                                     </div>
                                 </div>
@@ -90,10 +90,29 @@
                                         <label>Tipo de documento <span class="login-danger">*</span></label>
 
                                         <mat-select id="tipodocumento" name="tipodocumento"
-                                            [(ngModel)]="paciente.tipodocumento"  placeholder="" class="form-control select"
-                                            placeholder="Seleccione">
+                                            [(ngModel)]="paciente.tipodocumento" placeholder=""
+                                            class="form-control select" placeholder="Seleccione">
+                                            <mat-option value="CC">CC</mat-option>
+                                            <mat-option value="CDI">CDI</mat-option>
                                             <mat-option value="CI">CI</mat-option>
-                                            <mat-option value="Pasaporte">Pasaporte</mat-option>
+                                            <mat-option value="CIC">CIC</mat-option>
+                                            <mat-option value="CIE">CIE</mat-option>
+                                            <mat-option value="CIP">CIP</mat-option>
+                                            <mat-option value="CUIL">CUIL</mat-option>
+                                            <mat-option value="CUIT">CUIT</mat-option>
+                                            <mat-option value="CURP">CURP</mat-option>
+                                            <mat-option value="DNI">DNI</mat-option>
+                                            <mat-option value="DPI">DPI</mat-option>
+                                            <mat-option value="DUI">DUI</mat-option>
+                                            <mat-option value="IMSS">IMSS</mat-option>
+                                            <mat-option value="LC">LC</mat-option>
+                                            <mat-option value="LE">LE</mat-option>
+                                            <mat-option value="NIE">NIE</mat-option>
+                                            <mat-option value="NIF">NIF</mat-option>
+                                            <mat-option value="PAS">PAS</mat-option>
+                                            <mat-option value="RG">RG</mat-option>
+                                            <mat-option value="RUN">RUN</mat-option>
+                                            <mat-option value="RUT">RUT</mat-option>
                                         </mat-select>
                                     </div>
                                 </div>
@@ -101,9 +120,9 @@
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Documento <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text"  placeholder="" id="documento" name="documento"
-                                        [(ngModel)]="paciente.documento">
-                                </div>
+                                        <input class="form-control" type="text" placeholder="" id="documento"
+                                            name="documento" [(ngModel)]="paciente.documento">
+                                    </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-3">
                                     <div class="form-group local-forms">
@@ -123,15 +142,16 @@
 
                                 <div class="col-12 col-md-6 col-xl-3">
                                     <div class="form-group local-forms">
-                                      <label>Fecha de nacimiento <span class="login-danger">*</span></label>
-                                      <input class="form-control datetimepicker" type="text" placeholder="" matInput
-                                             [matDatepicker]="picker" [(ngModel)]="paciente.fechanacimiento" name="fechanacimiento">
-                                             
-                                      <mat-datepicker #picker></mat-datepicker>
-                                      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <label>Fecha de nacimiento <span class="login-danger">*</span></label>
+                                        <input class="form-control datetimepicker" type="text" placeholder="" matInput
+                                            [matDatepicker]="picker" [(ngModel)]="paciente.fechanacimiento"
+                                            name="fechanacimiento">
+
+                                        <mat-datepicker #picker></mat-datepicker>
+                                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                                     </div>
-                                  </div>
-                                  
+                                </div>
+
                                 <div class="col-12 col-md-6 col-xl-3">
                                     <div class="form-group local-forms">
                                         <label>Grupo sanguíneo <span class="login-danger">*</span></label>
@@ -158,12 +178,14 @@
                                         <label class="gen-label">Genero<span class="login-danger">*</span></label>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="radio" name="gender" class="form-check-input" value="masculino" [(ngModel)]="paciente.sexo">Masculino
+                                                <input type="radio" name="gender" class="form-check-input"
+                                                    value="masculino" [(ngModel)]="paciente.sexo">Masculino
                                             </label>
                                         </div>
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
-                                                <input type="radio" name="gender" class="form-check-input" value="femenino" [(ngModel)]="paciente.sexo">Femenino
+                                                <input type="radio" name="gender" class="form-check-input"
+                                                    value="femenino" [(ngModel)]="paciente.sexo">Femenino
                                             </label>
                                         </div>
                                     </div>
@@ -171,16 +193,16 @@
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="form-group local-forms">
                                         <label>Direccion <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text"  placeholder="" id="direccion" name="direccion"
-                                        [(ngModel)]="paciente.direccion">
-                                </div>
+                                        <input class="form-control" type="text" placeholder="" id="direccion"
+                                            name="direccion" [(ngModel)]="paciente.direccion">
+                                    </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-6">
                                     <div class="form-group local-forms">
                                         <label>Correo <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text"  placeholder="" id="cp" name="cp"
-                                        [(ngModel)]="paciente.cp">
-                                </div>
+                                        <input class="form-control" type="text" placeholder="" id="cp" name="cp"
+                                            [(ngModel)]="paciente.cp">
+                                    </div>
                                 </div>
 
                                 <div class="col-12 col-md-6 col-xl-3">
@@ -211,64 +233,67 @@
                                 <div class="col-12 col-md-6 col-xl-3">
                                     <div class="form-group local-forms">
                                         <label>Numero de Afiliado <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text"  placeholder="" id="afiliado" name="afiliado"
-                                        [(ngModel)]="paciente.afiliado">
-                                </div>
+                                        <input class="form-control" type="text" placeholder="" id="afiliado"
+                                            name="afiliado" [(ngModel)]="paciente.afiliado">
+                                    </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Telofono 1 <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text"  placeholder="" id="telefono1" name="telefono1"
-                                        [(ngModel)]="paciente.telefono1">
-                                </div>
+                                        <input class="form-control" type="text" placeholder="" id="telefono1"
+                                            name="telefono1" [(ngModel)]="paciente.telefono1">
+                                    </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Telofono 2 <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" placeholder="" id="telefono2" name="telefono2"
-                                        [(ngModel)]="paciente.telefono2">
-                                </div>
+                                        <input class="form-control" type="text" placeholder="" id="telefono2"
+                                            name="telefono2" [(ngModel)]="paciente.telefono2">
+                                    </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Telofono 3 <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text"  placeholder="" id="telefono3" name="telefono3"
-                                        [(ngModel)]="paciente.telefono3">
-                                </div>
+                                        <input class="form-control" type="text" placeholder="" id="telefono3"
+                                            name="telefono3" [(ngModel)]="paciente.telefono3">
+                                    </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>campoCfg 1<span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text"  placeholder="" id="campoCfg1" name="campoCfg1"
-                                        [(ngModel)]="paciente.campoCfg1">
-                                </div>
+                                        <input class="form-control" type="text" placeholder="" id="campoCfg1"
+                                            name="campoCfg1" [(ngModel)]="paciente.campoCfg1">
+                                    </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>campoCfg 2 <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text"  placeholder="" id="campoCfg2" name="campoCfg2"
-                                        [(ngModel)]="paciente.campoCfg2">
-                                </div>
+                                        <input class="form-control" type="text" placeholder="" id="campoCfg2"
+                                            name="campoCfg2" [(ngModel)]="paciente.campoCfg2">
+                                    </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>campoCfg 3 <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text"  placeholder="" id="campoCfg3" name="campoCfg3"
-                                        [(ngModel)]="paciente.campoCfg3">
-                                </div>
+                                        <input class="form-control" type="text" placeholder="" id="campoCfg3"
+                                            name="campoCfg3" [(ngModel)]="paciente.campoCfg3">
+                                    </div>
                                 </div>
 
-                               
+
 
 
 
 
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
-                                  
-                                        <button type="submit" class="btn btn-primary submit-form me-2" (click)="guardarPersona()" [routerLink]="routes.patientsList">Guardar</button>
-                                         
-                                        <button type="submit" class="btn btn-primary cancel-form"[routerLink]="routes.patientsList">Cancel</button>
+
+                                        <button type="submit" class="btn btn-primary submit-form me-2"
+                                            (click)="guardarPersona()"
+                                            [routerLink]="routes.patientsList">Guardar</button>
+
+                                        <button type="submit" class="btn btn-primary cancel-form"
+                                            [routerLink]="routes.patientsList">Cancel</button>
                                     </div>
                                 </div>
                             </div>
