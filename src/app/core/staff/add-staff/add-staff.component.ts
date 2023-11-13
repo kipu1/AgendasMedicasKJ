@@ -19,7 +19,12 @@ export class AddStaffComponent {
   pacientes: Antropometria[] = [];
   validador: boolean = false;
   // identificacion: String;
-
+  bCompntinicial:boolean =true;
+  bCompntpliegue:boolean=false;
+  bCompntdiame:boolean=false;
+  bCompontperimetros:boolean=false;
+  bCompontlongitudes:boolean=false;
+  
   constructor(private auth: AuthService, private antropometriaServicio: AntropometriaService, private router: Router) { }
 
   ngOnInit(): void {
@@ -33,7 +38,47 @@ export class AddStaffComponent {
     });
   }
 
- 
+  changeInterface(interfaceSelec: string){
+    switch (interfaceSelec) {
+      case "inicial":
+        this.bCompntinicial=true;
+        this.bCompntpliegue=false;
+        this.bCompntdiame=false;
+        this.bCompontperimetros=false;
+        this.bCompontlongitudes=false;
+        break;
+      case "pliegue":
+        this.bCompntinicial=false;
+        this.bCompntpliegue=true;
+        this.bCompntdiame=false;
+        this.bCompontperimetros=false;
+        this.bCompontlongitudes=false;
+        break;
+      case "Diametros":
+        this.bCompntinicial=false;
+        this.bCompntpliegue=false;
+        this.bCompntdiame=true;
+        this.bCompontperimetros=false;
+        this.bCompontlongitudes=false;
+        break
+        case "Perimetros":
+          this.bCompntinicial=false;
+          this.bCompntpliegue=false;
+          this.bCompntdiame=false;
+          this.bCompontperimetros=true;
+          this.bCompontlongitudes=false;
+          break
+      case "Longuitudes":
+        this.bCompntinicial=false;
+        this.bCompntpliegue=false;
+        this.bCompntdiame=false;
+        this.bCompontperimetros=false;
+        this.bCompontlongitudes=true;
+        break;
+      default:
+        break;
+    }
+  }
 
   guardarPersona() {
     console.log(this.antropometria); // Verificar los valores de los campos

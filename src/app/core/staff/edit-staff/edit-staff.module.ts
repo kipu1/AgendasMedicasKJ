@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 
 import { EditStaffRoutingModule } from './edit-staff-routing.module';
 import { EditStaffComponent } from './edit-staff.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     EditStaffRoutingModule,
-    SharedModule
+    SharedModule,
+    NgIf,
+    FormsModule 
+  ],exports:[
+    EditStaffComponent
   ]
 })
 export class EditStaffModule { }

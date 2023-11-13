@@ -4,6 +4,10 @@ import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from "@angular/material/table";
 import { pageSelection, apiResultFormat, staffholidays } from 'src/app/shared/models/models';
 import { DataService } from 'src/app/shared/data/data.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/auth/auth.service';
+import { Antropometria } from '../antropometria';
+import { AntropometriaService } from '../antropometria.service';
 
 @Component({
   selector: 'app-staff-holiday',
@@ -13,117 +17,161 @@ import { DataService } from 'src/app/shared/data/data.service';
 export class StaffHolidayComponent implements OnInit {
   public routes = routes;
 
-  public staffHoliday: Array<staffholidays> = [];
-  dataSource!: MatTableDataSource<staffholidays>;
+  antropometria: Antropometria = new Antropometria();
+  pacientes: Antropometria[] = [];
+  validador: boolean = false;
+  // identificacion: String;
 
-  public showFilter = false;
-  public searchDataValue = '';
-  public lastIndex = 0;
-  public pageSize = 10;
-  public totalData = 0;
-  public skip = 0;
-  public limit: number = this.pageSize;
-  public pageIndex = 0;
-  public serialNumberArray: Array<number> = [];
-  public currentPage = 1;
-  public pageNumberArray: Array<number> = [];
-  public pageSelection: Array<pageSelection> = [];
-  public totalPages = 0;
+  constructor(private auth: AuthService, private antropometriaServicio: AntropometriaService, private router: Router) { }
 
-  constructor(public data : DataService){
+  ngOnInit(): void {
+    this.obtenerpersona();
 
   }
-  ngOnInit() {
-    this.getTableData();
-  }
-  private getTableData(): void {
-    this.staffHoliday = [];
-    this.serialNumberArray = [];
 
-    this.data.getStaffHoliday().subscribe((data: apiResultFormat) => {
-      this.totalData = data.totalData;
-      data.data.map((res: staffholidays, index: number) => {
-        const serialNumber = index + 1;
-        if (index >= this.skip && serialNumber <= this.limit) {
-         
-          this.staffHoliday.push(res);
-          this.serialNumberArray.push(serialNumber);
-        }
-      });
-      this.dataSource = new MatTableDataSource<staffholidays>(this.staffHoliday);
-      this.calculateTotalPages(this.totalData, this.pageSize);
+  obtenerpersona() {
+    this.antropometriaServicio.obtenerListaPersona().subscribe(dato => {
+      this.pacientes = dato;
     });
   }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public searchData(value: any): void {
-    this.dataSource.filter = value.trim().toLowerCase();
-    this.staffHoliday = this.dataSource.filteredData;
+
+ 
+
+  guardarPersona() {
+    console.log(this.antropometria); // Verificar los valores de los campos
+    var apellido = this.antropometria.fecha;
+    var nombre = this.antropometria.edad;
+    var tipodocumento = this.antropometria.peso;
+    var documento = this.antropometria.talla;
+    var civil = this.antropometria.tronco;
+    var fechanacimiento = this.antropometria.dsuspino;
+    var direccion = this.antropometria.envergadura;
+    var telefono = this.antropometria.bicipital;
+    var sexo = this.antropometria.ileocristal;
+    var direccion = this.antropometria.supraespinal;
+
+    var cp = this.antropometria.axilar;
+    var direccion = this.antropometria.abdominal;
+    var obra = this.antropometria.tricipital;
+    var afiliado = this.antropometria.subescapular;
+    var telefono1 = this.antropometria.pectoral;
+    var telefono2 = this.antropometria.gemelo;
+    var telefono3 = this.antropometria.muslofrontal;
+
+    var campoCfg1 = this.antropometria.humeral;
+    var campoCfg2 = this.antropometria.femoral;
+
+    var campoCfg3 = this.antropometria.biacromial;
+    var clinicos = this.antropometria.biileocretideo;
+
+    var familiar = this.antropometria.toraxap;
+    var diagnostico = this.antropometria.muslo;
+    var cormobilidades = this.antropometria.tobillo;
+    var extra1 = this.antropometria.biliacodi;
+    var extra2 = this.antropometria.muneca;
+
+    var extra3 = this.antropometria.toraxtrans;
+    var extra4 = this.antropometria.cefalico;
+
+    var extra5 = this.antropometria.torax;
+    var extra6 = this.antropometria.antebrazo;
+
+    var extra7 = this.antropometria.tobillo1;
+    var extra8 = this.antropometria.cintura
+    var extra9 = this.antropometria.cuello;
+    var extra10 = this.antropometria.bicipitalrel;
+
+    var comentarios = this.antropometria.bicitalflex;
+    var familiar = this.antropometria.muslo1;
+    var diagnostico = this.antropometria.cadera;
+    var cormobilidades = this.antropometria.muneca1;
+    var extra1 = this.antropometria.gemelo1;
+    var extra2 = this.antropometria.muneca;
+
+    var extra3 = this.antropometria.abdomen;
+    var extra4 = this.antropometria.acroestiloide;
+
+    var extra5 = this.antropometria.medioestdact;
+    var extra6 = this.antropometria.trocanterea;
+
+    var extra7 = this.antropometria.tribiallateral;
+    var extra8 = this.antropometria.tibMdMaleolar
+    var extra9 = this.antropometria.acroradial;
+    var extra10 = this.antropometria.ilioespinal;
+
+    var comentarios = this.antropometria.trocTipLat;
+    var extra9 = this.antropometria.pie;
+    // var extra10 = this.antropometria.anotaciones;
+
+    // var comentarios = this.antropometria.prescripciones;
+
+
+
+
+
+    // Código para guardar la persona
+    this.antropometriaServicio.registrarPersona(this.antropometria).subscribe(dato => {
+      this.obtenerpersona();
+    }, error => {
+
+      console.log(error);
+      alert('La persona ha sido guardada correctamente');
+
+      // Llamada al método para obtener la lista de personas después de guardar una nueva persona
+    },
+
+    );
+
+    // this.antropometria.apellido = '';
+    // this.antropometria.nombre = '';
+    // this.antropometria.tipodocumento = '';
+    // this.antropometria.documento = '';
+    // this.antropometria.civil = '';
+    // this.antropometria.fechanacimiento = '';
+    // this.antropometria.direccion = '';
+    // this.antropometria.grupo = '';
+    // this.antropometria.sexo = '';
+    // this.antropometria.direccion = '';
+
+    // this.antropometria.cp = '';
+    // this.antropometria.direccion = '';
+    // this.antropometria.obra = '';
+    // this.antropometria.afiliado = '';
+    // this.antropometria.telefono1 = '';
+    // this.antropometria.telefono2 = '';
+    // this.antropometria.telefono3 = '';
+
+    // this.antropometria.campoCfg1 = '';
+    // this.antropometria.campoCfg2 = '';
+
+    // this.antropometria.campoCfg3 = '';
+    // this.antropometria.clinicos = '';
+
+    // this.antropometria.familiar = '';
+    // this.antropometria.diagnostico = '';
+    // this.antropometria.cormobilidades = '';
+    // this.antropometria.extra1 = '';
+    // this.antropometria.extra2 = '';
+
+    // this.antropometria.extra3 = '';
+    // this.antropometria.extra4 = '';
+
+    // this.antropometria.extra5 = '';
+    // this.antropometria.extra6 = '';
+
+    // this.antropometria.extra7 = '';
+    // this.antropometria.extra8 = '';
+    // this.antropometria.extra9 = '';
+    // this.antropometria.extra10 = '';
+
+    // this.antropometria.comentarios = '';
+
+
   }
 
-  public sortData(sort: Sort) {
-    const data = this.staffHoliday.slice();
 
-    if (!sort.active || sort.direction === '') {
-      this.staffHoliday = data;
-    } else {
-      this.staffHoliday = data.sort((a, b) => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const aValue = (a as any)[sort.active];
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const bValue = (b as any)[sort.active];
-        return (aValue < bValue ? -1 : 1) * (sort.direction === 'asc' ? 1 : -1);
-      });
-    }
-  }
 
-  public getMoreData(event: string): void {
-    if (event == 'next') {
-      this.currentPage++;
-      this.pageIndex = this.currentPage - 1;
-      this.limit += this.pageSize;
-      this.skip = this.pageSize * this.pageIndex;
-      this.getTableData();
-    } else if (event == 'previous') {
-      this.currentPage--;
-      this.pageIndex = this.currentPage - 1;
-      this.limit -= this.pageSize;
-      this.skip = this.pageSize * this.pageIndex;
-      this.getTableData();
-    }
-  }
-
-  public moveToPage(pageNumber: number): void {
-    this.currentPage = pageNumber;
-    this.skip = this.pageSelection[pageNumber - 1].skip;
-    this.limit = this.pageSelection[pageNumber - 1].limit;
-    if (pageNumber > this.currentPage) {
-      this.pageIndex = pageNumber - 1;
-    } else if (pageNumber < this.currentPage) {
-      this.pageIndex = pageNumber + 1;
-    }
-    this.getTableData();
-  }
-
-  public PageSize(): void {
-    this.pageSelection = [];
-    this.limit = this.pageSize;
-    this.skip = 0;
-    this.currentPage = 1;
-    this.getTableData();
-  }
-
-  private calculateTotalPages(totalData: number, pageSize: number): void {
-    this.pageNumberArray = [];
-    this.totalPages = totalData / pageSize;
-    if (this.totalPages % 1 != 0) {
-      this.totalPages = Math.trunc(this.totalPages + 1);
-    }
-    /* eslint no-var: off */
-    for (var i = 1; i <= this.totalPages; i++) {
-      const limit = pageSize * i;
-      const skip = limit - pageSize;
-      this.pageNumberArray.push(i);
-      this.pageSelection.push({ skip: skip, limit: limit });
-    }
+  onSubmit() {
+    this.guardarPersona();
   }
 }

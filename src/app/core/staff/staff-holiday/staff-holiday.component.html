@@ -1,207 +1,141 @@
-<div class="page-wrapper">
-    <div class="content">
-    
-        <!-- Page Header -->
-        <div class="page-header">
-            <div class="row">
-                <div class="col-sm-12">
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a [routerLink]="routes.staffList">Staffs </a></li>
-                        <li class="breadcrumb-item"><i class="feather icon-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Holidays</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- /Page Header -->
-        
-        <div class="row">
-            <div class="col-sm-12">
-            
-                <div class="card card-table show-entire">
-                    <div class="card-body">
-                    
-                        <!-- Table Header -->
-                        <div class="page-table-header mb-2">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <div class="doctor-table-blk">
-                                        <h3>Holidays</h3>
-                                        <div class="doctor-search-blk">
-                                            <div class="top-nav-search table-search-blk">
-                                                    <input  class="form-control" placeholder="Search here" [(ngModel)]="searchDataValue"
-                                                    (ngModelChange)="searchData(searchDataValue)">
-                                                    <a class="btn"><img src="assets/img/icons/search-normal.svg" alt="" ></a>
-                                            </div>
-                                            <div class="add-group">
-                                                <a href="javascript:;" class="btn btn-primary add-pluss ms-2"><img src="assets/img/icons/plus.svg" alt=""></a>
-                                                <a href="javascript:;" class="btn btn-primary doctor-refresh ms-2"><img src="assets/img/icons/re-fresh.svg" alt=""></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto text-end float-end ms-auto download-grp">
-                                    <a href="javascript:;" class=" me-2"><img src="assets/img/icons/pdf-icon-01.svg" alt=""></a>
-                                    <a href="javascript:;" class=" me-2"><img src="assets/img/icons/pdf-icon-02.svg" alt=""></a>
-                                    <a href="javascript:;" class=" me-2"><img src="assets/img/icons/pdf-icon-03.svg" alt=""></a>
-                                    <a href="javascript:;" ><img src="assets/img/icons/pdf-icon-04.svg" alt=""></a>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /Table Header -->
-                        
-                        <div class="table-responsive">
-                            <table matSort (matSortChange)="sortData($event)" class="table border-0 custom-table comman-table datatable mb-0">
-                                <thead>
-                                    <tr>
-                                        <th mat-sort-header="checkbox">
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox" value="something">
-                                            </div>
-                                        </th>
-                                        <th mat-sort-header="title">Title</th>
-                                        <th mat-sort-header="holidayDate">Holiday Date</th>
-                                        <th mat-sort-header="day">Day</th>
-                                        <th mat-sort-header="description">Description</th>
-                                        <th ></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let data of staffHoliday">
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox" value="something">
-                                            </div>
-                                        </td>
-                                        <td>{{data.title}}</td>
-                                        <td>{{data.holidayDate}}	</td>
-                                        <td>{{data.day}}</td>
-                                        <td>{{data.description}}</td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="javascript:void(0);" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="javascript:;"><i class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delete_patient"><i class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="table_footer">
-                                <div class="col-sm-12 col-md-5">
-                                  <div class="dataTables_info">
-                                    Showing {{ serialNumberArray[0] }} to
-                                    {{ serialNumberArray[serialNumberArray.length - 1] }} of
-                                    {{ totalData }} entries
+<div class="page-wrapper correctMargin">
+    <div class="content correctMargin">
+      <!-- /Page Header -->
+      <div class="row">
+          <div class="col-sm-12">
+
+              <div class="card">
+                  <div class="card-body">
+                      <form>
+                          <div class="row">
+                              <div class="col-12">
+                                  <div class="form-heading">
+                                      <h4>Longuitudes</h4>
                                   </div>
-                                </div>
-                
-                                <div class="col-sm-12 col-md-7">
-                                  <div class="pagination_section">
-                                    <ul class="pagination">
-                                      <li
-                                        class="page-item"
-                                        [ngClass]="{
-                                          disabled: currentPage === 1
-                                        }"
-                                      >
-                                        <a
-                                          (click)="getMoreData('previous')"
-                                          class="page-link"
-                                          href="javascript:void(0);"
-                                          tabindex="-1"
-                                          >Previous</a
-                                        >
-                                      </li>
-                
-                                      <ng-container
-                                        *ngFor="let item of pageNumberArray; let i = index"
-                                      >
-                                        <li
-                                          class="page-item"
-                                          [class.active]="item === currentPage"
-                                          [ngClass]="
-                                            (pageNumberArray[currentPage - 2] > item &&
-                                              item !== 1 &&
-                                              pageNumberArray.length > 6) ||
-                                            (pageNumberArray[currentPage] < item &&
-                                              item !== 1 &&
-                                              pageNumberArray.length > 6 &&
-                                              pageNumberArray.length !== item)
-                                              ? 'hide-page-no'
-                                              : 'show-page-no'
-                                          "
-                                        >
-                                          <a
-                                            (click)="moveToPage(item)"
-                                            class="page-link"
-                                            href="javascript:void(0);"
-                                          >
-                                            {{ item }}
-                                          </a>
-                                        </li>
-                                        <li
-                                          class="page-item"
-                                          *ngIf="
-                                            i === 0 &&
-                                            pageNumberArray.length > 6 &&
-                                            currentPage > 2
-                                          "
-                                          [hidden]="currentPage === 1"
-                                          (click)="moveToPage(currentPage - 2)"
-                                        >
-                                          <a class="page-link" href="javascript:void(0);">
-                                            ...
-                                          </a>
-                                        </li>
-                                        <li
-                                          *ngIf="
-                                            i === pageNumberArray.length - 2 &&
-                                            pageNumberArray.length > 6
-                                          "
-                                          [hidden]="
-                                            currentPage >=
-                                              pageNumberArray[pageNumberArray.length - 2] ||
-                                            totalData <
-                                              serialNumberArray[serialNumberArray.length - 1]
-                                          "
-                                          class="page-item"
-                                          (click)="moveToPage(currentPage + 2)"
-                                        >
-                                          <a class="page-link" href="javascript:void(0);">
-                                            ...
-                                          </a>
-                                        </li>
-                                      </ng-container>
-                
-                                      <li
-                                        class="page-item"
-                                        [ngClass]="{
-                                          disabled:
-                                            currentPage ===
-                                              pageNumberArray[pageNumberArray.length - 1] ||
-                                              staffHoliday.length === 0
-                                        }"
-                                      >
-                                        <a
-                                          (click)="getMoreData('next')"
-                                          class="page-link"
-                                          href="javascript:void(0);"
-                                          >Next
-                                        </a>
-                                      </li>
-                                    </ul>
+                              </div>
+                             
+                             
+
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>acroestiloide <span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text"  placeholder="" id="acroestiloide" name="acroestiloide"
+                                          [(ngModel)]="antropometria.acroestiloide">
                                   </div>
+                              </div>
+                              
+
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>medioestdact <span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text"  placeholder="" id="medioestdact" name="medioestdact"
+                                      [(ngModel)]="antropometria.medioestdact">
+                              </div>
+                              </div>
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>trocanterea <span class="login-danger">*</span></label>
+
+                                      <input class="form-control" type="text"  placeholder="" id="trocanterea" name="trocanterea"
+                                          [(ngModel)]="antropometria.trocanterea">
+                                  </div>
+                              </div>
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>tribiallateral <span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text"  placeholder="" id="tribiallateral" name="tribiallateral"
+                                          [(ngModel)]="antropometria.tribiallateral">
+                                  </div>
+                              </div>
+                              
+
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>tibMdMaleolar <span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text"  placeholder="" id="tibMdMaleolar" name="tibMdMaleolar"
+                                      [(ngModel)]="antropometria.tibMdMaleolar">
+                              </div>
+                              </div>
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>acroradial <span class="login-danger">*</span></label>
+
+                                      <input class="form-control" type="text"  placeholder="" id="acroradial" name="acroradial"
+                                          [(ngModel)]="antropometria.acroradial">
+                                  </div>
+                              </div>
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>ilioespinal <span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text"  placeholder="" id="ilioespinal" name="ilioespinal"
+                                          [(ngModel)]="antropometria.ilioespinal">
+                                  </div>
+                              </div>
+                              
+
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>trocTipLat <span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text"  placeholder="" id="trocTipLat" name="trocTipLat"
+                                      [(ngModel)]="antropometria.trocTipLat">
+                              </div>
+                              </div>
+                              
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>pie <span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text"  placeholder="" id="pie" name="pie"
+                                          [(ngModel)]="antropometria.pie">
+                                  </div>
+                              </div>
+                              <div class="col-12 col-md-6 col-xl-3">
+                                <div class="form-group local-forms">
+                                  <label>Fecha <span class="login-danger">*</span></label>
+                                  <input class="form-control datetimepicker" type="text" placeholder="" matInput
+                                         [matDatepicker]="picker" [(ngModel)]="antropometria.fecha" name="fechanacimiento">
+                                         
+                                  <mat-datepicker #picker></mat-datepicker>
+                                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                                 </div>
                               </div>
-                        </div>
-                    </div>
-                </div>							
-            </div>					
-        </div>
-    </div>
+                              
+                            <div class="col-12 col-sm-12">
+                                <div class="form-group local-forms">
+                                    <label>Leave Reason  <span class="login-danger">*</span></label>
+                                    <textarea class="form-control" rows="3" cols="30">Going to hospital</textarea>
+                                </div>
+                            </div>
+<!-- 
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>anotaciones <span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text"  placeholder="" id="anotaciones" name="anotaciones"
+                                      [(ngModel)]="paciente.anotaciones">
+                              </div>
+                              </div>
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>prescripciones <span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text"  placeholder="" id="prescripciones" name="prescripciones"
+                                      [(ngModel)]="paciente.prescripciones">
+                              </div>
+                              </div> -->
+
+
+
+                              <div class="col-12">
+                                  <div class="doctor-submit text-end">
+                                      <button type="submit"
+                                          class="btn btn-primary submit-form me-2"(click)="guardarPersona()"[routerLink]="routes.staffList">Guardar</button>
+                                       
+                                      <button type="submit" class="btn btn-primary cancel-form"[routerLink]="routes.staffList">Cancel</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
- 

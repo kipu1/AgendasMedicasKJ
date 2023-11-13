@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 
 import { EditLeaveRoutingModule } from './edit-leave-routing.module';
 import { EditLeaveComponent } from './edit-leave.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     EditLeaveRoutingModule,
-    SharedModule
+    SharedModule,
+    NgIf,
+    FormsModule 
+  ],exports:[
+    EditLeaveComponent
   ]
 })
 export class EditLeaveModule { }
