@@ -121,15 +121,15 @@
 
                                 <div class="col-12 col-md-6 col-xl-3">
                                     <div class="form-group local-forms">
-                                        <label>Fecha de nacimiento <span class="login-danger">*</span></label>
-                                        <input class="form-control datetimepicker" type="text" placeholder="" matInput
-                                            [matDatepicker]="picker"  [value]="paciente.fechanacimiento | date:'yyyy-MM-dd'"
-                                            (input)="paciente.fechanacimiento" >
-                                            
-                                        <mat-datepicker #picker></mat-datepicker>
-                                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                      <label>Fecha de nacimiento <span class="login-danger">*</span></label>
+                                      <input class="form-control datetimepicker" type="text" placeholder="" matInput
+                                             [matDatepicker]="picker" [(ngModel)]="paciente.fechanacimiento" name="fechanacimiento">
+                                             
+                                      <mat-datepicker #picker></mat-datepicker>
+                                      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                                     </div>
-                                </div>
+                                  </div>
+                                  
                                 <div class="col-12 col-md-6 col-xl-3">
                                     <div class="form-group local-forms">
                                         <label>Grupo sanguíneo <span class="login-danger">*</span></label>
@@ -263,8 +263,8 @@
 
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
-                                        <button type="submit"
-                                            class="btn btn-primary submit-form me-2"(click)="guardarPersona()"[routerLink]="routes.patientsList">Guardar</button>
+                                  
+                                        <button type="submit" class="btn btn-primary submit-form me-2" (click)="guardarPersona()" [routerLink]="routes.patientsList">Guardar</button>
                                          
                                         <button type="submit" class="btn btn-primary cancel-form"[routerLink]="routes.patientsList">Cancel</button>
                                     </div>
