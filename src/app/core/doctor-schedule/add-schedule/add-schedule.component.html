@@ -6,9 +6,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a [routerLink]="routes.schedule">Doctor Shedule </a></li>
+                        <li class="breadcrumb-item"><a [routerLink]="routes.schedule">Lista </a></li>
                         <li class="breadcrumb-item"><i class="feather icon-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Add Schedule</li>
+                        <li class="breadcrumb-item active">Nueva libreta</li>
                     </ul>
                 </div>
             </div>
@@ -23,76 +23,73 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-heading">
-                                        <h4>Add Schedule</h4>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-6">  
-                                    <div class="form-group local-forms">
-                                        <label >Doctor Name <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" >
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="form-group local-forms">
-                                        <label >Department  <span class="login-danger">*</span></label>
-                                        <mat-select [(ngModel)]="selectedValue" [ngModelOptions]="{standalone: true}" class="form-control select"  placeholder="Choose Department">
-                                            <mat-option *ngFor="let data of selectedList" [value]="data.value">
-                                            {{data.value}}
-                                            </mat-option>
-                                        </mat-select>
+                                        <h4>Nueva libreta</h4>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
-                                        <label >Available Days  <span class="login-danger">*</span></label>
-                                        <input class="form-control datetimepicker" type="text" matInput [matDatepicker]="picker"  >
-                                        <mat-datepicker #picker></mat-datepicker>
-                                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <label>nombre <span class="login-danger">*</span></label>
+
+                                        <input class="form-control" type="text" placeholder="" id="nombre" name="nombre"
+                                            [(ngModel)]="libreta.nombre">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
-                                        <label>From <span class="login-danger">*</span></label>
-                                        <div class="time-icon">
-                                                <input type="text"  class="form-control" [ngxTimepicker]="default1">
-                                                <ngx-material-timepicker #default1></ngx-material-timepicker>
-                                        </div>
+                                        <label>telefono <span class="login-danger">*</span></label>
+
+                                        <input class="form-control" type="text" placeholder="" id="telefono" name="telefono"
+                                            [(ngModel)]="libreta.telefono">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
-                                        <label>To <span class="login-danger">*</span></label>
-                                        <div class="time-icon">
-                                            <input type="text"  class="form-control" [ngxTimepicker]="default2">
-                                            <ngx-material-timepicker #default2></ngx-material-timepicker>
-                                        </div>
+                                        <label>celular <span class="login-danger">*</span></label>
+
+                                        <input class="form-control" type="text" placeholder="" id="celular" name="celular"
+                                            [(ngModel)]="libreta.celular">
                                     </div>
                                 </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Correo<span class="login-danger">*</span></label>
+
+                                        <input class="form-control" type="text" placeholder="" id="email" name="email"
+                                            [(ngModel)]="libreta.email">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>web<span class="login-danger">*</span></label>
+
+                                        <input class="form-control" type="text" placeholder="" id="web" name="web"
+                                            [(ngModel)]="libreta.web">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Direccion<span class="login-danger">*</span></label>
+
+                                        <input class="form-control" type="text" placeholder="" id="direccion" name="direccion"
+                                            [(ngModel)]="libreta.direccion">
+                                    </div>
+                                </div>
+                            
                                 <div class="col-12 col-sm-12">
                                     <div class="form-group local-forms">
-                                        <label>Notes  <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" rows="3" cols="30"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="form-group select-gender">
-                                        <label class="gen-label">Status <span class="login-danger">*</span></label>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" name="gender" class="form-check-input">Active
-                                            </label>
-                                        </div>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" name="gender" class="form-check-input">In Active
-                                            </label>
-                                        </div>
+                                        <label>Anotaciones<span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="notas" name="notas"
+                                            [(ngModel)]="libreta.notas" rows="3" cols="30"></textarea>
+
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
-                                        <button type="submit" class="btn btn-primary submit-form me-2">Create Schedule</button>
-                                        <button type="submit" class="btn btn-primary cancel-form">Cancel</button>
+                                        <button type="submit" class="btn btn-primary submit-form me-2"
+                                            (click)="guardardoctor()" [routerLink]="routes.schedule">Guardar</button>
+
+                                        <button type="submit" class="btn btn-primary cancel-form"
+                                           >Cancel</button>
                                     </div>
                                 </div>
                             </div>

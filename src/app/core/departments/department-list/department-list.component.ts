@@ -4,6 +4,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from 'src/app/shared/data/data.service';
 import { pageSelection, apiResultFormat, departmentList } from 'src/app/shared/models/models';
 import { routes } from 'src/app/shared/routes/routes';
+import { Odontologia } from '../odontologia';
+import { OdontologiaService } from '../odontologia.service';
+import { AuthService } from 'src/app/shared/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-department-list',
@@ -12,9 +16,10 @@ import { routes } from 'src/app/shared/routes/routes';
 })
 export class DepartmentListComponent implements OnInit{
   public routes = routes;
-
-  public departmentList: Array<departmentList> = [];
-  dataSource!: MatTableDataSource<departmentList>;
+  odonto: Odontologia[] = [];
+  // public schedule: Array<Libreta> = [];
+  dataSource!: MatTableDataSource<Odontologia>;
+  odontos: Odontologia[] = [];
 
   public showFilter = false;
   public searchDataValue = '';
@@ -30,47 +35,64 @@ export class DepartmentListComponent implements OnInit{
   public pageSelection: Array<pageSelection> = [];
   public totalPages = 0;
 
-  constructor(public data : DataService){
-
+  constructor(public data : DataService,private auth:AuthService, private odontologiaService:OdontologiaService,private router:Router){
+    this.odontos = [];
+    this.dataSource = new MatTableDataSource<Odontologia>(this.odontos);
   }
   ngOnInit() {
+    this.obtenerPersona();
     this.getTableData();
   }
+  actualizarPersona(id:number){
+    //aqui solo dirige ala pagina de actualizar maquina
+    this.router.navigate([routes.editDepartment,{id}]);
+  }
+  obtenerPersona(){
+    this.odontologiaService.obtenerListaPersona().subscribe(dato => {
+  this.odonto=dato;
+    });}
+    eliminarPersona(id: number) {
+      this.odontologiaService.eliminarPersona(id).subscribe(() => {
+        this.obtenerPersona(); // Para actualizar la lista después de la eliminación
+      });
+    }
+  
   private getTableData(): void {
-    this.departmentList = [];
+    this.odonto = [];
     this.serialNumberArray = [];
 
-    this.data.getDepartmentList().subscribe((data: apiResultFormat) => {
+    this.data.getSchedule().subscribe((data: apiResultFormat) => {
       this.totalData = data.totalData;
-      data.data.map((res: departmentList, index: number) => {
+      data.data.map((res: Odontologia, index: number) => {
         const serialNumber = index + 1;
         if (index >= this.skip && serialNumber <= this.limit) {
-        
-          this.departmentList.push(res);
+         
+          this.odonto.push(res);
           this.serialNumberArray.push(serialNumber);
         }
       });
-      this.dataSource = new MatTableDataSource<departmentList>(this.departmentList);
+      this.dataSource = new MatTableDataSource<Odontologia>(this.odonto);
       this.calculateTotalPages(this.totalData, this.pageSize);
     });
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public searchData(value: any): void {
     this.dataSource.filter = value.trim().toLowerCase();
-    this.departmentList = this.dataSource.filteredData;
+    this.odonto = this.dataSource.filteredData;
   }
 
   public sortData(sort: Sort) {
-    const data = this.departmentList.slice();
+    const data = this.odonto.slice();
 
     if (!sort.active || sort.direction === '') {
-      this.departmentList = data;
+      this.odonto = data;
     } else {
-      this.departmentList = data.sort((a, b) => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      this.odonto = data.sort((a, b) => {
+         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const aValue = (a as any)[sort.active];
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const bValue = (b as any)[sort.active];
+        
         return (aValue < bValue ? -1 : 1) * (sort.direction === 'asc' ? 1 : -1);
       });
     }

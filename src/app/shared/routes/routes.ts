@@ -273,7 +273,7 @@ export class routes {
     return this.baseUrl + '/profile';
   }
   public static get editProfile(): string {
-    return this.baseUrl + '/edit-profile';
+    return this.baseUrl + '/edit-profiles';
   }
   public static get expenseReports(): string {
     return this.baseUrl + '/reports/expense-reports';
@@ -340,6 +340,9 @@ export class routes {
   }
   public static get staffList(): string {
     return this.baseUrl + '/staff/staff-list';
+  }
+  public static get addlibreta(): string {
+    return this.baseUrl + '/libreta/add-libreta';
   }
   public static get staffProfile(): string {
     return this.baseUrl + '/staff/staff-profile';

@@ -4,6 +4,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from 'src/app/shared/data/data.service';
 import { pageSelection, apiResultFormat, schedule } from 'src/app/shared/models/models';
 import { routes } from 'src/app/shared/routes/routes';
+import { Libreta } from '../libreta';
+import { AuthService } from 'src/app/shared/auth/auth.service';
+import { LibretaService } from '../libreta.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-schedule',
@@ -12,9 +16,10 @@ import { routes } from 'src/app/shared/routes/routes';
 })
 export class ScheduleComponent implements OnInit{
   public routes = routes;
-
-  public schedule: Array<schedule> = [];
-  dataSource!: MatTableDataSource<schedule>;
+  libreta: Libreta[] = [];
+  // public schedule: Array<Libreta> = [];
+  dataSource!: MatTableDataSource<Libreta>;
+  libretas: Libreta[] = [];
 
   public showFilter = false;
   public searchDataValue = '';
@@ -30,43 +35,59 @@ export class ScheduleComponent implements OnInit{
   public pageSelection: Array<pageSelection> = [];
   public totalPages = 0;
 
-  constructor(public data : DataService){
-
+  constructor(public data : DataService,private auth:AuthService, private libretaService:LibretaService,private router:Router){
+    this.libretas = [];
+    this.dataSource = new MatTableDataSource<Libreta>(this.libretas);
   }
   ngOnInit() {
+    this.obtenerPersona();
     this.getTableData();
   }
+  actualizarPersona(id:number){
+    //aqui solo dirige ala pagina de actualizar maquina
+    this.router.navigate([routes.editSchedule,{id}]);
+  }
+  obtenerPersona(){
+    this.libretaService.obtenerListaPersona().subscribe(dato => {
+  this.libreta=dato;
+    });}
+    eliminarPersona(id: number) {
+      this.libretaService.eliminarPersona(id).subscribe(() => {
+        this.obtenerPersona(); // Para actualizar la lista después de la eliminación
+      });
+    }
+  
   private getTableData(): void {
-    this.schedule = [];
+    this.libreta = [];
     this.serialNumberArray = [];
 
     this.data.getSchedule().subscribe((data: apiResultFormat) => {
       this.totalData = data.totalData;
-      data.data.map((res: schedule, index: number) => {
+      data.data.map((res: Libreta, index: number) => {
         const serialNumber = index + 1;
         if (index >= this.skip && serialNumber <= this.limit) {
          
-          this.schedule.push(res);
+          this.libreta.push(res);
           this.serialNumberArray.push(serialNumber);
         }
       });
-      this.dataSource = new MatTableDataSource<schedule>(this.schedule);
+      this.dataSource = new MatTableDataSource<Libreta>(this.libreta);
       this.calculateTotalPages(this.totalData, this.pageSize);
     });
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public searchData(value: any): void {
     this.dataSource.filter = value.trim().toLowerCase();
-    this.schedule = this.dataSource.filteredData;
+    this.libreta = this.dataSource.filteredData;
   }
 
   public sortData(sort: Sort) {
-    const data = this.schedule.slice();
+    const data = this.libreta.slice();
 
     if (!sort.active || sort.direction === '') {
-      this.schedule = data;
+      this.libreta = data;
     } else {
-      this.schedule = data.sort((a, b) => {
+      this.libreta = data.sort((a, b) => {
          // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const aValue = (a as any)[sort.active];
          // eslint-disable-next-line @typescript-eslint/no-explicit-any

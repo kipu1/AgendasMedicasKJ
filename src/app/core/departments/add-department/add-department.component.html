@@ -1,83 +1,1233 @@
 <div class="page-wrapper">
     <div class="content">
-    
+  
         <!-- Page Header -->
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a [routerLink]="routes.departmentList">Department </a></li>
+                        <li class="breadcrumb-item"><a [routerLink]="routes.patientDashboard">Paciente </a></li>
                         <li class="breadcrumb-item"><i class="feather icon-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Add Department</li>
+                        <li class="breadcrumb-item active">Odontograma</li>
                     </ul>
                 </div>
             </div>
         </div>
-        <!-- /Page Header -->
-        <div class="row">
-            <div class="col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         
+            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+            <script>
+              $(document).ready(function () {
+                $('.dropdown-content').change(function () {
+                  var selectedValue = $(this).val();
+                  var imgSrc = '';
+          
+                  // Asigna la imagen correspondiente según la opción seleccionada
+                  switch (selectedValue) {
+                    case 'Corona':
+                      imgSrc = 'assets/img/diente1.png';
+                      break;
+                    case 'Ausente':
+                      imgSrc = 'assets/img/logo.png'; // Cambia esto con la ruta correcta
+                      break;
+                    // Agrega más casos según sea necesario
+          
+                    default:
+                      imgSrc = ''; // En caso de que no haya coincidencia
+                      break;
+                  }
+          
+                  // Actualiza el atributo src de la imagen
+                  $('.icon img').attr('src', imgSrc);
+                });
+              });
+            </script>
+               
+            <div class="form-heading">
+              <h4>Odontograma</h4>
+            </div>
             
-                <div class="card">
-                    <div class="card-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-heading">
-                                        <h4>Add Department</h4>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-6">  
-                                    <div class="form-group local-forms">
-                                        <label >Department Name <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" >
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-6">  
-                                    <div class="form-group local-forms">
-                                        <label >Department Head <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" >
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12">
-                                    <div class="form-group local-forms">
-                                        <label>Description  <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" rows="3" cols="30"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="form-group local-forms">
-                                        <label >Department Date  <span class="login-danger">*</span></label>
-                                        <input class="form-control datetimepicker" type="text" matInput  [matDatepicker]="picker" >
-                                        <mat-datepicker #picker></mat-datepicker>
-                                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="form-group select-gender">
-                                        <label class="gen-label">Status <span class="login-danger">*</span></label>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" name="gender" class="form-check-input">Active
-                                            </label>
-                                        </div>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" name="gender" class="form-check-input">In Active
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="doctor-submit text-end">
-                                        <button type="submit" class="btn btn-primary submit-form me-2">Create Department</button>
-                                        <button type="submit" class="btn btn-primary cancel-form">Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+       
+            <div style="display: flex;">
+              <ng-template #odontograma>
+                <div>
+                  <div class="icon">
+                    <span class="text">18</span>
+                    <img src="assets/img/diente1.png" alt="Imagen de búsqueda">
+                    <div class="combo-box" tabindex="0">
+                      <div class="dropdown-content">
+                          <option value="opcion1">Opción 1</option>
+                          <option value="opcion2">Opción 2</option>
+                          <option value="opcion3">Opción 3</option>
+                      </div>
+                  </div>
+                  </div>
+                 
+  
+                  <div class="svg-container1">
+                    <svg height="50" width="50" id="p18" #p18>
+                    <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p18l1)" id="l1"
+                      #p18l1   [(ngModel)]="odonto.marca" />
+                    <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p18l2)" id="l2"
+                      #p18l2 [(ngModel)]="odonto.marca"/>
+                    <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p18l3)" id="l3" #p18l3 />
+                    <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p18l4)" id="l4" #p18l4 />
+                    <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                      (click)="changeColor(p18l5)" id="l5" #p18l5 [(ngModel)]="odonto.marca" />
+                    <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p18l6)" id="l6"
+                      #p18l6 [(ngModel)]="odonto.marca" />
+                    <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p18l7)" id="l7"
+                      #p18l7 [(ngModel)]="odonto.marca"/>
+                    <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p18l8)" id="l8"
+                      #p18l8 [(ngModel)]="odonto.marca"/>
+                    <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p18l9)" id="l9"
+                      #p18l9 [(ngModel)]="odonto.marca"/>
+                    <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p18l10)" id="l10"
+                      #p18l10 [(ngModel)]="odonto.marca"/>
+                  </svg>
+                 
+                </div>
+              </div>
+                <div>
+                  <div class="icon">
+                    <span class="text">17</span>
+                    <img src="assets/img/diente1.png" alt="Imagen de búsqueda" id="dienteImagen">
+                    <div class="combo-box" tabindex="0">
+                      <div class="dropdown-content">
+                        <mat-option value="Corona">Corona</mat-option>
+                        <mat-option value="Ausente">Ausente</mat-option>
+                        <mat-option value="Corona">Corona</mat-option>
+                      </div>
                     </div>
-                </div>							
-            </div>					
+                  </div>
+                  <div class="svg-container1">
+                  <svg height="50" width="50" id="p19" #p19>
+                    <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p19l1)" id="l1"
+                      #p19l1 [(ngModel)]="odonto.marca"/>
+                    <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p19l2)" id="l2"
+                      #p19l2 [(ngModel)]="odonto.marca" />
+                    <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p19l3)" id="l3" #p19l3 />
+                    <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p19l4)" id="l4" #p19l4 />
+                    <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                      (click)="changeColor(p19l5)" id="l5" #p19l5 [(ngModel)]="odonto.marca"/>
+                    <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p19l6)" id="l6"
+                      #p19l6 [(ngModel)]="odonto.marca" />
+                    <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p19l7)" id="l7"
+                      #p19l7 [(ngModel)]="odonto.marca"/>
+                    <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p19l8)" id="l8"
+                      #p19l8  [(ngModel)]="odonto.marca"/>
+                    <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p19l9)" id="l9"
+                      #p19l9 />
+                    <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p19l10)" id="l10"
+                      #p19l10 [(ngModel)]="odonto.marca"/>
+                  </svg>
+                </div>
+              </div>
+                <div>
+                  <div class="icon">
+                    <span class="text">16</span>
+                    <img src="assets/img/diente1.png" alt="Imagen de búsqueda" id="dienteImagen">
+                    <div class="combo-box" tabindex="0">
+                      <div class="dropdown-content">
+                        <mat-option value="Corona">Corona</mat-option>
+                        <mat-option value="Ausente">Ausente</mat-option>
+                        <mat-option value="Corona">Corona</mat-option>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="svg-container1">
+                  <svg height="50" width="50" id="p20" #p20>
+                    <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p20l1)" id="l1"
+                      #p20l1 [(ngModel)]="odonto.marca"/>
+                    <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p20l2)" id="l2"
+                      #p20l2 [(ngModel)]="odonto.marca"/>
+                    <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p20l3)" id="l3" #p20l3 />
+                    <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p20l4)" id="l4" #p20l4 />
+                    <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                      (click)="changeColor(p20l5)" id="l5" #p20l5 [(ngModel)]="odonto.marca"/>
+                    <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p20l6)" id="l6"
+                      #p20l6 [(ngModel)]="odonto.marca"/>
+                    <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p20l7)" id="l7"
+                      #p20l7 [(ngModel)]="odonto.marca"/>
+                    <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p20l8)" id="l8"
+                      #p20l8 [(ngModel)]="odonto.marca"/>
+                    <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p20l9)" id="l9"
+                      #p20l9 [(ngModel)]="odonto.marca"/>
+                    <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p20l10)" id="l10"
+                      #p20l10 [(ngModel)]="odonto.marca"/>
+                  </svg>
+                </div>
+              </div>
+                <div>
+                  <div class="icon">
+                    <span class="text">15</span>
+                    <img src="assets/img/diente2.png" alt="Imagen de búsqueda" id="dienteImagen">
+                    <div class="combo-box" tabindex="0">
+                      <div class="dropdown-content">
+                        <mat-option value="Corona">Corona</mat-option>
+                        <mat-option value="Ausente">Ausente</mat-option>
+                        <mat-option value="Corona">Corona</mat-option>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="svg-container">
+                  <svg height="50" width="50" id="p21" #p21>
+                    <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p21l1)" id="l1"
+                      #p21l1 />
+                    <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p21l2)" id="l2"
+                      #p21l2 />
+                    <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p21l3)" id="l3" #p21l3 />
+                    <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p21l4)" id="l4" #p21l4 />
+                    <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                      (click)="changeColor(p21l5)" id="l5" #p21l5 />
+                    <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p21l6)" id="l6"
+                      #p21l6 />
+                    <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p21l7)" id="l7"
+                      #p21l7 />
+                    <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p21l8)" id="l8"
+                      #p21l8 />
+                    <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p21l9)" id="l9"
+                      #p21l9 />
+                    <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p21l10)" id="l10"
+                      #p21l10 />
+                  </svg>
+                </div> </div>
+                <div>
+                  <div class="icon">
+                    <span class="text">14</span>
+                    <img src="assets/img/diente2.png" alt="Imagen de búsqueda" id="dienteImagen">
+                    <div class="combo-box" tabindex="0">
+                      <div class="dropdown-content">
+                        <mat-option value="Corona">Corona</mat-option>
+                        <mat-option value="Ausente">Ausente</mat-option>
+                        <mat-option value="Corona">Corona</mat-option>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="svg-container">
+                  <svg height="50" width="50" id="p22" #p22>
+                    <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p22l1)" id="l1"
+                      #p22l1 />
+                    <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p22l2)" id="l2"
+                      #p22l2 />
+                    <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p22l3)" id="l3" #p22l3 />
+                    <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p22l4)" id="l4" #p22l4 />
+                    <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                      (click)="changeColor(p22l5)" id="l5" #p22l5 />
+                    <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p22l6)" id="l6"
+                      #p22l6 />
+                    <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p22l7)" id="l7"
+                      #p22l7 />
+                    <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p22l8)" id="l8"
+                      #p22l8 />
+                    <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p22l9)" id="l9"
+                      #p22l9 />
+                    <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p22l10)" id="l10"
+                      #p22l10 />
+                  </svg>
+                </div> </div>
+            
+                <div>
+                  <div class="icon">
+                    <span class="text">13</span>
+                    <img src="assets/img/diente2.png" alt="Imagen de búsqueda" id="dienteImagen">
+                    <div class="combo-box" tabindex="0">
+                      <div class="dropdown-content">
+                        <mat-option value="Corona">Corona</mat-option>
+                        <mat-option value="Ausente">Ausente</mat-option>
+                        <mat-option value="Corona">Corona</mat-option>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="svg-container">
+                  <svg height="50" width="50" id="p23" #p23>
+                    <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p23l1)" id="l1"
+                      #p23l1 />
+                    <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p23l2)" id="l2"
+                      #p23l2 />
+                    <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p23l3)" id="l3" #p23l3 />
+                    <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p23l4)" id="l4" #p23l4 />
+                    <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                      (click)="changeColor(p23l5)" id="l5" #p23l5 />
+                    <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p23l6)" id="l6"
+                      #p23l6 />
+                    <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p23l7)" id="l7"
+                      #p23l7 />
+                    <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p23l8)" id="l8"
+                      #p23l8 />
+                    <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p23l9)" id="l9"
+                      #p23l9 />
+                    <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p23l10)" id="l10"
+                      #p23l10 />
+                  </svg>
+                </div> </div>
+  
+                <div>
+                  <div class="icon">
+                    <span class="text">12</span>
+                    <img src="assets/img/diente3.png" alt="Imagen de búsqueda" id="dienteImagen">
+                    <div class="combo-box" tabindex="0">
+                      <div class="dropdown-content">
+                        <mat-option value="Corona">Corona</mat-option>
+                        <mat-option value="Ausente">Ausente</mat-option>
+                        <mat-option value="Corona">Corona</mat-option>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="svg-container1">
+                  <svg height="50" width="50" id="p24" #p24>
+                    <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p24l1)" id="l1"
+                      #p24l1 />
+                    <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p24l2)" id="l2"
+                      #p24l2 />
+                    <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p24l3)" id="l3" #p24l3 />
+                    <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p24l4)" id="l4" #p24l4 />
+                    <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                      (click)="changeColor(p24l5)" id="l5" #p24l5 />
+                    <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p24l6)" id="l6"
+                      #p24l6 />
+                    <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p24l7)" id="l7"
+                      #p24l7 />
+                    <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p24l8)" id="l8"
+                      #p24l8 />
+                    <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p24l9)" id="l9"
+                      #p24l9 />
+                    <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p24l10)" id="l10"
+                      #p24l10 />
+                  </svg>
+                </div></div>
+                <div>
+                  <div class="icon">
+                    <span class="text">11</span>
+                    <img src="assets/img/diente3.png" alt="Imagen de búsqueda" id="dienteImagen">
+                    <div class="combo-box" tabindex="0">
+                      <div class="dropdown-content">
+                        <mat-option value="Corona">Corona</mat-option>
+                        <mat-option value="Ausente">Ausente</mat-option>
+                        <mat-option value="Corona">Corona</mat-option>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="svg-container1">
+                  <svg height="50" width="50" id="p25" #p25>
+                    <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p25l1)" id="l1"
+                      #p25l1 />
+                    <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p25l2)" id="l2"
+                      #p25l2 />
+                    <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p25l3)" id="l3" #p25l3 />
+                    <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p25l4)" id="l4" #p25l4 />
+                    <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                      (click)="changeColor(p22l5)" id="l5" #p22l5 />
+                    <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p25l6)" id="l6"
+                      #p25l6 />
+                    <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p25l7)" id="l7"
+                      #p25l7 />
+                    <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p25l8)" id="l8"
+                      #p25l8 />
+                    <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p25l9)" id="l9"
+                      #p25l9 />
+                    <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p25l10)" id="l10"
+                      #p25l10 />
+                  </svg>
+                </div>  </div>
+                <div>
+                  <div class="icon">
+                    <span class="text">21</span>
+                    <img src="assets/img/diente6.png" alt="Imagen de búsqueda" id="dienteImagen">
+                    <div class="combo-box" tabindex="0">
+                      <div class="dropdown-content">
+                        <mat-option value="Corona">Corona</mat-option>
+                        <mat-option value="Ausente">Ausente</mat-option>
+                        <mat-option value="Corona">Corona</mat-option>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="svg-container1">
+                  <svg height="50" width="50" id="p26" #p26>
+                    <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p26l1)" id="l1"
+                      #p26l1 />
+                    <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p26l2)" id="l2"
+                      #p26l2 />
+                    <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p26l3)" id="l3" #p26l3 />
+                    <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p26l4)" id="l4" #p26l4 />
+                    <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                      (click)="changeColor(p26l5)" id="l5" #p26l5 />
+                    <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p26l6)" id="l6"
+                      #p26l6 />
+                    <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p26l7)" id="l7"
+                      #p26l7 />
+                    <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p26l8)" id="l8"
+                      #p26l8 />
+                    <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p26l9)" id="l9"
+                      #p26l9 />
+                    <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p26l10)" id="l10"
+                      #p26l10 />
+                  </svg>
+                </div> </div>
+  
+                <div>
+                  <div class="icon">
+                    <span class="text">22</span>
+                    <img src="assets/img/diente6.png" alt="Imagen de búsqueda" id="dienteImagen">
+                    <div class="combo-box" tabindex="0">
+                      <div class="dropdown-content">
+                        <mat-option value="Corona">Corona</mat-option>
+                        <mat-option value="Ausente">Ausente</mat-option>
+                        <mat-option value="Corona">Corona</mat-option>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="svg-container1">
+                  <svg height="50" width="50" id="p27" #p27>
+                    <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p27l1)" id="l1"
+                      #p27l1 />
+                    <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p27l2)" id="l2"
+                      #p27l2 />
+                    <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p27l3)" id="l3" #p27l3 />
+                    <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p27l4)" id="l4" #p27l4 />
+                    <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                      (click)="changeColor(p27l5)" id="l5" #p27l5 />
+                    <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p27l6)" id="l6"
+                      #p27l6 />
+                    <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p27l7)" id="l7"
+                      #p27l7 />
+                    <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p27l8)" id="l8"
+                      #p27l8 />
+                    <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p27l9)" id="l9"
+                      #p27l9 />
+                    <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p27l10)" id="l10"
+                      #p27l10 />
+                  </svg>
+                </div></div>
+                <div>
+                  <div class="icon">
+                    <span class="text">23</span>
+                    <img src="assets/img/diente2.png" alt="Imagen de búsqueda" id="dienteImagen">
+                    <div class="combo-box" tabindex="0">
+                      <div class="dropdown-content">
+                        <mat-option value="Corona">Corona</mat-option>
+                        <mat-option value="Ausente">Ausente</mat-option>
+                        <mat-option value="Corona">Corona</mat-option>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="svg-container">
+                  <svg height="50" width="50" id="p28" #p28>
+                    <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p28l1)" id="l1"
+                      #p28l1 />
+                    <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p28l2)" id="l2"
+                      #p28l2 />
+                    <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p28l3)" id="l3" #p28l3 />
+                    <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p28l4)" id="l4" #p28l4 />
+                    <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                      (click)="changeColor(p28l5)" id="l5" #p28l5 />
+                    <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p28l6)" id="l6"
+                      #p28l6 />
+                    <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p28l7)" id="l7"
+                      #p28l7 />
+                    <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p28l8)" id="l8"
+                      #p28l8 />
+                    <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p28l9)" id="l9"
+                      #p28l9 />
+                    <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p28l10)" id="l10"
+                      #p28l10 />
+                  </svg>
+                </div></div>
+                <div>
+                  <div class="icon">
+                    <span class="text">24</span>
+                    <img src="assets/img/diente2.png" alt="Imagen de búsqueda" id="dienteImagen">
+                    <div class="combo-box" tabindex="0">
+                      <div class="dropdown-content">
+                        <mat-option value="Corona">Corona</mat-option>
+                        <mat-option value="Ausente">Ausente</mat-option>
+                        <mat-option value="Corona">Corona</mat-option>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="svg-container">
+                  <svg height="50" width="50" id="p29" #p29>
+                    <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p29l1)" id="l1"
+                      #p29l1 />
+                    <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p29l2)" id="l2"
+                      #p29l2 />
+                    <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p29l3)" id="l3" #p29l3 />
+                    <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p29l4)" id="l4" #p29l4 />
+                    <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                      (click)="changeColor(p29l5)" id="l5" #p29l5 />
+                    <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p29l6)" id="l6"
+                      #p29l6 />
+                    <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p29l7)" id="l7"
+                      #p29l7 />
+                    <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p29l8)" id="l8"
+                      #p29l8 />
+                    <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p29l9)" id="l9"
+                      #p29l9 />
+                    <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p29l10)" id="l10"
+                      #p29l10 />
+                  </svg>
+                </div></div>
+  
+                <div>
+                  <div class="icon">
+                    <span class="text">25</span>
+                    <img src="assets/img/diente2.png" alt="Imagen de búsqueda" id="dienteImagen">
+                    <div class="combo-box" tabindex="0">
+                      <div class="dropdown-content">
+                        <mat-option value="Corona">Corona</mat-option>
+                        <mat-option value="Ausente">Ausente</mat-option>
+                        <mat-option value="Corona">Corona</mat-option>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="svg-container">
+                  <svg height="50" width="50" id="p30" #p30>
+                    <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p30l1)" id="l1"
+                      #p30l1 />
+                    <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p30l2)" id="l2"
+                      #p30l2 />
+                    <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p30l3)" id="l3" #p30l3 />
+                    <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p30l4)" id="l4" #p30l4 />
+                    <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                      (click)="changeColor(p30l5)" id="l5" #p30l5 />
+                    <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p30l6)" id="l6"
+                      #p30l6 />
+                    <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p30l7)" id="l7"
+                      #p30l7 />
+                    <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p30l8)" id="l8"
+                      #p30l8 />
+                    <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p30l9)" id="l9"
+                      #p30l9 />
+                    <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p30l10)" id="l10"
+                      #p30l10 />
+                  </svg>
+                </div></div>
+                <div>
+                  <div class="icon">
+                    <span class="text">26</span>
+                    <img src="assets/img/diente7.png" alt="Imagen de búsqueda" id="dienteImagen">
+                    <div class="combo-box" tabindex="0">
+                      <div class="dropdown-content">
+                        <mat-option value="Corona">Corona</mat-option>
+                        <mat-option value="Ausente">Ausente</mat-option>
+                        <mat-option value="Corona">Corona</mat-option>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="svg-container1">
+                  <svg height="50" width="50" id="p31" #p31>
+                    <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p31l1)" id="l1"
+                      #p31l1 />
+                    <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p31l2)" id="l2"
+                      #p31l2 />
+                    <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p31l3)" id="l3" #p31l3 />
+                    <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p31l4)" id="l4" #p31l4 />
+                    <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                      (click)="changeColor(p31l5)" id="l5" #p31l5 />
+                    <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p31l6)" id="l6"
+                      #p31l6 />
+                    <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p31l7)" id="l7"
+                      #p31l7 />
+                    <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p31l8)" id="l8"
+                      #p31l8 />
+                    <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p31l9)" id="l9"
+                      #p31l9 />
+                    <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p31l10)" id="l10"
+                      #p31l10 />
+                  </svg>
+                </div>     </div>
+                <div>
+                  <div class="icon">
+                    <span class="text">27</span>
+                    <img src="assets/img/diente7.png" alt="Imagen de búsqueda" id="dienteImagen">
+                    <div class="combo-box" tabindex="0">
+                      <div class="dropdown-content">
+                        <mat-option value="Corona">Corona</mat-option>
+                        <mat-option value="Ausente">Ausente</mat-option>
+                        <mat-option value="Corona">Corona</mat-option>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="svg-container1">
+                  <svg height="50" width="50" id="p32" #p32>
+                    <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p32l1)" id="l1"
+                      #p32l1 />
+                    <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p32l2)" id="l2"
+                      #p32l2 />
+                    <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p32l3)" id="l3" #p32l3 />
+                    <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p32l4)" id="l4" #p32l4 />
+                    <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                      (click)="changeColor(p32l5)" id="l5" #p32l5 />
+                    <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p32l6)" id="l6"
+                      #p32l6 />
+                    <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p32l7)" id="l7"
+                      #p32l7 />
+                    <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p32l8)" id="l8"
+                      #p32l8 />
+                    <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p32l9)" id="l9"
+                      #p32l9 />
+                    <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p32l10)" id="l10"
+                      #p32l10 />
+                  </svg>
+                </div>  </div>
+                <div>
+                  <div class="icon">
+                    <span class="text">28</span>
+                    <img src="assets/img/diente7.png" alt="Imagen de búsqueda" id="dienteImagen">
+                    <div class="combo-box" tabindex="0">
+                      <div class="dropdown-content">
+                        <mat-option value="Corona">Corona</mat-option>
+                        <mat-option value="Ausente">Ausente</mat-option>
+                        <mat-option value="Corona">Corona</mat-option>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="svg-container1">
+                  <svg height="50" width="50" id="p33" #p33>
+                    <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p33l1)" id="l1"
+                      #p33l1 />
+                    <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p33l2)" id="l2"
+                      #p33l2 />
+                    <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p33l3)" id="l3" #p33l3 />
+                    <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p33l4)" id="l4" #p33l4 />
+                    <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                      (click)="changeColor(p33l5)" id="l5" #p33l5 />
+                    <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p33l6)" id="l6"
+                      #p33l6 />
+                    <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p33l7)" id="l7"
+                      #p33l7 />
+                    <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p33l8)" id="l8"
+                      #p33l8 />
+                    <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p33l9)" id="l9"
+                      #p33l9 />
+                    <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p33l10)" id="l10"
+                      #p33l10 />
+                  </svg>
+                </div>  </div>
+  
+  
+              </ng-template>
+              
+          </div>
+          <div style="display: flex;">
+            
+          <div class="svg-container1">
+            <svg height="50" width="50" id="p34" #p34>
+              <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p34l1)" id="l1"
+                #p34l1 />
+              <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p34l2)" id="l2"
+                #p34l2 />
+              <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p34l3)" id="l3" #p34l3 />
+              <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p34l4)" id="l4" #p34l4 />
+              <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                (click)="changeColor(p34l5)" id="l5" #p34l5 />
+              <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p34l6)" id="l6"
+                #p34l6 />
+              <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p34l7)" id="l7"
+                #p34l7 />
+              <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p34l8)" id="l8"
+                #p34l8 />
+              <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p34l9)" id="l9"
+                #p34l9 />
+              <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p34l10)" id="l10"
+                #p34l10 />
+            </svg>
+            <div class="icon1">
+              <div class="combo-box" tabindex="0">
+                <div class="dropdown-content">
+                  <mat-option value="Corona">Corona</mat-option>
+                  <mat-option value="Ausente">Ausente</mat-option>
+                  <mat-option value="Corona">Corona</mat-option>
+                </div>
+              </div>
+              <img src="assets/img/diente4.png" alt="Imagen de búsqueda" id="dienteImagen">
+              <span class="text1">48</span>
+            
+            </div>
+          </div> 
+          <div class="svg-container3">
+                  
+            <svg height="50" width="50" id="p35" #p35>
+              <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p35l1)" id="l1"
+                #p35l1 />
+              <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p35l2)" id="l2"
+                #p35l2 />
+              <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p35l3)" id="l3" #p35l3 />
+              <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p35l4)" id="l4" #p35l4 />
+              <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                (click)="changeColor(p35l5)" id="l5" #p35l5 />
+              <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p35l6)" id="l6"
+                #p35l6 />
+              <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p35l7)" id="l7"
+                #p35l7 />
+              <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p35l8)" id="l8"
+                #p35l8 />
+              <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p35l9)" id="l9"
+                #p35l9 />
+              <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p35l10)" id="l10"
+                #p35l10 />
+            </svg>
+            <div class="icon1">
+              <div class="combo-box" tabindex="0">
+                <div class="dropdown-content">
+                  <mat-option value="Corona">Corona</mat-option>
+                  <mat-option value="Ausente">Ausente</mat-option>
+                  <mat-option value="Corona">Corona</mat-option>
+                </div>
+              </div>
+              <img src="assets/img/diente4.png" alt="Imagen de búsqueda" id="dienteImagen">
+              <span class="text2">47</span>
+            
+            </div>
+          </div>
+          <div class="svg-container4">
+                  
+            <svg height="50" width="50" id="p36" #p36>
+              <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p36l1)" id="l1"
+                #p36l1 />
+              <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p36l2)" id="l2"
+                #p36l2 />
+              <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p36l3)" id="l3" #p36l3 />
+              <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p36l4)" id="l4" #p36l4 />
+              <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                (click)="changeColor(p36l5)" id="l5" #p36l5 />
+              <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p36l6)" id="l6"
+                #p36l6 />
+              <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p36l7)" id="l7"
+                #p36l7 />
+              <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p36l8)" id="l8"
+                #p36l8 />
+              <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p36l9)" id="l9"
+                #p36l9 />
+              <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p36l10)" id="l10"
+                #p36l10 />
+            </svg>
+            <div class="icon1">
+              <div class="combo-box" tabindex="0">
+                <div class="dropdown-content">
+                  <mat-option value="Corona">Corona</mat-option>
+                  <mat-option value="Ausente">Ausente</mat-option>
+                  <mat-option value="Corona">Corona</mat-option>
+                </div>
+              </div>
+              <img src="assets/img/diente4.png" alt="Imagen de búsqueda" id="dienteImagen">
+              <span class="text3">46</span>
+            
+            </div>
+          </div>
+          <div class="svg-container4">
+                  
+            <svg height="50" width="50" id="p37" #p37>
+              <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p37l1)" id="l1"
+                #p37l1 />
+              <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p37l2)" id="l2"
+                #p37l2 />
+              <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p37l3)" id="l3" #p37l3 />
+              <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p37l4)" id="l4" #p37l4 />
+              <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                (click)="changeColor(p37l5)" id="l5" #p37l5 />
+              <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p37l6)" id="l6"
+                #p37l6 />
+              <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p37l7)" id="l7"
+                #p37l7 />
+              <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p37l8)" id="l8"
+                #p37l8 />
+              <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p37l9)" id="l9"
+                #p37l9 />
+              <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p37l10)" id="l10"
+                #p37l10 />
+            </svg>
+            <div class="icon1">
+              <div class="combo-box" tabindex="0">
+                <div class="dropdown-content">
+                  <mat-option value="Corona">Corona</mat-option>
+                  <mat-option value="Ausente">Ausente</mat-option>
+                  <mat-option value="Corona">Corona</mat-option>
+                </div>
+              </div>
+              <img src="assets/img/diente8.png" alt="Imagen de búsqueda" id="dienteImagen">
+              <span class="text4">45</span>
+            
+            </div>
+          </div>
+          <div class="svg-container4">
+              
+            <svg height="50" width="50" id="p38" #p38>
+              <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p38l1)" id="l1"
+                #p38l1 />
+              <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p38l2)" id="l2"
+                #p38l2 />
+              <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p38l3)" id="l3" #p38l3 />
+              <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p38l4)" id="l4" #p38l4 />
+              <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                (click)="changeColor(p38l5)" id="l5" #p38l5 />
+              <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p38l6)" id="l6"
+                #p38l6 />
+              <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p38l7)" id="l7"
+                #p38l7 />
+              <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p38l8)" id="l8"
+                #p38l8 />
+              <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p38l9)" id="l9"
+                #p38l9 />
+              <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p38l10)" id="l10"
+                #p38l10 />
+            </svg>
+            <div class="icon1">
+              <div class="combo-box" tabindex="0">
+                <div class="dropdown-content">
+                  <mat-option value="Corona">Corona</mat-option>
+                  <mat-option value="Ausente">Ausente</mat-option>
+                  <mat-option value="Corona">Corona</mat-option>
+                </div>
+              </div>
+              <img src="assets/img/diente8.png" alt="Imagen de búsqueda" id="dienteImagen">
+              <span class="text5">44</span>
+            
+            </div>
+          </div>
+          <div class="svg-container1">
+                  
+            <svg height="50" width="50" id="p39" #p39>
+              <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p39l1)" id="l1"
+                #p39l1 />
+              <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p39l2)" id="l2"
+                #p39l2 />
+              <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p39l3)" id="l3" #p39l3 />
+              <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p39l4)" id="l4" #p39l4 />
+              <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                (click)="changeColor(p39l5)" id="l5" #p39l5 />
+              <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p39l6)" id="l6"
+                #p39l6 />
+              <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p39l7)" id="l7"
+                #p39l7 />
+              <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p39l8)" id="l8"
+                #p39l8 />
+              <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p39l9)" id="l9"
+                #p39l9 />
+              <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p39l10)" id="l10"
+                #p39l10 />
+            </svg>
+            <div class="icon1">
+              <div class="combo-box" tabindex="0">
+                <div class="dropdown-content">
+                  <mat-option value="Corona">Corona</mat-option>
+                  <mat-option value="Ausente">Ausente</mat-option>
+                  <mat-option value="Corona">Corona</mat-option>
+                </div>
+              </div>
+              <img src="assets/img/diente8.png" alt="Imagen de búsqueda" id="dienteImagen">
+              <span class="text6">43</span>
+            
+            </div>
+          </div>
+          <div class="svg-container4">
+              
+            <svg height="50" width="50" id="p40" #p40>
+              <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p40l1)" id="l1"
+                #p40l1 />
+              <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p40l2)" id="l2"
+                #p40l2 />
+              <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p40l3)" id="l3" #p40l3 />
+              <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p40l4)" id="l4" #p40l4 />
+              <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                (click)="changeColor(p40l5)" id="l5" #p40l5 />
+              <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p40l6)" id="l6"
+                #p40l6 />
+              <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p40l7)" id="l7"
+                #p40l7 />
+              <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p40l8)" id="l8"
+                #p40l8 />
+              <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p40l9)" id="l9"
+                #p40l9 />
+              <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p40l10)" id="l10"
+                #p40l10 />
+            </svg>
+            <div class="icon1">
+              <div class="combo-box" tabindex="0">
+                <div class="dropdown-content">
+                  <mat-option value="Corona">Corona</mat-option>
+                  <mat-option value="Ausente">Ausente</mat-option>
+                  <mat-option value="Corona">Corona</mat-option>
+                </div>
+              </div>
+              <img src="assets/img/diente9.png" alt="Imagen de búsqueda" id="dienteImagen">
+              <span class="text7">42</span>
+            
+            </div>
+          </div>
+          <div class="svg-container5">
+              
+            <svg height="50" width="50" id="p41" #p41>
+              <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p41l1)" id="l1"
+                #p41l1 />
+              <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p41l2)" id="l2"
+                #p41l2 />
+              <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p41l3)" id="l3" #p41l3 />
+              <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p41l4)" id="l4" #p41l4 />
+              <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                (click)="changeColor(p41l5)" id="l5" #p41l5 />
+              <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p41l6)" id="l6"
+                #p41l6 />
+              <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p41l7)" id="l7"
+                #p41l7 />
+              <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p41l8)" id="l8"
+                #p41l8 />
+              <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p41l9)" id="l9"
+                #p41l9 />
+              <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p41l10)" id="l10"
+                #p41l10 />
+            </svg>
+            <div class="icon1">
+              <div class="combo-box" tabindex="0">
+                <div class="dropdown-content">
+                  <mat-option value="Corona">Corona</mat-option>
+                  <mat-option value="Ausente">Ausente</mat-option>
+                  <mat-option value="Corona">Corona</mat-option>
+                </div>
+              </div>
+              <img src="assets/img/diente9.png" alt="Imagen de búsqueda" id="dienteImagen">
+              <span class="text8">41</span>
+            
+            </div>
+          </div>
+          <div class="svg-container8">
+              
+            <svg height="50" width="50" id="p42" #p42>
+              <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p42l1)" id="l1"
+                #p42l1 />
+              <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p42l2)" id="l2"
+                #p42l2 />
+              <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p42l3)" id="l3" #p42l3 />
+              <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p42l4)" id="l4" #p42l4 />
+              <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                (click)="changeColor(p42l5)" id="l5" #p42l5 />
+              <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p42l6)" id="l6"
+                #p42l6 />
+              <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p42l7)" id="l7"
+                #p42l7 />
+              <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p42l8)" id="l8"
+                #p42l8 />
+              <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p42l9)" id="l9"
+                #p42l9 />
+              <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p42l10)" id="l10"
+                #p42l10 />
+            </svg>
+            <div class="icon1">
+              <div class="combo-box" tabindex="0">
+                <div class="dropdown-content">
+                  <mat-option value="Corona">Corona</mat-option>
+                  <mat-option value="Ausente">Ausente</mat-option>
+                  <mat-option value="Corona">Corona</mat-option>
+                </div>
+              </div>
+              <img src="assets/img/diente10.png" alt="Imagen de búsqueda" id="dienteImagen">
+              <span class="text9">31</span>
+            
+            </div>
+          </div>
+          <div class="svg-container8">
+              
+            <svg height="50" width="50" id="p43" #p43>
+              <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p43l1)" id="l1"
+                #p43l1 />
+              <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p43l2)" id="l2"
+                #p43l2 />
+              <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p43l3)" id="l3" #p43l3 />
+              <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p43l4)" id="l4" #p43l4 />
+              <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                (click)="changeColor(p43l5)" id="l5" #p43l5 />
+              <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p43l6)" id="l6"
+                #p43l6 />
+              <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p43l7)" id="l7"
+                #p43l7 />
+              <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p43l8)" id="l8"
+                #p43l8 />
+              <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p43l9)" id="l9"
+                #p43l9 />
+              <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p43l10)" id="l10"
+                #p43l10 />
+            </svg>
+            <div class="icon1">
+              <div class="combo-box" tabindex="0">
+                <div class="dropdown-content">
+                  <mat-option value="Corona">Corona</mat-option>
+                  <mat-option value="Ausente">Ausente</mat-option>
+                  <mat-option value="Corona">Corona</mat-option>
+                </div>
+              </div>
+              <img src="assets/img/diente10.png" alt="Imagen de búsqueda" id="dienteImagen">
+              <span class="text10">32</span>
+            
+            </div>
+          </div>
+          <div class="svg-container8">
+              
+            <svg height="50" width="50" id="p44" #p44>
+              <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p44l1)" id="l1"
+                #p44l1 />
+              <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p44l2)" id="l2"
+                #p44l2 />
+              <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p44l3)" id="l3" #p44l3 />
+              <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p44l4)" id="l4" #p44l4 />
+              <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                (click)="changeColor(p44l5)" id="l5" #p44l5 />
+              <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p44l6)" id="l6"
+                #p44l6 />
+              <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p44l7)" id="l7"
+                #p44l7 />
+              <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p44l8)" id="l8"
+                #p44l8 />
+              <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p44l9)" id="l9"
+                #p44l9 />
+              <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p44l10)" id="l10"
+                #p44l10 />
+            </svg>
+            <div class="icon1">
+              <div class="combo-box" tabindex="0">
+                <div class="dropdown-content">
+                  <mat-option value="Corona">Corona</mat-option>
+                  <mat-option value="Ausente">Ausente</mat-option>
+                  <mat-option value="Corona">Corona</mat-option>
+                </div>
+              </div>
+              <img src="assets/img/diente11.png" alt="Imagen de búsqueda" id="dienteImagen">
+              <span class="text11">33</span>
+            
+            </div>
+          </div>
+          <div class="svg-container7">
+              
+            <svg height="50" width="50" id="p45" #p45>
+              <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p45l1)" id="l1"
+                #p45l1 />
+              <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p45l2)" id="l2"
+                #p45l2 />
+              <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p45l3)" id="l3" #p45l3 />
+              <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p45l4)" id="l4" #p45l4 />
+              <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                (click)="changeColor(p45l5)" id="l5" #p45l5 />
+              <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p45l6)" id="l6"
+                #p45l6 />
+              <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p45l7)" id="l7"
+                #p45l7 />
+              <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p45l8)" id="l8"
+                #p45l8 />
+              <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p45l9)" id="l9"
+                #p45l9 />
+              <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p45l10)" id="l10"
+                #p45l10 />
+            </svg>
+            <div class="icon1">
+              <div class="combo-box" tabindex="0">
+                <div class="dropdown-content">
+                  <mat-option value="Corona">Corona</mat-option>
+                  <mat-option value="Ausente">Ausente</mat-option>
+                  <mat-option value="Corona">Corona</mat-option>
+                </div>
+              </div>
+              <img src="assets/img/diente11.png" alt="Imagen de búsqueda" id="dienteImagen">
+              <span class="text12">34</span>
+            
+            </div>
+          </div>
+          <div class="svg-container7">
+              
+            <svg height="50" width="50" id="p46" #p46>
+              <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p46l1)" id="l1"
+                #p46l1 />
+              <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p46l2)" id="l2"
+                #p46l2 />
+              <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p46l3)" id="l3" #p46l3 />
+              <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p46l4)" id="l4" #p46l4 />
+              <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                (click)="changeColor(p46l5)" id="l5" #p46l5 />
+              <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p46l6)" id="l6"
+                #p46l6 />
+              <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p46l7)" id="l7"
+                #p46l7 />
+              <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p46l8)" id="l8"
+                #p46l8 />
+              <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p46l9)" id="l9"
+                #p46l9 />
+              <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p46l10)" id="l10"
+                #p46l10 />
+            </svg>
+            <div class="icon1">
+              <div class="combo-box" tabindex="0">
+                <div class="dropdown-content">
+                  <mat-option value="Corona">Corona</mat-option>
+                  <mat-option value="Ausente">Ausente</mat-option>
+                  <mat-option value="Corona">Corona</mat-option>
+                </div>
+              </div>
+              <img src="assets/img/diente11.png" alt="Imagen de búsqueda" id="dienteImagen">
+              <span class="text13">35</span>
+            
+            </div>
+          </div>
+          <div class="svg-container7">
+              
+            <svg height="50" width="50" id="p47" #p47>
+              <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p47l1)" id="l1"
+                #p47l1 />
+              <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p47l2)" id="l2"
+                #p47l2 />
+              <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p47l3)" id="l3" #p47l3 />
+              <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p47l4)" id="l4" #p47l4 />
+              <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                (click)="changeColor(p47l5)" id="l5" #p47l5 />
+              <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p47l6)" id="l6"
+                #p47l6 />
+              <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p47l7)" id="l7"
+                #p47l7 />
+              <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p47l8)" id="l8"
+                #p47l8 />
+              <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p47l9)" id="l9"
+                #p47l9 />
+              <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p47l10)" id="l10"
+                #p47l10 />
+            </svg>
+            <div class="icon1">
+              <div class="combo-box" tabindex="0">
+                <div class="dropdown-content">
+                  <mat-option value="Corona">Corona</mat-option>
+                  <mat-option value="Ausente">Ausente</mat-option>
+                  <mat-option value="Corona">Corona</mat-option>
+                </div>
+              </div>
+              <img src="assets/img/diente4.png" alt="Imagen de búsqueda" id="dienteImagen">
+              <span class="text15">36</span>
+            
+            </div>
+          </div>
+          <div class="svg-container7">
+              
+            <svg height="50" width="50" id="p48" #p48>
+              <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p48l1)" id="l1"
+                #p48l1 />
+              <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p48l2)" id="l2"
+                #p48l2 />
+              <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p48l3)" id="l3" #p48l3 />
+              <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p48l4)" id="l4" #p48l4 />
+              <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                (click)="changeColor(p48l5)" id="l5" #p48l5 />
+              <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p48l6)" id="l6"
+                #p48l6 />
+              <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p48l7)" id="l7"
+                #p48l7 />
+              <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p48l8)" id="l8"
+                #p48l8 />
+              <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p48l9)" id="l9"
+                #p48l9 />
+              <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p48l10)" id="l10"
+                #p48l10 />
+            </svg>
+            <div class="icon1">
+              <div class="combo-box" tabindex="0">
+                <div class="dropdown-content">
+                  <mat-option value="Corona">Corona</mat-option>
+                  <mat-option value="Ausente">Ausente</mat-option>
+                  <mat-option value="Corona">Corona</mat-option>
+                </div>
+              </div>
+              <img src="assets/img/diente4.png" alt="Imagen de búsqueda" id="dienteImagen">
+              <span class="text16">37</span>
+            
+            </div>
+          </div>
+          <div class="svg-container8">
+            <svg height="50" width="50" id="p49" #p49>
+              <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p49l1)" id="l1"
+                #p49l1 />
+              <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p49l2)" id="l2"
+                #p49l2 />
+              <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p49l3)" id="l3" #p49l3 />
+              <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p49l4)" id="l4" #p49l4 />
+              <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                (click)="changeColor(p49l5)" id="l5" #p49l5 />
+              <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p49l6)" id="l6"
+                #p49l6 />
+              <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p49l7)" id="l7"
+                #p49l7 />
+              <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p49l8)" id="l8"
+                #p49l8 />
+              <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p49l9)" id="l9"
+                #p49l9 />
+              <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p49l10)" id="l10"
+                #p49l10 />
+            </svg>
+            <div class="icon1">
+              <div class="combo-box" tabindex="0">
+                <div class="dropdown-content">
+                  <mat-option value="Corona">Corona</mat-option>
+                  <mat-option value="Ausente">Ausente</mat-option>
+                  <mat-option value="Corona">Corona</mat-option>
+                </div>
+              </div>
+              <img src="assets/img/diente4.png" alt="Imagen de búsqueda" id="dienteImagen">
+              <span class="text17">38</span>
+            
+            </div>
+          </div>
+          
+  
+       
+        
+      </div>
+      <div class="container">
+               
+        <!-- Botones en la parte derecha -->
+        <div class="button-container">
+        <div> <h5>Referencias</h5></div>
+         
+          <button class="btn btn-plateado" (click)="plateado()">En observación</button>
+          <button class="btn btn-azul" (click)="azul()">Remanente radicular</button>
+          <button class="btn btn-celeste" (click)="celeste()">Caries</button>
+          <button class="btn btn-verdeamarillo" (click)="verdeamarillo()">Clavija</button>
+          <button class="btn btn-verde" (click)="verde()">Amalgama</button>
+          <button class="btn btn-cafe" (click)="cafe()">Obturación</button>
+          <button class="btn btn-lila" (click)="lila()">Intrusión</button>
+          <button class="btn btn-rosa" (click)="rosa()">Prótesis</button>
+          <button class="btn btn-naranja" (click)="naranja()">Ortodoncia</button>
+          <button class="btn btn-warning" (click)="amarillo()">Endodoncia</button>
+          <button class="btn btn-danger" (click)="rojo()">Edéntulo</button>
+          <button class="btn btn-gris" (click)="Gris()">Diente ausente</button>
         </div>
-    </div>
-</div>
+      
+        <!-- Fecha y Nota en la parte izquierda -->
+        <div class="form-container">
+          <div class="col-12 col-md-7 col-xl-7">
+            <div class="form-group local-forms">
+              <label>Fecha <span class="login-danger">*</span></label>
+              <input class="form-control datetimepicker" type="text" placeholder="" matInput [matDatepicker]="picker"
+                [(ngModel)]="odonto.fecha" name="fecha">
+      
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            </div>
+          </div>
+      
+          <div class="col-12 col-md-7 col-xl-10">
+            <div class="form-group local-forms">
+              <label>Anotaciones <span class="login-danger">*</span></label>
+              <textarea class="form-control" id="anotaciones" name="anotaciones" [(ngModel)]="odonto.anotaciones" rows="3"
+                cols="30"></textarea>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="doctor-submit text-end">
+  
+                <button type="submit" class="btn btn-primary submit-form me-2"
+                [routerLink]="routes.departmentList" (click)="guardardoctor()" >Guardar</button>
+  
+                <button type="submit" class="btn btn-primary cancel-form"
+                    [routerLink]="routes.departmentList">Cancel</button>
+            </div>
+        </div>
+        </div>
+      
+      </div>
+      

@@ -6,9 +6,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a [routerLink]="routes.schedule">Doctor Shedule </a></li>
+                        <li class="breadcrumb-item"><a [routerLink]="routes.schedule">Lista</a></li>
                         <li class="breadcrumb-item"><i class="feather icon-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Schedule List</li>
+                        <li class="breadcrumb-item active">Lista de libreta</li>
                     </ul>
                 </div>
             </div>
@@ -54,41 +54,37 @@
                         <div class="table-responsive">
                             <table matSort (matSortChange)="sortData($event)" class="table border-0 custom-table comman-table datatable mb-0">
                                 <thead>
-                                    <tr>
-                                        <th mat-sort-header="checkbox">
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox" value="something">
-                                            </div>
-                                        </th>
-                                        <th mat-sort-header="doctorName">Doctor Name</th>
-                                        <th mat-sort-header="department">Department</th>
-                                        <th mat-sort-header="availableDays">Available Days</th>
-                                        <th mat-sort-header="availableTime">Available Time</th>
-                                        <th mat-sort-header="status">Status</th>
-                                        <th ></th>
-                                    </tr>
+                                  <tr>
+
+                                    <th mat-sort-header="nombre">Nombre</th>
+                                    <th mat-sort-header="Editar">Editar</th>
+                                    <th mat-sort-header="eliminar">Eliminar</th>
+                         
+                                
+                
+                                  </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let data of schedule">
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox" value="something">
-                                            </div>
-                                        </td>
-                                        <td class="profile-image"><a [routerLink]="routes.profile"><img width="28" height="28" [src]="data.img" class="rounded-circle m-r-5" alt=""> {{data.doctorName}}</a></td>
-                                        <td>{{data.department}}</td>
-                                        <td>{{data.availableDays}}</td>
-                                        <td>{{data.availableTime}}	</td>
-                                        <td><button [ngClass]="{'status-green' : data.status === 'Active', 'status-pink' : data.status === 'In Active'}" class="custom-badge">{{data.status}}</button></td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="javascript:void(0);" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" [routerLink]="routes.editSchedule"><i class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delete_patient"><i class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
+                                  <tr *ngFor="let libretas of libreta">
+                                
+                                    <td>{{ libretas.nombre }}</td>
+                               
+                                 
+                    <div class="dropdown dropdown-action">
+                      <td class="text-end">
+                        <button class="dropdown-item" (click)= "actualizarPersona(libretas.idLibreta)" [routerLink]="routes.editPatient"
+                          class="btn btn-custom" >
+                          <i class="fa-solid fa-pen-to-square m-r-5"></i>
+                        </button>
+                      </td>
+                    </div>
+
+                    <td>
+                      <button class="dropdown-item" (click)="eliminarPersona(libretas.idLibreta)"
+                        class="btn btn-custom"><i class="fa fa-trash-alt m-r-5"></i>
+
+                      </button>
+                    </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -185,7 +181,7 @@
                                           disabled:
                                             currentPage ===
                                               pageNumberArray[pageNumberArray.length - 1] ||
-                                              schedule.length === 0
+                                              libreta.length === 0
                                         }"
                                       >
                                         <a
