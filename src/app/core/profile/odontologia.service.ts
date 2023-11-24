@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Antropometria } from './antropometria';
+import { Odontologia } from './odontologia';
 
 
 
@@ -9,34 +9,34 @@ import { Antropometria } from './antropometria';
 @Injectable({
   providedIn: 'root'
 })
-export class AntropometriaService {
+export class OdontologiaService {
   //esta url obtiene el listado de las maquinas en el backend
-  url: string = 'http://localhost:8080/api/antropometria';
+  url: string = 'http://localhost:8080/api/odontologia';
   constructor(private httpClient : HttpClient) { }
  
  
 
-  actualizarPersona( id: number, antropometria: Antropometria): Observable<object> {
-    return this.httpClient.put(this.url + '/actualizar/'+id,  antropometria);
+  actualizarPersona( id:number,paciente: Odontologia): Observable<object> {
+    return this.httpClient.put(this.url + '/actualizar/'+id, paciente);
   }
-    guardarPersona(antropometria: any) {
-      return this.httpClient.post(this.url+'/listar', antropometria);
+    guardarPersona(paciente: any) {
+      return this.httpClient.post(this.url+'/listar', paciente);
     }
     
       //este metodo trae las maquinas
-    obtenerListaPersona(): Observable<Antropometria[]>{
-      return this.httpClient.get<Antropometria[]>(this.url+'/listar');
+    obtenerListaPersona(): Observable<Odontologia[]>{
+      return this.httpClient.get<Odontologia[]>(this.url+'/listar');
     }  
-    Buscarid(id:number): Observable<Antropometria>{
-      return this.httpClient.get<Antropometria>(this.url+'/listar/'+id);
+    Buscarid(id:number): Observable<Odontologia>{
+      return this.httpClient.get<Odontologia>(this.url+'/listar/'+id);
     }
     
     eliminarPersona(id:number): Observable<object>{
       return this.httpClient.delete(this.url+'/eliminar/'+id);
     }
     
-    registrarPersona(antropometria:Antropometria): Observable<Object>{
-    return this.httpClient.post(this.url+'/crear',antropometria);
+    registrarPersona(paciente:Odontologia): Observable<Object>{
+    return this.httpClient.post(this.url+'/crear',paciente);
     }
     
     // actualizarpaciente(id:number): Observable<Paciente>{

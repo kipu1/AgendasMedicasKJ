@@ -19,9 +19,9 @@ export class StaffListComponent implements OnInit{
   public routes = routes;
   public staffList: Array<staffList> = [];
   dataSource!: MatTableDataSource<staffList>;
-  paciente: Paciente[] = [];
   antropometria: Antropometria[] = [];
-  antropometrias: Antropometria[] = [];
+  antropometrias: Antropometria = new Antropometria();
+  paciente:Paciente[] = [];
 
   public showFilter = false;
   public searchDataValue = '';
@@ -49,12 +49,20 @@ export class StaffListComponent implements OnInit{
     this.router.navigate([routes.addLeave,{id}]);
   }
   
-
-
   obtenerPersona(){
     this.antropometriaService.obtenerListaPersona().subscribe(dato => {
   this.antropometria=dato;
     });}
+
+  // obtenerPersona(){
+  //   this.antropometriaService.obtenerListaPersona().subscribe(dato => {
+  // this.antropometria=dato;
+  // this.antropometria.forEach((antropometria: Antropometria) => {
+  //   this.paciente=antropometria.idPaciente
+  // });
+  // console.log(dato)
+  //   });}
+
     eliminarPersona(id: number) {
       this.antropometriaService.eliminarPersona(id).subscribe(() => {
         this.obtenerPersona(); // Para actualizar la lista después de la eliminación

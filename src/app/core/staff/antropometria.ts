@@ -1,3 +1,5 @@
+import { Paciente } from "../patient/paciente";
+
 export class Antropometria {
     idAntropometria!: number;
     fecha ?: string='';  
@@ -52,6 +54,6 @@ export class Antropometria {
     anotaciones: string='';
     prescripciones:string='';
     
-   
+    idPaciente!:  Paciente[];
 
 }

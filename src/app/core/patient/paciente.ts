@@ -1,3 +1,4 @@
+import { Antropometria } from "../staff/antropometria";
 
 
 export class Paciente {
@@ -40,7 +41,7 @@ export class Paciente {
     campoCfg3: string='';   
     tipodocumento: string='';
     abrir: string='';
-
+    antropometria!:  Antropometria[];
    
 
 }

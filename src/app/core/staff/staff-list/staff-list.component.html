@@ -57,7 +57,8 @@
                               <tr>
             
                                 <th mat-sort-header="fecha">Fecha</th>
-                                <!-- <th mat-sort-header="nombre">Nombre</th> -->
+                                 <!-- <th mat-sort-header="apellido">Apellido</th> 
+                                 <th mat-sort-header="apellido">Nombre</th>  -->
                                 <!-- <th mat-sort-header="tipodocumento">Tipo de documento</th> -->
                                 <!-- <th mat-sort-header="documento">Documento</th> -->
                                 <th mat-sort-header="Editar">Editar</th>
@@ -67,15 +68,34 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <tr *ngFor="let antropometrias of antropometria">
+                              <tr *ngFor="let i = index; let antropometria of antropometria">
+                                <td>{{ antropometria.fecha }}</td>
+                               
+                            
                                 
-                                <td>{{ antropometrias.fecha }}</td>
+                                <!-- <td>{{ antropometrias.pacientef.apellido }}</td> -->
+                                
                                 <!-- <td>{{ antropometrias.nombre }}</td>
-                                <td>{{ antropometrias.documento }}</td> -->
+                                <td>{{ antropometrias.documento }}</td> 
+                               <tr>
+                                <th scope="col">fecha</th>
+                                <th scope="col">Apellido</th>
+                              
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>{{ antropometrias.fecha }}</td>
+                                <td>{{ antropometrias.pacientef.apellido }}</td>
+                           
+                              
+                              
+                              
+                              -->
             
                                 <div class="dropdown dropdown-action">
                                   <td class="text-end">
-                                    <button class="dropdown-item btn btn-custom" (click)="actualizarPersona(antropometrias.idAntropometria)">
+                                    <button class="dropdown-item btn btn-custom" (click)="actualizarPersona(antropometria.idAntropometria)">
                                       <i class="fa-solid fa-pen-to-square m-r-5"></i>
                                      
                                   </button>
@@ -84,7 +104,7 @@
                                 </div>
             
                                 <td>
-                                  <button class="dropdown-item" (click)="eliminarPersona(antropometrias.idAntropometria)"
+                                  <button class="dropdown-item" (click)="eliminarPersona(antropometria.idAntropometria)"
                                     class="btn btn-custom"><i class="fa fa-trash-alt m-r-5"></i>
             
                                   </button>
