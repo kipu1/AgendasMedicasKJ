@@ -57,14 +57,21 @@
                   <div class="icon">
                     <span class="text">18</span>
                     <img src="assets/img/diente1.png" alt="Imagen de búsqueda">
-                    <div class="combo-box" tabindex="0">
-                      <div class="dropdown-content">
-                          <option value="opcion1">Opción 1</option>
-                          <option value="opcion2">Opción 2</option>
-                          <option value="opcion3">Opción 3</option>
-                      </div>
-                  </div>
-                  </div>
+                  
+                        <div class="dropdown-content">
+                            <!-- Utiliza la etiqueta <select> para el combobox -->
+                              <select [(ngModel)]="odonto.referecia1" class="combo-box" tabindex="0">
+                                <option value="Corona">Corona</option>
+                                <option value="Corona a realizar">Corona a realizar</option>
+                                <option value="Corona realizada">Corona realizada</option>
+                                <option value="Ausente">Ausente</option>
+                                <option value="No erupcionada">No erupcionada</option>
+                                <option value="A extraer">A extraer</option>
+                                <option value="Extraida">Extraida</option>
+                                <option value="Fractura">Fractura</option>
+                            </select>
+                        </div>
+                    </div>
                  
   
                   <div class="svg-container1">
@@ -94,36 +101,43 @@
                 <div>
                   <div class="icon">
                     <span class="text">17</span>
-                    <img src="assets/img/diente1.png" alt="Imagen de búsqueda" id="dienteImagen">
-                    <div class="combo-box" tabindex="0">
-                      <div class="dropdown-content">
-                        <mat-option value="Corona">Corona</mat-option>
-                        <mat-option value="Ausente">Ausente</mat-option>
-                        <mat-option value="Corona">Corona</mat-option>
-                      </div>
+                    <img src="assets/img/diente1.png" alt="Imagen de búsqueda">
+                  
+                        <div class="dropdown-content">
+                            <!-- Utiliza la etiqueta <select> para el combobox -->
+                              <select [(ngModel)]="odonto.referencia2" class="combo-box" tabindex="0">
+                                <option value="Corona">Corona</option>
+                                <option value="Corona a realizar">Corona a realizar</option>
+                                <option value="Corona realizada">Corona realizada</option>
+                                <option value="Ausente">Ausente</option>
+                                <option value="No erupcionada">No erupcionada</option>
+                                <option value="A extraer">A extraer</option>
+                                <option value="Extraida">Extraida</option>
+                                <option value="Fractura">Fractura</option>
+                            </select>
+                        </div>
                     </div>
-                  </div>
                   <div class="svg-container1">
-                  <svg height="50" width="50" id="p19" #p19>
-                    <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p19l1)" id="l1"
-                      #p19l1 />
-                    <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p19l2)" id="l2"
-                      #p19l2 />
-                    <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p19l3)" id="l3" #p19l3 />
-                    <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p19l4)" id="l4" #p19l4 />
-                    <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
-                      (click)="changeColor(p19l5)" id="l5" #p19l5 />
-                    <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p19l6)" id="l6"
-                      #p19l6 />
-                    <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p19l7)" id="l7"
-                      #p19l7 />
-                    <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p19l8)" id="l8"
-                      #p19l8 />
-                    <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p19l9)" id="l9"
-                      #p19l9 />
-                    <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p19l10)" id="l10"
-                      #p19l10 />
-                  </svg>
+                    <svg height="50" width="50" id="p19" #p19>
+                      <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p19l1)" id="l1"
+                        #p19l1 [(ngModel)]="odonto.marca"/>
+                      <polygon points="45,10 50,15 15,50 10,45" fill="white" stroke="black" (click)="changeColor(p19l2)" id="l2"
+                        #p19l2 [(ngModel)]="odonto.marca" />
+                      <circle cx="30" cy="30" r="16" fill="white" stroke="black" (click)="changeColor(p19l3)" id="l3" #p19l3 />
+                      <circle cx="30" cy="30" r="20" fill="white" stroke="black" (click)="changeColor(p19l4)" id="l4" #p19l4 />
+                      <polygon points="50,10 40,10 10,26 10,32 46,32 10,50 20,50 50,36 50,28 14,28" fill="white" stroke="black"
+                        (click)="changeColor(p19l5)" id="l5" #p19l5 [(ngModel)]="odonto.marca"/>
+                      <polygon points="10,10 50,10 40,20 20,20" fill="white" stroke="black" (click)="changeColor(p19l6)" id="l6"
+                        #p19l6 [(ngModel)]="odonto.marca" />
+                      <polygon points="50,10 50,50 40,40 40,20" fill="white" stroke="black" (click)="changeColor(p19l7)" id="l7"
+                        #p19l7 [(ngModel)]="odonto.marca"/>
+                      <polygon points="50,50 10,50 20,40 40,40" fill="white" stroke="black" (click)="changeColor(p19l8)" id="l8"
+                        #p19l8  [(ngModel)]="odonto.marca"/>
+                      <polygon points="10,50 20,40 20,20 10,10" fill="white" stroke="black" (click)="changeColor(p19l9)" id="l9"
+                        #p19l9 />
+                      <polygon points="20,20 40,20 40,40 20,40" fill="white" stroke="black" (click)="changeColor(p19l10)" id="l10"
+                        #p19l10 [(ngModel)]="odonto.marca"/>
+                    </svg>
                 </div>
               </div>
                 <div>

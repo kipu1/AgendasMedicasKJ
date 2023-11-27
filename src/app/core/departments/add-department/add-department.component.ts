@@ -33,6 +33,7 @@ export class AddDepartmentComponent
     ngOnInit(): void {
       this.obtenerpersona();
     }
+    
     obtenerpersona() {
       this.odontoService.obtenerListaPersona().subscribe(dato => {
         this.odontos = dato;

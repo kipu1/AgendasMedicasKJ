@@ -57,14 +57,22 @@
                   <div class="icon">
                     <span class="text">18</span>
                     <img src="assets/img/diente1.png" alt="Imagen de búsqueda">
-                    <div class="combo-box" tabindex="0">
-                      <div class="dropdown-content">
-                          <option value="opcion1">Opción 1</option>
-                          <option value="opcion2">Opción 2</option>
-                          <option value="opcion3">Opción 3</option>
-                      </div>
-                  </div>
-                  </div>
+                  
+                        <div class="dropdown-content">
+                            <!-- Utiliza la etiqueta <select> para el combobox -->
+                            <select [(ngModel)]="odonto.anotaciones" class="combo-box" tabindex="0">
+                              <option value="Corona">Corona</option>
+                                <option value="Corona a realizar">Corona a realizar</option>
+                                <option value="Corona realizada">Corona realizada</option>
+                                <option value="Ausente">Ausente</option>
+                                <option value="No erupcionada">No erupcionada</option>
+                                <option value="A extraer">A extraer</option>
+                                <option value="Extraida">Extraida</option>
+                                <option value="Fractura">Fractura</option>
+                            </select>
+                        </div>
+                    </div>
+               
                  
   
                   <div class="svg-container1">
@@ -94,15 +102,23 @@
                 <div>
                   <div class="icon">
                     <span class="text">17</span>
-                    <img src="assets/img/diente1.png" alt="Imagen de búsqueda" id="dienteImagen">
-                    <div class="combo-box" tabindex="0">
-                      <div class="dropdown-content">
-                        <mat-option value="Corona">Corona</mat-option>
-                        <mat-option value="Ausente">Ausente</mat-option>
-                        <mat-option value="Corona">Corona</mat-option>
-                      </div>
+                    <img src="assets/img/diente1.png" alt="Imagen de búsqueda">
+                  
+                        <div class="dropdown-content">
+                            <!-- Utiliza la etiqueta <select> para el combobox -->
+                            <select [(ngModel)]="odonto.anotaciones" class="combo-box" tabindex="0">
+                                <option value="Corona">Corona</option>
+                                <option value="Corona a realizar">Corona a realizar</option>
+                                <option value="Corona realizada">Corona realizada</option>
+                                <option value="Ausente">Ausente</option>
+                                <option value="No erupcionada">No erupcionada</option>
+                                <option value="A extraer">A extraer</option>
+                                <option value="Extraida">Extraida</option>
+                                <option value="Fractura">Fractura</option>
+                               
+                            </select>
+                        </div>
                     </div>
-                  </div>
                   <div class="svg-container1">
                   <svg height="50" width="50" id="p19" #p19>
                     <polygon points="10,15 15,10 50,45 45,50" fill="white" stroke="black" (click)="changeColor(p19l1)" id="l1"
@@ -132,9 +148,14 @@
                     <img src="assets/img/diente1.png" alt="Imagen de búsqueda" id="dienteImagen">
                     <div class="combo-box" tabindex="0">
                       <div class="dropdown-content">
-                        <mat-option value="Corona">Corona</mat-option>
-                        <mat-option value="Ausente">Ausente</mat-option>
-                        <mat-option value="Corona">Corona</mat-option>
+                        <option value="Corona">Corona</option>
+                                <option value="Corona a realizar">Corona a realizar</option>
+                                <option value="Corona realizada">Corona realizada</option>
+                                <option value="Ausente">Ausente</option>
+                                <option value="No erupcionada">No erupcionada</option>
+                                <option value="A extraer">A extraer</option>
+                                <option value="Extraida">Extraida</option>
+                                <option value="Fractura">Fractura</option>
                       </div>
                     </div>
                   </div>
@@ -1230,4 +1251,11 @@
         </div>
       
       </div>
+    </div>
+      
+  </div>
+</div>
+      
+</div>
+
       

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 
 import { AddPatientRoutingModule } from './add-patient-routing.module';
 import { AddPatientComponent } from './add-patient.component';
@@ -8,6 +8,10 @@ import { LocalizationDetailsModule } from '../../settings/localization-details/l
 import { PaymentSettingsModule } from '../../settings/payment-settings/payment-settings.module';
 import { EmailSettingsModule } from '../../settings/email-settings/email-settings.module';
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -22,7 +26,9 @@ import { FormsModule } from '@angular/forms';
     PaymentSettingsModule,
     EmailSettingsModule,
     NgIf,
-    FormsModule
+    FormsModule,
+    NgFor, FormsModule ,CommonModule,MatTableModule, MatPaginatorModule,MatButtonModule,MatFormFieldModule,MatTableModule,
+    
   ]
 })
 export class AddPatientModule { }

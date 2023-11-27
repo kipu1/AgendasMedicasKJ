@@ -69,7 +69,7 @@
                             </thead>
                             <tbody>
                               <tr *ngFor="let i = index; let antropometria of antropometria">
-                                <td>{{ antropometria.fecha }}</td>
+                                <td>{{ antropometria.fecha | date:'yyyy-MM-dd'}}</td>
                                
                             
                                 

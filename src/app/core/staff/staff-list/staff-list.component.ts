@@ -9,6 +9,7 @@ import { AntropometriaService } from '../antropometria.service';
 import { Router } from '@angular/router';
 import { Antropometria } from '../antropometria';
 import { Paciente } from '../../patient/paciente';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-staff-list',

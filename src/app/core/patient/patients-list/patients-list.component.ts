@@ -8,6 +8,7 @@ import { patientService } from '../patient.service';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { Router } from '@angular/router';
 import { Paciente } from '../paciente';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
