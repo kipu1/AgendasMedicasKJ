@@ -280,34 +280,6 @@ export class DataService {
               route: routes.patientProfile,
               base: routes.patientProfile,
             },
-            {
-              menuValue: 'Odontologia',
-             
-            },
-            {
-              menuValue: ' Lista Odontologia',
-              route: routes.departmentList,
-              base: routes.departmentList,
-            },
-            {
-              menuValue: 'Odontograma',
-              route: routes.addDepartment,
-              base: routes.addDepartment,
-            },
-            {
-              menuValue: 'Antropometria',
-             
-            },
-            {
-              menuValue: 'Lista',
-              route: routes.staffList,
-              base: routes.staffList,
-            },
-            {
-              menuValue: 'Crear',
-              route: routes.addStaff,
-              base: routes.addStaff,
-            },
           ],
         },
         // {
