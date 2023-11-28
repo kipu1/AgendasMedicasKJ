@@ -254,6 +254,16 @@ export class DataService {
           ],
         },
         {
+          menuValue: 'Buscar',
+          route: routes.patientsList,
+          hasSubRoute: false,
+          showSubRoute: false,
+          icon: 'fa-calendar',
+          faIcon: true,
+          base: 'paciente',
+          subMenus: [],
+           },
+        {
           menuValue: 'Paciente',
           hasSubRoute: true,
           showSubRoute: false,
@@ -518,22 +528,34 @@ export class DataService {
           img: 'assets/img/icons/menu-icon-2.svg',
           subMenus: [
             {
-              menuValue: 'Voice Call',
+              menuValue: 'Nuevo',
               route: routes.voiceCall,
               base: routes.voiceCall,
             },
+
             {
-              menuValue: 'Video Call',
+              menuValue: 'Lista vadecums',
               route: routes.videoCall,
               base: routes.videoCall,
             },
-            {
-              menuValue: 'Incoming Call',
-              route: routes.incomingCall,
-              base: routes.incomingCall,
-            },
+            // {
+            //   menuValue: 'Incoming Call',
+            //   route: routes.incomingCall,
+            //   base: routes.incomingCall,
+            // },
           ],
         },
+        // {
+        //   menuValue: 'Vademecum',
+        //   route: routes.voiceCall,
+        //   hasSubRoute: false,
+        //   showSubRoute: false,
+        //   icon: 'fa-calendar',
+        //   faIcon: true,
+        //   base: 'calls',
+        //   subMenus: [],
+        //    },
+         
         // {
     //       menuValue: 'Email',
     //       hasSubRoute: true,
