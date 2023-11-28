@@ -310,23 +310,23 @@ export class DataService {
             },
           ],
         },
-        {
-          menuValue: 'Antropometria',
-          hasSubRoute: true,
-          showSubRoute: false,
-          base: 'Antropometria',
-          img: 'assets/img/icons/menu-icon-08.svg',
-          subMenus: [
-            {
-              menuValue: 'Lista',
-              route: routes.staffList,
-              base: routes.staffList,
-            },
-            {
-              menuValue: 'Crear',
-              route: routes.addStaff,
-              base: routes.addStaff,
-            },
+        // {
+        //   menuValue: 'Antropometria',
+        //   hasSubRoute: true,
+        //   showSubRoute: false,
+        //   base: 'Antropometria',
+        //   img: 'assets/img/icons/menu-icon-08.svg',
+        //   subMenus: [
+        //     {
+        //       menuValue: 'Lista',
+        //       route: routes.staffList,
+        //       base: routes.staffList,
+        //     },
+        //     {
+        //       menuValue: 'Crear',
+        //       route: routes.addStaff,
+        //       base: routes.addStaff,
+        //     },
             // {
             //    menuValue: 'Staff Profile',
             //  route: routes.staffProfile,
@@ -347,32 +347,32 @@ export class DataService {
             //    route: routes.staffAttendance,
             //    base: routes.staffAttendance,
             //  },
-          ],
-        },
-        {
-          menuValue: 'Odontologia',
-          hasSubRoute: true,
-          showSubRoute: false,
-          base: 'departments',
-          img: 'assets/img/icons/menu-icon-06.svg',
-          subMenus: [
-            {
-              menuValue: ' Lista Odontologia',
-              route: routes.departmentList,
-              base: routes.departmentList,
-            },
-            {
-              menuValue: 'Odontograma',
-              route: routes.addDepartment,
-              base: routes.addDepartment,
-            },
-            // {
-            //   menuValue: 'Edit Department',
-            //   route: routes.editDepartment,
-            //   base: routes.editDepartment,
-            // },
-          ],
-        },
+          // ],
+        // },
+        // {
+        //   menuValue: 'Odontologia',
+        //   hasSubRoute: true,
+        //   showSubRoute: false,
+        //   base: 'departments',
+        //   img: 'assets/img/icons/menu-icon-06.svg',
+        //   subMenus: [
+        //     {
+        //       menuValue: ' Lista Odontologia',
+        //       route: routes.departmentList,
+        //       base: routes.departmentList,
+        //     },
+        //     {
+        //       menuValue: 'Odontograma',
+        //       route: routes.addDepartment,
+        //       base: routes.addDepartment,
+        //     },
+        //     // {
+        //     //   menuValue: 'Edit Department',
+        //     //   route: routes.editDepartment,
+        //     //   base: routes.editDepartment,
+        //     // },
+        //   ],
+        // },
         // {
          
         //     menuValue: 'Libreta',
@@ -490,40 +490,51 @@ export class DataService {
     //         },
     //       ],
     //     },
-    //     {
-    //       menuValue: 'Chat',
-    //       route: routes.chat,
-    //       hasSubRoute: false,
-    //       showSubRoute: false,
-    //       base: 'chat',
-    //       img: 'assets/img/icons/menu-icon-10.svg',
-    //       subMenus: [],
-    //     },
-    //     {
-    //       menuValue: 'Call',
-    //       hasSubRoute: true,
-    //       showSubRoute: false,
-    //       base: 'calls',
-    //       img: 'assets/img/icons/menu-icon-11.svg',
-    //       subMenus: [
-    //         {
-    //           menuValue: 'Voice Call',
-    //           route: routes.voiceCall,
-    //           base: routes.voiceCall,
-    //         },
-    //         {
-    //           menuValue: 'Video Call',
-    //           route: routes.videoCall,
-    //           base: routes.videoCall,
-    //         },
-    //         {
-    //           menuValue: 'Incoming Call',
-    //           route: routes.incomingCall,
-    //           base: routes.incomingCall,
-    //         },
-    //       ],
-    //     },
-    //     {
+        // {
+        //   menuValue: 'Chat',
+        //   route: routes.chat,
+        //   hasSubRoute: false,
+        //   showSubRoute: false,
+        //   base: 'chat',
+        //   img: 'assets/img/icons/menu-icon-10.svg',
+        //   subMenus: [],
+        // },
+            {
+        menuValue: 'Turno',
+        route: routes.calendar,
+        hasSubRoute: false,
+        showSubRoute: false,
+        icon: 'fa-calendar',
+        faIcon: true,
+        base: 'calendar',
+        subMenus: [],
+         },
+       
+        {
+          menuValue: 'Vademecum',
+          hasSubRoute: true,
+          showSubRoute: false,
+          base: 'calls',
+          img: 'assets/img/icons/menu-icon-2.svg',
+          subMenus: [
+            {
+              menuValue: 'Voice Call',
+              route: routes.voiceCall,
+              base: routes.voiceCall,
+            },
+            {
+              menuValue: 'Video Call',
+              route: routes.videoCall,
+              base: routes.videoCall,
+            },
+            {
+              menuValue: 'Incoming Call',
+              route: routes.incomingCall,
+              base: routes.incomingCall,
+            },
+          ],
+        },
+        // {
     //       menuValue: 'Email',
     //       hasSubRoute: true,
     //       showSubRoute: false,
