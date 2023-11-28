@@ -38,9 +38,25 @@ export class VoiceCallComponent {
       case '(S)-3-(1-metilpirrolidin-2-il)piridina (Nicotina)':
         this.vademecum.indicaciones = 'Antitabaquismo';
         break;
+        case '1,3-dimetilxantina (Teofilina)':
+          this.vademecum.indicaciones = 'Broncodilatador';
+          break;
         case '1-(4-metoxibenzoil)-2-pirrilidona (Aniracetam)':
         this.vademecum.indicaciones = '  Agente neurotrofico';
         break;
+
+        case '1-acetamido-2-pirrolidinona (Piracetam)':
+          this.vademecum.indicaciones = 'Activador del metabolismo cerebral.';
+          break;
+        case '1-alfa-hidroxicolecalciferol (Alfacalcidol)':
+          this.vademecum.indicaciones = 'Regulador del equilibrio del calcio y del fosfato';
+          break;
+          case '1-beta-D-ribofuranosiluracilo (Uridina)':
+            this.vademecum.indicaciones = 'Reconstituyente neuronal';
+            break;
+          case '1-butoxi-3-fenoxi-2-propanol (Febuprol)':
+          this.vademecum.indicaciones = ' Coleretico';
+          break;
       // Agrega casos para otros medicamentos según sea necesario
       default:
         this.vademecum.indicaciones = '';

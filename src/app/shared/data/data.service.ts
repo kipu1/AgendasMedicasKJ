@@ -520,41 +520,41 @@ export class DataService {
         subMenus: [],
          },
        
-        {
-          menuValue: 'Vademecum',
-          hasSubRoute: true,
-          showSubRoute: false,
-          base: 'calls',
-          img: 'assets/img/icons/menu-icon-2.svg',
-          subMenus: [
-            {
-              menuValue: 'Nuevo',
-              route: routes.voiceCall,
-              base: routes.voiceCall,
-            },
-
-            {
-              menuValue: 'Lista vadecums',
-              route: routes.videoCall,
-              base: routes.videoCall,
-            },
-            // {
-            //   menuValue: 'Incoming Call',
-            //   route: routes.incomingCall,
-            //   base: routes.incomingCall,
-            // },
-          ],
-        },
         // {
         //   menuValue: 'Vademecum',
-        //   route: routes.voiceCall,
-        //   hasSubRoute: false,
+        //   hasSubRoute: true,
         //   showSubRoute: false,
-        //   icon: 'fa-calendar',
-        //   faIcon: true,
         //   base: 'calls',
-        //   subMenus: [],
-        //    },
+        //   img: 'assets/img/icons/menu-icon-2.svg',
+        //   subMenus: [
+        //     {
+        //       menuValue: 'Nuevo',
+        //       route: routes.voiceCall,
+        //       base: routes.voiceCall,
+        //     },
+
+        //     // {
+        //     //   menuValue: 'Lista vadecums',
+        //     //   route: routes.videoCall,
+        //     //   base: routes.videoCall,
+        //     // },
+        //     // {
+        //     //   menuValue: 'Incoming Call',
+        //     //   route: routes.incomingCall,
+        //     //   base: routes.incomingCall,
+        //     // },
+        //   ],
+        // },
+        {
+          menuValue: 'Vademecum',
+          route: routes.voiceCall,
+          hasSubRoute: false,
+          showSubRoute: false,
+          icon: 'fa-calendar',
+          faIcon: true,
+          base: 'calls',
+          subMenus: [],
+           },
          
         // {
     //       menuValue: 'Email',
