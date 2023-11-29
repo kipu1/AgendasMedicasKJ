@@ -225,6 +225,16 @@ export class DataService {
           ],
         },
         {
+          menuValue: 'Buscar',
+          route: routes.patientsList,
+          hasSubRoute: false,
+          showSubRoute: false,
+          icon: 'fa-calendar',
+          faIcon: true,
+          base: 'paciente',
+          subMenus: [],
+           },
+        {
           menuValue: 'Doctors',
           hasSubRoute: true,
           showSubRoute: false,
@@ -253,16 +263,7 @@ export class DataService {
             },
           ],
         },
-        {
-          menuValue: 'Buscar',
-          route: routes.patientsList,
-          hasSubRoute: false,
-          showSubRoute: false,
-          icon: 'fa-calendar',
-          faIcon: true,
-          base: 'paciente',
-          subMenus: [],
-           },
+      
         {
           menuValue: 'Paciente',
           hasSubRoute: true,
@@ -427,30 +428,40 @@ export class DataService {
         //     },
         //   ],
         // },
+        // {
+        //   menuValue: 'Libreta',
+        //   hasSubRoute: true,
+        //   showSubRoute: false,
+        //   base: 'doctor-schedule',
+        //   img: 'assets/img/icons/menu-icon-05.svg',
+        //   subMenus: [
+        //     {
+        //       menuValue: 'Lista',
+        //       route: routes.schedule,
+        //       base: routes.schedule,
+        //     },
+        //     // {
+        //     //   menuValue: 'Nuevo',
+        //     //   route: routes.addSchedule,
+        //     //   base: routes.addSchedule,
+        //     // },
+        //     // {
+        //     //   menuValue: 'Editar',
+        //     //   route: routes.editSchedule,
+        //     //   base: routes.editSchedule,
+        //     // },
+        //   ],
+        // },
         {
           menuValue: 'Libreta',
-          hasSubRoute: true,
+          route: routes.addSchedule,
+          hasSubRoute: false,
           showSubRoute: false,
+          icon: 'fa-calendar',
+          faIcon: true,
           base: 'doctor-schedule',
-          img: 'assets/img/icons/menu-icon-05.svg',
-          subMenus: [
-            {
-              menuValue: 'Lista',
-              route: routes.schedule,
-              base: routes.schedule,
-            },
-            {
-              menuValue: 'Nuevo',
-              route: routes.addSchedule,
-              base: routes.addSchedule,
-            },
-            // {
-            //   menuValue: 'Editar',
-            //   route: routes.editSchedule,
-            //   base: routes.editSchedule,
-            // },
-          ],
-        },
+          subMenus: [],
+           },
         
         // {
         //   menuValue: 'Accounts',
