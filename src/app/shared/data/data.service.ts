@@ -270,11 +270,11 @@ export class DataService {
           base: 'patient',
           img: 'assets/img/icons/menu-icon-03.svg',
           subMenus: [
-            {
-              menuValue: 'Paciente List',
-              route: routes.patientsList,
-              base: routes.patientsList,
-            },
+            // {
+            //   menuValue: 'Paciente List',
+            //   route: routes.patientsList,
+            //   base: routes.patientsList,
+            // },
             {
               menuValue: 'Agregar Paciente',
               route: routes.addPatient,
@@ -291,15 +291,20 @@ export class DataService {
               base: routes.patientProfile,
             },
             {
+              menuValue: 'Oftamologia',
+              route: routes.payments,
+              base: routes.payments,
+            },
+            {
               menuValue: 'Odontologia',
               route: routes.addDepartment,
               base: routes.addDepartment,
             },
-            {
-              menuValue: ' Lista Odontologia',
-              route: routes.departmentList,
-              base: routes.departmentList,
-            },
+            // {
+            //   menuValue: ' Lista Odontologia',
+            //   route: routes.departmentList,
+            //   base: routes.departmentList,
+            // },
          
             // {
             //   menuValue: 'Antropometria',
@@ -310,11 +315,11 @@ export class DataService {
               route: routes.addStaff,
               base: routes.addStaff,
             },
-            {
-              menuValue: 'Lista',
-              route: routes.staffList,
-              base: routes.staffList,
-            },
+            // {
+            //   menuValue: 'Lista',
+            //   route: routes.staffList,
+            //   base: routes.staffList,
+            // },
            
 
             
@@ -447,40 +452,40 @@ export class DataService {
           ],
         },
         
-    //     {
-    //       menuValue: 'Accounts',
-    //       hasSubRoute: true,
-    //       showSubRoute: false,
-    //       base: 'accounts',
-    //       img: 'assets/img/icons/menu-icon-07.svg',
-    //       subMenus: [
-    //         {
-    //           menuValue: 'Invoices',
-    //           route: routes.invoices,
-    //           base: routes.invoices,
-    //         },
-    //         {
-    //           menuValue: 'Payments',
-    //           route: routes.payments,
-    //           base: routes.payments,
-    //         },
-    //         {
-    //           menuValue: 'Expenses',
-    //           route: routes.expenses,
-    //           base: routes.expenses,
-    //         },
-    //         {
-    //           menuValue: 'Taxes',
-    //           route: routes.taxes,
-    //           base: routes.taxes,
-    //         },
-    //         {
-    //           menuValue: 'Provident Fund',
-    //           route: routes.providentFund,
-    //           base: routes.providentFund,
-    //         },
-    //       ],
-    //     },
+        // {
+        //   menuValue: 'Accounts',
+        //   hasSubRoute: true,
+        //   showSubRoute: false,
+        //   base: 'accounts',
+        //   img: 'assets/img/icons/menu-icon-07.svg',
+        //   subMenus: [
+        //     {
+        //       menuValue: 'Invoices',
+        //       route: routes.invoices,
+        //       base: routes.invoices,
+        //     },
+        //     {
+        //       menuValue: 'Payments',
+        //       route: routes.payments,
+        //       base: routes.payments,
+        //     },
+        //     {
+        //       menuValue: 'Expenses',
+        //       route: routes.expenses,
+        //       base: routes.expenses,
+        //     },
+        //     {
+        //       menuValue: 'Taxes',
+        //       route: routes.taxes,
+        //       base: routes.taxes,
+        //     },
+        //     {
+        //       menuValue: 'Provident Fund',
+        //       route: routes.providentFund,
+        //       base: routes.providentFund,
+        //     },
+        //   ],
+        // },
     //     {
     //       menuValue: 'Payroll',
     //       hasSubRoute: true,

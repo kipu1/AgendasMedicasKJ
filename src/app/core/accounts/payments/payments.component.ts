@@ -4,6 +4,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from 'src/app/shared/data/data.service';
 import { pageSelection, apiResultFormat, payments } from 'src/app/shared/models/models';
 import { routes } from 'src/app/shared/routes/routes';
+import { OftamologiaService } from '../oftamologia.service';
+import { AuthService } from 'src/app/shared/auth/auth.service';
+import { Oftamologia } from '../oftamologia';
+import { Router } from '@angular/router';
 interface data {
   value: string ;
 }
@@ -12,127 +16,166 @@ interface data {
   templateUrl: './payments.component.html',
   styleUrls: ['./payments.component.scss']
 })
-export class PaymentsComponent implements OnInit {
+export class PaymentsComponent {
   public routes = routes;
-  public selectedValue! : string  ;
+  oftamologia: Oftamologia = new Oftamologia();
+ oftamologias: Oftamologia[] = [];
+  validador: boolean = false;
+  opcionSeleccionada: string = '';
+  opcionOpciones: string = '';
+  exploracionOptions: string[] = [];
+  // identificacion: String;
+  //change components
 
-  public payments: Array<payments> = [];
-  dataSource!: MatTableDataSource<payments>;
 
-  public showFilter = false;
-  public searchDataValue = '';
-  public lastIndex = 0;
-  public pageSize = 10;
-  public totalData = 0;
-  public skip = 0;
-  public limit: number = this.pageSize;
-  public pageIndex = 0;
-  public serialNumberArray: Array<number> = [];
-  public currentPage = 1;
-  public pageNumberArray: Array<number> = [];
-  public pageSelection: Array<pageSelection> = [];
-  public totalPages = 0;
+  constructor(private auth: AuthService, private oftamologiaService: OftamologiaService, private router: Router) { }
 
-  constructor(public data : DataService){
+  ngOnInit(): void {
+    this.obtenerpersona();
 
   }
-  ngOnInit() {
-    this.getTableData();
-  }
-  private getTableData(): void {
-    this.payments = [];
-    this.serialNumberArray = [];
 
-    this.data.getPayments().subscribe((data: apiResultFormat) => {
-      this.totalData = data.totalData;
-      data.data.map((res: payments, index: number) => {
-        const serialNumber = index + 1;
-        if (index >= this.skip && serialNumber <= this.limit) {
-         
-          this.payments.push(res);
-          this.serialNumberArray.push(serialNumber);
-        }
-      });
-      this.dataSource = new MatTableDataSource<payments>(this.payments);
-      this.calculateTotalPages(this.totalData, this.pageSize);
+  obtenerpersona() {
+    this.oftamologiaService.obtenerListaPersona().subscribe(dato => {
+      this.oftamologias = dato;
     });
   }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public searchData(value: any): void {
-    this.dataSource.filter = value.trim().toLowerCase();
-    this.payments = this.dataSource.filteredData;
-  }
  
-  public sortData(sort: Sort) {
-    const data = this.payments.slice();
 
-    if (!sort.active || sort.direction === '') {
-      this.payments = data;
-    } else {
-      this.payments = data.sort((a, b) => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const aValue = (a as any)[sort.active];
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const bValue = (b as any)[sort.active];
-        return (aValue < bValue ? -1 : 1) * (sort.direction === 'asc' ? 1 : -1);
-      });
+// onOpcionSeleccionadaChange() {
+//   switch (this.opcionSeleccionada) {
+//     case 'Biomiscropia':
+//       this.exploracionOptions = ['parpados', 'pestañas', 'glandulas'];
+//       break;
+//     // Agrega más casos según sea necesario
+//     default:
+//       this.exploracionOptions = [];
+//       break;
+//   }
+// }
+  onOpcionSeleccionadaChange() {
+    switch (this.oftamologia.examenes) {
+      case 'Biomiscropia':
+        this.exploracionOptions = ['parpados', 'pestañas', 'glandulas de Meibomio', 'conjuntiva tarsal', 'conjuntiva bulbar', 'córnea', 'Esclera', 'Cámara anterior', 'Iris', 'Pupila', 'Lagrimal', 'Presión intraocular', 'Gonioscopía', 'Cristalino', 'Vitreo anterior', 'Nervio óptico', 'Reflejo fotomotor', 'Balance muscular', 'otros'];
+        // o el valor predeterminado que desees
+        break;
+
+      case 'Oftalmoscopia':
+        this.exploracionOptions = ['Cámara vitrea', 'Disco óptico', 'Mácula', 'Excavacion', 'Arcadas vasculares', 'Ora Serrata', 'Cadrante N.superior', 'Cadrante N. inferior', 'Cadrante T. superior', 'Cadrante T. inferior', 'ERP', 'Otros'];
+        // o el valor predeterminado que desees
+        break;
+      case 'optometria Manifiesta':
+        this.exploracionOptions = ['Esfera', 'Cilindro', 'Eje', 'A.V.', 'Adición', 'Prisma', 'Base', 'DNP/L', 'DNP/C', 'Altua', 'Otros'];
+        // o el valor predeterminado que desees
+        break;
+
+      case 'optometria Prescripta':
+        this.exploracionOptions = ['Esfera', 'Cilindro', 'Eje', 'A.V.', 'Adición', 'Prisma', 'Base', 'DNP/L', 'DNP/C', 'Altua', 'Otros'];
+        // o el valor predeterminado que desees
+        break;
+
+      case 'Agudeza Visual':
+        this.exploracionOptions = ['AVL S/C', 'AVL C/C', 'AVC S/C', 'AVC C/C', 'Otros'];
+        // o el valor predeterminado que desees
+        break;
+
+      case 'Retinoscopia':
+        this.exploracionOptions = ['Esfera C/C', 'Cilindro C/C', 'Eje C/C', 'Esfera S/C', 'Cilindro S/C', 'Eje S/C', 'Otros'];
+        // o el valor predeterminado que desees
+        break;
+
+      case 'Queratometría':
+        this.exploracionOptions = ['Dp', 'mm', 'Otros'];
+        // o el valor predeterminado que desees
+        break;
+      // Agrega más casos según sea necesario
+ 
+        
+      case 'Oculomotor':
+        this.exploracionOptions = ['PPM', 'Ducciones', 'Versiones', 'Convergencias', 'Incomitancias', 'Alteraciones', 'Otros'];
+         // o el valor predeterminado que desees
+        break;
+
+        case 'Pecepción de colores':
+          this.exploracionOptions = ['Prueba de Amster', 'Prueba de Ishihara', 'Confrontación', 'Otros'];
+           // o el valor predeterminado que desees
+          break;
+          case 'Test de Pupila':
+            this.exploracionOptions = ['Luz', 'Penumbra', 'Fotomotor', 'D.P.A','Otros'];
+             // o el valor predeterminado que desees
+            break;
+            default:
+        this.exploracionOptions = [];
+        this.oftamologia.exploracion = ''; // o el valor predeterminado que desees
+        break;
     }
   }
 
-  public getMoreData(event: string): void {
-    if (event == 'next') {
-      this.currentPage++;
-      this.pageIndex = this.currentPage - 1;
-      this.limit += this.pageSize;
-      this.skip = this.pageSize * this.pageIndex;
-      this.getTableData();
-    } else if (event == 'previous') {
-      this.currentPage--;
-      this.pageIndex = this.currentPage - 1;
-      this.limit -= this.pageSize;
-      this.skip = this.pageSize * this.pageIndex;
-      this.getTableData();
-    }
-  }
-
-  public moveToPage(pageNumber: number): void {
-    this.currentPage = pageNumber;
-    this.skip = this.pageSelection[pageNumber - 1].skip;
-    this.limit = this.pageSelection[pageNumber - 1].limit;
-    if (pageNumber > this.currentPage) {
-      this.pageIndex = pageNumber - 1;
-    } else if (pageNumber < this.currentPage) {
-      this.pageIndex = pageNumber + 1;
-    }
-    this.getTableData();
-  }
-
-  public PageSize(): void {
-    this.pageSelection = [];
-    this.limit = this.pageSize;
-    this.skip = 0;
-    this.currentPage = 1;
-    this.getTableData();
-  }
-
-  private calculateTotalPages(totalData: number, pageSize: number): void {
-    this.pageNumberArray = [];
-    this.totalPages = totalData / pageSize;
-    if (this.totalPages % 1 != 0) {
-      this.totalPages = Math.trunc(this.totalPages + 1);
-    }
-    /* eslint no-var: off */
-    for (var i = 1; i <= this.totalPages; i++) {
-      const limit = pageSize * i;
-      const skip = limit - pageSize;
-      this.pageNumberArray.push(i);
-      this.pageSelection.push({ skip: skip, limit: limit });
-    }
-  }
-  selectedList: data[] = [
-    {value: 'Select Payment Status'},
-    {value: 'Paid'},
-    {value: 'Un Paid'},
-    {value: 'Partially Paid'},
+ 
+  opcionesMedicamentos: string[] = [
+    "Biomiscropia",
+    'Oftalmoscopia',
+  'optometria Manifiesta',
+  'optometria Prescripta',
+  'Agudeza Visual',
+  'Retinoscopia',
+  'Queratometría',
+  'Oculomotor',
+  'Pecepción de colores',
+  'Test de Pupila',
+ 
   ];
+  medicamentoFilter: string = '';
+
+  get medicamentosFiltrados(): string[] {
+    return this.opcionesMedicamentos.filter(opcion =>
+      opcion.toLowerCase().includes(this.medicamentoFilter.toLowerCase())
+    );
+  }
+  // Método para manejar cambios en el cuadro de búsqueda
+ 
+  guardardoctor() {
+    console.log(this.oftamologia); // Verificar los valores de los campos
+
+    var nombre = this.oftamologia.fecha;
+    var clavesecreta = this.oftamologia.resultado;
+    var comentarios = this.oftamologia.examenes;
+    var direccion = this.oftamologia.exploracion;
+    var especialidad = this.oftamologia.ojoizquierdo;
+   
+   
+
+
+
+
+
+    // Código para guardar la persona
+    this.oftamologiaService.registrarPersona(this.oftamologia).subscribe(dato => {
+      this.obtenerpersona();
+    }, error => {
+
+      console.log(error);
+      alert('La persona ha sido guardada correctamente');
+
+      // Llamada al método para obtener la lista de personas después de guardar una nueva persona
+    },
+
+    );
+
+    this.oftamologia.fecha = '';
+    this.oftamologia.resultado = '';
+    this.oftamologia.examenes = '';
+    this.oftamologia.exploracion = '';
+    this.oftamologia.ojoizquierdo = '';
+    this.oftamologia.ojoderecho = '';
+    this.oftamologia.anotaciones = '';
+    
+
+  }
+
+
+
+  onSubmit() {
+    this.guardardoctor();
+  }
 }

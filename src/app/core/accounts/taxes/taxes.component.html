@@ -6,9 +6,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a [routerLink]="routes.taxes">Accounts </a></li>
+                        <li class="breadcrumb-item"><a [routerLink]="routes.taxes">oftamologia</a></li>
                         <li class="breadcrumb-item"><i class="feather icon-chevron-right"></i></li>
-                        <li class="breadcrumb-item active">Taxes</li>
+                        <li class="breadcrumb-item active">oftamologia</li>
                     </ul>
                 </div>
             </div>
@@ -16,199 +16,126 @@
         <!-- /Page Header -->
         
         <div class="row">
-            <div class="col-sm-12">
-            
-                <div class="card card-table show-entire">
-                    <div class="card-body">
-                    
-                        <!-- Table Header -->
-                        <div class="page-table-header mb-2">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <div class="doctor-table-blk">
-                                        <h3>Taxes</h3>
-                                        <div class="doctor-search-blk">
-                                            <div class="top-nav-search table-search-blk">
-                                                    <input  class="form-control" placeholder="Search here" [(ngModel)]="searchDataValue"
-                                                    (ngModelChange)="searchData(searchDataValue)">
-                                                    <a class="btn"><img src="assets/img/icons/search-normal.svg" alt=""></a>
-                                            </div>
-                                            <div class="add-group">
-                                                <a [routerLink]="routes.addTax" class="btn btn-primary add-pluss ms-2"><img src="assets/img/icons/plus.svg" alt=""></a>
-                                                <a href="javascript:;" class="btn btn-primary doctor-refresh ms-2"><img src="assets/img/icons/re-fresh.svg" alt=""></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto text-end float-end ms-auto download-grp">
-                                    <a href="javascript:;" class=" me-2"><img src="assets/img/icons/pdf-icon-01.svg" alt=""></a>
-                                    <a href="javascript:;" class=" me-2"><img src="assets/img/icons/pdf-icon-02.svg" alt=""></a>
-                                    <a href="javascript:;" class=" me-2"><img src="assets/img/icons/pdf-icon-03.svg" alt=""></a>
-                                    <a href="javascript:;" ><img src="assets/img/icons/pdf-icon-04.svg" alt=""></a>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /Table Header -->
-                        
-                        <div class="table-responsive">
-                            <table matSort (matSortChange)="sortData($event)" class="table border-0 custom-table comman-table datatable mb-0">
-                                <thead>
-                                    <tr>
-                                        <th mat-sort-header="sno">
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox" value="something">#
-                                            </div>
-                                        </th>
-                                        <th mat-sort-header="taxName">Tax Name</th>
-                                        <th mat-sort-header="taxPercentage">Tax Percentage</th>
-                                        <th mat-sort-header="status">Status</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let data of taxes">
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox" value="something">{{data.sno}}
-                                            </div>
-                                        </td>
-                                        <td>{{data.taxName}}</td>
-                                        <td>{{data.taxPercentage}}</td>
-                                        <td>
-                                            <div class="dropdown action-label">
-                                                <a [ngClass]="{'status-green' : data.status === 'Active', 'status-pink' : data.status === 'In Active'}" class="custom-badge  dropdown-toggle" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    {{data.status}}
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-end status-staff">
-                                                    <a class="dropdown-item" href="javascript:;">Active</a>
-                                                    <a class="dropdown-item" href="javascript:;">In Active</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="text-end">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="javascript:void(0);" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" [routerLink]="routes.editTax"><i class="fa-solid fa-pen-to-square m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#delete_patient"><i class="fa fa-trash-alt m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="table_footer">
-                                <div class="col-sm-12 col-md-5">
-                                  <div class="dataTables_info">
-                                    Showing {{ serialNumberArray[0] }} to
-                                    {{ serialNumberArray[serialNumberArray.length - 1] }} of
-                                    {{ totalData }} entries
-                                  </div>
-                                </div>
-                
-                                <div class="col-sm-12 col-md-7">
-                                  <div class="pagination_section">
-                                    <ul class="pagination">
-                                      <li
-                                        class="page-item"
-                                        [ngClass]="{
-                                          disabled: currentPage === 1
-                                        }"
-                                      >
-                                        <a
-                                          (click)="getMoreData('previous')"
-                                          class="page-link"
-                                          href="javascript:void(0);"
-                                          tabindex="-1"
-                                          >Previous</a
-                                        >
-                                      </li>
-                
-                                      <ng-container
-                                        *ngFor="let item of pageNumberArray; let i = index"
-                                      >
-                                        <li
-                                          class="page-item"
-                                          [class.active]="item === currentPage"
-                                          [ngClass]="
-                                            (pageNumberArray[currentPage - 2] > item &&
-                                              item !== 1 &&
-                                              pageNumberArray.length > 6) ||
-                                            (pageNumberArray[currentPage] < item &&
-                                              item !== 1 &&
-                                              pageNumberArray.length > 6 &&
-                                              pageNumberArray.length !== item)
-                                              ? 'hide-page-no'
-                                              : 'show-page-no'
-                                          "
-                                        >
-                                          <a
-                                            (click)="moveToPage(item)"
-                                            class="page-link"
-                                            href="javascript:void(0);"
-                                          >
-                                            {{ item }}
-                                          </a>
-                                        </li>
-                                        <li
-                                          class="page-item"
-                                          *ngIf="
-                                            i === 0 &&
-                                            pageNumberArray.length > 6 &&
-                                            currentPage > 2
-                                          "
-                                          [hidden]="currentPage === 1"
-                                          (click)="moveToPage(currentPage - 2)"
-                                        >
-                                          <a class="page-link" href="javascript:void(0);">
-                                            ...
-                                          </a>
-                                        </li>
-                                        <li
-                                          *ngIf="
-                                            i === pageNumberArray.length - 2 &&
-                                            pageNumberArray.length > 6
-                                          "
-                                          [hidden]="
-                                            currentPage >=
-                                              pageNumberArray[pageNumberArray.length - 2] ||
-                                            totalData <
-                                              serialNumberArray[serialNumberArray.length - 1]
-                                          "
-                                          class="page-item"
-                                          (click)="moveToPage(currentPage + 2)"
-                                        >
-                                          <a class="page-link" href="javascript:void(0);">
-                                            ...
-                                          </a>
-                                        </li>
-                                      </ng-container>
-                
-                                      <li
-                                        class="page-item"
-                                        [ngClass]="{
-                                          disabled:
-                                            currentPage ===
-                                              pageNumberArray[pageNumberArray.length - 1] ||
-                                              taxes.length === 0
-                                        }"
-                                      >
-                                        <a
-                                          (click)="getMoreData('next')"
-                                          class="page-link"
-                                          href="javascript:void(0);"
-                                          >Next
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                        </div>
+          <div class="col-sm-12">
+    
+            <div class="card">
+              <div class="card-body">
+                <form>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-heading">
+                        <h4>Historial Oftalmologico</h4>
+                      </div>
                     </div>
-                </div>							
-            </div>					
+                    <!-- <div class="col-12 col-md-6 col-xl-6">
+                                      <div class="form-group local-top-form">
+                                          <label class="local-top">Avatar <span class="login-danger">*</span></label>
+                                          <div class="settings-btn upload-files-avator">
+                                              <input type="file" accept="image/*" name="image" id="file"
+                                                  onchange="loadFile(event)" class="hide-input">
+                                              <label for="file" class="upload">Choose File</label>
+                                          </div>
+                                      </div>
+                                  </div> -->
+    
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <!-- Primer Combo Box -->
+                      <div class="form-group local-forms">
+                        <label>Examenes <span class="login-danger">*</span></label>
+                        <mat-select id="medicamento" name="medicamento" [(ngModel)]="oftamologia.examenes"
+                          (ngModelChange)="onOpcionSeleccionadaChange()" placeholder="Seleccione"
+                          class="form-control select">
+                          <mat-option *ngFor="let opcion of medicamentosFiltrados" [value]="opcion">{{ opcion
+                            }}</mat-option>
+                        </mat-select>
+                      </div>
+    
+                    </div>
+    
+                    <!-- Segundo Combo Box -->
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="form-group local-forms">
+                        <label>Exploracion <span class="login-danger">*</span></label>
+                        <mat-select id="medicamento" name="medicamento" [(ngModel)]="oftamologia.exploracion"
+                          (ngModelChange)="onOpcionSeleccionadaChange()" placeholder="Seleccione"
+                          class="form-control select">
+                          <mat-option *ngFor="let opcion of exploracionOptions" [value]="opcion">{{ opcion }}</mat-option>
+                        </mat-select>
+    
+                      </div>
+                    </div>
+    
+    
+    
+    
+                    <!-- <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                      <label>Exploracion <span class="login-danger">*</span></label>
+                                     
+                                      <mat-select id="medicamento" name="medicamento"  [(ngModel)]="oftamologia.exploracion"  placeholder="Seleccione" class="form-control select">
+                                        <mat-option *ngFor="let opcion of medicamentosFiltrados" [value]="opcion">{{ opcion }}</mat-option>
+                                      </mat-select>
+                                    </div>
+                                  </div> -->
+    
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="form-group local-forms">
+                        <label>Resultado <span class="login-danger">*</span></label>
+                        <input class="form-control" type="text" placeholder="" id="resultado" name="resultado"
+                          [(ngModel)]="oftamologia.resultado">
+                      </div>
+                    </div>
+    
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="form-group local-forms">
+                        <label>ojoizquierdo <span class="login-danger">*</span></label>
+                        <input class="form-control" type="text" placeholder="" id="ojoizquierdo" name="ojoizquierdo"
+                          [(ngModel)]="oftamologia.ojoizquierdo">
+                      </div>
+                    </div>
+    
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="form-group local-forms">
+                        <label>ojoderecho <span class="login-danger">*</span></label>
+                        <input class="form-control" type="text" placeholder="" id="ojoderecho" name="ojoderecho"
+                          [(ngModel)]="oftamologia.ojoderecho">
+                      </div>
+                    </div>
+    
+                    <div class="col-12 col-md-6 col-xl-3">
+                      <div class="form-group local-forms">
+                        <label>Fecha <span class="login-danger">*</span></label>
+                        <input class="form-control datetimepicker" type="text" placeholder="" matInput
+                          [matDatepicker]="picker" [(ngModel)]="oftamologia.fecha" name="fecha">
+    
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                      </div>
+                    </div>
+    
+                    <div class="col-12 col-md-6 col-xl-4">
+                      <div class="form-group local-forms">
+                        <label>Anotaciones <span class="login-danger">*</span></label>
+                        <textarea class="form-control" id="anotaciones" name="anotaciones"
+                          [(ngModel)]="oftamologia.anotaciones" rows="3" cols="30"></textarea>
+    
+                      </div>
+                    </div>
+    
+    
+    
+                    <div class="col-12">
+                      <div class="doctor-submit text-end">
+                          <button type="submit" class="btn btn-primary submit-form me-2" (click)="actualizarDatos(id)" [routerLink]="routes.providentFund">Guardar</button>
+                           
+                          <button type="submit" class="btn btn-primary cancel-form"[routerLink]="routes.providentFund">Lista</button>
+                      </div>
+                  </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>

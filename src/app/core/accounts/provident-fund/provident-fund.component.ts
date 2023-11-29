@@ -4,6 +4,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from 'src/app/shared/data/data.service';
 import { pageSelection, apiResultFormat, providentFund } from 'src/app/shared/models/models';
 import { routes } from 'src/app/shared/routes/routes';
+import { Oftamologia } from '../oftamologia';
+import { OftamologiaService } from '../oftamologia.service';
+import { AuthService } from 'src/app/shared/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-provident-fund',
@@ -13,9 +17,18 @@ import { routes } from 'src/app/shared/routes/routes';
 export class ProvidentFundComponent implements OnInit {
   public routes = routes;
 
-  public providentFund: Array<providentFund> = [];
+  // public providentFund: Array<providentFund> = [];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  dataSource!: MatTableDataSource<providentFund>;
+  dataSource!: MatTableDataSource<Oftamologia>;
+  oftamologia: Oftamologia[] = [];
+  // public PacienteList: Array<Paciente> = [];
+
+  // dataSource = new MatTableDataSource<Paciente>;
+
+
+  
+  oftamologias: Oftamologia[] = [];
+  validador: boolean = false;
 
   public showFilter = false;
   public searchDataValue = '';
@@ -31,43 +44,57 @@ export class ProvidentFundComponent implements OnInit {
   public pageSelection: Array<pageSelection> = [];
   public totalPages = 0;
 
-  constructor(public data : DataService){
+  constructor(public data : DataService,private auth: AuthService, private oftamologiaService: OftamologiaService, private router: Router){
 
   }
   ngOnInit() {
     this.getTableData();
+    this.obtenerdoctor();
   }
+  obtenerdoctor(){
+    this.oftamologiaService.obtenerListaPersona().subscribe(dato => {
+  this.oftamologia=dato;
+    });}
+    eliminarPersona(id: number) {
+      this.oftamologiaService.eliminarPersona(id).subscribe(() => {
+        this.obtenerdoctor(); // Para actualizar la lista después de la eliminación
+      });
+    }
+    actualizarPersona(id:number){
+      //aqui solo dirige ala pagina de actualizar maquina
+      this.router.navigate([routes.taxes,{id}]);
+    }
   private getTableData(): void {
-    this.providentFund = [];
+    this.oftamologia = [];
     this.serialNumberArray = [];
 
     this.data.getProvidentFund().subscribe((data: apiResultFormat) => {
       this.totalData = data.totalData;
-      data.data.map((res: providentFund, index: number) => {
+      data.data.map((res: Oftamologia, index: number) => {
         const serialNumber = index + 1;
         if (index >= this.skip && serialNumber <= this.limit) {
           
-          this.providentFund.push(res);
+          this.oftamologia.push(res);
           this.serialNumberArray.push(serialNumber);
         }
       });
-      this.dataSource = new MatTableDataSource<providentFund>(this.providentFund);
+      this.dataSource = new MatTableDataSource<Oftamologia>(this.oftamologia);
       this.calculateTotalPages(this.totalData, this.pageSize);
     });
   }
    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public searchData(value: any): void {
     this.dataSource.filter = value.trim().toLowerCase();
-    this.providentFund = this.dataSource.filteredData;
+    this.oftamologia = this.dataSource.filteredData;
   }
 
   public sortData(sort: Sort) {
-    const data = this.providentFund.slice();
+    const data = this.oftamologia.slice();
 
     if (!sort.active || sort.direction === '') {
-      this.providentFund = data;
+      this.oftamologia = data;
     } else {
-      this.providentFund = data.sort((a, b) => {
+      this.oftamologia = data.sort((a, b) => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const aValue = (a as any)[sort.active];
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

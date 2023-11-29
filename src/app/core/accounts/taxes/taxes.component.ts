@@ -4,126 +4,181 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from 'src/app/shared/data/data.service';
 import { pageSelection, apiResultFormat, taxes } from 'src/app/shared/models/models';
 import { routes } from 'src/app/shared/routes/routes';
+import { Oftamologia } from '../oftamologia';
+import { OftamologiaService } from '../oftamologia.service';
+import { AuthService } from 'src/app/shared/auth/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-taxes',
   templateUrl: './taxes.component.html',
   styleUrls: ['./taxes.component.scss']
 })
-export class TaxesComponent implements OnInit {
+export class TaxesComponent {
   public routes = routes;
+  id!: number;
+  oftamologia: Oftamologia = new Oftamologia();
+  oftamologias: Oftamologia[] = [];
+  validador: boolean = false;
+  opcionSeleccionada: string = '';
+  opcionOpciones: string = '';
+  exploracionOptions: string[] = [];
 
-  public taxes: Array<taxes> = [];
-  dataSource!: MatTableDataSource<taxes>;
+  // identificacion: String;
+   pacienteActualizado= new Oftamologia ();
+  constructor(private auth: AuthService, private oftamologiaService: OftamologiaService, private router: Router,private route: ActivatedRoute) { }
 
-  public showFilter = false;
-  public searchDataValue = '';
-  public lastIndex = 0;
-  public pageSize = 10;
-  public totalData = 0;
-  public skip = 0;
-  public limit: number = this.pageSize;
-  public pageIndex = 0;
-  public serialNumberArray: Array<number> = [];
-  public currentPage = 1;
-  public pageNumberArray: Array<number> = [];
-  public pageSelection: Array<pageSelection> = [];
-  public totalPages = 0;
+  ngOnInit(): void {
 
-  constructor(public data : DataService){
 
-  }
-  ngOnInit() {
-    this.getTableData();
-  }
-  private getTableData(): void {
-    this.taxes = [];
-    this.serialNumberArray = [];
-
-    this.data.getTaxes().subscribe((data: apiResultFormat) => {
-      this.totalData = data.totalData;
-      data.data.map((res: taxes, index: number) => {
-        const serialNumber = index + 1;
-        if (index >= this.skip && serialNumber <= this.limit) {
-         
-          this.taxes.push(res);
-          this.serialNumberArray.push(serialNumber);
-        }
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+      this.obtenerpersona(); // Actualizar la lista después de la actualización
+      this.oftamologiaService.Buscarid(this.id).subscribe(
+        response => {
+            this.oftamologia=response
+       // Asigna los datos del paciente al modelo
       });
-      this.dataSource = new MatTableDataSource<taxes>(this.taxes);
-      this.calculateTotalPages(this.totalData, this.pageSize);
+      // Ahora puedes usar el ID como desees en tu componente
+    })
+
+    
+      this.obtenerpersona(); // Actualizar la lista después de la actualización
+  
+      // Restablecer los valores del objeto this.paciente
+    
+  }
+   
+
+
+  obtenerpersona() {
+    this.oftamologiaService.obtenerListaPersona().subscribe(dato => {
+      this.oftamologias = dato;
     });
   }
- // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public searchData(value: any): void {
-    this.dataSource.filter = value.trim().toLowerCase();
-    this.taxes = this.dataSource.filteredData;
-  }
 
-  public sortData(sort: Sort) {
-    const data = this.taxes.slice();
 
-    if (!sort.active || sort.direction === '') {
-      this.taxes = data;
-    } else {
-      this.taxes = data.sort((a, b) => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const aValue = (a as any)[sort.active];
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const bValue = (b as any)[sort.active];
-        return (aValue < bValue ? -1 : 1) * (sort.direction === 'asc' ? 1 : -1);
-      });
-    }
-  }
 
-  public getMoreData(event: string): void {
-    if (event == 'next') {
-      this.currentPage++;
-      this.pageIndex = this.currentPage - 1;
-      this.limit += this.pageSize;
-      this.skip = this.pageSize * this.pageIndex;
-      this.getTableData();
-    } else if (event == 'previous') {
-      this.currentPage--;
-      this.pageIndex = this.currentPage - 1;
-      this.limit -= this.pageSize;
-      this.skip = this.pageSize * this.pageIndex;
-      this.getTableData();
-    }
-  }
+  actualizarDatos(id: number): void {
+    console.log('Datos actualizados:', id);
+    const nuevonombre = this.oftamologia.fecha;
+    const nuevoclavesecre = this.oftamologia.resultado;
+    const nuevocomentario = this.oftamologia.examenes;
 
-  public moveToPage(pageNumber: number): void {
-    this.currentPage = pageNumber;
-    this.skip = this.pageSelection[pageNumber - 1].skip;
-    this.limit = this.pageSelection[pageNumber - 1].limit;
-    if (pageNumber > this.currentPage) {
-      this.pageIndex = pageNumber - 1;
-    } else if (pageNumber < this.currentPage) {
-      this.pageIndex = pageNumber + 1;
-    }
-    this.getTableData();
-  }
+   
+    const nuevadireccion = this.oftamologia.exploracion;
+    const nuevaespecialidad = this.oftamologia.ojoizquierdo;
+    const nuevotelefono = this.oftamologia.ojoderecho;
+    const nuvaclave = this.oftamologia.anotaciones;
 
-  public PageSize(): void {
-    this.pageSelection = [];
-    this.limit = this.pageSize;
-    this.skip = 0;
-    this.currentPage = 1;
-    this.getTableData();
-  }
+   
+ 
+    
+    // const nuevoSexo = this.paciente.sexo;
+  
 
-  private calculateTotalPages(totalData: number, pageSize: number): void {
-    this.pageNumberArray = [];
-    this.totalPages = totalData / pageSize;
-    if (this.totalPages % 1 != 0) {
-      this.totalPages = Math.trunc(this.totalPages + 1);
-    }
-    /* eslint no-var: off */
-    for (var i = 1; i <= this.totalPages; i++) {
-      const limit = pageSize * i;
-      const skip = limit - pageSize;
-      this.pageNumberArray.push(i);
-      this.pageSelection.push({ skip: skip, limit: limit });
-    }
+    // Crear un objeto 'pacienteActualizado' con los valores actualizados
+    this.pacienteActualizado.fecha=nuevonombre;
+  
+    this.pacienteActualizado.resultado=nuevoclavesecre;
+    this.pacienteActualizado.examenes=nuevocomentario;
+   
+    this.pacienteActualizado.exploracion=nuevadireccion;
+    this.pacienteActualizado.ojoizquierdo=nuevaespecialidad;
+    this.pacienteActualizado.ojoderecho=nuevotelefono;
+    this.pacienteActualizado.anotaciones=nuvaclave;
+
+
+
+    // Llamar al método actualizarPersona() del servicio para enviar los datos actualizados al servidor
+    this.oftamologiaService.actualizarPersona(this.id,this.pacienteActualizado).subscribe(
+        response => {
+            console.log('Datos actualizados:', this.pacienteActualizado);
+            // Realizar cualquier otra lógica necesaria después de la actualización exitosa
+        },
+        error => {
+            console.error('Error al actualizar los datos:', error);
+            // Manejar el error de alguna manera apropiada en tu aplicación
+        }
+    );
+}  
+onOpcionSeleccionadaChange() {
+  switch (this.oftamologia.examenes) {
+    case 'Biomiscropia':
+      this.exploracionOptions = ['parpados', 'pestañas', 'glandulas de Meibomio', 'conjuntiva tarsal', 'conjuntiva bulbar', 'córnea', 'Esclera', 'Cámara anterior', 'Iris', 'Pupila', 'Lagrimal', 'Presión intraocular', 'Gonioscopía', 'Cristalino', 'Vitreo anterior', 'Nervio óptico', 'Reflejo fotomotor', 'Balance muscular', 'otros'];
+      // o el valor predeterminado que desees
+      break;
+
+    case 'Oftalmoscopia':
+      this.exploracionOptions = ['Cámara vitrea', 'Disco óptico', 'Mácula', 'Excavacion', 'Arcadas vasculares', 'Ora Serrata', 'Cadrante N.superior', 'Cadrante N. inferior', 'Cadrante T. superior', 'Cadrante T. inferior', 'ERP', 'Otros'];
+      // o el valor predeterminado que desees
+      break;
+    case 'optometria Manifiesta':
+      this.exploracionOptions = ['Esfera', 'Cilindro', 'Eje', 'A.V.', 'Adición', 'Prisma', 'Base', 'DNP/L', 'DNP/C', 'Altua', 'Otros'];
+      // o el valor predeterminado que desees
+      break;
+
+    case 'optometria Prescripta':
+      this.exploracionOptions = ['Esfera', 'Cilindro', 'Eje', 'A.V.', 'Adición', 'Prisma', 'Base', 'DNP/L', 'DNP/C', 'Altua', 'Otros'];
+      // o el valor predeterminado que desees
+      break;
+
+    case 'Agudeza Visual':
+      this.exploracionOptions = ['AVL S/C', 'AVL C/C', 'AVC S/C', 'AVC C/C', 'Otros'];
+      // o el valor predeterminado que desees
+      break;
+
+    case 'Retinoscopia':
+      this.exploracionOptions = ['Esfera C/C', 'Cilindro C/C', 'Eje C/C', 'Esfera S/C', 'Cilindro S/C', 'Eje S/C', 'Otros'];
+      // o el valor predeterminado que desees
+      break;
+
+    case 'Queratometría':
+      this.exploracionOptions = ['Dp', 'mm', 'Otros'];
+      // o el valor predeterminado que desees
+      break;
+    // Agrega más casos según sea necesario
+
+      
+    case 'Oculomotor':
+      this.exploracionOptions = ['PPM', 'Ducciones', 'Versiones', 'Convergencias', 'Incomitancias', 'Alteraciones', 'Otros'];
+       // o el valor predeterminado que desees
+      break;
+
+      case 'Pecepción de colores':
+        this.exploracionOptions = ['Prueba de Amster', 'Prueba de Ishihara', 'Confrontación', 'Otros'];
+         // o el valor predeterminado que desees
+        break;
+        case 'Test de Pupila':
+          this.exploracionOptions = ['Luz', 'Penumbra', 'Fotomotor', 'D.P.A','Otros'];
+           // o el valor predeterminado que desees
+          break;
+          default:
+      this.exploracionOptions = [];
+      this.oftamologia.exploracion = ''; // o el valor predeterminado que desees
+      break;
   }
+}
+
+
+opcionesMedicamentos: string[] = [
+  "Biomiscropia",
+  'Oftalmoscopia',
+'optometria Manifiesta',
+'optometria Prescripta',
+'Agudeza Visual',
+'Retinoscopia',
+'Queratometría',
+'Oculomotor',
+'Pecepción de colores',
+'Test de Pupila',
+
+];
+medicamentoFilter: string = '';
+
+get medicamentosFiltrados(): string[] {
+  return this.opcionesMedicamentos.filter(opcion =>
+    opcion.toLowerCase().includes(this.medicamentoFilter.toLowerCase())
+  );
+}
 }
