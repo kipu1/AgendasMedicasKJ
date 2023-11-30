@@ -1,6 +1,6 @@
 export class Oftamologia {
 
-    id!: number;
+    idOftamologia!: number;
    
     fecha ?: string='';   
     

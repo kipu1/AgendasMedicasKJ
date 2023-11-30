@@ -57,7 +57,7 @@
                                   <tr>
 
                                 
-                                    <th mat-sort-header="nombre">Nombre</th>
+                                    <th mat-sort-header="nombre">Fecha</th>
                               
                                     <th mat-sort-header="Editar">Editar</th>
                                     <th mat-sort-header="eliminar">Eliminar</th>
@@ -73,7 +73,7 @@
                 
                                     <div class="dropdown dropdown-action">
                                       <td class="text-end">
-                                        <button class="dropdown-item" (click)= "actualizarPersona(oftamologias.id)" [routerLink]="routes.taxes"
+                                        <button class="dropdown-item" (click)= "actualizarPersona(oftamologias.idOftamologia)" [routerLink]="routes.taxes"
                                           class="btn btn-custom" >
                                           <i class="fa-solid fa-pen-to-square m-r-5"></i>
                                         </button>
@@ -81,7 +81,7 @@
                                     </div>
                 
                                     <td>
-                                      <button class="dropdown-item" (click)="eliminarPersona(oftamologias.id)"
+                                      <button class="dropdown-item" (click)="eliminarPersona(oftamologias.idOftamologia)"
                                         class="btn btn-custom"><i class="fa fa-trash-alt m-r-5"></i>
                 
                                       </button>
