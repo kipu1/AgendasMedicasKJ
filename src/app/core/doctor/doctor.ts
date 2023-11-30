@@ -1,6 +1,6 @@
 export class Doctor {
 
-    idDoctor!: number;
+    id!: number;
     nombre: string='';
     clavesecreta ?: string='';   
     

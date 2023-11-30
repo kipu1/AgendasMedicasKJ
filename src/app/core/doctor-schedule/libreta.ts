@@ -1,6 +1,6 @@
 export class Libreta {
 
-    idLibreta!: number;
+    id!: number;
     nombre: string='';
     
     telefono: string='';

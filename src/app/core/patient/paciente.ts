@@ -3,7 +3,7 @@ import { Antropometria } from "../staff/antropometria";
 
 export class Paciente {
 
-    idPaciente!: number;
+    id!: number;
     idRol?: number;
     apellido: string='';
     nombre: string='';
