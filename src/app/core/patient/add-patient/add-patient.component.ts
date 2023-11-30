@@ -45,7 +45,7 @@ export class AddPatientComponent {
     // Reemplaza el "0" al principio del número con "593"
     const formattedPhoneNumber: string = phoneNumber.replace(/^0/, '593');
   
-    const encodedMessage: string = encodeURIComponent("Hola Fundación FAAN quiero más información");
+    const encodedMessage: string = encodeURIComponent("Hola cual es tu consulta?");
     const whatsappURL: string = `https://api.whatsapp.com/send?phone=${formattedPhoneNumber}&text=${encodedMessage}`;
     
     window.open(whatsappURL, "_blank");
