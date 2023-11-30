@@ -45,7 +45,19 @@ export class EditScheduleComponent {
       // Restablecer los valores del objeto this.paciente
     
   }
-   
+  redirigir() {
+    let url = this.libreta.web.trim();
+
+    // Verificar si la URL tiene el protocolo, si no, agregar http:// por defecto
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+      url = 'http://' + url;
+    }
+
+    // Abrir la URL en otra pestaña
+    if (url) {
+      window.open(url, '_blank');
+    }
+  }
 
 
   obtenerpersona() {

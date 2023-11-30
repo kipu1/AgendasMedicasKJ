@@ -60,12 +60,15 @@
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
-                                        <label>web<span class="login-danger">*</span></label>
-
-                                        <input class="form-control" type="text" placeholder="" id="web" name="web"
-                                            [(ngModel)]="libreta.web">
+                                      <label>web<span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text" placeholder="" id="web" name="web" [(ngModel)]="libreta.web">
+                                      <button type="submit" class="btn btn-primary submit-form me-2"
+                                      (click)="redirigir()"
+                                            >Redirigir</button>
                                     </div>
-                                </div>
+                                  </div>
+                                  
+                                  
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Direccion<span class="login-danger">*</span></label>
