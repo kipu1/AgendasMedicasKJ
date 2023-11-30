@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { patientService } from '../patient.service';
 import { Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 interface data {
   value: string;
 }
@@ -28,7 +29,7 @@ export class AddPatientComponent {
   bCompontGmail:boolean=false;
   showModalWhatsapp: boolean = false;
 
-  constructor(private auth: AuthService, private personaServicio: patientService, private router: Router) { }
+  constructor(private auth: AuthService, private personaServicio: patientService, private router: Router, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.obtenerpersona();
@@ -51,6 +52,31 @@ export class AddPatientComponent {
     window.open(whatsappURL, "_blank");
     this.showModalWhatsapp = false;
   }
+  onFileChange(event: any): void {
+    const file = event.target.files[0];
+
+    if (file) {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      this.personaServicio.subirImagen(formData).subscribe(
+        (response: any) => {
+          const imageUrl = response.url;
+          this.paciente.foto = imageUrl;
+        },
+        (error: any) => {
+          console.error('Error al subir la imagen', error);
+        }
+      );
+    }
+  }
+
+  // Método para obtener la URL segura (trusted) para la imagen
+  obtenerUrlSegura(url: string): any {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
+  }
+
+  
   
   
   changeInterface(interfaceSelec: string){

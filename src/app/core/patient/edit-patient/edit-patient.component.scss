@@ -1,0 +1,10 @@
+.imagen-pequena {
+  max-width: 200px;
+  /* Establecer el ancho máximo */
+  max-height: 200px;
+  /* Establecer la altura máxima */
+  width: auto;
+  /* Hacer que el ancho se ajuste automáticamente mientras se respeta el máximo */
+  height: auto;
+  /* Hacer que la altura se ajuste automáticamente mientras se respeta el máximo */
+}

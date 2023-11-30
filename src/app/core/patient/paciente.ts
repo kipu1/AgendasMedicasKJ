@@ -39,6 +39,7 @@ export class Paciente {
     campoCfg1: string='';
     campoCfg2: string='';
     campoCfg3: string='';   
+    foto: string='';
     tipodocumento: string='';
     abrir: string='';
     antropometria!:  Antropometria[];

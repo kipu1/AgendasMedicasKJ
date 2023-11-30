@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, tap } from 'rxjs';
 import { Paciente } from './paciente';
 
 
@@ -37,7 +37,38 @@ export class patientService {
     registrarPersona(paciente:Paciente): Observable<Object>{
     return this.httpClient.post(this.url+'/crear',paciente);
     }
-    
+    subirImagen(formData: FormData): Observable<object> {
+      return this.httpClient.post(`${this.url}/upload`, formData).pipe(
+        tap(response => console.log('Respuesta del servidor:', response)),
+        catchError(error => {
+          console.error('Error en la carga de la imagen:', error);
+          throw error;
+        })
+      );
+    }
+    actualizarFoto(id: number, file: File): Observable<any> {
+      const formData = new FormData();
+      formData.append('file', file);
+  
+      return this.httpClient.post<any>(`${this.url}/upload/${id}`, formData);
+    }
+    // crearPacienteConImagen(paciente: Paciente, file: File): Observable<Object> {
+    //   const formData: FormData = new FormData();
+    //   formData.append('file', file);
+  
+    //   // Agrega otras propiedades del paciente al formData si es necesario
+    //   formData.append('nombre', paciente.nombre);
+  
+    //   const headers = new HttpHeaders(); // Opciones de encabezados opcionales
+  
+    //   return this.httpClient.post<any>(`${this.url}/crear`, formData, { headers });
+    // }
+  
+    // // Método para obtener la URL de la imagen de un paciente
+    // obtenerURLImagen(id: number): Observable<string> {
+    //   return this.httpClient.get<string>(`${this.url}/${id}/imagen`);
+    // }
+ 
     // actualizarpaciente(id:number): Observable<Paciente>{
     //   return this.httpClient.get<Paciente>(this.url+'/actualizar/'+id);
     // }

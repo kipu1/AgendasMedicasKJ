@@ -9,7 +9,7 @@ import { apiResultFormat } from '../models/models';
   providedIn: 'root',
 })
 export class DataService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public getDoctorsList(): Observable<apiResultFormat> {
     return this.http.get<apiResultFormat>('assets/json/doctors-list.json').pipe(
@@ -204,7 +204,7 @@ export class DataService {
           hasSubRoute: true,
           showSubRoute: false,
           base: 'dashboard',
-          route:'dashboard',
+          route: 'dashboard',
           img: 'assets/img/icons/menu-icon-01.svg',
           subMenus: [
             {
@@ -224,46 +224,18 @@ export class DataService {
             },
           ],
         },
+
+
         {
           menuValue: 'Buscar',
           route: routes.patientsList,
           hasSubRoute: false,
           showSubRoute: false,
-          icon: 'fa-calendar',
+          icon: 'fa-search',
           faIcon: true,
           base: 'paciente',
           subMenus: [],
-           },
-        {
-          menuValue: 'Doctors',
-          hasSubRoute: true,
-          showSubRoute: false,
-          base: 'doctor',
-          img: 'assets/img/icons/menu-icon-02.svg',
-          subMenus: [
-            {
-              menuValue: 'Doctor List',
-              route: routes.doctorsList,
-              base: routes.doctorsList,
-            },
-            {
-              menuValue: 'Add Doctor',
-              route: routes.addDoctor,
-              base: routes.addDoctor,
-            },
-            {
-              menuValue: 'Edit Doctor',
-              route: routes.editDoctor,
-              base: routes.editDoctor,
-            },
-            {
-              menuValue: 'Doctor Profile',
-              route: routes.doctorProfile,
-              base: routes.doctorProfile,
-            },
-          ],
         },
-      
         {
           menuValue: 'Paciente',
           hasSubRoute: true,
@@ -281,16 +253,16 @@ export class DataService {
               route: routes.addPatient,
               base: routes.addPatient,
             },
-            {
-              menuValue: 'Editar Paciente',
-              route: routes.editPatient,
-              base: routes.editPatient,
-            },
-            {
-              menuValue: 'Paciente perfil',
-              route: routes.patientProfile,
-              base: routes.patientProfile,
-            },
+            // {
+            //   menuValue: 'Editar Paciente',
+            //   route: routes.editPatient,
+            //   base: routes.editPatient,
+            // },
+            // {
+            //   menuValue: 'Paciente perfil',
+            //   route: routes.patientProfile,
+            //   base: routes.patientProfile,
+            // },
             {
               menuValue: 'Oftamologia',
               route: routes.payments,
@@ -306,10 +278,10 @@ export class DataService {
             //   route: routes.departmentList,
             //   base: routes.departmentList,
             // },
-         
+
             // {
             //   menuValue: 'Antropometria',
-             
+
             // },
             {
               menuValue: 'Antropometria',
@@ -321,11 +293,82 @@ export class DataService {
             //   route: routes.staffList,
             //   base: routes.staffList,
             // },
-           
 
-            
+
+
           ],
         },
+        {
+          menuValue: 'Turno',
+          route: routes.calendar,
+          hasSubRoute: false,
+          showSubRoute: false,
+          icon: 'fa-calendar',
+          faIcon: true,
+          base: 'calendar',
+          subMenus: [],
+        },
+        {
+          menuValue: 'Usuarios',
+          route: routes.invoices,
+          hasSubRoute: false,
+          showSubRoute: false,
+          icon: 'fa-users',
+          faIcon: true,
+          base: 'paciente',
+          subMenus: [],
+        },
+        {
+          menuValue: 'Vademecum',
+          route: routes.voiceCall,
+          hasSubRoute: false,
+          showSubRoute: false,
+          icon: 'fa-calendar',
+          faIcon: true,
+          base: 'calls',
+          subMenus: [],
+        },
+        {
+          menuValue: 'Libreta',
+          route: routes.addSchedule,
+          hasSubRoute: false,
+          showSubRoute: false,
+          icon: 'fa-calendar',
+          faIcon: true,
+          base: 'doctor-schedule',
+          subMenus: [],
+        },
+        {
+          menuValue: 'Doctors',
+          hasSubRoute: true,
+          showSubRoute: false,
+          base: 'doctor',
+          img: 'assets/img/icons/health-img.svg',
+          subMenus: [
+            {
+              menuValue: 'Doctor List',
+              route: routes.doctorsList,
+              base: routes.doctorsList,
+            },
+            {
+              menuValue: 'Add Doctor',
+              route: routes.addDoctor,
+              base: routes.addDoctor,
+            },
+            {
+              menuValue: 'Edit Doctor',
+              route: routes.editDoctor,
+              base: routes.editDoctor,
+            },
+            // {
+            //   menuValue: 'Doctor Profile',
+            //   route: routes.doctorProfile,
+            //   base: routes.doctorProfile,
+            // },
+          ],
+        },
+
+
         // {
         //   menuValue: 'Antropometria',
         //   hasSubRoute: true,
@@ -343,27 +386,27 @@ export class DataService {
         //       route: routes.addStaff,
         //       base: routes.addStaff,
         //     },
-            // {
-            //    menuValue: 'Staff Profile',
-            //  route: routes.staffProfile,
-            //    base: routes.staffProfile,
-            //  },
-            //  {
-            //    menuValue: 'Leaves',
-            //    route: routes.staffLeave,
-            //    base: routes.staffLeave,
-            //  },
-            //  {
-            //  menuValue: 'Holidays',
-            //    route: routes.staffHoliday,
-            //    base: routes.staffHoliday,
-            //  },
-            //  {
-            //    menuValue: 'Attendance',
-            //    route: routes.staffAttendance,
-            //    base: routes.staffAttendance,
-            //  },
-          // ],
+        // {
+        //    menuValue: 'Staff Profile',
+        //  route: routes.staffProfile,
+        //    base: routes.staffProfile,
+        //  },
+        //  {
+        //    menuValue: 'Leaves',
+        //    route: routes.staffLeave,
+        //    base: routes.staffLeave,
+        //  },
+        //  {
+        //  menuValue: 'Holidays',
+        //    route: routes.staffHoliday,
+        //    base: routes.staffHoliday,
+        //  },
+        //  {
+        //    menuValue: 'Attendance',
+        //    route: routes.staffAttendance,
+        //    base: routes.staffAttendance,
+        //  },
+        // ],
         // },
         // {
         //   menuValue: 'Odontologia',
@@ -390,7 +433,7 @@ export class DataService {
         //   ],
         // },
         // {
-         
+
         //     menuValue: 'Libreta',
         //     hasSubRoute: true,
         //     showSubRoute: false,
@@ -452,17 +495,8 @@ export class DataService {
         //     // },
         //   ],
         // },
-        {
-          menuValue: 'Libreta',
-          route: routes.addSchedule,
-          hasSubRoute: false,
-          showSubRoute: false,
-          icon: 'fa-calendar',
-          faIcon: true,
-          base: 'doctor-schedule',
-          subMenus: [],
-           },
-        
+
+
         // {
         //   menuValue: 'Accounts',
         //   hasSubRoute: true,
@@ -497,25 +531,25 @@ export class DataService {
         //     },
         //   ],
         // },
-    //     {
-    //       menuValue: 'Payroll',
-    //       hasSubRoute: true,
-    //       showSubRoute: false,
-    //       base: 'payroll',
-    //       img: 'assets/img/icons/menu-icon-09.svg',
-    //       subMenus: [
-    //         {
-    //           menuValue: 'Employee Salary',
-    //           route: routes.salary,
-    //           base: routes.salary,
-    //         },
-    //         {
-    //           menuValue: 'Payslip',
-    //           route: routes.salaryView,
-    //           base: routes.salaryView,
-    //         },
-    //       ],
-    //     },
+        // {
+        //   menuValue: 'Payroll',
+        //   hasSubRoute: true,
+        //   showSubRoute: false,
+        //   base: 'payroll',
+        //   img: 'assets/img/icons/menu-icon-09.svg',
+        //   subMenus: [
+        //     {
+        //       menuValue: 'Employee Salary',
+        //       route: routes.salary,
+        //       base: routes.salary,
+        //     },
+        //     {
+        //       menuValue: 'Payslip',
+        //       route: routes.salaryView,
+        //       base: routes.salaryView,
+        //     },
+        //   ],
+        // },
         // {
         //   menuValue: 'Chat',
         //   route: routes.chat,
@@ -525,17 +559,7 @@ export class DataService {
         //   img: 'assets/img/icons/menu-icon-10.svg',
         //   subMenus: [],
         // },
-            {
-        menuValue: 'Turno',
-        route: routes.calendar,
-        hasSubRoute: false,
-        showSubRoute: false,
-        icon: 'fa-calendar',
-        faIcon: true,
-        base: 'calendar',
-        subMenus: [],
-         },
-       
+
         // {
         //   menuValue: 'Vademecum',
         //   hasSubRoute: true,
@@ -561,313 +585,304 @@ export class DataService {
         //     // },
         //   ],
         // },
-        {
-          menuValue: 'Vademecum',
-          route: routes.voiceCall,
-          hasSubRoute: false,
-          showSubRoute: false,
-          icon: 'fa-calendar',
-          faIcon: true,
-          base: 'calls',
-          subMenus: [],
-           },
-         
+
+
         // {
-    //       menuValue: 'Email',
-    //       hasSubRoute: true,
-    //       showSubRoute: false,
-    //       base: 'email',
-    //       img: 'assets/img/icons/menu-icon-12.svg',
-    //       subMenus: [
-    //         {
-    //           menuValue: 'Compose Mail',
-    //           route: routes.compose,
-    //           base: routes.compose,
-    //         },
-    //         {
-    //           menuValue: 'Inbox',
-    //           route: routes.inbox,
-    //           base: routes.inbox,
-    //         },
-    //         {
-    //           menuValue: 'Mail View',
-    //           route: routes.mailView,
-    //           base: routes.mailView,
-    //         },
-    //       ],
-    //     },
-    //     {
-    //       menuValue: 'Blog',
-    //       hasSubRoute: true,
-    //       showSubRoute: false,
-    //       base: 'blogs',
-    //       img: 'assets/img/icons/menu-icon-13.svg',
-    //       subMenus: [
-    //         {
-    //           menuValue: 'Blog',
-    //           route: routes.blog,
-    //           base: routes.blog,
-    //         },
-    //         {
-    //           menuValue: 'Blog View',
-    //           route: routes.blogDetails,
-    //           base: routes.blogDetails,
-    //         },
-    //         {
-    //           menuValue: 'Add Blog',
-    //           route: routes.addBlog,
-    //           base: routes.addBlog,
-    //         },
-    //         {
-    //           menuValue: 'Edit Blog',
-    //           route: routes.editBlog,
-    //           base: routes.editBlog,
-    //         },
-    //       ],
-    //     },
-    //     {
-    //       menuValue: 'Assets',
-    //       route: routes.assetsList,
-    //       hasSubRoute: false,
-    //       showSubRoute: false,
-    //       icon: 'fa-cube',
-    //       faIcon: true,
-    //       base: 'assets',
-    //       subMenus: [],
-    //     },
-    //     {
-    //       menuValue: 'activities',
-    //       route: routes.activities,
-    //       hasSubRoute: false,
-    //       showSubRoute: false,
-    //       img: 'assets/img/icons/menu-icon-14.svg',
-    //       base: 'activities',
-    //       subMenus: [],
-    //     },
-    //     {
-    //       menuValue: 'Reports',
-    //       hasSubRoute: true,
-    //       showSubRoute: false,
-    //       base: 'reports',
-    //       img: 'assets/img/icons/menu-icon-02.svg',
-    //       subMenus: [
-    //         {
-    //           menuValue: 'Expense Report',
-    //           route: routes.expenseReports,
-    //           base: routes.expenseReports,
-    //         },
-    //         {
-    //           menuValue: 'Invoice Report',
-    //           route: routes.invoiceReports,
-    //           base: routes.invoiceReports,
-    //         },
-    //       ],
-    //     },
-    //     {
-    //       menuValue: 'Invoice',
-    //       hasSubRoute: true,
-    //       showSubRoute: false,
-    //       base: 'invoice',
-    //       img: 'assets/img/icons/menu-icon-15.svg',
-    //       subMenus: [
-    //         {
-    //           menuValue: 'Invoices List',
-    //           route: routes.allInvoice,
-    //           base: routes.allInvoice,
-    //         },
-    //         {
-    //           menuValue: 'Invoice Grid',
-    //           route: routes.invoicesGrid,
-    //           base: routes.invoicesGrid,
-    //         },
-    //         {
-    //           menuValue: 'Add Invoices',
-    //           route: routes.addInvoice,
-    //           base: routes.addInvoice,
-    //         },
-    //         {
-    //           menuValue: 'Edit Invoices',
-    //           route: routes.editInvoices,
-    //           base: routes.editInvoices,
-    //         },
-    //         {
-    //           menuValue: 'Invoices Details',
-    //           route: routes.viewInvoice,
-    //           base: routes.viewInvoice,
-    //         },
-    //         {
-    //           menuValue: 'Invoices Settings',
-    //           route: routes.invoicesSettings,
-    //           base: routes.invoicesSettings,
-    //         },
-    //       ],
-    //     },
-    //     {
-    //       menuValue: 'Settings',
-    //       route: routes.settings,
-    //       hasSubRoute: false,
-    //       showSubRoute: false,
-    //       img: 'assets/img/icons/menu-icon-16.svg',
-    //       base: 'settings',
-    //       subMenus: [],
-    //     },
-    //   ],
-    // },
-    // {
-    //   tittle: 'UI Elements',
-    //   showAsTab: false,
-    //   separateRoute: false,
-    //   menu: [
-    //     {
-    //       menuValue: 'Components',
-    //       hasSubRoute: true,
-    //       showSubRoute: false,
-    //       base: 'components',
-    //       img: 'assets/img/icons/menu-icon-02.svg',
-    //       subMenus: [
-    //         {
-    //           menuValue: 'UI Kit',
-    //           route: routes.uikit,
-    //           base: routes.uikit,
-    //         },
-    //         {
-    //           menuValue: 'Typography',
-    //           route: routes.typography,
-    //           base: routes.typography,
-    //         },
-    //         {
-    //           menuValue: 'Tabs',
-    //           route: routes.tabs,
-    //           base: routes.tabs,
-    //         },
-    //       ],
-    //     },
-    //     {
-    //       menuValue: 'Forms',
-    //       hasSubRoute: true,
-    //       showSubRoute: false,
-    //       base: 'forms',
-    //       icon: 'fa-edit',
-    //       faIcon: true,
-    //       subMenus: [
-    //         {
-    //           menuValue: 'Basic Inputs',
-    //           route: routes.formBasicInputs,
-    //           base: routes.formBasicInputs,
-    //         },
-    //         {
-    //           menuValue: 'Input Groups',
-    //           route: routes.formInputGroups,
-    //           base: routes.formInputGroups,
-    //         },
-    //         {
-    //           menuValue: 'Horizontal Form',
-    //           route: routes.formHorizontal,
-    //           base: routes.formHorizontal,
-    //         },
-    //         {
-    //           menuValue: 'Vertical Form',
-    //           route: routes.formVertical,
-    //           base: routes.formVertical,
-    //         },
-    //       ],
-    //     },
-    //     {
-    //       menuValue: 'Tables',
-    //       hasSubRoute: true,
-    //       showSubRoute: false,
-    //       base: 'tables',
-    //       icon: 'fa-table',
-    //       faIcon: true,
-    //       subMenus: [
-    //         {
-    //           menuValue: 'Basic Tables',
-    //           route: routes.tablesBasic,
-    //           base: routes.tablesBasic,
-    //         },
-    //         {
-    //           menuValue: 'Data Table',
-    //           route: routes.tablesDataTables,
-    //           base: routes.tablesDataTables,
-    //         },
-    //       ],
-    //     },
-    //     {
-    //       menuValue: 'Calendar',
-    //       route: routes.calendar,
-    //       hasSubRoute: false,
-    //       showSubRoute: false,
-    //       icon: 'fa-calendar',
-    //       faIcon: true,
-    //       base: 'calendar',
-    //       subMenus: [],
-    //     },
-    //   ],
-    // },
-    // {
-    //   tittle: 'Extras',
-    //   showAsTab: false,
-    //   separateRoute: false,
-    //   menu: [
-    //     {
-    //       menuValue: 'Pages',
-    //       hasSubRoute: true,
-    //       showSubRoute: false,
-    //       base: 'gallery',
-    //       base2: 'profile',
-    //       icon: 'fa-columns',
-    //       faIcon: true,
-    //       subMenus: [
-    //         {
-    //           menuValue: 'Login',
-    //           route: routes.login,
-    //           base: routes.login,
-    //         },
-    //         {
-    //           menuValue: 'Register',
-    //           route: routes.register,
-    //           base: routes.register,
-    //         },
-    //         {
-    //           menuValue: 'Forgot Password',
-    //           route: routes.forgotPassword,
-    //           base: routes.forgotPassword,
-    //         },
-    //         {
-    //           menuValue: 'Change Password',
-    //           route: routes.changePassword,
-    //           base: routes.changePassword,
-    //         },
-    //         {
-    //           menuValue: 'Lock Screen',
-    //           route: routes.lockScreen,
-    //           base: routes.lockScreen,
-    //         },
-    //         {
-    //           menuValue: 'Profile',
-    //           route: routes.profile,
-    //           base: routes.profile,
-    //         },
-    //         {
-    //           menuValue: 'Gallery',
-    //           route: routes.gallery,
-    //           base: routes.gallery,
-    //         },
-    //         {
-    //           menuValue: '404 Error',
-    //           route: routes.error404,
-    //           base: routes.error404,
-    //         },
-    //         {
-    //           menuValue: '500 Error',
-    //           route: routes.error500,
-    //           base: routes.error500,
-    //         },
-    //       ],
-    //     },
-        
-       ],
-     },
+        //       menuValue: 'Email',
+        //       hasSubRoute: true,
+        //       showSubRoute: false,
+        //       base: 'email',
+        //       img: 'assets/img/icons/menu-icon-12.svg',
+        //       subMenus: [
+        //         {
+        //           menuValue: 'Compose Mail',
+        //           route: routes.compose,
+        //           base: routes.compose,
+        //         },
+        //         {
+        //           menuValue: 'Inbox',
+        //           route: routes.inbox,
+        //           base: routes.inbox,
+        //         },
+        //         {
+        //           menuValue: 'Mail View',
+        //           route: routes.mailView,
+        //           base: routes.mailView,
+        //         },
+        //       ],
+        //     },
+        //     {
+        //       menuValue: 'Blog',
+        //       hasSubRoute: true,
+        //       showSubRoute: false,
+        //       base: 'blogs',
+        //       img: 'assets/img/icons/menu-icon-13.svg',
+        //       subMenus: [
+        //         {
+        //           menuValue: 'Blog',
+        //           route: routes.blog,
+        //           base: routes.blog,
+        //         },
+        //         {
+        //           menuValue: 'Blog View',
+        //           route: routes.blogDetails,
+        //           base: routes.blogDetails,
+        //         },
+        //         {
+        //           menuValue: 'Add Blog',
+        //           route: routes.addBlog,
+        //           base: routes.addBlog,
+        //         },
+        //         {
+        //           menuValue: 'Edit Blog',
+        //           route: routes.editBlog,
+        //           base: routes.editBlog,
+        //         },
+        //       ],
+        //     },
+        //     {
+        //       menuValue: 'Assets',
+        //       route: routes.assetsList,
+        //       hasSubRoute: false,
+        //       showSubRoute: false,
+        //       icon: 'fa-cube',
+        //       faIcon: true,
+        //       base: 'assets',
+        //       subMenus: [],
+        //     },
+        //     {
+        //       menuValue: 'activities',
+        //       route: routes.activities,
+        //       hasSubRoute: false,
+        //       showSubRoute: false,
+        //       img: 'assets/img/icons/menu-icon-14.svg',
+        //       base: 'activities',
+        //       subMenus: [],
+        //     },
+        //     {
+        //       menuValue: 'Reports',
+        //       hasSubRoute: true,
+        //       showSubRoute: false,
+        //       base: 'reports',
+        //       img: 'assets/img/icons/menu-icon-02.svg',
+        //       subMenus: [
+        //         {
+        //           menuValue: 'Expense Report',
+        //           route: routes.expenseReports,
+        //           base: routes.expenseReports,
+        //         },
+        //         {
+        //           menuValue: 'Invoice Report',
+        //           route: routes.invoiceReports,
+        //           base: routes.invoiceReports,
+        //         },
+        //       ],
+        //     },
+        //     {
+        //       menuValue: 'Invoice',
+        //       hasSubRoute: true,
+        //       showSubRoute: false,
+        //       base: 'invoice',
+        //       img: 'assets/img/icons/menu-icon-15.svg',
+        //       subMenus: [
+        //         {
+        //           menuValue: 'Invoices List',
+        //           route: routes.allInvoice,
+        //           base: routes.allInvoice,
+        //         },
+        //         {
+        //           menuValue: 'Invoice Grid',
+        //           route: routes.invoicesGrid,
+        //           base: routes.invoicesGrid,
+        //         },
+        //         {
+        //           menuValue: 'Add Invoices',
+        //           route: routes.addInvoice,
+        //           base: routes.addInvoice,
+        //         },
+        //         {
+        //           menuValue: 'Edit Invoices',
+        //           route: routes.editInvoices,
+        //           base: routes.editInvoices,
+        //         },
+        //         {
+        //           menuValue: 'Invoices Details',
+        //           route: routes.viewInvoice,
+        //           base: routes.viewInvoice,
+        //         },
+        //         {
+        //           menuValue: 'Invoices Settings',
+        //           route: routes.invoicesSettings,
+        //           base: routes.invoicesSettings,
+        //         },
+        //       ],
+        //     },
+        //     {
+        //       menuValue: 'Settings',
+        //       route: routes.settings,
+        //       hasSubRoute: false,
+        //       showSubRoute: false,
+        //       img: 'assets/img/icons/menu-icon-16.svg',
+        //       base: 'settings',
+        //       subMenus: [],
+        //     },
+        //   ],
+        // },
+        // {
+        //   tittle: 'UI Elements',
+        //   showAsTab: false,
+        //   separateRoute: false,
+        //   menu: [
+        //     {
+        //       menuValue: 'Components',
+        //       hasSubRoute: true,
+        //       showSubRoute: false,
+        //       base: 'components',
+        //       img: 'assets/img/icons/menu-icon-02.svg',
+        //       subMenus: [
+        //         {
+        //           menuValue: 'UI Kit',
+        //           route: routes.uikit,
+        //           base: routes.uikit,
+        //         },
+        //         {
+        //           menuValue: 'Typography',
+        //           route: routes.typography,
+        //           base: routes.typography,
+        //         },
+        //         {
+        //           menuValue: 'Tabs',
+        //           route: routes.tabs,
+        //           base: routes.tabs,
+        //         },
+        //       ],
+        //     },
+        //     {
+        //       menuValue: 'Forms',
+        //       hasSubRoute: true,
+        //       showSubRoute: false,
+        //       base: 'forms',
+        //       icon: 'fa-edit',
+        //       faIcon: true,
+        //       subMenus: [
+        //         {
+        //           menuValue: 'Basic Inputs',
+        //           route: routes.formBasicInputs,
+        //           base: routes.formBasicInputs,
+        //         },
+        //         {
+        //           menuValue: 'Input Groups',
+        //           route: routes.formInputGroups,
+        //           base: routes.formInputGroups,
+        //         },
+        //         {
+        //           menuValue: 'Horizontal Form',
+        //           route: routes.formHorizontal,
+        //           base: routes.formHorizontal,
+        //         },
+        //         {
+        //           menuValue: 'Vertical Form',
+        //           route: routes.formVertical,
+        //           base: routes.formVertical,
+        //         },
+        //       ],
+        //     },
+        //     {
+        //       menuValue: 'Tables',
+        //       hasSubRoute: true,
+        //       showSubRoute: false,
+        //       base: 'tables',
+        //       icon: 'fa-table',
+        //       faIcon: true,
+        //       subMenus: [
+        //         {
+        //           menuValue: 'Basic Tables',
+        //           route: routes.tablesBasic,
+        //           base: routes.tablesBasic,
+        //         },
+        //         {
+        //           menuValue: 'Data Table',
+        //           route: routes.tablesDataTables,
+        //           base: routes.tablesDataTables,
+        //         },
+        //       ],
+        //     },
+        //     {
+        //       menuValue: 'Calendar',
+        //       route: routes.calendar,
+        //       hasSubRoute: false,
+        //       showSubRoute: false,
+        //       icon: 'fa-calendar',
+        //       faIcon: true,
+        //       base: 'calendar',
+        //       subMenus: [],
+        //     },
+        //   ],
+        // },
+        // {
+        //   tittle: 'Extras',
+        //   showAsTab: false,
+        //   separateRoute: false,
+        //   menu: [
+        //     {
+        //       menuValue: 'Pages',
+        //       hasSubRoute: true,
+        //       showSubRoute: false,
+        //       base: 'gallery',
+        //       base2: 'profile',
+        //       icon: 'fa-columns',
+        //       faIcon: true,
+        //       subMenus: [
+        //         {
+        //           menuValue: 'Login',
+        //           route: routes.login,
+        //           base: routes.login,
+        //         },
+        //         {
+        //           menuValue: 'Register',
+        //           route: routes.register,
+        //           base: routes.register,
+        //         },
+        //         {
+        //           menuValue: 'Forgot Password',
+        //           route: routes.forgotPassword,
+        //           base: routes.forgotPassword,
+        //         },
+        //         {
+        //           menuValue: 'Change Password',
+        //           route: routes.changePassword,
+        //           base: routes.changePassword,
+        //         },
+        //         {
+        //           menuValue: 'Lock Screen',
+        //           route: routes.lockScreen,
+        //           base: routes.lockScreen,
+        //         },
+        //         {
+        //           menuValue: 'Profile',
+        //           route: routes.profile,
+        //           base: routes.profile,
+        //         },
+        //         {
+        //           menuValue: 'Gallery',
+        //           route: routes.gallery,
+        //           base: routes.gallery,
+        //         },
+        //         {
+        //           menuValue: '404 Error',
+        //           route: routes.error404,
+        //           base: routes.error404,
+        //         },
+        //         {
+        //           menuValue: '500 Error',
+        //           route: routes.error500,
+        //           base: routes.error500,
+        //         },
+        //       ],
+        //     },
+
+      ],
+    },
   ];
   public carousel1 = [
     {
@@ -933,111 +948,111 @@ export class DataService {
   ];
   public upcomingAppointments = [
     {
-      "no" : "R00001",
-      "patientName" : "Andrea Lalema",
-      "doctor" : "Dr.Jenny Smith",
-      "date" : "12.05.2022 at",
-      "time" : "7.00 PM",
-      "disease" : "Fracture",
-      "img" : "assets/img/profiles/avatar-03.jpg"
-  },
-  {
-      "no" : "R00002",
-      "patientName" : "Cristina Groves",
-      "doctor" : "Dr.Angelica Ramos",
-      "date" : "13.05.2022 at",
-      "time" : "7.00 PM",
-      "disease" : "Fever",
-      "img" : "assets/img/profiles/avatar-05.jpg"
-  },
-  {
-      "no" : "R00003",
-      "patientName" : "Bernardo",
-      "doctor" : "Dr.Martin Doe",
-      "date" : "14.05.2022 at",
-      "time" : "7.00 PM",
-      "disease" : "Fracture",
-      "img" : "assets/img/profiles/avatar-04.jpg"
-  },
-  {
-      "no" : "R00004",
-      "patientName" : "Galaviz Lalema",
-      "doctor" : "Dr.Martin Doe",
-      "date" : "15.05.2022 at",
-      "time" : "7.00 PM",
-      "disease" : "Fracture",
-      "img" : "assets/img/profiles/avatar-03.jpg"
-  },
-  {
-      "no" : "R00005",
-      "patientName" : "Dr.William Jerk",
-      "doctor" : "Dr.Angelica Ramos",
-      "date" : "16.05.2022 at",
-      "time" : "7.00 PM",
-      "disease" : "Fever",
-      "img" : "assets/img/profiles/avatar-02.jpg"
-  }
+      "no": "R00001",
+      "patientName": "Andrea Lalema",
+      "doctor": "Dr.Jenny Smith",
+      "date": "12.05.2022 at",
+      "time": "7.00 PM",
+      "disease": "Fracture",
+      "img": "assets/img/profiles/avatar-03.jpg"
+    },
+    {
+      "no": "R00002",
+      "patientName": "Cristina Groves",
+      "doctor": "Dr.Angelica Ramos",
+      "date": "13.05.2022 at",
+      "time": "7.00 PM",
+      "disease": "Fever",
+      "img": "assets/img/profiles/avatar-05.jpg"
+    },
+    {
+      "no": "R00003",
+      "patientName": "Bernardo",
+      "doctor": "Dr.Martin Doe",
+      "date": "14.05.2022 at",
+      "time": "7.00 PM",
+      "disease": "Fracture",
+      "img": "assets/img/profiles/avatar-04.jpg"
+    },
+    {
+      "no": "R00004",
+      "patientName": "Galaviz Lalema",
+      "doctor": "Dr.Martin Doe",
+      "date": "15.05.2022 at",
+      "time": "7.00 PM",
+      "disease": "Fracture",
+      "img": "assets/img/profiles/avatar-03.jpg"
+    },
+    {
+      "no": "R00005",
+      "patientName": "Dr.William Jerk",
+      "doctor": "Dr.Angelica Ramos",
+      "date": "16.05.2022 at",
+      "time": "7.00 PM",
+      "disease": "Fever",
+      "img": "assets/img/profiles/avatar-02.jpg"
+    }
   ];
   public recentPatients = [
     {
-      "no" : "R00001",
-      "patientName" : "Andrea Lalema",
-      "age" : "21",
-      "date" : "12.05.2022 at",
-      "dateOfBirth" : "07 January 2002",
-      "diagnosis" : "Heart attack",
-      "img" : "assets/img/profiles/avatar-02.jpg",
-      "triage" : "Non Urgent"
-  },
-  {
-      "no" : "R00002",
-      "patientName" : "Mark Hay Smith",
-      "age" : "23",
-      "date" : "13.05.2022 at",
-      "dateOfBirth" : "06 January 2002",
-      "diagnosis" : "Jaundice",
-      "img" : "assets/img/profiles/avatar-03.jpg",
-      "triage" : "Emergency"
-  },
-  {
-      "no" : "R00003",
-      "patientName" : "Cristina Groves",
-      "age" : "25",
-      "date" : "14.05.2022 at",
-      "dateOfBirth" : "10 January 2002",
-      "diagnosis" : "Malaria",
-      "img" : "assets/img/profiles/avatar-04.jpg",
-      "triage" : "Out Patient"
-  },
-  {
-      "no" : "R00004",
-      "patientName" : "Galaviz Lalema",
-      "age" : "21",
-      "date" : "15.05.2022 at",
-      "dateOfBirth" : "09 January 2002",
-      "diagnosis" : "Typhoid",
-      "img" : "assets/img/profiles/avatar-05.jpg",
-      "triage" : "Urgent"
-  }
+      "no": "R00001",
+      "patientName": "Andrea Lalema",
+      "age": "21",
+      "date": "12.05.2022 at",
+      "dateOfBirth": "07 January 2002",
+      "diagnosis": "Heart attack",
+      "img": "assets/img/profiles/avatar-02.jpg",
+      "triage": "Non Urgent"
+    },
+    {
+      "no": "R00002",
+      "patientName": "Mark Hay Smith",
+      "age": "23",
+      "date": "13.05.2022 at",
+      "dateOfBirth": "06 January 2002",
+      "diagnosis": "Jaundice",
+      "img": "assets/img/profiles/avatar-03.jpg",
+      "triage": "Emergency"
+    },
+    {
+      "no": "R00003",
+      "patientName": "Cristina Groves",
+      "age": "25",
+      "date": "14.05.2022 at",
+      "dateOfBirth": "10 January 2002",
+      "diagnosis": "Malaria",
+      "img": "assets/img/profiles/avatar-04.jpg",
+      "triage": "Out Patient"
+    },
+    {
+      "no": "R00004",
+      "patientName": "Galaviz Lalema",
+      "age": "21",
+      "date": "15.05.2022 at",
+      "dateOfBirth": "09 January 2002",
+      "diagnosis": "Typhoid",
+      "img": "assets/img/profiles/avatar-05.jpg",
+      "triage": "Urgent"
+    }
   ];
   public patientProfile = [
     {
-      date : "29/09/2022",
-      doctor : "Dr.Jenny Smith",
-      treatment : "Check up",
-      charges : "$ 60"
+      date: "29/09/2022",
+      doctor: "Dr.Jenny Smith",
+      treatment: "Check up",
+      charges: "$ 60"
     },
     {
-      date : "19/09/2022",
-      doctor : "Andrea Lalemaaaaa",
-      treatment : "	Blood Test",
-      charges : "$ 50"
+      date: "19/09/2022",
+      doctor: "Andrea Lalemaaaaa",
+      treatment: "	Blood Test",
+      charges: "$ 50"
     },
     {
-      date : "20/09/2022",
-      doctor : "Dr.William Stephin",
-      treatment : "Blood Pressure",
-      charges : "$ 30"
+      date: "20/09/2022",
+      doctor: "Dr.William Stephin",
+      treatment: "Blood Pressure",
+      charges: "$ 30"
     }
   ];
   public blogs = [

@@ -46,7 +46,7 @@ export class EditPatientComponent {
       // Restablecer los valores del objeto this.paciente
     
   }
-   
+  
   public redirectMessage(phoneNumber: string): void {
     // Reemplaza el "0" al principio del número con "593"
     const formattedPhoneNumber: string = phoneNumber.replace(/^0/, '593');
@@ -103,6 +103,7 @@ export class EditPatientComponent {
     const ncamp1 = this.paciente.campoCfg1;
     const ncamp2 = this.paciente.campoCfg2;
     const ncamp3 = this.paciente.campoCfg3;
+    const foto = this.paciente.foto;
    
     // const nuevoSexo = this.paciente.sexo;
   
@@ -141,6 +142,7 @@ export class EditPatientComponent {
     this.pacienteActualizado.campoCfg1=ncamp1;
     this.pacienteActualizado.campoCfg2=ncamp2;
     this.pacienteActualizado.campoCfg3=ncamp3;
+    this.pacienteActualizado.foto=foto;
     
 
     // Llamar al método actualizarPersona() del servicio para enviar los datos actualizados al servidor

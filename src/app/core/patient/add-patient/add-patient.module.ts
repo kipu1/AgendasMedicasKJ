@@ -7,7 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { LocalizationDetailsModule } from '../../settings/localization-details/localization-details.module';
 import { PaymentSettingsModule } from '../../settings/payment-settings/payment-settings.module';
 import { EmailSettingsModule } from '../../settings/email-settings/email-settings.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -27,7 +27,7 @@ import { MatTableModule } from '@angular/material/table';
     EmailSettingsModule,
     NgIf,
     FormsModule,
-    NgFor, FormsModule ,CommonModule,MatTableModule, MatPaginatorModule,MatButtonModule,MatFormFieldModule,MatTableModule,
+    NgFor, FormsModule ,CommonModule,MatTableModule, MatPaginatorModule,MatButtonModule,MatFormFieldModule,MatTableModule,ReactiveFormsModule
     
   ]
 })

@@ -14,7 +14,7 @@ export class Doctor {
     comparte: string='';
     cfg : string='';   
     cfgsec: string='';
-    email : string='';   
+    email?: string='';   
     matricula: string='';
    
 
