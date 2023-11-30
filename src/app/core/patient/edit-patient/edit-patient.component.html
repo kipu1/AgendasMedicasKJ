@@ -212,9 +212,12 @@
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Telofono 2 <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" placeholder="" id="telefono2" name="telefono2"
-                                        [(ngModel)]="paciente.telefono2">
-                                </div>
+                                        <input class="form-control" type="text" placeholder="" id="telefono2"
+                                            name="telefono2" [(ngModel)]="paciente.telefono2">
+                                            <button type="submit" class="btn btn-primary submit-form me-2"
+                                            (click)="redirectMessage(paciente.telefono2)"
+                                            >Whatsapp</button>
+                                    </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">

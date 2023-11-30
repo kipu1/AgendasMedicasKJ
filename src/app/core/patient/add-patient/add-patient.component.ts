@@ -26,11 +26,13 @@ export class AddPatientComponent {
   bCompntAntece:boolean=false;
   bCompntClinc:boolean=false;
   bCompontGmail:boolean=false;
+  showModalWhatsapp: boolean = false;
 
   constructor(private auth: AuthService, private personaServicio: patientService, private router: Router) { }
 
   ngOnInit(): void {
     this.obtenerpersona();
+   
 
   }
 
@@ -39,7 +41,18 @@ export class AddPatientComponent {
       this.pacientes = dato;
     });
   }
-
+  public redirectMessage(phoneNumber: string): void {
+    // Reemplaza el "0" al principio del número con "593"
+    const formattedPhoneNumber: string = phoneNumber.replace(/^0/, '593');
+  
+    const encodedMessage: string = encodeURIComponent("Hola Fundación FAAN quiero más información");
+    const whatsappURL: string = `https://api.whatsapp.com/send?phone=${formattedPhoneNumber}&text=${encodedMessage}`;
+    
+    window.open(whatsappURL, "_blank");
+    this.showModalWhatsapp = false;
+  }
+  
+  
   changeInterface(interfaceSelec: string){
     switch (interfaceSelec) {
       case "new":

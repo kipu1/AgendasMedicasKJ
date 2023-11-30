@@ -1,4 +1,4 @@
-<div class="page-wrapper">
+<div class="page-wrapper" >
     <div class="content">
 
         <!-- Page Header -->
@@ -48,7 +48,7 @@
         </div>
 
         <!-- /Page Header -->
-        <div class="row" *ngIf="bCompntNew">
+        <div class="row" [hidden]="!bCompntNew">
             <div class="col-sm-12">
 
                 <div class="card">
@@ -249,6 +249,9 @@
                                         <label>Telofono 2 <span class="login-danger">*</span></label>
                                         <input class="form-control" type="text" placeholder="" id="telefono2"
                                             name="telefono2" [(ngModel)]="paciente.telefono2">
+                                            <button type="submit" class="btn btn-primary submit-form me-2"
+                                            (click)="redirectMessage(paciente.telefono2)"
+                                            >Whatsapp</button>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
@@ -304,6 +307,222 @@
         </div>
     </div>
 </div>
-<app-localization-details [hidden]="!bCompntAntece"></app-localization-details>
+<!-- <app-localization-details [hidden]="!bCompntAntece"></app-localization-details>
 <app-payment-settings [hidden]="!bCompntClinc"></app-payment-settings>
-<app-email-settings [hidden]="!bCompontGmail"></app-email-settings>
+<app-email-settings [hidden]="!bCompontGmail"></app-email-settings> -->
+<div class="page-wrapper correctMargin" [hidden]="!bCompntAntece" >
+    <div class="content correctMargin">
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-heading">
+                                        <h4>Antecedentes del paciente</h4>
+                                    </div>
+                                </div>
+                              
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Antecedentes clinicos <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="clinicos" name="clinicos"[(ngModel)]="paciente.clinicos"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Antecedentes familiares <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="familiar" name="familiar"[(ngModel)]="paciente.familiar"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Diagnostico principal <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="diagnostico" name="diagnostico"[(ngModel)]="paciente.diagnostico"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Cormobilidades <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="cormobilidades" name="cormobilidades"[(ngModel)]="paciente.cormobilidades"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                
+
+
+
+                                <div class="col-12">
+                                    <div class="doctor-submit text-end">
+                                        <button type="submit"
+                                            class="btn btn-primary submit-form me-2"(click)="guardarPersona()"[routerLink]="routes.patientsList">Registrar</button>
+                                         
+                                        <button type="submit" class="btn btn-primary cancel-form"[routerLink]="routes.patientsList">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-wrapper correctMargin"[hidden]="!bCompntClinc">
+    <div class="content correctMargin">
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-heading">
+                                        <h4>Detalles de paciente</h4>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Hepatitis <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="extra1" name="extra1"[(ngModel)]="paciente.extra1"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Enf infecciosas <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="extra2" name="extra2"[(ngModel)]="paciente.extra2"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Alergias <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="extra3" name="extra3"[(ngModel)]="paciente.extra3"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Enf Neurologicas <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="extra4" name="extra4"[(ngModel)]="paciente.extra4"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Medicamentos <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="extra5" name="extra5"[(ngModel)]="paciente.extra5"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Cardiopatías <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="extra6" name="extra6"[(ngModel)]="paciente.extra6"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Diabetes <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="extra7" name="extra7"[(ngModel)]="paciente.extra7"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Intev Quirurgicas <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="extra8" name="extra8"[(ngModel)]="paciente.extra8"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Adicciones <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="extra9" name="extra9"[(ngModel)]="paciente.extra9"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Otros <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="extra10" name="extra10"[(ngModel)]="paciente.extra10"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                         
+
+
+
+
+                                <div class="col-12">
+                                    <div class="doctor-submit text-end">
+                                        <button type="submit"
+                                            class="btn btn-primary submit-form me-2"(click)="guardarPersona()"[routerLink]="routes.patientsList">Registrar</button>
+                                         
+                                        <button type="submit" class="btn btn-primary cancel-form"[routerLink]="routes.patientsList">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-wrapper correctMargin"[hidden]="!bCompontGmail">
+    <div class="content correctMargin">
+
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-heading">
+                                        <h4>Detalles de paciente</h4>
+                                    </div>
+                                </div>
+                              
+                                
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>Comentarios <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="comentarios" name="comentarios"[(ngModel)]="paciente.comentarios"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+                                
+
+
+
+                                <div class="col-12">
+                                    <div class="doctor-submit text-end">
+                                        <button type="submit"
+                                            class="btn btn-primary submit-form me-2"(click)="guardarPersona()"[routerLink]="routes.patientsList">Registrar</button>
+                                         
+                                        <button type="submit" class="btn btn-primary cancel-form"[routerLink]="routes.patientsList">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -20,7 +20,7 @@ export class EditPatientComponent {
   paciente: Paciente = new Paciente();
   pacientes: Paciente[] = [];
   validador: boolean = false;
-  
+  showModalWhatsapp: boolean = false;
 
   // identificacion: String;
    pacienteActualizado= new Paciente ();
@@ -47,7 +47,16 @@ export class EditPatientComponent {
     
   }
    
-
+  public redirectMessage(phoneNumber: string): void {
+    // Reemplaza el "0" al principio del número con "593"
+    const formattedPhoneNumber: string = phoneNumber.replace(/^0/, '593');
+  
+    const encodedMessage: string = encodeURIComponent("Hola Fundación FAAN quiero más información");
+    const whatsappURL: string = `https://api.whatsapp.com/send?phone=${formattedPhoneNumber}&text=${encodedMessage}`;
+    
+    window.open(whatsappURL, "_blank");
+    this.showModalWhatsapp = false;
+  }
 
   obtenerpersona() {
     this.pacienteService.obtenerListaPersona().subscribe(dato => {

@@ -51,7 +51,7 @@
             </ul> 
         </div>
         <!-- /Page Header -->
-        <div class="row" *ngIf="bCompntinicial">
+        <div class="row"[hidden]="!bCompntinicial">
             <div class="col-sm-12">
 
                 <div class="card">
@@ -165,7 +165,628 @@
         </div>
     </div>
 </div>
-<app-edit-leave [hidden]="!bCompntpliegue"></app-edit-leave>
+<!-- <app-edit-leave [hidden]="!bCompntpliegue"></app-edit-leave>
 <app-edit-staff [hidden]="!bCompntdiame"></app-edit-staff>
 <app-staff-attendance [hidden]="!bCompontperimetros"></app-staff-attendance>
-<app-staff-holiday [hidden]="!bCompontlongitudes"></app-staff-holiday>
+<app-staff-holiday [hidden]="!bCompontlongitudes"></app-staff-holiday> -->
+<div class="page-wrapper correctMargin" [hidden]="!bCompntpliegue">
+    <div class="content correctMargin">
+        <!-- /Page Header -->
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-heading">
+                                        <h4>Pliegues</h4>
+                                    </div>
+                                </div>
+                              
+                                
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>bicipital <span class="login-danger">*</span></label>
+
+                                        <input class="form-control" type="text"  placeholder="" id="bicipital" name="bicipital"
+                                            [(ngModel)]="antropometria.bicipital">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>ileocristal <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="ileocristal" name="ileocristal"
+                                            [(ngModel)]="antropometria.ileocristal">
+                                    </div>
+                                </div>
+                                
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>supraespinal <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="supraespinal" name="supraespinal"
+                                        [(ngModel)]="antropometria.supraespinal">
+                                </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>axilar <span class="login-danger">*</span></label>
+
+                                        <input class="form-control" type="text"  placeholder="" id="axilar" name="axilar"
+                                            [(ngModel)]="antropometria.axilar">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>abdominal <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="abdominal" name="abdominal"
+                                            [(ngModel)]="antropometria.abdominal">
+                                    </div>
+                                </div>
+                                
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>tricipital <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="tricipital" name="tricipital"
+                                        [(ngModel)]="antropometria.tricipital">
+                                </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>subescapular <span class="login-danger">*</span></label>
+
+                                        <input class="form-control" type="text"  placeholder="" id="subescapular" name="subescapular"
+                                            [(ngModel)]="antropometria.subescapular">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>pectoral <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="pectoral" name="pectoral"
+                                            [(ngModel)]="antropometria.pectoral">
+                                    </div>
+                                </div>
+                                
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>gemelo <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="gemelo" name="gemelo"
+                                        [(ngModel)]="antropometria.talla">
+                                </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>muslofrontal <span class="login-danger">*</span></label>
+
+                                        <input class="form-control" type="text"  placeholder="" id="muslofrontal" name="muslofrontal"
+                                            [(ngModel)]="antropometria.muslofrontal">
+                                    </div>
+                                </div>
+                               
+                                <div class="col-12 col-md-6 col-xl-3">
+                                    <div class="form-group local-forms">
+                                      <label>Fecha <span class="login-danger">*</span></label>
+                                      <input class="form-control datetimepicker" type="text" placeholder="" matInput
+                                             [matDatepicker]="picker" [(ngModel)]="antropometria.fecha" name="fechanacimiento">
+                                             
+                                      <mat-datepicker #picker></mat-datepicker>
+                                      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                    </div>
+                                  </div>
+                                  
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>anotaciones <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="comentarios" name="comentarios"[(ngModel)]="antropometria.anotaciones"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+<!-- 
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>anotaciones <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="anotaciones" name="anotaciones"
+                                        [(ngModel)]="paciente.anotaciones">
+                                </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>prescripciones <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="prescripciones" name="prescripciones"
+                                        [(ngModel)]="paciente.prescripciones">
+                                </div>
+                                </div> -->
+
+
+
+                                <div class="col-12">
+                                    <div class="doctor-submit text-end">
+                                        <button type="submit"
+                                            class="btn btn-primary submit-form me-2"(click)="guardarPersona()"[routerLink]="routes.staffList">Guardar</button>
+                                         
+                                        <button type="submit" class="btn btn-primary cancel-form"[routerLink]="routes.staffList">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-wrapper correctMargin"[hidden]="!bCompntdiame">
+    <div class="content correctMargin">
+        <!-- /Page Header -->
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-heading">
+                                        <h4>Diametros</h4>
+                                    </div>
+                                </div>
+                            
+                               
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>humeral <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="humeral" name="humeral"
+                                            [(ngModel)]="antropometria.humeral">
+                                    </div>
+                                </div>
+                                
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>femoral <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="femoral" name="femoral"
+                                        [(ngModel)]="antropometria.femoral">
+                                </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>biacromial <span class="login-danger">*</span></label>
+
+                                        <input class="form-control" type="text"  placeholder="" id="biacromial" name="biacromial"
+                                            [(ngModel)]="antropometria.biacromial">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>biileocretideo <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="biileocretideo" name="biileocretideo"
+                                            [(ngModel)]="antropometria.biileocretideo">
+                                    </div>
+                                </div>
+                                
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>toraxap <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="toraxap" name="toraxap"
+                                        [(ngModel)]="antropometria.toraxap">
+                                </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>muslo <span class="login-danger">*</span></label>
+
+                                        <input class="form-control" type="text"  placeholder="" id="muslo" name="muslo"
+                                            [(ngModel)]="antropometria.muslo">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>tobillo <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="tobillo" name="tobillo"
+                                            [(ngModel)]="antropometria.tobillo">
+                                    </div>
+                                </div>
+                                
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>biliacodi <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="biliacodi" name="biliacodi"
+                                        [(ngModel)]="antropometria.biliacodi">
+                                </div>
+                                </div>
+                                
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>muñeca <span class="login-danger">*</span></label>
+
+                                        <input class="form-control" type="text"  placeholder="" id="muneca" name="muneca"
+                                            [(ngModel)]="antropometria.muneca">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>toraxtrans <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="toraxtrans" name="toraxtrans"
+                                            [(ngModel)]="antropometria.toraxtrans">
+                                    </div>
+                                </div>
+                                
+
+                               
+                                <div class="col-12 col-md-6 col-xl-3">
+                                    <div class="form-group local-forms">
+                                      <label>Fecha <span class="login-danger">*</span></label>
+                                      <input class="form-control datetimepicker" type="text" placeholder="" matInput
+                                             [matDatepicker]="picker" [(ngModel)]="antropometria.fecha" name="fechanacimiento">
+                                             
+                                      <mat-datepicker #picker></mat-datepicker>
+                                      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                    </div>
+                                  </div>
+                                  
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>anotaciones <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="comentarios" name="comentarios"[(ngModel)]="antropometria.anotaciones"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+<!-- 
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>anotaciones <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="anotaciones" name="anotaciones"
+                                        [(ngModel)]="paciente.anotaciones">
+                                </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>prescripciones <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="prescripciones" name="prescripciones"
+                                        [(ngModel)]="paciente.prescripciones">
+                                </div>
+                                </div> -->
+
+
+
+                                <div class="col-12">
+                                    <div class="doctor-submit text-end">
+                                        <button type="submit"
+                                            class="btn btn-primary submit-form me-2"(click)="guardarPersona()"[routerLink]="routes.staffList">Guardar</button>
+                                         
+                                        <button type="submit" class="btn btn-primary cancel-form"[routerLink]="routes.staffList">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-wrapper correctMargin" [hidden]="!bCompontperimetros">
+    <div class="content correctMargin">
+      <!-- /Page Header -->
+      <div class="row">
+          <div class="col-sm-12">
+
+              <div class="card">
+                  <div class="card-body">
+                      <form>
+                          <div class="row">
+                              <div class="col-12">
+                                  <div class="form-heading">
+                                      <h4>Longuitudes</h4>
+                                  </div>
+                              </div>
+                             
+                             
+
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>acroestiloide <span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text"  placeholder="" id="acroestiloide" name="acroestiloide"
+                                          [(ngModel)]="antropometria.acroestiloide">
+                                  </div>
+                              </div>
+                              
+
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>medioestdact <span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text"  placeholder="" id="medioestdact" name="medioestdact"
+                                      [(ngModel)]="antropometria.medioestdact">
+                              </div>
+                              </div>
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>trocanterea <span class="login-danger">*</span></label>
+
+                                      <input class="form-control" type="text"  placeholder="" id="trocanterea" name="trocanterea"
+                                          [(ngModel)]="antropometria.trocanterea">
+                                  </div>
+                              </div>
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>tribiallateral <span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text"  placeholder="" id="tribiallateral" name="tribiallateral"
+                                          [(ngModel)]="antropometria.tribiallateral">
+                                  </div>
+                              </div>
+                              
+
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>tibMdMaleolar <span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text"  placeholder="" id="tibMdMaleolar" name="tibMdMaleolar"
+                                      [(ngModel)]="antropometria.tibMdMaleolar">
+                              </div>
+                              </div>
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>acroradial <span class="login-danger">*</span></label>
+
+                                      <input class="form-control" type="text"  placeholder="" id="acroradial" name="acroradial"
+                                          [(ngModel)]="antropometria.acroradial">
+                                  </div>
+                              </div>
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>ilioespinal <span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text"  placeholder="" id="ilioespinal" name="ilioespinal"
+                                          [(ngModel)]="antropometria.ilioespinal">
+                                  </div>
+                              </div>
+                              
+
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>trocTipLat <span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text"  placeholder="" id="trocTipLat" name="trocTipLat"
+                                      [(ngModel)]="antropometria.trocTipLat">
+                              </div>
+                              </div>
+                              
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>pie <span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text"  placeholder="" id="pie" name="pie"
+                                          [(ngModel)]="antropometria.pie">
+                                  </div>
+                              </div>
+                              <div class="col-12 col-md-6 col-xl-3">
+                                <div class="form-group local-forms">
+                                  <label>Fecha <span class="login-danger">*</span></label>
+                                  <input class="form-control datetimepicker" type="text" placeholder="" matInput
+                                         [matDatepicker]="picker" [(ngModel)]="antropometria.fecha" name="fechanacimiento">
+                                         
+                                  <mat-datepicker #picker></mat-datepicker>
+                                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                </div>
+                              </div>
+                              
+                              <div class="col-12 col-md-6 col-xl-4">
+                                <div class="form-group local-forms">
+                                    <label>anotaciones <span class="login-danger">*</span></label>
+                                    <textarea class="form-control" id="comentarios" name="comentarios"[(ngModel)]="antropometria.anotaciones"  rows="3" cols="30"></textarea>
+                                    
+                                </div>
+                            </div>
+<!-- 
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>anotaciones <span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text"  placeholder="" id="anotaciones" name="anotaciones"
+                                      [(ngModel)]="paciente.anotaciones">
+                              </div>
+                              </div>
+                              <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="form-group local-forms">
+                                      <label>prescripciones <span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text"  placeholder="" id="prescripciones" name="prescripciones"
+                                      [(ngModel)]="paciente.prescripciones">
+                              </div>
+                              </div> -->
+
+
+
+                              <div class="col-12">
+                                  <div class="doctor-submit text-end">
+                                      <button type="submit"
+                                          class="btn btn-primary submit-form me-2"(click)="guardarPersona()"[routerLink]="routes.staffList">Guardar</button>
+                                       
+                                      <button type="submit" class="btn btn-primary cancel-form"[routerLink]="routes.staffList">Cancel</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="page-wrapper correctMargin" [hidden]="!bCompontlongitudes">
+    <div class="content correctMargin">
+        <!-- /Page Header -->
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-heading">
+                                        <h4>Perimetros</h4>
+                                    </div>
+                                </div>
+                               
+                               
+                                
+                                
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>cefalico <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="cefalico" name="cefalico"
+                                        [(ngModel)]="antropometria.cefalico">
+                                </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>torax <span class="login-danger">*</span></label>
+
+                                        <input class="form-control" type="text"  placeholder="" id="torax" name="torax"
+                                            [(ngModel)]="antropometria.torax">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>antebrazo <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="antebrazo" name="antebrazo"
+                                            [(ngModel)]="antropometria.antebrazo">
+                                    </div>
+                                </div>
+                                
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>tobillo1 <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="tobillo1" name="tobillo1"
+                                        [(ngModel)]="antropometria.tobillo1">
+                                </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>cintura <span class="login-danger">*</span></label>
+
+                                        <input class="form-control" type="text"  placeholder="" id="cintura" name="cintura"
+                                            [(ngModel)]="antropometria.cintura">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>cuello <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="cuello" name="cuello"
+                                            [(ngModel)]="antropometria.cuello">
+                                    </div>
+                                </div>
+                                
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>bicipitalrel <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="bicipitalrel" name="bicipitalrel"
+                                        [(ngModel)]="antropometria.bicipitalrel">
+                                </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>bicitalflex <span class="login-danger">*</span></label>
+
+                                        <input class="form-control" type="text"  placeholder="" id="bicitalflex" name="bicitalflex"
+                                            [(ngModel)]="antropometria.bicitalflex">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>muslo1 <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="muslo1" name="muslo1"
+                                            [(ngModel)]="antropometria.muslo1">
+                                    </div>
+                                </div>
+                                
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>cadera <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="cadera" name="cadera"
+                                        [(ngModel)]="antropometria.cadera">
+                                </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>muñeca1 <span class="login-danger">*</span></label>
+
+                                        <input class="form-control" type="text"  placeholder="" id="muneca1" name="muneca1"
+                                            [(ngModel)]="antropometria.muneca1">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>gemelo1 <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="gemelo1" name="gemelo1"
+                                            [(ngModel)]="antropometria.gemelo1">
+                                    </div>
+                                </div>
+                                
+
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>abdomen <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="abdomen" name="abdomen"
+                                        [(ngModel)]="antropometria.abdomen">
+                                </div>
+                                </div>
+                                
+
+                                <div class="col-12 col-md-6 col-xl-3">
+                                    <div class="form-group local-forms">
+                                      <label>Fecha <span class="login-danger">*</span></label>
+                                      <input class="form-control datetimepicker" type="text" placeholder="" matInput
+                                             [matDatepicker]="picker" [(ngModel)]="antropometria.fecha" name="fechanacimiento">
+                                             
+                                      <mat-datepicker #picker></mat-datepicker>
+                                      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                    </div>
+                                  </div>
+                                  
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>anotaciones <span class="login-danger">*</span></label>
+                                        <textarea class="form-control" id="comentarios" name="comentarios"[(ngModel)]="antropometria.anotaciones"  rows="3" cols="30"></textarea>
+                                        
+                                    </div>
+                                </div>
+<!-- 
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>anotaciones <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="anotaciones" name="anotaciones"
+                                        [(ngModel)]="paciente.anotaciones">
+                                </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="form-group local-forms">
+                                        <label>prescripciones <span class="login-danger">*</span></label>
+                                        <input class="form-control" type="text"  placeholder="" id="prescripciones" name="prescripciones"
+                                        [(ngModel)]="paciente.prescripciones">
+                                </div>
+                                </div> -->
+
+
+
+                                <div class="col-12">
+                                    <div class="doctor-submit text-end">
+                                        <button type="submit"
+                                            class="btn btn-primary submit-form me-2"(click)="guardarPersona()"[routerLink]="routes.staffList">Guardar</button>
+                                         
+                                        <button type="submit" class="btn btn-primary cancel-form"[routerLink]="routes.staffList">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
