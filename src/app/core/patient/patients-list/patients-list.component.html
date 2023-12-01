@@ -86,6 +86,15 @@
                     </div>
 
                     <td>
+                      <div id="customAlert" class="custom-alert">
+                        <div class="alert-content">
+                          <p id="alertMessage"></p>
+                          <button type="submit" class="btn btn-primary submit-form me-2" id="confirmButton">Aceptar</button>
+                          <button type="submit" class="btn btn-primary submit-form me-2" id="cancelButton">Cancelar</button>
+                        </div>
+                      </div>
+                      
+                      <!-- Tu botón para eliminar -->
                       <button class="dropdown-item btn btn-custom" (click)="eliminarPersona(pacientes.id)">
                         <i class="fa fa-trash-alt m-r-5"></i>
                       </button>

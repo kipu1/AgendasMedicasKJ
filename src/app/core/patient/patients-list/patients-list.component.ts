@@ -107,18 +107,46 @@ export class PatientsListComponent implements OnInit {
   this.paciente=dato;
     });}
     eliminarPersona(id: number) {
-      this.pacienteService.eliminarPersona(id).subscribe(() => {
-        this.obtenerPersona(); 
-        const confirmacion = confirm('¿Estás seguro de que deseas eliminar esta persona?');
-  
-      if (confirmacion) {
-        // Lógica de eliminación aquí
-        console.log('Persona eliminada con éxito');
-        // Puedes llamar a tu servicio o hacer lo que sea necesario para eliminar la persona
-      }// Para actualizar la lista después de la eliminación
+      // Mostrar la alerta personalizada
+      this.mostrarAlerta('¿Desea eliminar esta persona?').then((confirmacion) => {
+        // Si el usuario hace clic en "Aceptar" en la alerta personalizada
+        if (confirmacion) {
+          this.pacienteService.eliminarPersona(id).subscribe(() => {
+            // Actualizar la lista después de eliminar
+            this.obtenerPersona(); 
+          });
+        }
       });
     }
-  
+    
+    mostrarAlerta(mensaje: string): Promise<boolean> {
+      return new Promise<boolean>((resolve) => {
+        const customAlert = document.getElementById('customAlert') as HTMLElement;
+        const alertMessage = document.getElementById('alertMessage') as HTMLElement;
+        const confirmButton = document.getElementById('confirmButton') as HTMLButtonElement;
+        const cancelButton = document.getElementById('cancelButton') as HTMLButtonElement;
+    
+        // Configurar el mensaje
+        alertMessage.innerText = mensaje;
+    
+        // Mostrar la alerta
+        customAlert.style.display = 'flex';
+    
+        // Configurar eventos de los botones
+        confirmButton.onclick = () => {
+          customAlert.style.display = 'none';
+          resolve(true);
+        };
+    
+        cancelButton.onclick = () => {
+          customAlert.style.display = 'none';
+          resolve(false);
+        };
+      });
+    }
+    
+    
+    
    
     public getMoreData(event: string): void {
       if (event == 'next') {
