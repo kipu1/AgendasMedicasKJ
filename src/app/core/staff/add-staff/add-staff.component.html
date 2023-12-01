@@ -255,7 +255,7 @@
                                     <div class="form-group local-forms">
                                         <label>gemelo <span class="login-danger">*</span></label>
                                         <input class="form-control" type="text"  placeholder="" id="gemelo" name="gemelo"
-                                        [(ngModel)]="antropometria.talla">
+                                        [(ngModel)]="antropometria.gemelo">
                                 </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
@@ -471,7 +471,7 @@
         </div>
     </div>
 </div>
-<div class="page-wrapper correctMargin" [hidden]="!bCompontperimetros">
+<div class="page-wrapper correctMargin" [hidden]="!bCompontlongitudes">
     <div class="content correctMargin">
       <!-- /Page Header -->
       <div class="row">
@@ -613,7 +613,7 @@
       </div>
   </div>
 </div>
-<div class="page-wrapper correctMargin" [hidden]="!bCompontlongitudes">
+<div class="page-wrapper correctMargin" [hidden]="!bCompontperimetros">
     <div class="content correctMargin">
         <!-- /Page Header -->
         <div class="row">
