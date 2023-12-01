@@ -108,12 +108,18 @@ export class PatientsListComponent implements OnInit {
     });}
     eliminarPersona(id: number) {
       this.pacienteService.eliminarPersona(id).subscribe(() => {
-        this.obtenerPersona(); // Para actualizar la lista después de la eliminación
+        this.obtenerPersona(); 
+        const confirmacion = confirm('¿Estás seguro de que deseas eliminar esta persona?');
+  
+      if (confirmacion) {
+        // Lógica de eliminación aquí
+        console.log('Persona eliminada con éxito');
+        // Puedes llamar a tu servicio o hacer lo que sea necesario para eliminar la persona
+      }// Para actualizar la lista después de la eliminación
       });
     }
   
-  
-    
+   
     public getMoreData(event: string): void {
       if (event == 'next') {
         this.currentPage++;

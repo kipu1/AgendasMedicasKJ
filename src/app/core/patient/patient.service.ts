@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, tap } from 'rxjs';
 import { Paciente } from './paciente';
@@ -37,6 +37,26 @@ export class patientService {
     registrarPersona(paciente:Paciente): Observable<Object>{
     return this.httpClient.post(this.url+'/crear',paciente);
     }
+    // registrarPaciente(paciente: Paciente, foto: File): Observable<Object> {
+    //   const formData: FormData = new FormData();
+    //   formData.append('paciente', JSON.stringify(paciente));
+    //   formData.append('file', foto);
+  
+    //   return this.httpClient.post(this.url + '/crear', formData);
+    // }
+    // registrarPersona(paciente: Paciente, foto?: File): Observable<Object> {
+    //   const formData: FormData = new FormData();
+    //   formData.append('paciente', JSON.stringify(paciente));
+    
+    //   if (foto) {
+    //     formData.append('file', foto);
+    //   }
+    
+    //   const headers = new HttpHeaders();
+    //   // No es necesario establecer el Content-Type, Angular lo manejará automáticamente para FormData.
+    
+    //   return this.httpClient.post(this.url + '/crear', formData, { headers });
+    // }
     subirImagen(formData: FormData): Observable<object> {
       return this.httpClient.post(`${this.url}/upload`, formData).pipe(
         tap(response => console.log('Respuesta del servidor:', response)),
@@ -52,6 +72,29 @@ export class patientService {
   
       return this.httpClient.post<any>(`${this.url}/upload/${id}`, formData);
     }
+    // descargarArchivo(filename: string): Observable<HttpResponse<Blob>> {
+    //   const url = `${this.url}/${filename}`;
+    //   return this.httpClient.get(url, {
+    //     observe: 'response',
+    //     responseType: 'blob',
+    //     headers: new HttpHeaders({
+    //       'Content-Type': 'application/json',
+    //     }),
+    //   });
+    // }
+    descargarArchivo(pacienteId: string): Observable<HttpResponse<Blob>> {
+      const url = `${this.url}/pacientes/${pacienteId}/imagen`; // Ajusta la URL para reflejar tu estructura de API
+      return this.httpClient.get(url, {
+        observe: 'response',
+        responseType: 'blob',
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+      });
+    }
+
+
+
     // crearPacienteConImagen(paciente: Paciente, file: File): Observable<Object> {
     //   const formData: FormData = new FormData();
     //   formData.append('file', file);

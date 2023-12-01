@@ -220,7 +220,18 @@ export class AddPatientComponent {
 
   }
 
-
+// descargarArchivo(filename: string): void {
+//     this.pacienteService.descargarArchivo(filename).subscribe((response) => {
+//       const blob = new Blob([response.body], { type: response.headers.get('Content-Type') || 'application/octet-stream' });
+//       const url = window.URL.createObjectURL(blob);
+//       const a = document.createElement('a');
+//       document.body.appendChild(a);
+//       a.href = url;
+//       a.download = filename;
+//       a.click();
+//       window.URL.revokeObjectURL(url);
+//     });
+//   }
 
   onSubmit() {
     this.guardarPersona();
