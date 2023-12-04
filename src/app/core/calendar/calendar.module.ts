@@ -18,7 +18,6 @@ import { materialModule } from 'src/app/shared/material.module';
     SharedModule,
     materialModule,
     FormsModule,
-    
   ]
 })
 export class CalendarModule { }

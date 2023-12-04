@@ -105,33 +105,28 @@ export class CalendarComponent {
     const nuevoclavesecre = this.turno.fecha;
     const nuevocomentario = this.turno.hora;
 
-   
-    
- 
-    
-    // const nuevoSexo = this.paciente.sexo;
-  
+
 
     // Crear un objeto 'pacienteActualizado' con los valores actualizados
-    this.pacienteActualizado.turno=nuevonombre;
-  
-    this.pacienteActualizado.fecha=nuevoclavesecre;
-    this.pacienteActualizado.hora=nuevocomentario;
-   
-   
+    this.pacienteActualizado.turno = nuevonombre;
+
+    this.pacienteActualizado.fecha = nuevoclavesecre;
+    this.pacienteActualizado.hora = nuevocomentario;
+
+
 
     // Llamar al método actualizarPersona() del servicio para enviar los datos actualizados al servidor
-    this.turnoService.actualizarPersona(this.id,this.pacienteActualizado).subscribe(
-        response => {
-            console.log('Datos actualizados:', this.pacienteActualizado);
-            // Realizar cualquier otra lógica necesaria después de la actualización exitosa
-        },
-        error => {
-            console.error('Error al actualizar los datos:', error);
-            // Manejar el error de alguna manera apropiada en tu aplicación
-        }
+    this.turnoService.actualizarPersona(this.id, this.pacienteActualizado).subscribe(
+      response => {
+        console.log('Datos actualizados:', this.pacienteActualizado);
+        // Realizar cualquier otra lógica necesaria después de la actualización exitosa
+      },
+      error => {
+        console.error('Error al actualizar los datos:', error);
+        // Manejar el error de alguna manera apropiada en tu aplicación
+      }
     );
-} 
+  } 
   obtenerpersona() {
     this.turnoService.obtenerListaPersona().subscribe(dato => {
       this.turnos = dato;
