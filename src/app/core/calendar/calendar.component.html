@@ -17,7 +17,7 @@
                 <div class="card-box mb-0">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="full-cal" id="calendar"><full-calendar [options]="options"></full-calendar></div>
+                            <div class="full-cal" id="calendar"><full-calendar #calendar [options]="options"></full-calendar></div>
                         </div>
                     </div>
                 </div>
@@ -51,19 +51,28 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label>Event Name <span class="text-danger">*</span></label>
-                        <input class="form-control" type="text">
+                        <label>Turno <span class="login-danger">*</span></label>
+
+                        <input class="form-control" type="text" placeholder="" id="turno" name="turno"
+                            [(ngModel)]="turno.turno">
                     </div>
                     <div class="form-group">
-                        <label>Event Date <span class="text-danger">*</span></label>
+                        <label>Fecha <span class="text-danger">*</span></label>
                         <div>
-                            <input class="form-control datetimepicker" type="text" matInput [matDatepicker]="picker">
+                            <input class="form-control datetimepicker" type="text" [matDatepicker]="picker" [(ngModel)]="turno.fecha"
+                            name="fecha">
                             <mat-datepicker #picker></mat-datepicker>
                             <mat-datepicker-toggle matIconSuffix [for]="picker" class="date-picker-icon"></mat-datepicker-toggle>
+                           
                         </div>
+                        
                     </div>
+                    <div>
+                    <input class="form-control" type="time" [(ngModel)]="turno.hora" name="hora">
+                </div>
                     <div class="m-t-20 text-center">
-                        <button class="btn btn-primary submit-btn">Create Event</button>
+                        <button class="btn btn-primary submit-btn"(click)="guardardoctor()">Create Event</button>
+                        
                     </div>
                 </form>
             </div>
