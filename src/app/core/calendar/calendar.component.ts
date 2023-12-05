@@ -25,10 +25,12 @@ export class CalendarComponent {
   events: any[] = [];
   turno: Turno = new Turno();
   turnos: Turno[] = [];
-  hora: string = '';
+  // hora: string = '';
   validador: boolean = false;
   id!: number;
   pacienteActualizado= new Turno ();
+  turnoManual!: '';  // Campo para la entrada manual
+    turnoSelector!: '';
   // ,timeGridDay
   @ViewChild('calendar') calendar!: FullCalendarComponent;
   constructor(private data: DataService,private auth: AuthService, private turnoService: TurnoService, private router: Router,private route: ActivatedRoute) {
@@ -99,34 +101,34 @@ export class CalendarComponent {
 
   }
   
-  actualizarDatos(id: number): void {
-    console.log('Datos actualizados:', id);
-    const nuevonombre = this.turno.turno;
-    const nuevoclavesecre = this.turno.fecha;
-    const nuevocomentario = this.turno.hora;
+  // actualizarDatos(id: number): void {
+  //   console.log('Datos actualizados:', id);
+  //   const nuevonombre = this.turno.turno;
+  //   const nuevoclavesecre = this.turno.fecha;
+  //   const nuevocomentario = this.turno.hora;
 
 
 
-    // Crear un objeto 'pacienteActualizado' con los valores actualizados
-    this.pacienteActualizado.turno = nuevonombre;
+  //   // Crear un objeto 'pacienteActualizado' con los valores actualizados
+  //   this.pacienteActualizado.turno = nuevonombre;
 
-    this.pacienteActualizado.fecha = nuevoclavesecre;
-    this.pacienteActualizado.hora = nuevocomentario;
+  //   this.pacienteActualizado.fecha = nuevoclavesecre;
+  //   this.pacienteActualizado.hora = nuevocomentario;
 
 
 
-    // Llamar al método actualizarPersona() del servicio para enviar los datos actualizados al servidor
-    this.turnoService.actualizarPersona(this.id, this.pacienteActualizado).subscribe(
-      response => {
-        console.log('Datos actualizados:', this.pacienteActualizado);
-        // Realizar cualquier otra lógica necesaria después de la actualización exitosa
-      },
-      error => {
-        console.error('Error al actualizar los datos:', error);
-        // Manejar el error de alguna manera apropiada en tu aplicación
-      }
-    );
-  } 
+  //   // Llamar al método actualizarPersona() del servicio para enviar los datos actualizados al servidor
+  //   this.turnoService.actualizarPersona(this.id, this.pacienteActualizado).subscribe(
+  //     response => {
+  //       console.log('Datos actualizados:', this.pacienteActualizado);
+  //       // Realizar cualquier otra lógica necesaria después de la actualización exitosa
+  //     },
+  //     error => {
+  //       console.error('Error al actualizar los datos:', error);
+  //       // Manejar el error de alguna manera apropiada en tu aplicación
+  //     }
+  //   );
+  // } 
   obtenerpersona() {
     this.turnoService.obtenerListaPersona().subscribe(dato => {
       this.turnos = dato;
@@ -145,13 +147,13 @@ export class CalendarComponent {
     this.turnoService.obtenerListaPersona().subscribe(datos => {
       // Limpia los eventos existentes en el calendario
       this.calendar.getApi().removeAllEvents();
-      console.log('Hora seleccionada:', this.turno.hora);
+      // console.log('Hora seleccionada:', this.turno.hora);
       // Itera sobre los datos obtenidos para construir eventos
       datos.forEach(turno => {
         const evento = {
           title: turno.turno,
           start: turno.fecha,
-          hora: this.turno.hora, // Asegúrate de que la fecha esté en un formato válido para FullCalendar
+          // hora: this.turno.hora, // Asegúrate de que la fecha esté en un formato válido para FullCalendar
           // Puedes agregar más propiedades del evento si es necesario
         };
   
@@ -166,7 +168,7 @@ export class CalendarComponent {
   
   guardardoctor() {
     // Verifica que se haya ingresado un turno y una fecha
-    if (!this.turno.turno || !this.turno.fecha || !this.turno.hora) {
+    if (!this.turno.turno || !this.turno.fecha ) {
       alert('Por favor, ingrese un turno, una fecha y una hora.');
       return;
     }
@@ -198,7 +200,7 @@ export class CalendarComponent {
   // Limpia los campos después de guardar
   this.turno.turno = '';
   this.turno.fecha = '';
-  this.turno.hora = '';
+
 }
 
 
