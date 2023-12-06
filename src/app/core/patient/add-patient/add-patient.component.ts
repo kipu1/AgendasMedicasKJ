@@ -218,6 +218,7 @@ export class AddPatientComponent {
     this.paciente.comentarios = '';
 
 
+
   }
 
 // descargarArchivo(filename: string): void {

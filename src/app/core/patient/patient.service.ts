@@ -95,57 +95,5 @@ export class patientService {
 
 
 
-    // crearPacienteConImagen(paciente: Paciente, file: File): Observable<Object> {
-    //   const formData: FormData = new FormData();
-    //   formData.append('file', file);
-  
-    //   // Agrega otras propiedades del paciente al formData si es necesario
-    //   formData.append('nombre', paciente.nombre);
-  
-    //   const headers = new HttpHeaders(); // Opciones de encabezados opcionales
-  
-    //   return this.httpClient.post<any>(`${this.url}/crear`, formData, { headers });
-    // }
-  
-    // // Método para obtener la URL de la imagen de un paciente
-    // obtenerURLImagen(id: number): Observable<string> {
-    //   return this.httpClient.get<string>(`${this.url}/${id}/imagen`);
-    // }
- 
-    // actualizarpaciente(id:number): Observable<Paciente>{
-    //   return this.httpClient.get<Paciente>(this.url+'/actualizar/'+id);
-    // }
-    
-    
-   
-
-// actualizarPersona(id:number,persona:Persona):Observable<object>{
-// return this.httpClient.put(environment.api_uri+'/persona/actualizar/'+id,persona);
-// }
-// guardarPersona(persona: any) {
-//   return this.httpClient.post(environment.api_uri+'/persona/listar', persona);
-// }
-
-//   //este metodo trae las maquinas
-// obtenerListaPersona(): Observable<Persona[]>{
-//   return this.httpClient.get<Persona[]>(environment.api_uri+'/persona/listar');
-// }  
-
-// eliminarPersona(id:number): Observable<object>{
-//   return this.httpClient.delete(environment.api_uri+'/persona/delete/'+id);
-// }
-
-// registrarPersona(persona:Persona): Observable<Object>{
-// return this.httpClient.post(environment.api_uri+'/persona/crear',persona);
-// }
-
-// obtenerPersonaPorId(id:number): Observable<Persona>{
-//   return this.httpClient.get<Persona>(environment.api_uri+'/persona/porid/'+id);
-// }
-
-
-// obtenerPersonaPoridentificacion(identificacion:string): Observable<Persona>{
-//   return this.httpClient.get<Persona>(environment.api_uri+'/persona/personas/'+identificacion);
-// }
  
 }
