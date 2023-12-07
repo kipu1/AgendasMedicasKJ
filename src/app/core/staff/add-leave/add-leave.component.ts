@@ -168,7 +168,9 @@ export class AddLeaveComponent {
     this.pacienteActualizado.prescripciones = prescripciones;
 
 
-
+    this.router.navigate([this.routes.staffList]).then(() => {
+      window.location.reload();
+    });
     // Llamar al método actualizarPersona() del servicio para enviar los datos actualizados al servidor
     this.antroService.actualizarPersona(this.id, this.pacienteActualizado).subscribe(
       response => {

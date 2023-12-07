@@ -338,35 +338,35 @@ export class DataService {
           base: 'doctor-schedule',
           subMenus: [],
         },
-        {
-          menuValue: 'Doctors',
-          hasSubRoute: true,
-          showSubRoute: false,
-          base: 'doctor',
-          img: 'assets/img/icons/health-img.svg',
-          subMenus: [
-            {
-              menuValue: 'Doctor List',
-              route: routes.doctorsList,
-              base: routes.doctorsList,
-            },
-            {
-              menuValue: 'Add Doctor',
-              route: routes.addDoctor,
-              base: routes.addDoctor,
-            },
-            {
-              menuValue: 'Edit Doctor',
-              route: routes.editDoctor,
-              base: routes.editDoctor,
-            },
-            // {
-            //   menuValue: 'Doctor Profile',
-            //   route: routes.doctorProfile,
-            //   base: routes.doctorProfile,
-            // },
-          ],
-        },
+        // {
+        //   menuValue: 'Doctors',
+        //   hasSubRoute: true,
+        //   showSubRoute: false,
+        //   base: 'doctor',
+        //   img: 'assets/img/icons/health-img.svg',
+        //   subMenus: [
+        //     {
+        //       menuValue: 'Doctor List',
+        //       route: routes.doctorsList,
+        //       base: routes.doctorsList,
+        //     },
+        //     {
+        //       menuValue: 'Add Doctor',
+        //       route: routes.addDoctor,
+        //       base: routes.addDoctor,
+        //     },
+        //     {
+        //       menuValue: 'Edit Doctor',
+        //       route: routes.editDoctor,
+        //       base: routes.editDoctor,
+        //     },
+        //     // {
+        //     //   menuValue: 'Doctor Profile',
+        //     //   route: routes.doctorProfile,
+        //     //   base: routes.doctorProfile,
+        //     // },
+        //   ],
+        // },
 
 
         // {

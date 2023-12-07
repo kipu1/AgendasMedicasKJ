@@ -1106,6 +1106,9 @@ export class VoiceCallComponent {
   
    
 
+    this.router.navigate([this.routes.videoCall]).then(() => {
+      window.location.reload();
+    });
 
 
 
@@ -1115,8 +1118,7 @@ export class VoiceCallComponent {
       this.obtenerpersona();
     }, error => {
 
-      console.log(error);
-      alert('La persona ha sido guardada correctamente');
+   
 
       // Llamada al método para obtener la lista de personas después de guardar una nueva persona
     },

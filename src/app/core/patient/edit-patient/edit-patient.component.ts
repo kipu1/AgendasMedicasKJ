@@ -144,7 +144,9 @@ export class EditPatientComponent {
     this.pacienteActualizado.campoCfg3=ncamp3;
     this.pacienteActualizado.foto=foto;
     
-
+    this.router.navigate([this.routes.patientsList]).then(() => {
+      window.location.reload();
+    });
     // Llamar al método actualizarPersona() del servicio para enviar los datos actualizados al servidor
     this.pacienteService.actualizarPersona(this.id,this.pacienteActualizado).subscribe(
         response => {

@@ -57,7 +57,9 @@
                                   <tr>
 
                                 
-                                    <th mat-sort-header="nombre">Fecha</th>
+                                    <th mat-sort-header="Fecha">Fecha</th>
+                                    <th mat-sort-header="examenes">examenes</th>
+                                    <th mat-sort-header="exploracion">exploracion</th>
                               
                                     <th mat-sort-header="Editar">Editar</th>
                                     <th mat-sort-header="eliminar">Eliminar</th>
@@ -69,6 +71,8 @@
                                   <tr *ngFor="let oftamologias of oftamologia">
                               
                                     <td>{{ oftamologias.fecha | date:'yyyy-MM-dd'}}</td>
+                                    <td>{{ oftamologias.examenes }}</td>
+                                    <td>{{ oftamologias.exploracion }}</td>
                              
                 
                                     <div class="dropdown dropdown-action">

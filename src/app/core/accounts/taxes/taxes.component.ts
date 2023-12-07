@@ -88,6 +88,9 @@ export class TaxesComponent {
     this.pacienteActualizado.ojoderecho=nuevotelefono;
     this.pacienteActualizado.anotaciones=nuvaclave;
 
+    this.router.navigate([this.routes.providentFund]).then(() => {
+      window.location.reload();
+    });
 
 
     // Llamar al método actualizarPersona() del servicio para enviar los datos actualizados al servidor

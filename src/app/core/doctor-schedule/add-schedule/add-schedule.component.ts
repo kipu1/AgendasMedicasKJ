@@ -64,6 +64,10 @@ export class AddScheduleComponent {
    
 
 
+    this.router.navigate([this.routes.schedule]).then(() => {
+      window.location.reload();
+    });
+
 
 
 
@@ -72,8 +76,7 @@ export class AddScheduleComponent {
       this.obtenerpersona();
     }, error => {
 
-      console.log(error);
-      alert('La persona ha sido guardada correctamente');
+      
 
       // Llamada al método para obtener la lista de personas después de guardar una nueva persona
     },

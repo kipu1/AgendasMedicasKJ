@@ -1130,7 +1130,9 @@ export class IncomingCallComponent {
     this.pacienteActualizado.anotaciones=nuevanota;
     this.pacienteActualizado.stock=nuevocomparte;
 
-
+    this.router.navigate([this.routes.videoCall]).then(() => {
+      window.location.reload();
+    });
 
     // Llamar al método actualizarPersona() del servicio para enviar los datos actualizados al servidor
     this.doctorService.actualizarPersona(this.id,this.pacienteActualizado).subscribe(

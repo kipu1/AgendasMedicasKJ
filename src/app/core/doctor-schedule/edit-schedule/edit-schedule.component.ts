@@ -99,7 +99,9 @@ export class EditScheduleComponent {
   
 
 
-
+    this.router.navigate([this.routes.schedule]).then(() => {
+      window.location.reload();
+    });
     // Llamar al método actualizarPersona() del servicio para enviar los datos actualizados al servidor
     this.libretaService.actualizarPersona(this.id,this.pacienteActualizado).subscribe(
         response => {

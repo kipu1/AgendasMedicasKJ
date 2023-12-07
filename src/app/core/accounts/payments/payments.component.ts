@@ -146,6 +146,9 @@ export class PaymentsComponent {
    
 
 
+    this.router.navigate([this.routes.providentFund]).then(() => {
+      window.location.reload();
+    });
 
 
 
@@ -154,8 +157,8 @@ export class PaymentsComponent {
       this.obtenerpersona();
     }, error => {
 
-      console.log(error);
-      alert('La persona ha sido guardada correctamente');
+      // console.log(error);
+      // alert('La persona ha sido guardada correctamente');
 
       // Llamada al método para obtener la lista de personas después de guardar una nueva persona
     },
