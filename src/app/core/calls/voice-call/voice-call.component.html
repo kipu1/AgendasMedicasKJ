@@ -124,7 +124,7 @@
                                     <div class="doctor-submit text-end">
 
                                         <button type="submit" class="btn btn-primary submit-form me-2"
-                                            (click)="guardardoctor()" >Guardar</button>
+                                        [routerLink]="routes.videoCall"    (click)="guardardoctor()" >Guardar</button>
 
                                         <button type="submit" class="btn btn-primary cancel-form" [routerLink]="routes.videoCall"
                                             >Lista</button>
