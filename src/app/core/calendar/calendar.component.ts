@@ -46,7 +46,7 @@ export class CalendarComponent {
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',
-        right: 'dayGridMonth',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay',
       },
       initialView: 'dayGridMonth',
       editable: true,
@@ -153,7 +153,7 @@ export class CalendarComponent {
         const evento = {
           title: turno.turno,
           start: turno.fecha,
-          // hora: this.turno.hora, // Asegúrate de que la fecha esté en un formato válido para FullCalendar
+        //  hora: this.turno.hora, // Asegúrate de que la fecha esté en un formato válido para FullCalendar
           // Puedes agregar más propiedades del evento si es necesario
         };
   

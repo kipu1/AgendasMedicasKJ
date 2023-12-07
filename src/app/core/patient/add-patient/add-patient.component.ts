@@ -28,7 +28,10 @@ export class AddPatientComponent {
   bCompntClinc:boolean=false;
   bCompontGmail:boolean=false;
   showModalWhatsapp: boolean = false;
-
+  errores = {
+    apellido: '',
+    nombre: ''
+  };
   constructor(private auth: AuthService, private personaServicio: patientService, private router: Router, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
@@ -111,6 +114,10 @@ export class AddPatientComponent {
   }
 
   guardarPersona() {
+    if (this.vvalidarCampos()) {
+      // Mostrar un mensaje de error o realizar otra acción
+      return;
+    }
     console.log(this.paciente); // Verificar los valores de los campos
     var apellido = this.paciente.apellido;
     var nombre = this.paciente.nombre;
@@ -238,6 +245,32 @@ export class AddPatientComponent {
 //     });
 //   }
 
+vvalidarCampos(): boolean {
+  let camposInvalidos = false;
+
+  if (!this.paciente.apellido) {
+    this.errores.apellido = 'Ingrese el apellido';
+    camposInvalidos = true;
+  } else {
+    this.errores.apellido = '';
+  }
+
+  if (!this.paciente.nombre) {
+    this.errores.nombre = 'Ingrese el nombre';
+    camposInvalidos = true;
+  } else {
+    this.errores.nombre = '';
+  }
+
+  return camposInvalidos;
+}
+limpiarErrores(campo: string): void {
+  if (campo === 'apellido') {
+    this.errores.apellido = '';
+  } else if (campo === 'nombre') {
+    this.errores.nombre = '';
+  }
+}
   onSubmit() {
     this.guardarPersona();
   }

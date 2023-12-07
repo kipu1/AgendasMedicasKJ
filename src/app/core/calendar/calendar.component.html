@@ -52,29 +52,21 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label>Hora <span class="login-danger">*</span></label>
+                        <label>Turno <span class="login-danger">*</span></label>
 
-                        <input class="form-control" type="time" placeholder="" id="turno" name="turno"
+                        <input class="form-control" type="text" placeholder="" id="turno" name="turno"
                             [(ngModel)]="turno.turno">
                             
                     </div>
                     <div class="form-group">
-                        <label>Fecha <span class="text-danger">*</span></label>
-                        <div>
-                            <input class="form-control datetimepicker" type="text" [matDatepicker]="picker" [(ngModel)]="turno.fecha"
-                            name="fecha">
-                            <mat-datepicker #picker></mat-datepicker>
-                            <mat-datepicker-toggle matIconSuffix [for]="picker" class="date-picker-icon"></mat-datepicker-toggle>
-                           
-                        </div>
-                        
-                    </div>
-                    <!-- <div class="form-group">
-                        <label>Hora <span class="login-danger">*</span></label>
+                        <label>Turno <span class="login-danger">*</span></label>
 
-                        <input class="form-control" type="time" placeholder="" id="hora" name="hora"
-                            [(ngModel)]="turno.hora">
-                    </div> -->
+                        <input class="form-control" type="datetime-local" placeholder="" id="turno" name="turno"
+                            [(ngModel)]="turno.fecha">
+                            
+                    </div>
+                  
+                   
                     <div class="m-t-20 text-center">
                         <button class="btn btn-primary submit-btn"(click)="guardardoctor()">Create Event</button>
                         

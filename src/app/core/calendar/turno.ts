@@ -4,7 +4,7 @@ export class Turno {
     turno: string='';
     fecha ?: string='';  
 
-    //  hora ?: string='';  
+      
     
     
 

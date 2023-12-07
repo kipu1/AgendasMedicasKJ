@@ -74,21 +74,25 @@
                                     </div>
                                   
                                   </div>
-                                <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
-                                        <label>Apellido <span class="login-danger">*</span></label>
-
-                                        <input class="form-control" type="text" placeholder="" id="apellido"
-                                            name="apellido" [(ngModel)]="paciente.apellido">
+                                      <label>Apellido <span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text" placeholder="" id="apellido" name="apellido" [(ngModel)]="paciente.apellido"
+                                        (input)="limpiarErrores('apellido')">
+                                      <!-- Mensaje de error solo si el usuario ha intentado guardar sin completar el campo -->
+                                      <div *ngIf="errores.apellido" class="text-danger">{{ errores.apellido }}</div>
                                     </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-4">
+                                  </div>
+                                  
+                                  <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
-                                        <label>Nombre <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" placeholder="" id="nombre" name="nombre"
-                                            [(ngModel)]="paciente.nombre">
+                                      <label>Nombre <span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text" placeholder="" id="nombre" name="nombre" [(ngModel)]="paciente.nombre"
+                                        (input)="limpiarErrores('nombre')">
+                                      <!-- Mensaje de error solo si el usuario ha intentado guardar sin completar el campo -->
+                                      <div *ngIf="errores.nombre" class="text-danger">{{ errores.nombre }}</div>
                                     </div>
-                                </div>
+                                  </div>
                                 <div class="col-12 col-md-6 col-xl-3">
                                     <div class="form-group local-forms">
                                         <label>Tipo de documento <span class="login-danger">*</span></label>
@@ -362,8 +366,7 @@
 
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
-                                        <button type="submit"
-                                            class="btn btn-primary submit-form me-2"(click)="guardarPersona()"[routerLink]="routes.patientsList">Registrar</button>
+                                        <button type="submit" class="btn btn-primary submit-form me-2" (click)="guardarPersona()">Guardar</button>
                                          
                                         <button type="submit" class="btn btn-primary cancel-form"[routerLink]="routes.patientsList">Lista</button>
                                     </div>
@@ -469,8 +472,7 @@
 
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
-                                        <button type="submit"
-                                            class="btn btn-primary submit-form me-2"(click)="guardarPersona()"[routerLink]="routes.patientsList">Registrar</button>
+                                        <button type="submit" class="btn btn-primary submit-form me-2" (click)="guardarPersona()">Guardar</button>
                                          
                                         <button type="submit" class="btn btn-primary cancel-form"[routerLink]="routes.patientsList">Lista</button>
                                     </div>
@@ -514,8 +516,7 @@
 
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
-                                        <button type="submit"
-                                            class="btn btn-primary submit-form me-2"(click)="guardarPersona()"[routerLink]="routes.patientsList">Registrar</button>
+                                        <button type="submit" class="btn btn-primary submit-form me-2" (click)="guardarPersona()">Guardar</button>
                                          
                                         <button type="submit" class="btn btn-primary cancel-form"[routerLink]="routes.patientsList">Lista</button>
                                     </div>
