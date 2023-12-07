@@ -158,18 +158,22 @@ export class AddPatientComponent {
 
 
 
-
+    this.router.navigate([this.routes.patientsList]).then(() => {
+      window.location.reload();
+    });
 
     // Código para guardar la persona
     this.personaServicio.registrarPersona(this.paciente).subscribe(dato => {
       this.obtenerpersona();
     }, error => {
 
-      console.log(error);
-      alert('La persona ha sido guardada correctamente');
+      // console.log(error);
+      // alert('La persona ha sido guardada correctamente');
 
       // Llamada al método para obtener la lista de personas después de guardar una nueva persona
     },
+    
+
 
     );
 
