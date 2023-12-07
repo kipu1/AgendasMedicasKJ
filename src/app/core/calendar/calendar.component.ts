@@ -31,7 +31,7 @@ export class CalendarComponent {
   pacienteActualizado= new Turno ();
   turnoManual!: '';  // Campo para la entrada manual
     turnoSelector!: '';
-  // ,timeGridDay
+  // ,timeGridDay,timeGridWeek
   @ViewChild('calendar') calendar!: FullCalendarComponent;
   constructor(private data: DataService,private auth: AuthService, private turnoService: TurnoService, private router: Router,private route: ActivatedRoute) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -46,7 +46,7 @@ export class CalendarComponent {
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',
-        right: 'dayGridMonth,timeGridWeek',
+        right: 'dayGridMonth',
       },
       initialView: 'dayGridMonth',
       editable: true,

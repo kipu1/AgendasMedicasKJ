@@ -268,11 +268,11 @@ export class DataService {
               route: routes.payments,
               base: routes.payments,
             },
-            {
-              menuValue: 'Odontologia',
-              route: routes.addDepartment,
-              base: routes.addDepartment,
-            },
+            // {
+            //   menuValue: 'Odontologia',
+            //   route: routes.addDepartment,
+            //   base: routes.addDepartment,
+            // },
             // {
             //   menuValue: ' Lista Odontologia',
             //   route: routes.departmentList,
