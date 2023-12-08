@@ -27,7 +27,10 @@ export class PaymentsComponent {
   exploracionOptions: string[] = [];
   // identificacion: String;
   //change components
-
+  errores = {
+   
+    fecha: ''
+  };
 
   constructor(private auth: AuthService, private oftamologiaService: OftamologiaService, private router: Router) { }
 
@@ -136,6 +139,10 @@ export class PaymentsComponent {
   // Método para manejar cambios en el cuadro de búsqueda
  
   guardardoctor() {
+    if (this.vvalidarCampos()) {
+      // Mostrar un mensaje de error o realizar otra acción
+      return;
+    }
     console.log(this.oftamologia); // Verificar los valores de los campos
 
     var nombre = this.oftamologia.fecha;
@@ -144,8 +151,7 @@ export class PaymentsComponent {
     var direccion = this.oftamologia.exploracion;
     var especialidad = this.oftamologia.ojoizquierdo;
    
-   
-
+  
 
     this.router.navigate([this.routes.providentFund]).then(() => {
       window.location.reload();
@@ -176,10 +182,36 @@ export class PaymentsComponent {
     
 
   }
-
-
-
-  onSubmit() {
-    this.guardardoctor();
+  
+  vvalidarCampos(): boolean {
+    let camposInvalidos = false;
+    
+    if (!this.oftamologia.fecha) {
+      this.errores.fecha = 'Ingrese la fecha';
+      camposInvalidos = true;
+    } else {
+      this.errores.fecha = '';
+    }
+  
+   
+    return camposInvalidos;
   }
-}
+  limpiarErrores(campo: string): void {
+    if (campo === 'fecha') {
+      this.errores.fecha = '';
+    } 
+  
+    
+  }
+  
+    onSubmit() {
+      if (!this.vvalidarCampos()) {
+        // Si la validación falla, no continuar con el envío
+        return;
+      }
+  
+      // Resto del código para guardar el paciente
+      this.guardardoctor();
+    }
+  }
+  

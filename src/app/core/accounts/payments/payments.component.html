@@ -105,10 +105,13 @@
                   <div class="form-group local-forms">
                     <label>Fecha <span class="login-danger">*</span></label>
                     <input class="form-control datetimepicker" type="text" placeholder="" matInput
-                      [matDatepicker]="picker" [(ngModel)]="oftamologia.fecha" name="fecha">
-
+                           [matDatepicker]="picker" [(ngModel)]="oftamologia.fecha" name="fecha"
+                           (input)="limpiarErrores('fecha')"
+                           (ngModelChange)="limpiarErrores('fecha')">
                     <mat-datepicker #picker></mat-datepicker>
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <!-- Mensajes de error -->
+                    <div *ngIf="errores.fecha" class="texti">{{ errores.fecha }}</div>
                   </div>
                 </div>
 
@@ -126,8 +129,7 @@
                 <div class="col-12">
                   <div class="doctor-submit text-end">
 
-                    <button type="submit" class="btn btn-primary submit-form me-2" (click)="guardardoctor()"
-                      [routerLink]="routes.providentFund">Guardar</button>
+                    <button type="submit" class="btn btn-primary submit-form me-2" (click)="guardardoctor()">Guardar</button>
 
                     <button type="submit" class="btn btn-primary cancel-form"
                       [routerLink]="routes.providentFund">Lista</button>

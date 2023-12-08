@@ -114,11 +114,15 @@ export class PatientsListComponent implements OnInit {
         if (confirmacion) {
           this.pacienteService.eliminarPersona(id).subscribe(() => {
             // Actualizar la lista después de eliminar
-            this.obtenerPersona(); 
+            this.obtenerPersona();
+    
+            // Recargar la página después de la eliminación
+            window.location.reload();
           });
         }
       });
     }
+    
     
     mostrarAlerta(mensaje: string): Promise<boolean> {
       return new Promise<boolean>((resolve) => {
