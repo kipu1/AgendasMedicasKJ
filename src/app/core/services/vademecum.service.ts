@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Vademecum } from './vademecum';
+import { Vademecum } from '../calls/vademecum';
+
 
 
 

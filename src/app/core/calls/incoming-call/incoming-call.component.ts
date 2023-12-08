@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { routes } from 'src/app/shared/routes/routes';
 import { Vademecum } from '../vademecum';
 import { AuthService } from 'src/app/shared/auth/auth.service';
-import { VademecumService } from '../vademecum.service';
+
 import { ActivatedRoute, Router } from '@angular/router';
+import { VademecumService } from '../../services/vademecum.service';
 
 @Component({
   selector: 'app-incoming-call',

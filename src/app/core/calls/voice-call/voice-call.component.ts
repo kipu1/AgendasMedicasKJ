@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { routes } from 'src/app/shared/routes/routes';
-import { VademecumService } from '../vademecum.service';
+
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { Vademecum } from '../vademecum';
+import { VademecumService } from '../../services/vademecum.service';
 
 @Component({
   selector: 'app-voice-call',

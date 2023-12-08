@@ -3,11 +3,12 @@ import { routes } from 'src/app/shared/routes/routes';
 import { Vademecum } from '../vademecum';
 import { MatTableDataSource } from '@angular/material/table';
 import { apiResultFormat, pageSelection } from 'src/app/shared/models/models';
-import { VademecumService } from '../vademecum.service';
+
 import { DataService } from 'src/app/shared/data/data.service';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { Router } from '@angular/router';
 import { Sort } from '@angular/material/sort';
+import { VademecumService } from '../../services/vademecum.service';
 
 @Component({
   selector: 'app-video-call',
