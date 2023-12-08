@@ -3,9 +3,10 @@ import { routes } from 'src/app/shared/routes/routes';
 import { Paciente } from '../paciente';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from 'src/app/shared/auth/auth.service';
-import { patientService } from '../patient.service';
+
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
+import { patientService } from '../../services/patient.service';
 interface data {
   value: string;
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { routes } from 'src/app/shared/routes/routes';
 import { Antropometria } from '../antropometria';
-import { AntropometriaService } from '../antropometria.service';
+import { AntropometriaService } from '../../services/antropometria.service';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { Router } from '@angular/router';
 interface data {

@@ -3,7 +3,7 @@ import { routes } from 'src/app/shared/routes/routes';
 import { Odontologia } from '../odontologia';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth/auth.service';
-import { OdontologiaService } from '../odontologia.service';
+import { OdontologiaService } from '../../services/odontologia.service';
 
 @Component({
   selector: 'app-edit-department',

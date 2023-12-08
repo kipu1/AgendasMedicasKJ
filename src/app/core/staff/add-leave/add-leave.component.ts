@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { routes } from 'src/app/shared/routes/routes';
-import { AntropometriaService } from '../antropometria.service';
+import { AntropometriaService } from '../../services/antropometria.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { Antropometria } from '../antropometria';

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Doctor } from './doctor';
+import { Libreta } from '../doctor-schedule/libreta';
+
 
 
 
@@ -9,34 +10,34 @@ import { Doctor } from './doctor';
 @Injectable({
   providedIn: 'root'
 })
-export class DoctorService {
+export class LibretaService {
   //esta url obtiene el listado de las maquinas en el backend
-  url: string = 'http://localhost:8080/api/doctor';
+  url: string = 'http://localhost:8080/api/libreta';
   constructor(private httpClient : HttpClient) { }
  
  
 
-  actualizarPersona( id:number,doctor: Doctor): Observable<object> {
-    return this.httpClient.put(this.url + '/actualizar/'+id, doctor);
+  actualizarPersona( id:number,libreta: Libreta): Observable<object> {
+    return this.httpClient.put(this.url + '/actualizar/'+id, libreta);
   }
-    guardarPersona(doctor: any) {
-      return this.httpClient.post(this.url+'/listar', doctor);
+    guardarPersona(libreta: any) {
+      return this.httpClient.post(this.url+'/listar', libreta);
     }
     
       //este metodo trae las maquinas
-    obtenerListaPersona(): Observable<Doctor[]>{
-      return this.httpClient.get<Doctor[]>(this.url+'/listar');
+    obtenerListaPersona(): Observable<Libreta[]>{
+      return this.httpClient.get<Libreta[]>(this.url+'/listar');
     }  
-    Buscarid(id:number): Observable<Doctor>{
-      return this.httpClient.get<Doctor>(this.url+'/listar/'+id);
+    Buscarid(id:number): Observable<Libreta>{
+      return this.httpClient.get<Libreta>(this.url+'/listar/'+id);
     }
     
     eliminarPersona(id:number): Observable<object>{
       return this.httpClient.delete(this.url+'/eliminar/'+id);
     }
     
-    registrarPersona(doctor:Doctor): Observable<Object>{
-    return this.httpClient.post(this.url+'/crear',doctor);
+    registrarPersona(libreta:Libreta): Observable<Object>{
+    return this.httpClient.post(this.url+'/crear',libreta);
     }
     
     // actualizarpaciente(id:number): Observable<Paciente>{

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { routes } from 'src/app/shared/routes/routes';
 import { Libreta } from '../libreta';
 import { AuthService } from 'src/app/shared/auth/auth.service';
-import { LibretaService } from '../libreta.service';
+import { LibretaService } from '../../services/libreta.service';
 import { Router } from '@angular/router';
 interface data {
   value: string ;

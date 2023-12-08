@@ -5,9 +5,10 @@ import { DataService } from 'src/app/shared/data/data.service';
 import { pageSelection, apiResultFormat, providentFund } from 'src/app/shared/models/models';
 import { routes } from 'src/app/shared/routes/routes';
 import { Oftamologia } from '../oftamologia';
-import { OftamologiaService } from '../oftamologia.service';
+
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { Router } from '@angular/router';
+import { OftamologiaService } from '../../services/oftamologia.service';
 
 @Component({
   selector: 'app-provident-fund',

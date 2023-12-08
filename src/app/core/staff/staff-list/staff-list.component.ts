@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/shared/auth/auth.service';
 import { DataService } from 'src/app/shared/data/data.service';
 import { apiResultFormat, pageSelection, staffList } from 'src/app/shared/models/models';
 import { routes } from 'src/app/shared/routes/routes';
-import { AntropometriaService } from '../antropometria.service';
+import { AntropometriaService } from '../../services/antropometria.service';
 import { Router } from '@angular/router';
 import { Antropometria } from '../antropometria';
 import { Paciente } from '../../patient/paciente';

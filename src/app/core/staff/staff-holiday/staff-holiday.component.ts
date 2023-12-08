@@ -7,7 +7,7 @@ import { DataService } from 'src/app/shared/data/data.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { Antropometria } from '../antropometria';
-import { AntropometriaService } from '../antropometria.service';
+import { AntropometriaService } from '../../services/antropometria.service';
 
 @Component({
   selector: 'app-staff-holiday',

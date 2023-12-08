@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { routes } from 'src/app/shared/routes/routes';
 import { Paciente } from '../../patient/paciente';
-import { patientService } from '../../patient/patient.service';
+import { patientService } from '../../services/patient.service';
+
 
 @Component({
   selector: 'app-email-settings',

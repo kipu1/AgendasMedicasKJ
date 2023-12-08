@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, tap } from 'rxjs';
-import { Paciente } from './paciente';
+import { Paciente } from '../patient/paciente';
+
 
 
 

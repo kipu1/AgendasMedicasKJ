@@ -8,9 +8,10 @@ import { DataService } from 'src/app/shared/data/data.service';
 import { Turno } from './turno';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth/auth.service';
-import { TurnoService } from './turno.service';
+
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import { formatDate } from '@angular/common';
+import { TurnoService } from '../services/turno.service';
 
 @Component({
   selector: 'app-calendar',

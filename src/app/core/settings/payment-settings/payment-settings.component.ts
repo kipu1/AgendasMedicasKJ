@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { routes } from 'src/app/shared/routes/routes';
 import { Paciente } from '../../patient/paciente';
 import { AuthService } from 'src/app/shared/auth/auth.service';
-import { patientService } from '../../patient/patient.service';
+
 import { Router } from '@angular/router';
+import { patientService } from '../../services/patient.service';
 
 @Component({
   selector: 'app-payment-settings',

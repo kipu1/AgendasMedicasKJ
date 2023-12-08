@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnChanges, OnInit, SimpleChanges, TemplateRef
 import { routes } from 'src/app/shared/routes/routes';
 import { Odontologia } from '../odontologia';
 import { AuthService } from 'src/app/shared/auth/auth.service';
-import { OdontologiaService } from '../odontologia.service';
+import { OdontologiaService } from '../../services/odontologia.service';
 import { Router } from '@angular/router';
 
 @Component({

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { routes } from 'src/app/shared/routes/routes';
 import { Paciente } from '../../patient/paciente';
-import { patientService } from '../../patient/patient.service';
+
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { Router } from '@angular/router';
+import { patientService } from '../../services/patient.service';
 
 interface data {
   value: string ;

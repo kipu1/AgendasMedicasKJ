@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { routes } from 'src/app/shared/routes/routes';
-import { patientService } from '../patient.service';
+
 import { Paciente } from '../paciente';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
+import { patientService } from '../../services/patient.service';
 interface data {
   value: string ;
 }

@@ -4,11 +4,12 @@ import { MatTableDataSource } from "@angular/material/table";
 import { pageSelection, apiResultFormat  } from 'src/app/shared/models/models';
 import { Sort } from '@angular/material/sort';
 import { DataService } from 'src/app/shared/data/data.service';
-import { patientService } from '../patient.service';
+
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { Router } from '@angular/router';
 import { Paciente } from '../paciente';
 import { DatePipe } from '@angular/common';
+import { patientService } from '../../services/patient.service';
 
 
 @Component({

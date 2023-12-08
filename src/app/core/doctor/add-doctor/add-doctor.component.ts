@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { routes } from 'src/app/shared/routes/routes';
 import { Doctor } from '../doctor';
 import { AuthService } from 'src/app/shared/auth/auth.service';
-import { DoctorService } from '../doctor.service';
+import { DoctorService } from '../../services/doctor.service';
 import { Router } from '@angular/router';
 interface data {
   value: string ;

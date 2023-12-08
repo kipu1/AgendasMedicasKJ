@@ -4,10 +4,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from 'src/app/shared/data/data.service';
 import { pageSelection, apiResultFormat, payments } from 'src/app/shared/models/models';
 import { routes } from 'src/app/shared/routes/routes';
-import { OftamologiaService } from '../oftamologia.service';
+
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { Oftamologia } from '../oftamologia';
 import { Router } from '@angular/router';
+import { OftamologiaService } from '../../services/oftamologia.service';
 interface data {
   value: string ;
 }

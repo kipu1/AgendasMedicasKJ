@@ -5,7 +5,7 @@ import { DataService } from 'src/app/shared/data/data.service';
 import { pageSelection, apiResultFormat, departmentList } from 'src/app/shared/models/models';
 import { routes } from 'src/app/shared/routes/routes';
 import { Odontologia } from '../odontologia';
-import { OdontologiaService } from '../odontologia.service';
+import { OdontologiaService } from '../../services/odontologia.service';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { Router } from '@angular/router';
 

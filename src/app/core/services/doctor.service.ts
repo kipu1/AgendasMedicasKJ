@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Odontologia } from './odontologia';
+import { Doctor } from '../doctor/doctor';
 
 
 
@@ -9,34 +9,34 @@ import { Odontologia } from './odontologia';
 @Injectable({
   providedIn: 'root'
 })
-export class OdontologiaService {
+export class DoctorService {
   //esta url obtiene el listado de las maquinas en el backend
-  url: string = 'http://localhost:8080/api/odontologia';
+  url: string = 'http://localhost:8080/api/doctor';
   constructor(private httpClient : HttpClient) { }
  
  
 
-  actualizarPersona( id:number,paciente: Odontologia): Observable<object> {
-    return this.httpClient.put(this.url + '/actualizar/'+id, paciente);
+  actualizarPersona( id:number,doctor: Doctor): Observable<object> {
+    return this.httpClient.put(this.url + '/actualizar/'+id, doctor);
   }
-    guardarPersona(paciente: any) {
-      return this.httpClient.post(this.url+'/listar', paciente);
+    guardarPersona(doctor: any) {
+      return this.httpClient.post(this.url+'/listar', doctor);
     }
     
       //este metodo trae las maquinas
-    obtenerListaPersona(): Observable<Odontologia[]>{
-      return this.httpClient.get<Odontologia[]>(this.url+'/listar');
+    obtenerListaPersona(): Observable<Doctor[]>{
+      return this.httpClient.get<Doctor[]>(this.url+'/listar');
     }  
-    Buscarid(id:number): Observable<Odontologia>{
-      return this.httpClient.get<Odontologia>(this.url+'/listar/'+id);
+    Buscarid(id:number): Observable<Doctor>{
+      return this.httpClient.get<Doctor>(this.url+'/listar/'+id);
     }
     
     eliminarPersona(id:number): Observable<object>{
       return this.httpClient.delete(this.url+'/eliminar/'+id);
     }
     
-    registrarPersona(paciente:Odontologia): Observable<Object>{
-    return this.httpClient.post(this.url+'/crear',paciente);
+    registrarPersona(doctor:Doctor): Observable<Object>{
+    return this.httpClient.post(this.url+'/crear',doctor);
     }
     
     // actualizarpaciente(id:number): Observable<Paciente>{

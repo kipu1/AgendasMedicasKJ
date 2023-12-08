@@ -5,7 +5,7 @@ import { Sort } from '@angular/material/sort';
 import { MatTableDataSource } from "@angular/material/table";
 import { pageSelection, apiResultFormat, doctorlist } from 'src/app/shared/models/models';
 import { Doctor } from '../doctor';
-import { DoctorService } from '../doctor.service';
+import { DoctorService } from '../../services/doctor.service';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { Router } from '@angular/router';
 
