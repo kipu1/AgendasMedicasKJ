@@ -32,7 +32,10 @@ export class AddPatientComponent {
   errores = {
     apellido: '',
     nombre: '',
-    documento: ''
+    documento: '',
+    civil: '',
+    tipodocumento:'',
+    fechanacimiento: ''
   };
   constructor(private auth: AuthService, private personaServicio: patientService, private router: Router, private sanitizer: DomSanitizer) { }
 
@@ -269,7 +272,21 @@ vvalidarCampos(): boolean {
   } else {
     this.errores.documento = '';
   }
-
+  if (!this.paciente.civil) {
+    this.errores.civil = 'Por favor, seleccione un estado civil.';
+  } else {
+    this.errores.civil = '';
+  }
+  if (!this.paciente.tipodocumento) {
+    this.errores.tipodocumento = 'Por favor, seleccione el tipo de documento.';
+  } else {
+    this.errores.tipodocumento = '';
+  }
+  if (!this.paciente.fechanacimiento) {
+    this.errores.fechanacimiento = 'Por favor, seleccione la fecha de nacimiento.';
+  } else {
+    this.errores.fechanacimiento = '';
+  }
   return camposInvalidos;
 }
 limpiarErrores(campo: string): void {
@@ -279,7 +296,14 @@ limpiarErrores(campo: string): void {
     this.errores.nombre = '';
   }else if (campo === 'documento') {
     this.errores.documento = '';
+  }else if (campo === 'civil') {
+    this.errores.civil = '';
+  }else if (campo === 'tipodocumento') {
+    this.errores.tipodocumento = '';
+  }else if (campo === 'fechanacimiento') {
+    this.errores.fechanacimiento = '';
   }
+  
 }
   onSubmit() {
     this.guardarPersona();

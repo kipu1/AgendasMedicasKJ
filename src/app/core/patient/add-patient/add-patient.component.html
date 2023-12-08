@@ -99,7 +99,7 @@
 
                                         <mat-select id="tipodocumento" name="tipodocumento"
                                             [(ngModel)]="paciente.tipodocumento" placeholder=""
-                                            class="form-control select" placeholder="Seleccione">
+                                            class="form-control select" placeholder="Seleccione"  (ngModelChange)="limpiarErrores('tipodocumento')">
                                             <mat-option value="CC">CC</mat-option>
                                             <mat-option value="CDI">CDI</mat-option>
                                             <mat-option value="CI">CI</mat-option>
@@ -122,6 +122,7 @@
                                             <mat-option value="RUN">RUN</mat-option>
                                             <mat-option value="RUT">RUT</mat-option>
                                         </mat-select>
+                                        <div *ngIf="errores.civil" class="texti">{{ errores.tipodocumento }}</div>
                                     </div>
                                 </div>
 
@@ -134,33 +135,36 @@
                                             <div *ngIf="errores.documento"  class="texti">{{ errores.documento }}</div>
                                           </div>
                                         </div>
-                                <div class="col-12 col-md-6 col-xl-3">
-                                    <div class="form-group local-forms">
-                                        <label>Estado civil <span class="login-danger">*</span></label>
+                                        <div class="col-12 col-md-6 col-xl-4">
+                                            <div class="form-group local-forms">
+                                              <label>Estado Civil <span class="login-danger">*</span></label>
+                                              <mat-select id="civil" name="civil" [(ngModel)]="paciente.civil" class="form-control select" placeholder="Seleccione"
+                                                          (ngModelChange)="limpiarErrores('civil')">
+                                                <mat-option value="Soltero">Soltero</mat-option>
+                                                <mat-option value="Casado">Casado</mat-option>
+                                                <mat-option value="Divorciado">Divorciado</mat-option>
+                                                <mat-option value="Viudo">Viudo</mat-option>
+                                                <mat-option value="Unión libre">Unión libre</mat-option>
+                                              </mat-select>
+                                              <!-- Mensajes de error -->
+                                              <div *ngIf="errores.civil" class="texti">{{ errores.civil }}</div>
+                                            </div>
+                                          </div>
 
-                                        <mat-select id="civil" name="civil" [(ngModel)]="paciente.civil"
-                                            class="form-control select" placeholder="Seleccione">
-                                            <mat-option value="Soltero">Soltero</mat-option>
-                                            <mat-option value="Casado">Casado</mat-option>
-                                            <mat-option value="Divorciado">Divorciado</mat-option>
-                                            <mat-option value="Viudo">Viudo</mat-option>
-                                            <mat-option value="Unión libre">Unión libre</mat-option>
-                                            <!-- Agrega más estados civiles aquí -->
-                                        </mat-select>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-md-6 col-xl-3">
-                                    <div class="form-group local-forms">
-                                        <label>Fecha de nacimiento <span class="login-danger">*</span></label>
-                                        <input class="form-control datetimepicker" type="text" placeholder="" matInput
-                                            [matDatepicker]="picker" [(ngModel)]="paciente.fechanacimiento"
-                                            name="fechanacimiento">
-
-                                        <mat-datepicker #picker></mat-datepicker>
-                                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                                    </div>
-                                </div>
+                                          <div class="col-12 col-md-6 col-xl-3">
+                                            <div class="form-group local-forms">
+                                              <label>Fecha de nacimiento <span class="login-danger">*</span></label>
+                                              <input class="form-control datetimepicker" type="text" placeholder="" matInput
+                                                     [matDatepicker]="picker" [(ngModel)]="paciente.fechanacimiento" name="fechanacimiento"
+                                                     (input)="limpiarErrores('fechanacimiento')"
+                                                     (ngModelChange)="limpiarErrores('fechanacimiento')">
+                                              <mat-datepicker #picker></mat-datepicker>
+                                              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                              <!-- Mensajes de error -->
+                                              <div *ngIf="errores.fechanacimiento" class="texti">{{ errores.fechanacimiento }}</div>
+                                            </div>
+                                          </div>
+                                          
 
                                 <div class="col-12 col-md-6 col-xl-3">
                                     <div class="form-group local-forms">
