@@ -80,7 +80,7 @@
                                       <input class="form-control" type="text" placeholder="" id="apellido" name="apellido" [(ngModel)]="paciente.apellido"
                                         (input)="limpiarErrores('apellido')">
                                       <!-- Mensaje de error solo si el usuario ha intentado guardar sin completar el campo -->
-                                      <div *ngIf="errores.apellido" class="text-danger">{{ errores.apellido }}</div>
+                                      <div *ngIf="errores.apellido" class="texti">{{ errores.apellido }}</div>
                                     </div>
                                   </div>
                                   
@@ -90,7 +90,7 @@
                                       <input class="form-control" type="text" placeholder="" id="nombre" name="nombre" [(ngModel)]="paciente.nombre"
                                         (input)="limpiarErrores('nombre')">
                                       <!-- Mensaje de error solo si el usuario ha intentado guardar sin completar el campo -->
-                                      <div *ngIf="errores.nombre" class="text-danger">{{ errores.nombre }}</div>
+                                      <div *ngIf="errores.nombre"  class="texti">{{ errores.nombre }}</div>
                                     </div>
                                   </div>
                                 <div class="col-12 col-md-6 col-xl-3">
@@ -129,9 +129,11 @@
                                     <div class="form-group local-forms">
                                         <label>Documento <span class="login-danger">*</span></label>
                                         <input class="form-control" type="text" placeholder="" id="documento"
-                                            name="documento" [(ngModel)]="paciente.documento">
-                                    </div>
-                                </div>
+                                            name="documento" [(ngModel)]="paciente.documento"  (input)="limpiarErrores('documento')">
+                                            <!-- Mensaje de error solo si el usuario ha intentado guardar sin completar el campo -->
+                                            <div *ngIf="errores.documento"  class="texti">{{ errores.documento }}</div>
+                                          </div>
+                                        </div>
                                 <div class="col-12 col-md-6 col-xl-3">
                                     <div class="form-group local-forms">
                                         <label>Estado civil <span class="login-danger">*</span></label>

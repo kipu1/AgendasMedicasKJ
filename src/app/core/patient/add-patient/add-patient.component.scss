@@ -12,3 +12,9 @@ app-localization-details[hidden] {
   height: auto;
   /* Hacer que la altura se ajuste automáticamente mientras se respeta el máximo */
 }
+.texti{
+  color: #e87d7d; /* Color rojo similar al utilizado por Bootstrap para errores */
+  font-size: 12px; /* Tamaño de la fuente */
+  font-weight: bold; /* Peso de la fuente */
+  margin-top: 10px; /* Espaciado superior para separar del campo de entrada */
+}

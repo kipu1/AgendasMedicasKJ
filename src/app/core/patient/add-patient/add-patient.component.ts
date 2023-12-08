@@ -31,7 +31,8 @@ export class AddPatientComponent {
   showModalWhatsapp: boolean = false;
   errores = {
     apellido: '',
-    nombre: ''
+    nombre: '',
+    documento: ''
   };
   constructor(private auth: AuthService, private personaServicio: patientService, private router: Router, private sanitizer: DomSanitizer) { }
 
@@ -262,6 +263,12 @@ vvalidarCampos(): boolean {
   } else {
     this.errores.nombre = '';
   }
+  if (!this.paciente.documento) {
+    this.errores.documento = 'Ingrese la cedula';
+    camposInvalidos = true;
+  } else {
+    this.errores.documento = '';
+  }
 
   return camposInvalidos;
 }
@@ -270,6 +277,8 @@ limpiarErrores(campo: string): void {
     this.errores.apellido = '';
   } else if (campo === 'nombre') {
     this.errores.nombre = '';
+  }else if (campo === 'documento') {
+    this.errores.documento = '';
   }
 }
   onSubmit() {
