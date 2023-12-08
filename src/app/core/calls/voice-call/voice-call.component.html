@@ -27,26 +27,31 @@
                                     </div>
                                 </div>
                               
-                                
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                       <label>Medicamento <span class="login-danger">*</span></label>
                                       <input type="text" placeholder="Buscar medicamento" (input)="onSearchChange($event)" class="form-control" />
-                                      <mat-select id="medicamento" name="medicamento"  [(ngModel)]="vademecum.medicamento" (ngModelChange)="onChangeMedicamento()" placeholder="Seleccione" class="form-control select">
+                                  
+                                      <mat-select id="medicamento" name="medicamento"  [(ngModel)]="vademecum.medicamento" (ngModelChange)="onChangeMedicamento()" placeholder="Seleccione" class="form-control select"  (ngModelChange)="limpiarErrores('medicamento')">
                                         <mat-option *ngFor="let opcion of medicamentosFiltrados" [value]="opcion">{{ opcion }}</mat-option>
                                       </mat-select>
+                                  
+                                      <div *ngIf="errores.medicamento" class="texti">{{ errores.medicamento }}</div>
                                     </div>
                                   </div>
                                   
+                                  
 
-                                <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
-                                        <label>Stock <span class="login-danger">*</span></label>
-
-                                        <input class="form-control" type="number" placeholderstock id="stock"
-                                            name="stock" [(ngModel)]="vademecum.stock">
+                                      <label>Stock <span class="login-danger">*</span></label>
+                                  
+                                      <input class="form-control" type="text" placeholder="Stock" id="stock" name="stock" [(ngModel)]="vademecum.stock" (input)="validarInput($event)">
+                                      <div *ngIf="errores.stock" class="texti">{{ errores.stock }}</div>
                                     </div>
-                                </div>
+                                  </div>
+                                  
+                                  
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Nombre <span class="login-danger">*</span></label>
@@ -123,8 +128,7 @@
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
 
-                                        <button type="submit" class="btn btn-primary submit-form me-2"
-                                        [routerLink]="routes.videoCall"    (click)="guardardoctor()" >Guardar</button>
+                                        <button type="submit" class="btn btn-primary submit-form me-2" (click)="guardardoctor()">Guardar</button>
 
                                         <button type="submit" class="btn btn-primary cancel-form" [routerLink]="routes.videoCall"
                                             >Lista</button>

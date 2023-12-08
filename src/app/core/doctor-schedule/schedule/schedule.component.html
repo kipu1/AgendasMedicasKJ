@@ -26,7 +26,7 @@
                             <div class="row align-items-center">
                                 <div class="col">
                                     <div class="doctor-table-blk">
-                                        <h3>Schedule List</h3>
+                                        <h3>Lista proveedor</h3>
                                         <div class="doctor-search-blk">
                                             <div class="top-nav-search table-search-blk">
                                                     <input  class="form-control" placeholder="Search here" [(ngModel)]="searchDataValue"
@@ -35,7 +35,9 @@
                                             </div>
                                             <div class="add-group">
                                                 <a [routerLink]="routes.addSchedule" class="btn btn-primary add-pluss ms-2"><img src="assets/img/icons/plus.svg" alt=""></a>
-                                                <a href="javascript:;" class="btn btn-primary doctor-refresh ms-2"><img src="assets/img/icons/re-fresh.svg" alt=""></a>
+                                                <a href="javascript:;" class="btn btn-primary doctor-refresh ms-2" (click)="recargarPagina()">
+                                                  <img src="assets/img/icons/re-fresh.svg" alt="">
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -80,9 +82,17 @@
                     </div>
 
                     <td>
-                      <button class="dropdown-item" (click)="eliminarPersona(libretas.id)"
-                        class="btn btn-custom"><i class="fa fa-trash-alt m-r-5"></i>
-
+                      <div id="customAlert" class="custom-alert">
+                        <div class="alert-content">
+                          <p id="alertMessage"></p>
+                          <button type="submit" class="btn btn-primary submit-form me-2" id="confirmButton">Aceptar</button>
+                          <button type="submit" class="btn btn-primary submit-form me-2" id="cancelButton">Cancelar</button>
+                        </div>
+                      </div>
+                      
+                      <!-- Tu botón para eliminar -->
+                      <button class="dropdown-item btn btn-custom" (click)="eliminarPersona(libretas.id)">
+                        <i class="fa fa-trash-alt m-r-5"></i>
                       </button>
                     </td>
                                     </tr>

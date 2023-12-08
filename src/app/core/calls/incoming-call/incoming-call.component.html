@@ -39,14 +39,14 @@
                                   </div>
                                   
 
-                                <div class="col-12 col-md-6 col-xl-4">
+                                  <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
-                                        <label>Stock <span class="login-danger">*</span></label>
-
-                                        <input class="form-control" type="number" placeholderstock id="stock"
-                                            name="stock" [(ngModel)]="vademecum.stock">
+                                      <label>Stock <span class="login-danger">*</span></label>
+                                  
+                                      <input class="form-control" type="text" placeholder="Stock" id="stock" name="stock" [(ngModel)]="vademecum.stock" (input)="validarInput($event)">
+                                      <div *ngIf="errores.stock" class="texti">{{ errores.stock }}</div>
                                     </div>
-                                </div>
+                                  </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Nombre <span class="login-danger">*</span></label>

@@ -48,15 +48,57 @@ export class VideoCallComponent implements OnInit{
     //aqui solo dirige ala pagina de actualizar maquina
     this.router.navigate([routes.incomingCall,{id}]);
   }
+ 
   obtenerPersona(){
     this.odontologiaService.obtenerListaPersona().subscribe(dato => {
   this.vademecum=dato;
     });}
     eliminarPersona(id: number) {
-      this.odontologiaService.eliminarPersona(id).subscribe(() => {
-        this.obtenerPersona(); // Para actualizar la lista después de la eliminación
+      // Mostrar la alerta personalizada
+      this.mostrarAlerta('¿Desea eliminar esta persona?').then((confirmacion) => {
+        // Si el usuario hace clic en "Aceptar" en la alerta personalizada
+        if (confirmacion) {
+          this.odontologiaService.eliminarPersona(id).subscribe(() => {
+            // Actualizar la lista después de eliminar
+            this.obtenerPersona();
+    
+            // Recargar la página después de la eliminación
+           location.reload();
+          });
+        }
       });
     }
+    
+    recargarPagina() {
+      // Recargar la página
+      location.reload();
+    } 
+    mostrarAlerta(mensaje: string): Promise<boolean> {
+      return new Promise<boolean>((resolve) => {
+        const customAlert = document.getElementById('customAlert') as HTMLElement;
+        const alertMessage = document.getElementById('alertMessage') as HTMLElement;
+        const confirmButton = document.getElementById('confirmButton') as HTMLButtonElement;
+        const cancelButton = document.getElementById('cancelButton') as HTMLButtonElement;
+    
+        // Configurar el mensaje
+        alertMessage.innerText = mensaje;
+    
+        // Mostrar la alerta
+        customAlert.style.display = 'flex';
+    
+        // Configurar eventos de los botones
+        confirmButton.onclick = () => {
+          customAlert.style.display = 'none';
+          resolve(true);
+        };
+    
+        cancelButton.onclick = () => {
+          customAlert.style.display = 'none';
+          resolve(false);
+        };
+      });
+    }
+    
   
   private getTableData(): void {
     this.vademecum = [];

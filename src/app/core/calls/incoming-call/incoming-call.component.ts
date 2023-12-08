@@ -17,6 +17,11 @@ export class IncomingCallComponent {
   vademecums: Vademecum[] = [];
   validador: boolean = false;
   id!: number;
+  errores = {
+   
+  
+    stock: ''
+  };
   // identificacion: String;
   //change components
   // medicamentosIndicaciones: { [key: string]: string } = {
@@ -31,7 +36,19 @@ export class IncomingCallComponent {
   // };
   
 
+  validarInput(event: any) {
+    const input = event.target;
+    const inputValue = input.value;
   
+    // Validar si el valor es un número positivo
+    if (!/^\d*$/.test(inputValue) || inputValue.includes('-')) {
+      this.errores.stock = 'Ingrese un número positivo.';
+      // Filtrar los caracteres no válidos (eliminar el último caracter ingresado)
+      input.value = inputValue.slice(0, -1);
+    } else {
+      this.errores.stock = '';
+    }
+  }
   onChangeMedicamento() {
     switch (this.vademecum.medicamento) {
       case 'Clinadol Forte':

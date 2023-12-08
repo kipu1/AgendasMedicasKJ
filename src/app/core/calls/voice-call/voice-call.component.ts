@@ -16,6 +16,11 @@ export class VoiceCallComponent {
   vademecum: Vademecum = new Vademecum();
   vademecums: Vademecum[] = [];
   validador: boolean = false;
+  errores = {
+   
+    medicamento: '',
+    stock: ''
+  };
   // identificacion: String;
   //change components
   // medicamentosIndicaciones: { [key: string]: string } = {
@@ -1092,6 +1097,11 @@ export class VoiceCallComponent {
  
 
   guardardoctor() {
+    if (this.vvalidarCampos()) {
+      // Mostrar un mensaje de error o realizar otra acción
+      return;
+    }
+    
     console.log(this.vademecum); // Verificar los valores de los campos
 
     var nombre = this.vademecum.medicamento;
@@ -1140,9 +1150,49 @@ export class VoiceCallComponent {
 
   }
 
-
-
-  onSubmit() {
-    this.guardardoctor();
+  validarInput(event: any) {
+    const input = event.target;
+    const inputValue = input.value;
+  
+    // Validar si el valor es un número positivo
+    if (!/^\d*$/.test(inputValue) || inputValue.includes('-')) {
+      this.errores.stock = 'Ingrese un número positivo.';
+      // Filtrar los caracteres no válidos (eliminar el último caracter ingresado)
+      input.value = inputValue.slice(0, -1);
+    } else {
+      this.errores.stock = '';
+    }
   }
+  vvalidarCampos(): boolean {
+    
+    let camposInvalidos = false;
+    
+    if (!this.vademecum.medicamento) {
+      this.errores.medicamento = 'Ingrese el medicamento';
+      camposInvalidos = true;
+    } else {
+      this.errores.medicamento = '';
+    }
+  
+   
+    return camposInvalidos;
+  }
+  limpiarErrores(campo: string): void {
+    if (campo === 'medicamento') {
+      this.errores.medicamento = '';
+    } 
+  
+    
+  }
+  
+    onSubmit() {
+      if (!this.vvalidarCampos()) {
+        // Si la validación falla, no continuar con el envío
+        return;
+      }
+     
+      // Resto del código para guardar el paciente
+      this.guardardoctor();
+    
+    }
 }

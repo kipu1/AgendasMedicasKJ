@@ -57,8 +57,47 @@ export class ProvidentFundComponent implements OnInit {
   this.oftamologia=dato;
     });}
     eliminarPersona(id: number) {
-      this.oftamologiaService.eliminarPersona(id).subscribe(() => {
-        this.obtenerdoctor(); // Para actualizar la lista después de la eliminación
+      // Mostrar la alerta personalizada
+      this.mostrarAlerta('¿Desea eliminar?').then((confirmacion) => {
+        // Si el usuario hace clic en "Aceptar" en la alerta personalizada
+        if (confirmacion) {
+          this.oftamologiaService.eliminarPersona(id).subscribe(() => {
+            // Actualizar la lista después de eliminar
+            this.obtenerdoctor();
+    
+            // Recargar la página después de la eliminación
+            window.location.reload();
+          });
+        }
+      });
+    }
+    recargarPagina() {
+      // Recargar la página
+      location.reload();
+    }
+    mostrarAlerta(mensaje: string): Promise<boolean> {
+      return new Promise<boolean>((resolve) => {
+        const customAlert = document.getElementById('customAlert') as HTMLElement;
+        const alertMessage = document.getElementById('alertMessage') as HTMLElement;
+        const confirmButton = document.getElementById('confirmButton') as HTMLButtonElement;
+        const cancelButton = document.getElementById('cancelButton') as HTMLButtonElement;
+    
+        // Configurar el mensaje
+        alertMessage.innerText = mensaje;
+    
+        // Mostrar la alerta
+        customAlert.style.display = 'flex';
+    
+        // Configurar eventos de los botones
+        confirmButton.onclick = () => {
+          customAlert.style.display = 'none';
+          resolve(true);
+        };
+    
+        cancelButton.onclick = () => {
+          customAlert.style.display = 'none';
+          resolve(false);
+        };
       });
     }
     actualizarPersona(id:number){

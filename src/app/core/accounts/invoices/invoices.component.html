@@ -35,11 +35,12 @@
                                                             alt=""></a>
                                             </div>
                                             <div class="add-group">
-                                                <a [routerLink]="routes.createInvoice"
+                                                <!-- <a [routerLink]="routes.createInvoice"
                                                     class="btn btn-primary add-pluss ms-2"><img
-                                                        src="assets/img/icons/plus.svg" alt=""></a>
-                                                <a href="javascript:;" class="btn btn-primary doctor-refresh ms-2"><img
-                                                        src="assets/img/icons/re-fresh.svg" alt=""></a>
+                                                        src="assets/img/icons/plus.svg" alt=""></a> -->
+                                                        <a href="javascript:;" class="btn btn-primary doctor-refresh ms-2" (click)="recargarPagina()">
+                                                          <img src="assets/img/icons/re-fresh.svg" alt="">
+                                                        </a>
                                             </div>
                                         </div>
                                     </div>

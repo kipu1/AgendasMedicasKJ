@@ -61,6 +61,10 @@ export class InvoicesComponent  implements OnInit{
     window.open(whatsappURL, "_blank");
     this.showModalWhatsapp = false;
   }
+  recargarPagina() {
+    // Recargar la página
+    location.reload();
+  } 
   obtenerdoctor(){
     this.doctorservice.obtenerListaPersona().subscribe(dato => {
   this.doctor=dato;

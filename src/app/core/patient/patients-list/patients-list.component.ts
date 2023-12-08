@@ -117,13 +117,16 @@ export class PatientsListComponent implements OnInit {
             this.obtenerPersona();
     
             // Recargar la página después de la eliminación
-            window.location.reload();
+           location.reload();
           });
         }
       });
     }
     
-    
+    recargarPagina() {
+      // Recargar la página
+      location.reload();
+    } 
     mostrarAlerta(mensaje: string): Promise<boolean> {
       return new Promise<boolean>((resolve) => {
         const customAlert = document.getElementById('customAlert') as HTMLElement;
