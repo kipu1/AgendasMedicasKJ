@@ -252,7 +252,7 @@ export class AddPatientComponent {
 
 vvalidarCampos(): boolean {
   let camposInvalidos = false;
-
+  
   if (!this.paciente.apellido) {
     this.errores.apellido = 'Ingrese el apellido';
     camposInvalidos = true;
@@ -285,6 +285,19 @@ vvalidarCampos(): boolean {
   if (!this.paciente.fechanacimiento) {
     this.errores.fechanacimiento = 'Por favor, seleccione la fecha de nacimiento.';
   } else {
+    if (!this.paciente.documento) {
+      this.errores.documento = 'Ingrese la cedula';
+      camposInvalidos = true;
+    } else {
+      // Verificar si la cédula ya está registrada
+      const cedulaExistente = this.pacientes.some(p => p.documento === this.paciente.documento);
+      if (cedulaExistente) {
+        this.errores.documento = 'El número de cédula ya está registrado.';
+        camposInvalidos = true;
+      } else {
+        this.errores.documento = '';
+      }
+    }
     this.errores.fechanacimiento = '';
   }
   return camposInvalidos;
@@ -305,7 +318,26 @@ limpiarErrores(campo: string): void {
   }
   
 }
+verificarCedulaExistente() {
+  // Realiza la llamada al servicio para verificar si la cédula ya está registrada
+  this.personaServicio.Buscarid(this.paciente.id).subscribe(
+    (respuesta: any) => {
+      if (respuesta.existe) {
+        this.errores.documento = 'El número de cédula ya está registrado.';
+      }
+    },
+    (error: any) => {
+      console.error('Error al verificar la cédula:', error);
+    }
+  );
+}
   onSubmit() {
+    if (!this.vvalidarCampos()) {
+      // Si la validación falla, no continuar con el envío
+      return;
+    }
+
+    // Resto del código para guardar el paciente
     this.guardarPersona();
   }
 }

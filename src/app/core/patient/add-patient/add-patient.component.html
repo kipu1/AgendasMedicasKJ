@@ -128,13 +128,19 @@
 
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
-                                        <label>Documento <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" placeholder="" id="documento"
-                                            name="documento" [(ngModel)]="paciente.documento"  (input)="limpiarErrores('documento')">
-                                            <!-- Mensaje de error solo si el usuario ha intentado guardar sin completar el campo -->
-                                            <div *ngIf="errores.documento"  class="texti">{{ errores.documento }}</div>
-                                          </div>
-                                        </div>
+                                      <label>Documento <span class="login-danger">*</span></label>
+                                      <input class="form-control" type="text" placeholder="" id="documento" name="documento"
+                                        [(ngModel)]="paciente.documento" (blur)="verificarCedulaExistente()" (input)="limpiarErrores('documento')">
+                                  
+                                      <!-- Mensaje de error solo si el usuario ha intentado guardar sin completar el campo -->
+                                      <div *ngIf="errores.documento" class="texti">
+                                        {{ errores.documento }}
+                                        <!-- Mostrar mensaje adicional si el número de cédula ya está registrado -->
+                                        <span *ngIf="errores.documento === 'El número de cédula ya está registrado.'">Por favor, ingrese un número de cédula único.</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
                                         <div class="col-12 col-md-6 col-xl-4">
                                             <div class="form-group local-forms">
                                               <label>Estado Civil <span class="login-danger">*</span></label>
