@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/shared/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
 import { patientService } from '../../services/patient.service';
+import { DomSanitizer } from '@angular/platform-browser';
 interface data {
   value: string ;
 }
@@ -25,7 +26,7 @@ export class EditPatientComponent {
 
   // identificacion: String;
    pacienteActualizado= new Paciente ();
-  constructor(private auth: AuthService, private pacienteService: patientService, private router: Router,private route: ActivatedRoute) { }
+  constructor(private auth: AuthService, private pacienteService: patientService, private router: Router,private route: ActivatedRoute,private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
 
@@ -47,7 +48,28 @@ export class EditPatientComponent {
       // Restablecer los valores del objeto this.paciente
     
   }
-  
+  onFileChange(event: any): void {
+    const file = event.target.files[0];
+
+    if (file) {
+      this.pacienteService.subirOActualizarFoto(null, file).subscribe(
+        (response: any) => {
+          const imageUrl = response.url;
+          this.paciente.foto = imageUrl;
+        },
+        (error: any) => {
+          console.error('Error al subir o actualizar la imagen', error);
+        }
+      );
+    }
+  }
+
+
+  // Método para obtener la URL segura (trusted) para la imagen
+  obtenerUrlSegura(url: string): any {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
+  }
+
   public redirectMessage(phoneNumber: string): void {
     // Reemplaza el "0" al principio del número con "593"
     const formattedPhoneNumber: string = phoneNumber.replace(/^0/, '593');

@@ -58,20 +58,34 @@ export class patientService {
     
     //   return this.httpClient.post(this.url + '/crear', formData, { headers });
     // }
-    subirImagen(formData: FormData): Observable<object> {
-      return this.httpClient.post(`${this.url}/upload`, formData).pipe(
+    // subirImagen(formData: FormData): Observable<object> {
+    //   return this.httpClient.post(`${this.url}/upload`, formData).pipe(
+    //     tap(response => console.log('Respuesta del servidor:', response)),
+    //     catchError(error => {
+    //       console.error('Error en la carga de la imagen:', error);
+    //       throw error;
+    //     })
+    //   );
+    // }
+    // actualizarFoto(id: number, file: File): Observable<any> {
+    //   const formData = new FormData();
+    //   formData.append('file', file);
+  
+    //   return this.httpClient.post<any>(`${this.url}/upload/${id}`, formData);
+    // }
+    subirOActualizarFoto(id: number | null, file: File): Observable<object> {
+      const formData = new FormData();
+      formData.append('file', file);
+    
+      const url = id ? `${this.url}/upload/${id}` : `${this.url}/upload`;
+    
+      return this.httpClient.post(url, formData).pipe(
         tap(response => console.log('Respuesta del servidor:', response)),
         catchError(error => {
           console.error('Error en la carga de la imagen:', error);
           throw error;
         })
       );
-    }
-    actualizarFoto(id: number, file: File): Observable<any> {
-      const formData = new FormData();
-      formData.append('file', file);
-  
-      return this.httpClient.post<any>(`${this.url}/upload/${id}`, formData);
     }
     // descargarArchivo(filename: string): Observable<HttpResponse<Blob>> {
     //   const url = `${this.url}/${filename}`;

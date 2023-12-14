@@ -64,20 +64,18 @@ export class AddPatientComponent {
     const file = event.target.files[0];
 
     if (file) {
-      const formData = new FormData();
-      formData.append('file', file);
-
-      this.personaServicio.subirImagen(formData).subscribe(
+      this.personaServicio.subirOActualizarFoto(null, file).subscribe(
         (response: any) => {
           const imageUrl = response.url;
           this.paciente.foto = imageUrl;
         },
         (error: any) => {
-          console.error('Error al subir la imagen', error);
+          console.error('Error al subir o actualizar la imagen', error);
         }
       );
     }
   }
+
 
   // Método para obtener la URL segura (trusted) para la imagen
   obtenerUrlSegura(url: string): any {
@@ -167,6 +165,7 @@ export class AddPatientComponent {
     var extra10 = this.paciente.extra10;
 
     var comentarios = this.paciente.comentarios;
+    var fotos = this.paciente.foto;
 
 
 
