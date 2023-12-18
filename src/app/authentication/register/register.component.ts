@@ -1,33 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { routes } from 'src/app/shared/routes/routes';
+import { Doctor } from './Models/Doctor';
+import { DoctorService } from './Servicio/doctor.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   public routes = routes;
   public CustomControler!: number | string | boolean ;
   public passwordClass  = false;
   public confirmPasswordClass  = false
   public isValidConfirmPassword = false;
+//
+public doctor: Doctor = new Doctor();
 
   form = new FormGroup({
-    fullName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
-    confirmPassword: new FormControl('', [Validators.required]),
-  });
+    nombre: new FormControl,
+    clavesecreta: new FormControl,
+    comentarios: new FormControl,
+    direccion: new FormControl,
+    especialidad : new FormControl,
+    telefono:new FormControl,
+    nombreUsuario:new FormControl,
+    password: new FormControl,
+    confirmPassword: new FormControl,
+  })
 
   get f() {
     return this.form.controls;
   }
 
-  constructor(private router:Router,private auth: AuthService) { }
+  constructor(private router:Router,private auth: AuthService,private  doctorsService: DoctorService) { }
 
   
   submit() {
@@ -44,4 +55,31 @@ export class RegisterComponent {
   confirmPasswordFunc(){
     this.confirmPasswordClass = !this.confirmPasswordClass
   }
+
+  ngOnInit(): void {
+    
+  }
+
+  /*public create(): void{
+    this.doctorsService.crear(this.doctor).subscribe( 
+      () =>{
+        Swal.fire ('Doctor creado exitosamente' , 'sucess')
+      }
+    )
+  }*/
+
+  public create(): void {
+    this.doctorsService.crear(this.doctor).subscribe(
+      () => {
+        Swal.fire('Doctor creado exitosamente', 'success');
+      },
+      (error) => {
+        Swal.fire('Error al crear el doctor', 'error');
+        console.error(error);
+      }
+    );
+  }
+
+  
+  
 }

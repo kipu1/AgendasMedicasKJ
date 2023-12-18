@@ -13,11 +13,14 @@ export class LoginComponent implements OnInit {
   public passwordClass = false;
 
   form = new FormGroup({
-    email: new FormControl('admin@dreamguys.in', [
+   /* email: new FormControl('jenny', [
       Validators.required,
-      Validators.email,
+      //Validators.email,
     ]),
-    password: new FormControl('123456', [Validators.required]),
+    password: new FormControl('1234', [Validators.required]),*/
+
+    nombreUsuario: new FormControl,
+    clavesecreta: new FormControl
   });
 
   get f() {
@@ -31,12 +34,23 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  loginFormSubmit() {
+  /*loginFormSubmit() {
     if (this.form.valid) {
-      this.auth.login();
+      this.auth.login;
     }
   }
   togglePassword() {
     this.passwordClass = !this.passwordClass;
+  }*/
+
+   public InicioSesion() {
+   // nombre: String, clave: String
+     const nombreUsuario = this.form.get('nombreUsuario')?.value as string;
+     const clavesecreta = this.form.get('clavesecreta')?.value as string;
+    if (nombreUsuario && clavesecreta) {
+      this.auth.login(nombreUsuario,clavesecreta);
+    } else {
+      // Manejar el caso en el que los controles del formulario sean nulos
+    }
   }
 }

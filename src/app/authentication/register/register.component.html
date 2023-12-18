@@ -19,147 +19,181 @@
             <div class="login-right">
               <div class="login-right-wrap">
                 <div class="account-logo">
-                  <a [routerLink]="routes.adminDashboard"
-                    ><img src="assets/img/login-logo.png" alt=""
-                  /></a>
+                  <a [routerLink]="routes.adminDashboard"><img src="assets/img/login-logo.png" alt="" /></a>
                 </div>
-                <h2>Getting Started</h2>
+                <h2>Registro de Doctor</h2>
                 <!-- Form -->
-                <form [formGroup]="form" (ngSubmit)="submit()">
-                  <div class="form-group">
-                    <label>Full Name <span class="login-danger">*</span></label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      formControlName="fullName"
-                      [ngClass]="{
-                        'is-invalid':
-                          f['fullName'].touched && f['fullName'].invalid
-                      }"
-                    />
-                    <div
-                      *ngIf="f['fullName'].touched && f['fullName'].invalid"
-                      class="invalid-feedback"
-                    >
-                      <div
-                        *ngIf="
-                          f['fullName'].errors &&
-                          f['fullName'].errors['required']
-                        "
-                      >
-                        Name is required.
+                <form (ngSubmit) = "create()">
+
+                  
+
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="nombre">Nombre y Apellido</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" [(ngModel)]="doctor.nombre" required>
                       </div>
                     </div>
-                    <div *ngIf="CustomControler !== 0" class="invalid-feedback">
-                      {{ CustomControler }}
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="especialidad">Especialidad</label>
+                        <input type="text" id="especialidad" name="especialidad" class="form-control" [(ngModel)]="doctor.especialidad" required>
+                      </div>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label>Email <span class="login-danger">*</span></label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      formControlName="email"
-                      [ngClass]="{
-                        'is-invalid': f['email'].touched && f['email'].invalid
-                      }"
-                    />
-                    <div
-                      *ngIf="f['email'].touched && f['email'].invalid"
-                      class="invalid-feedback"
-                    >
-                      <div
-                        *ngIf="
-                          f['email'].errors && f['email'].errors['required']
-                        "
-                      >
-                        Email is required.
-                      </div>
-                      <div *ngIf="f['email'].errors && f['email'].errors['email']">
-                        Please, enter valid email address.
+
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="matricula">Matricula</label>
+                        <input type="text" id="matricula" name="matricula" class="form-control" [(ngModel)]="doctor.matricula" required>
                       </div>
                     </div>
-                    <div *ngIf="CustomControler !== 0" class="invalid-feedback">
-                      {{ CustomControler }}
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="direccion">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" [(ngModel)]="doctor.email">
+                      </div>
                     </div>
                   </div>
-                  <div class="form-group">
+
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="telefono">Telefono</label>
+                        <input type="tel" id="telefono" name="telefono" class="form-control" [(ngModel)]="doctor.telefono" required>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="direccion">Dirección</label>
+                        <input type="text" id="direccion" name="direccion" class="form-control" [(ngModel)]="doctor.direccion">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="clave">Clave Secreta</label>
+                        <input type="password" id="clave" name="clave" class="form-control" [(ngModel)]="doctor.clavesecreta" required>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="direccion">Nota Auto</label>
+                        <input type="text" id="direccion" name="direccion" class="form-control" [(ngModel)]="doctor.notaAuto">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="comentarios">Comentarios</label>
+                        <input type="text" id="clave" name="comentarios" class="form-control" [(ngModel)]="doctor.comentarios" required>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="cla">Clave</label>
+                        <input type="password" id="cla" name="cla" class="form-control" [(ngModel)]="doctor.clave">
+                        <span (click)="passwordFunc()"
+                          [ngClass]="passwordClass ? 'feather icon-eye' : 'feather icon-eye-off'"
+                          class="profile-views toggle-password"></span>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="nota">Nota</label>
+                        <input type="text" id="nota" name="nota" class="form-control" [(ngModel)]="doctor.nota" required>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="comparte">Comparte</label>
+                        <input type="text" id="comparte" name="comparte" class="form-control" [(ngModel)]="doctor.comparte">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="cfg">Cfg</label>
+                        <input type="text" id="cfg" name="cfg" class="form-control" [(ngModel)]="doctor.cfg" required>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="cfgsec">Cfgsec</label>
+                        <input type="text" id="cfgsec" name="cfgsec" class="form-control" [(ngModel)]="doctor.cfgsec">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div >
+                    <button  class="btn btn-primary btn-block">
+                      Sign up
+                    </button>
+                  </div>
+
+                  <!-- Contraseña -->
+                  <!--  <div class="form-group">
                     <label>Password <span class="login-danger">*</span></label>
-                    <input
-                      class="form-control pass-input"
-                      [type]="passwordClass ? 'text' : 'password'"
-                      formControlName="password"
-                      [ngClass]="{
+                    <input class="form-control pass-input" [type]="passwordClass ? 'text' : 'password'"
+                      formControlName="password" [ngClass]="{
                         'is-invalid':
                           f['password'].touched && f['password'].invalid
-                      }"
-                    />
-                    <div
-                      *ngIf="f['password'].touched && f['password'].invalid"
-                      class="invalid-feedback"
-                    >
-                      <div
-                        *ngIf="
+                      }" />
+                    <div *ngIf="f['password'].touched && f['password'].invalid" class="invalid-feedback">
+                      <div *ngIf="
                           f['password'].errors &&
                           f['password'].errors['required']
-                        "
-                      >
+                        ">
                         Password is required.
                       </div>
                     </div>
-                    <span (click)="passwordFunc()" [ngClass] = "passwordClass ? 'feather icon-eye' : 'feather icon-eye-off'"
-                      class="profile-views toggle-password"
-                    ></span>
+                    <span (click)="passwordFunc()"
+                      [ngClass]="passwordClass ? 'feather icon-eye' : 'feather icon-eye-off'"
+                      class="profile-views toggle-password"></span>
                   </div>
                   <div class="form-group">
-                    <label
-                      >Confirm Password
-                      <span class="login-danger">*</span></label
-                    >
-                    <input
-                      class="form-control pass-input-confirm"
-                      [type]="passwordClass ? 'text' : 'password'"
-                      formControlName="confirmPassword"
-                      [ngClass]="{
+                    <label>Confirm Password
+                      <span class="login-danger">*</span></label>
+                    <input class="form-control pass-input-confirm" [type]="passwordClass ? 'text' : 'password'"
+                      formControlName="confirmPassword" [ngClass]="{
                         'is-invalid':
                           f['confirmPassword'].touched &&
                           f['confirmPassword'].invalid
-                      }"
-                    />
-                    <div
-                      *ngIf="
+                      }" />
+                    <div *ngIf="
                         f['confirmPassword'].touched &&
                         f['confirmPassword'].invalid
-                      "
-                      class="invalid-feedback"
-                    >
-                      <div
-                        *ngIf="
+                      " class="invalid-feedback">
+                      <div *ngIf="
                           f['confirmPassword'].errors &&
                           f['confirmPassword'].errors['required']
-                        "
-                      >
+                        ">
                         Confirm Password is required.
                       </div>
                     </div>
-                    <div
-                      *ngIf="isValidConfirmPassword"
-                      class="invalid-feedback"
-                    >
+                    <div *ngIf="isValidConfirmPassword" class="invalid-feedback">
                       Password not matching
                     </div>
-                    <span (click)="confirmPasswordFunc()" [ngClass] = "confirmPasswordClass ? 'feather icon-eye' : 'feather icon-eye-off'"
-                      class="profile-views confirm-password"
-                    ></span>
-                  </div>
+                    <span (click)="confirmPasswordFunc()"
+                      [ngClass]="confirmPasswordClass ? 'feather icon-eye' : 'feather icon-eye-off'"
+                      class="profile-views confirm-password"></span>
+                  </div> 
                   <div class="forgotpass">
                     <div class="remember-me">
-                      <label
-                        class="custom_check mr-2 mb-0 d-inline-flex remember-me"
-                      >
+                      <label class="custom_check mr-2 mb-0 d-inline-flex remember-me">
                         I agree to the
-                        <a href="javascript:;">&nbsp; terms of service </a
-                        >&nbsp; and
+                        <a href="javascript:;">&nbsp; terms of service </a>&nbsp; and
                         <a href="javascript:;">&nbsp; privacy policy </a>
                         <input type="checkbox" name="radio" />
                         <span class="checkmark"></span>
@@ -167,14 +201,10 @@
                     </div>
                   </div>
                   <div class="form-group login-btn">
-                    <button
-                      [disabled]="form.invalid"
-                      class="btn btn-primary btn-block"
-                      type="submit"
-                    >
+                    <button [disabled]="form.invalid" class="btn btn-primary btn-block" type="submit">
                       Sign up
                     </button>
-                  </div>
+                  </div>-->
                 </form>
                 <!-- /Form -->
 
@@ -186,15 +216,9 @@
 
                   <!-- Social Login -->
                   <div class="social-login">
-                    <a href="javascript:;"
-                      ><img src="assets/img/icons/login-icon-01.svg" alt=""
-                    /></a>
-                    <a href="javascript:;"
-                      ><img src="assets/img/icons/login-icon-02.svg" alt=""
-                    /></a>
-                    <a href="javascript:;"
-                      ><img src="assets/img/icons/login-icon-03.svg" alt=""
-                    /></a>
+                    <a href="javascript:;"><img src="assets/img/icons/login-icon-01.svg" alt="" /></a>
+                    <a href="javascript:;"><img src="assets/img/icons/login-icon-02.svg" alt="" /></a>
+                    <a href="javascript:;"><img src="assets/img/icons/login-icon-03.svg" alt="" /></a>
                   </div>
                   <!-- /Social Login -->
                 </div>

@@ -10,6 +10,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { EditPatientModule } from './core/patient/edit-patient/edit-patient.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { EditPatientModule } from './core/patient/edit-patient/edit-patient.modu
     MatTableModule,
     EditPatientModule, 
     MatSortModule,
-    
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
