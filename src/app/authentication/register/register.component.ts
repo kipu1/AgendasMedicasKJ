@@ -90,7 +90,7 @@ public doctor: Doctor = new Doctor();
       );
     } else {
       // Manejar el caso en que el formulario no esté completo
-      Swal.fire('Ingrese el nombre, pellido y la clave ');
+      Swal.fire('Ingrese el nombre, apellido y la clave ');
     }
   }
   
