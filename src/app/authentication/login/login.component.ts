@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { routes } from 'src/app/shared/routes/routes';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -43,14 +44,22 @@ export class LoginComponent implements OnInit {
     this.passwordClass = !this.passwordClass;
   }*/
 
-   public InicioSesion() {
-   // nombre: String, clave: String
-     const nombreUsuario = this.form.get('nombreUsuario')?.value as string;
-     const clavesecreta = this.form.get('clavesecreta')?.value as string;
+  public InicioSesion() {
+    const nombreUsuario = this.form.get('nombreUsuario')?.value as string;
+    const clavesecreta = this.form.get('clavesecreta')?.value as string;
+  
     if (nombreUsuario && clavesecreta) {
-      this.auth.login(nombreUsuario,clavesecreta);
+      this.auth.login(nombreUsuario, clavesecreta);
     } else {
-      // Manejar el caso en el que los controles del formulario sean nulos
+      if (!nombreUsuario && !clavesecreta) {
+        Swal.fire('Por favor ingrese su nombre,apellido y clave');
+      } else if (!nombreUsuario) {
+        Swal.fire('Por favor ingrese su nombre,apellido');
+      } else {
+        Swal.fire('Por favor ingrese su clave');
+      }
+      // Puedes agregar más mensajes según sea necesario
     }
   }
+  
 }

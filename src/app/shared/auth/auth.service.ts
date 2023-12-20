@@ -45,7 +45,7 @@ export class AuthService {
           console.log(response);
           localStorage.setItem('token', response.token);
           localStorage.setItem('authenticated', 'true');
-          Swal.fire('Bienvenido', 'success');
+          Swal.fire('Bienvenido');
           this.router.navigate([routes.adminDashboard]);
         } else {
           localStorage.removeItem('token');
