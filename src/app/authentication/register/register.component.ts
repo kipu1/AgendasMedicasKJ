@@ -72,13 +72,16 @@ public doctor: Doctor = new Doctor();
   public create(): void {
     // Verificar si el formulario está completo antes de redirigir al login
     if (this.isFormComplete()) {
-      this.router.navigate([this.routes.login]).then(() => {
-        window.location.reload();
-      });
-  
       this.doctorsService.crear(this.doctor).subscribe(
         () => {
-          Swal.fire('Doctor creado exitosamente', 'success');
+          // Se ejecutará si la creación es exitosa
+          Swal.fire('Doctor creado exitosamente', 'success')
+            .then(() => {
+              // Redirigir al usuario al login después de mostrar el mensaje
+              this.router.navigate([this.routes.login]).then(() => {
+                window.location.reload();
+              });
+            });
         },
         (error) => {
           Swal.fire('Error al crear el doctor', 'error');
@@ -95,14 +98,8 @@ public doctor: Doctor = new Doctor();
     // Verificar que todos los campos necesarios estén completos
     return (
       !!this.doctor.nombre &&
-  
       !!this.doctor.clavesecreta
- 
       // Agrega más condiciones según sea necesario
     );
-  }
+  }}
   
-
-  
-  
-}
