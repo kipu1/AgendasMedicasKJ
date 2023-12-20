@@ -41,8 +41,22 @@ export class AddPatientComponent {
 
   ngOnInit(): void {
     this.obtenerpersona();
-   
+    const doctorLogeado = this.auth.getDoctorLogeado();
 
+    if (doctorLogeado) {
+      // Doctor is logged in, set up the form accordingly
+      this.paciente.doctor = doctorLogeado;
+      // Disable or hide fields that doctors should not modify
+      this.disableDoctorFields();
+    }
+  }
+
+  // Add a method to disable or hide doctor-specific fields
+  private disableDoctorFields(): void {
+    // For example, you can disable or hide fields like this:
+    this.paciente.nombre = '';
+    this.paciente.apellido = '';
+    // ... other fields you want to disable or hide
   }
 
   obtenerpersona() {

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, tap } from 'rxjs';
 import { Paciente } from '../patient/paciente';
+import { AuthService } from 'src/app/shared/auth/auth.service';
 
 
 
@@ -12,7 +13,7 @@ import { Paciente } from '../patient/paciente';
 export class patientService {
   //esta url obtiene el listado de las maquinas en el backend
   url: string = 'http://localhost:8080/api/paciente';
-  constructor(private httpClient : HttpClient) { }
+  constructor(private httpClient : HttpClient,private authService: AuthService) { }
  
  
 
@@ -36,6 +37,13 @@ export class patientService {
     }
     
     registrarPersona(paciente:Paciente): Observable<Object>{
+      const doctorLogeado = this.authService.getDoctorLogeado();
+
+      // If a doctor is logged in, associate the patient with the doctor
+      if (doctorLogeado) {
+        paciente.doctor = doctorLogeado;
+      }
+  
     return this.httpClient.post(this.url+'/crear',paciente);
     }
     // registrarPaciente(paciente: Paciente, foto: File): Observable<Object> {
