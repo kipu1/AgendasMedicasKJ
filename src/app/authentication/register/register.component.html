@@ -23,21 +23,20 @@
                 </div>
                 <h2>Registro de Doctor</h2>
                 <!-- Form -->
-                <form (ngSubmit) = "create()">
-
-                  
-
+                <form (ngSubmit)="create()">
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
                         <label for="nombre">Nombre y Apellido</label>
-                        <input type="text" id="nombre" name="nombre" class="form-control" [(ngModel)]="doctor.nombre" required>
+                        <input type="text" id="nombre" name="nombre" class="form-control" [(ngModel)]="doctor.nombre"
+                          required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label for="especialidad">Especialidad</label>
-                        <input type="text" id="especialidad" name="especialidad" class="form-control" [(ngModel)]="doctor.especialidad" required>
+                        <input type="text" id="especialidad" name="especialidad" class="form-control"
+                          [(ngModel)]="doctor.especialidad" required>
                       </div>
                     </div>
                   </div>
@@ -46,7 +45,8 @@
                     <div class="col">
                       <div class="form-group">
                         <label for="matricula">Matricula</label>
-                        <input type="text" id="matricula" name="matricula" class="form-control" [(ngModel)]="doctor.matricula" required>
+                        <input type="text" id="matricula" name="matricula" class="form-control"
+                          [(ngModel)]="doctor.matricula" required>
                       </div>
                     </div>
                     <div class="col">
@@ -61,39 +61,20 @@
                     <div class="col">
                       <div class="form-group">
                         <label for="telefono">Telefono</label>
-                        <input type="tel" id="telefono" name="telefono" class="form-control" [(ngModel)]="doctor.telefono" required>
+                        <input type="tel" id="telefono" name="telefono" class="form-control"
+                          [(ngModel)]="doctor.telefono" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label for="direccion">Dirección</label>
-                        <input type="text" id="direccion" name="direccion" class="form-control" [(ngModel)]="doctor.direccion">
+                        <input type="text" id="direccion" name="direccion" class="form-control"
+                          [(ngModel)]="doctor.direccion">
                       </div>
                     </div>
                   </div>
 
                   <div class="row">
-                    <div class="col">
-                      <div class="form-group">
-                        <label for="clave">Clave Secreta</label>
-                        <input type="password" id="clave" name="clave" class="form-control" [(ngModel)]="doctor.clavesecreta" required>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="form-group">
-                        <label for="direccion">Nota Auto</label>
-                        <input type="text" id="direccion" name="direccion" class="form-control" [(ngModel)]="doctor.notaAuto">
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col">
-                      <div class="form-group">
-                        <label for="comentarios">Comentarios</label>
-                        <input type="text" id="clave" name="comentarios" class="form-control" [(ngModel)]="doctor.comentarios" required>
-                      </div>
-                    </div>
                     <div class="col">
                       <div class="form-group">
                         <label for="cla">Clave</label>
@@ -103,41 +84,34 @@
                           class="profile-views toggle-password"></span>
                       </div>
                     </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="comentarios"> Repetir Clave</label>
+                        <input type="text" id="repclave" name="rep" class="form-control" required>
+                      </div>
+                    </div>
                   </div>
+
+
 
 
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
-                        <label for="nota">Nota</label>
-                        <input type="text" id="nota" name="nota" class="form-control" [(ngModel)]="doctor.nota" required>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="form-group">
-                        <label for="comparte">Comparte</label>
-                        <input type="text" id="comparte" name="comparte" class="form-control" [(ngModel)]="doctor.comparte">
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col">
-                      <div class="form-group">
-                        <label for="cfg">Cfg</label>
+                        <label for="cfg">PIN</label>
                         <input type="text" id="cfg" name="cfg" class="form-control" [(ngModel)]="doctor.cfg" required>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label for="cfgsec">Cfgsec</label>
-                        <input type="text" id="cfgsec" name="cfgsec" class="form-control" [(ngModel)]="doctor.cfgsec">
+                        <label for="cfgsec">Repetir PIN</label>
+                        <input type="text" id="cfgsec" name="cfgsec" class="form-control">
                       </div>
                     </div>
                   </div>
 
-                  <div >
-                    <button  class="btn btn-primary btn-block">
+                  <div>
+                    <button class="btn btn-primary btn-block">
                       Sign up
                     </button>
                   </div>
