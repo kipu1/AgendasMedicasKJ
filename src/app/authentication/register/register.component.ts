@@ -48,6 +48,7 @@ public doctor: Doctor = new Doctor();
       this.isValidConfirmPassword = false;
       this.auth.login();
     }
+    
   }
   passwordFunc(){
     this.passwordClass = !this.passwordClass
@@ -69,16 +70,38 @@ public doctor: Doctor = new Doctor();
   }*/
 
   public create(): void {
-    this.doctorsService.crear(this.doctor).subscribe(
-      () => {
-        Swal.fire('Doctor creado exitosamente', 'success');
-      },
-      (error) => {
-        Swal.fire('Error al crear el doctor', 'error');
-        console.error(error);
-      }
+    // Verificar si el formulario está completo antes de redirigir al login
+    if (this.isFormComplete()) {
+      this.router.navigate([this.routes.login]).then(() => {
+        window.location.reload();
+      });
+  
+      this.doctorsService.crear(this.doctor).subscribe(
+        () => {
+          Swal.fire('Doctor creado exitosamente', 'success');
+        },
+        (error) => {
+          Swal.fire('Error al crear el doctor', 'error');
+          console.error(error);
+        }
+      );
+    } else {
+      // Manejar el caso en que el formulario no esté completo
+      Swal.fire('Por favor complete todos los campos del formulario', 'warning');
+    }
+  }
+  
+  private isFormComplete(): boolean {
+    // Verificar que todos los campos necesarios estén completos
+    return (
+      !!this.doctor.nombre &&
+  
+      !!this.doctor.clavesecreta
+ 
+      // Agrega más condiciones según sea necesario
     );
   }
+  
 
   
   
