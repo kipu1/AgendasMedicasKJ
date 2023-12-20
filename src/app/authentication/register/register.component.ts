@@ -75,7 +75,7 @@ public doctor: Doctor = new Doctor();
       this.doctorsService.crear(this.doctor).subscribe(
         () => {
           // Se ejecutará si la creación es exitosa
-          Swal.fire('Doctor creado exitosamente', 'success')
+          Swal.fire('Se registro con exito')
             .then(() => {
               // Redirigir al usuario al login después de mostrar el mensaje
               this.router.navigate([this.routes.login]).then(() => {
@@ -84,13 +84,13 @@ public doctor: Doctor = new Doctor();
             });
         },
         (error) => {
-          Swal.fire('Error al crear el doctor', 'error');
+          Swal.fire('Error al crear el doctor');
           console.error(error);
         }
       );
     } else {
       // Manejar el caso en que el formulario no esté completo
-      Swal.fire('Por favor complete todos los campos del formulario', 'warning');
+      Swal.fire('Ingrese el nombre, pellido y la clave ');
     }
   }
   
