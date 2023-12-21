@@ -350,16 +350,16 @@ export class DataService {
               route: routes.doctorsList,
               base: routes.doctorsList,
             },
-            {
-              menuValue: 'Add Doctor',
-              route: routes.addDoctor,
-              base: routes.addDoctor,
-            },
-            {
-              menuValue: 'Edit Doctor',
-              route: routes.editDoctor,
-              base: routes.editDoctor,
-            },
+            // {
+            //   menuValue: 'Add Doctor',
+            //   route: routes.addDoctor,
+            //   base: routes.addDoctor,
+            // },
+            // {
+            //   menuValue: 'Edit Doctor',
+            //   route: routes.editDoctor,
+            //   base: routes.editDoctor,
+            // },
             // {
             //   menuValue: 'Doctor Profile',
             //   route: routes.doctorProfile,

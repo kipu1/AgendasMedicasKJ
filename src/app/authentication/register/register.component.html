@@ -34,9 +34,55 @@
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label for="especialidad">Especialidad</label>
-                        <input type="text" id="especialidad" name="especialidad" class="form-control"
-                          [(ngModel)]="doctor.especialidad" required>
+                        <label>especialidad <span class="login-danger">*</span></label>
+
+                        <mat-select id="especialidad" name="especialidad"
+                            [(ngModel)]="doctor.especialidad" placeholder="" class="form-control select"
+                            placeholder="Seleccione">
+                            <mat-option value="Andrologia">Andrología</mat-option>
+                            <mat-option value="Anesteologia">Anestesiología</mat-option>
+                            <mat-option value="Cardiologia">Cardiología</mat-option>
+                            <mat-option value="Cirugia">Cirugía</mat-option>
+                            <mat-option value="ClinicaMedica">Clínica Médica</mat-option>
+                            <mat-option value="Dermatologia">Dermatología</mat-option>
+                            <mat-option value="Diabetologia">Diabetología</mat-option>
+                            <mat-option value="Dietista">Dietista</mat-option>
+                            <mat-option value="Endocrinologia">Endocrinología</mat-option>
+                            <mat-option value="Estomatologia">Estomatología</mat-option>
+                            <mat-option value="Fisioterapia">Fisioterapia</mat-option>
+                            <mat-option value="Fonoaudiologia">Fonoaudiología</mat-option>
+                            <mat-option value="Gastroenterologia">Gastroenterología</mat-option>
+                            <mat-option value="Geriatria">Geriatría</mat-option>
+                            <mat-option value="Ginecologia">Ginecología</mat-option>
+                            <mat-option value="Hematologia">Hematología</mat-option>
+                            <mat-option value="Hepatologia">Hepatología</mat-option>
+                            <mat-option value="Kinesiologia">Kinesiología</mat-option>
+                            <mat-option value="Masoterapia">Masoterapia</mat-option>
+                            <mat-option value="MedicinaFamiliar">Medicina Familiar</mat-option>
+                            <mat-option value="Micologia">Micología</mat-option>
+                            <mat-option value="Nefrologia">Nefrología</mat-option>
+                            <mat-option value="Neonatologia">Neonatología</mat-option>
+                            <mat-option value="Neumonologia">Neumonología</mat-option>
+                            <mat-option value="Neurologia">Neurología</mat-option>
+                            <mat-option value="Nutricionista">Nutricionista</mat-option>
+                            <mat-option value="Obstetricia">Obstetricia</mat-option>
+                            <mat-option value="Odontologia">Odontología</mat-option>
+                            <mat-option value="Oftalmologia">Oftalmología</mat-option>
+                            <mat-option value="Optometria">Optometría</mat-option>
+                            <mat-option value="Oncologia">Oncología</mat-option>
+                            <mat-option value="Otorrinolaringologia">Otorrinolaringología</mat-option>
+                            <mat-option value="Pediatria">Pediatría</mat-option>
+                            <mat-option value="Proctologia">Proctología</mat-option>
+                            <mat-option value="Psicologia">Psicología</mat-option>
+                            <mat-option value="Psicopedagogia">Psicopedagogía</mat-option>
+                            <mat-option value="Psiquiatria">Psiquiatría</mat-option>
+                            <mat-option value="Reumatologia">Reumatología</mat-option>
+                            <mat-option value="Sexologia">Sexología</mat-option>
+                            <mat-option value="Toxicologia">Toxicología</mat-option>
+                            <mat-option value="Traumatologia">Traumatología</mat-option>
+                            <mat-option value="Urologia">Urología</mat-option>
+
+                        </mat-select>
                       </div>
                     </div>
                   </div>
@@ -46,7 +92,14 @@
                       <div class="form-group">
                         <label for="matricula">Matricula</label>
                         <input type="text" id="matricula" name="matricula" class="form-control"
-                          [(ngModel)]="doctor.matricula" required>
+                        [(ngModel)]="doctor.matricula" (blur)="verificarmatriculaExistente()" (input)="limpiarErrores('matricula')">
+                                  
+                        <!-- Mensaje de error solo si el usuario ha intentado guardar sin completar el campo -->
+                        <div *ngIf="errores.matricula" class="texti">
+                          {{ errores.matricula }}
+                          <!-- Mostrar mensaje adicional si el número de cédula ya está registrado -->
+                          <span *ngIf="errores.matricula === 'El número de cédula ya está registrado.'">Por favor, ingrese un número de matricula único.</span>
+                        </div>
                       </div>
                     </div>
                     <div class="col">
@@ -78,7 +131,7 @@
                     <div class="col">
                       <div class="form-group">
                         <label for="cla">Clave</label>
-                        <input type="password" id="cla" name="cla" class="form-control" [(ngModel)]="doctor.clave">
+                        <input type="password" id="cla" name="cla" class="form-control" [(ngModel)]="doctor.clavesecreta">
                         <span (click)="passwordFunc()"
                           [ngClass]="passwordClass ? 'feather icon-eye' : 'feather icon-eye-off'"
                           class="profile-views toggle-password"></span>

@@ -19,7 +19,16 @@ export class RegisterComponent implements OnInit {
   public passwordClass  = false;
   public confirmPasswordClass  = false
   public isValidConfirmPassword = false;
+  doctors: Doctor[] = [];
+  
 //
+errores = {
+
+  matricula: '',
+  telefono:'',
+  email:''
+  
+};
 public doctor: Doctor = new Doctor();
 
   form = new FormGroup({
@@ -48,8 +57,17 @@ public doctor: Doctor = new Doctor();
       this.isValidConfirmPassword = false;
       this.auth.login();
     }
-    
-  }
+    if (!this.vvalidarCampos()) {
+      // Si la validación falla, no continuar con el envío
+      return;
+  } 
+  this.create();
+}
+obtenerpersona() {
+  this.doctorsService.obtenerListaPersona().subscribe(dato => {
+    this.doctors = dato;
+  });
+}
   passwordFunc(){
     this.passwordClass = !this.passwordClass
   }
@@ -58,7 +76,7 @@ public doctor: Doctor = new Doctor();
   }
 
   ngOnInit(): void {
-    
+    this.obtenerpersona();
   }
 
   /*public create(): void{
@@ -70,6 +88,7 @@ public doctor: Doctor = new Doctor();
   }*/
 
   public create(): void {
+    
     // Verificar si el formulario está completo antes de redirigir al login
     if (this.isFormComplete()) {
       this.doctorsService.crear(this.doctor).subscribe(
@@ -92,6 +111,10 @@ public doctor: Doctor = new Doctor();
       // Manejar el caso en que el formulario no esté completo
       Swal.fire('Ingrese el nombre, apellido y la clave ');
     }
+    if (this.vvalidarCampos()) {
+      // Mostrar un mensaje de error o realizar otra acción
+      return;
+    }
   }
   
   private isFormComplete(): boolean {
@@ -101,5 +124,72 @@ public doctor: Doctor = new Doctor();
       !!this.doctor.clavesecreta
       // Agrega más condiciones según sea necesario
     );
-  }}
+  }
+  vvalidarCampos(): boolean {
+    let camposInvalidos = false;
+   
+    if (!this.doctor.telefono) {
+      this.errores.telefono = 'Ingrese el telefonotelefono';
+      camposInvalidos = true;
+    } else {
+      this.errores.telefono = '';
+    }
+  
+    if (!this.doctor.email) {
+      this.errores.email = 'Ingrese el email';
+      camposInvalidos = true;
+    } else {
+      this.errores.email = '';
+    }
+    
+      if (!this.doctor.matricula) {
+        this.errores.matricula = 'Ingrese la matricula';
+        camposInvalidos = true;
+      } else {
+        // Verificar si la cédula ya está registrada
+        const cedulaExistente = this.doctors.some(p => p.matricula === this.doctor.matricula);
+        if (cedulaExistente) {
+          this.errores.matricula = 'El número de matricula ya está registrado.';
+          camposInvalidos = true;
+        } else {
+          this.errores.matricula = '';
+        }
+      
+     
+    }
+    return camposInvalidos;
+  }
+  limpiarErrores(campo: string): void {
+   if (campo === 'matricula') {
+      this.errores.matricula = '';
+    }else if (campo === 'telefono') {
+      this.errores.telefono = '';
+    }else if (campo === 'email') {
+      this.errores.email = '';
+    }
+    
+  }
+  
+  verificarmatriculaExistente() {
+    // Verifica si doctor y doctor.id son diferentes de undefined
+    if (this.doctor && this.doctor.id !== undefined) {
+      // Realiza la llamada al servicio para verificar si la cédula ya está registrada
+      this.doctorsService.Buscarid(this.doctor.id).subscribe(
+        (respuesta: any) => {
+          if (respuesta.existe) {
+            this.errores.matricula = 'El número de matrícula ya está registrado.';
+            this.errores.email = 'El número de matrícula ya está registrado.';
+            this.errores.telefono = 'El número de matrícula ya está registrado.';
+          }
+        },
+        (error: any) => {
+          console.error('Error al verificar la matrícula:', error);
+        }
+      );
+    } else {
+      console.error('El ID del doctor es undefined o null');
+    }
+  }
+  
+}
   
