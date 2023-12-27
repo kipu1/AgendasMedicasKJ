@@ -27,18 +27,22 @@
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
-                        <label for="nombre">Nombre y Apellido</label>
-                        <input type="text" id="nombre" name="nombre" class="form-control" [(ngModel)]="doctor.nombre"
-                          required>
+                        <label for="nombre">Nombre y Apellido <span class="login-danger">*</span></label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" [(ngModel)]="doctor.nombre" (input)="limpiarErrores('nombre')"
+                          required onkeypress='return (event.charCode >= 65 && event.charCode <= 90)
+                          || (event.charCode >= 97 && event.charCode <= 122) || event.charCode == 32'>
+                          <div *ngIf="errores.nombre" class="texti" >
+                            {{ errores.nombre }}
+                          </div>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label>especialidad <span class="login-danger">*</span></label>
+                        <label>Especialidad <span class="login-danger">*</span></label>
 
                         <mat-select id="especialidad" name="especialidad"
                             [(ngModel)]="doctor.especialidad" placeholder="" class="form-control select"
-                            placeholder="Seleccione">
+                            placeholder="Seleccione" required>
                             <mat-option value="Andrologia">Andrología</mat-option>
                             <mat-option value="Anesteologia">Anestesiología</mat-option>
                             <mat-option value="Cardiologia">Cardiología</mat-option>
@@ -81,8 +85,10 @@
                             <mat-option value="Toxicologia">Toxicología</mat-option>
                             <mat-option value="Traumatologia">Traumatología</mat-option>
                             <mat-option value="Urologia">Urología</mat-option>
-
                         </mat-select>
+                        <div *ngIf="errores.especialidad" class="texti">
+                          {{ errores.especialidad }}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -90,9 +96,10 @@
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
-                        <label for="matricula">Matricula</label>
+                        <label for="matricula">Matrícula <span class="login-danger">*</span></label>
                         <input type="text" id="matricula" name="matricula" class="form-control"
-                        [(ngModel)]="doctor.matricula" (blur)="verificarmatriculaExistente()" (input)="limpiarErrores('matricula')">
+                        [(ngModel)]="doctor.matricula" (input)="limpiarErrores('matricula')"
+                        required>
                                   
                         <!-- Mensaje de error solo si el usuario ha intentado guardar sin completar el campo -->
                         <div *ngIf="errores.matricula" class="texti">
@@ -104,8 +111,11 @@
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label for="direccion">Email</label>
-                        <input type="email" id="email" name="email" class="form-control" [(ngModel)]="doctor.email">
+                        <label for="direccion">Email<span class="login-danger">*</span></label>
+                        <input type="email" id="email" name="email" class="form-control" [(ngModel)]="doctor.email" (input)="limpiarErrores('email')" required>
+                        <div *ngIf="errores.email" class="texti">
+                          {{ errores.email }}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -113,16 +123,23 @@
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
-                        <label for="telefono">Telefono</label>
-                        <input type="tel" id="telefono" name="telefono" class="form-control"
-                          [(ngModel)]="doctor.telefono" required>
+                        <label for="telefono">Teléfono <span class="login-danger">*</span></label>
+                        <input type="text" id="telefono" name="telefono" class="form-control"
+                          [(ngModel)]="doctor.telefono" (input)="limpiarErrores('telefono')" required 
+                          onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                          <div *ngIf="errores.telefono" class="texti">
+                            {{ errores.telefono }}
+                          </div>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label for="direccion">Dirección</label>
-                        <input type="text" id="direccion" name="direccion" class="form-control"
+                        <label for="direccion">Dirección<span class="login-danger">*</span></label>
+                        <input type="text" id="direccion" name="direccion" (input)="limpiarErrores('direccion')" class="form-control"
                           [(ngModel)]="doctor.direccion">
+                          <div *ngIf="errores.direccion" class="texti">
+                            {{ errores.direccion }}
+                          </div>
                       </div>
                     </div>
                   </div>
@@ -130,8 +147,12 @@
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
-                        <label for="cla">Clave</label>
-                        <input type="password" id="cla" name="cla" class="form-control" [(ngModel)]="doctor.clavesecreta">
+                        <label for="cla">Clave <span class="login-danger">*</span></label>
+                        <input type="password" id="cla" name="cla" class="form-control" [(ngModel)]="doctor.clavesecreta"
+                         (input)="limpiarErrores('clave')" type="{{ passwordClass ? 'text' : 'password' }}">
+                        <div *ngIf="errores.clavesecreta" class="texti">
+                          {{ errores.clavesecreta }}
+                        </div>
                         <span (click)="passwordFunc()"
                           [ngClass]="passwordClass ? 'feather icon-eye' : 'feather icon-eye-off'"
                           class="profile-views toggle-password"></span>
@@ -139,26 +160,39 @@
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label for="comentarios"> Repetir Clave</label>
-                        <input type="text" id="repclave" name="rep" class="form-control" required>
+                        <label for="comentarios">Repetir Clave <span class="login-danger">*</span></label>
+                        <input type="password" id="repclave" name="rep" class="form-control" required
+                        [(ngModel)]="repetirClave" type="{{ passwordClass ? 'text' : 'password' }}">
+                        <div *ngIf="errores.claveDiferente" class="texti">
+                          {{ errores.claveDiferente }}
+                        </div>
                       </div>
                     </div>
                   </div>
 
-
-
-
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
-                        <label for="cfg">PIN</label>
-                        <input type="text" id="cfg" name="cfg" class="form-control" [(ngModel)]="doctor.cfg" required>
+                        <label for="cfg">PIN <span class="login-danger">*</span></label>
+                        <input type="password" id="cfg" name="cfg" class="form-control" [(ngModel)]="doctor.cfg" required
+                         onkeypress='return event.charCode >= 48 && event.charCode <= 57' type="{{ pinClass ? 'text' : 'password' }}">
+                        <div *ngIf="errores.cfg" class="texti">
+                          {{ errores.cfg }}
+                        </div>
+                        <span (click)="showPIN()"
+                          [ngClass]="pinClass ? 'feather icon-eye' : 'feather icon-eye-off'"
+                          class="profile-views toggle-password"></span>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label for="cfgsec">Repetir PIN</label>
-                        <input type="text" id="cfgsec" name="cfgsec" class="form-control">
+                        <label for="cfgsec">Repetir PIN <span class="login-danger">*</span></label>
+                        <input type="password" id="cfgsec" name="cfgsec" class="form-control" required
+                         onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                         [(ngModel)]="repetirPIN" type="{{ pinClass ? 'text' : 'password' }}">
+                        <div *ngIf="errores.pinDiferente" class="texti">
+                          {{ errores.pinDiferente }}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -258,4 +292,5 @@
     </div>
   </div>
 </div>
+
 <!-- /Main Wrapper -->
