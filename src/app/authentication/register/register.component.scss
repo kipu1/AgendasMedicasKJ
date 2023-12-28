@@ -4,7 +4,7 @@
     font-weight: bold; /* Peso de la fuente */
     margin-top: 10px; /* Espaciado superior para separar del campo de entrada */
   }
-  
-.profile-views {
-  
-}
+
+  .profile-views {
+    flex-direction: row;
+  }

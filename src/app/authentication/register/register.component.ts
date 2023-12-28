@@ -251,17 +251,17 @@ export class RegisterComponent implements OnInit {
       case 'clave':
         this.errores.clavesecreta = '';
         break;
-      case 'pin':
-        this.errores.pin = '';
-        break;
       case 'direccion':
         this.errores.direccion = '';
         break;
       case 'rePin':
         this.errores.pinDiferente = '';
         break;
-        case 'pin':
-          this.errores.pin = '';
+      case 'pin':
+        this.errores.cfg = '';
+        break;
+        case 'espe':
+          this.errores.especialidad = '';
           break;
     }
   }

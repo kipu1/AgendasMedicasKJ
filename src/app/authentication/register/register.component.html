@@ -41,7 +41,7 @@
                       <div class="form-group">
                         <label>Especialidad <span class="login-danger">*</span></label>
 
-                        <mat-select id="especialidad" name="especialidad"
+                        <mat-select id="especialidad" name="especialidad" (selectionChange)="limpiarErrores('espe')"
                             [(ngModel)]="doctor.especialidad" class="form-control select"
                             placeholder="Seleccione" required>
                             <mat-option value="Andrologia">Andrología</mat-option>
@@ -156,9 +156,9 @@
                         <div *ngIf="errores.clavesecreta" class="texti">
                           {{ errores.clavesecreta }}
                         </div>
-                        <span (click)="passwordFunc()"
+                        <icon (click)="passwordFunc()"
                           [ngClass]="passwordClass ? 'feather icon-eye' : 'feather icon-eye-off'"
-                          class="profile-views toggle-password"></span>
+                          class="profile-views toggle-password"></icon>
                       </div>
                     </div>
                     <div class="col">
@@ -181,13 +181,15 @@
                         <input type="password" id="cfg" name="cfg" class="form-control" [(ngModel)]="doctor.cfg" required
                          onkeypress='return event.charCode >= 48 && event.charCode <= 57' type="{{ pinClass ? 'text' : 'password' }}"
                          onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false"
-                         >
+                         (input)="limpiarErrores('pin')" >
                         <div *ngIf="errores.cfg" class="texti">
                           {{ errores.cfg }}
                         </div>
-                        <span (click)="showPIN()"
+                        <div class="axe">
+                          <icon (click)="showPIN()"
                           [ngClass]="pinClass ? 'feather icon-eye' : 'feather icon-eye-off'"
-                          class="profile-views toggle-password" ></span>
+                          class="profile-views toggle-password" ></icon>
+                        </div>
                       </div>
                     </div>
                     <div class="col">
