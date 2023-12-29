@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   public routes = routes;
   public passwordClass = false;
 
+
   form = new FormGroup({
    /* email: new FormControl('jenny', [
       Validators.required,
@@ -50,6 +51,7 @@ export class LoginComponent implements OnInit {
   
     if (nombreUsuario && clavesecreta) {
       this.auth.login(nombreUsuario, clavesecreta);
+      this.auth.setLoggedInDoctorName(nombreUsuario);
     } else {
       if (!nombreUsuario && !clavesecreta) {
         Swal.fire('Por favor ingrese su nombre,apellido y clave');

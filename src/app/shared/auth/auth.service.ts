@@ -12,6 +12,8 @@ import Swal from 'sweetalert2';
 })
 export class AuthService {
 
+  private loggedInDoctorName: string | null=null;
+
   constructor(private router: Router, private http: HttpClient, private doctorService: DoctorService) {}
 
  /* public login(): void {
@@ -43,9 +45,11 @@ export class AuthService {
       (response: any) => {
         if (response.token) {
           console.log(response);
+         
           localStorage.setItem('token', response.token);
           localStorage.setItem('authenticated', 'true');
-          Swal.fire('Bienvenido');
+          Swal.fire('Bienvenido'+ nombre);
+          this.loggedInDoctorName= response.nombre;
           this.router.navigate([routes.adminDashboard]);
         } else {
           localStorage.removeItem('token');
@@ -62,4 +66,10 @@ export class AuthService {
     );
   }
 
+  getLoggedInDoctorName(): string | null{
+    return this.loggedInDoctorName;
+  }
+  setLoggedInDoctorName(doctorName:string): void{
+     this.loggedInDoctorName =doctorName;
+  }
 }
