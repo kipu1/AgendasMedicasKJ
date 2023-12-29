@@ -1,4 +1,4 @@
-<div class="page-wrapper" >
+<div class="page-wrapper">
     <div class="content">
 
         <!-- Page Header -->
@@ -25,7 +25,6 @@
                     <a class="nav-link" (click)="changeInterface('clinico')">Clinico</a>
                 </li>
 
-
                 <!-- <li class="nav-item">
                     <a class="nav-link" [routerLink]="routes.emailSettings">Consultas</a>
                 </li>
@@ -43,7 +42,6 @@
                     <!-- <li class="nav-item">
                         <a class="nav-link" [routerLink]="routes.othersSettings">E-mail/WA</a>
                     </li> -->
-
             </ul>
         </div>
 
@@ -60,172 +58,216 @@
                                         <h4>Detalles de paciente</h4>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 col-xl-6">
+                                <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-top-form">
-                                      <label class="local-top">Avatar <span class="login-danger">*</span></label>
-                                  
-                                      <div class="settings-btn upload-files-avator">
-                                        <input type="file" accept="image/*" name="image" id="file" (change)="onFileChange($event)" class="hide-input">
-                                        <label for="file" class="upload">Choose File</label>
-                                      </div>
-                                      
-                                      <div *ngIf="paciente.foto">
-                                        <img [src]="obtenerUrlSegura(paciente.foto)" alt="Avatar" class="imagen-pequena">
-                                      </div>
-                                    </div>
-                                  </div>
-                                  
-                                  <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="form-group local-forms">
-                                      <label>Apellido <span class="login-danger">*</span></label>
-                                      <input class="form-control" type="text" placeholder="" id="apellido" name="apellido" [(ngModel)]="paciente.apellido"
-                                        (input)="limpiarErrores('apellido')">
-                                      <!-- Mensaje de error solo si el usuario ha intentado guardar sin completar el campo -->
-                                      <div *ngIf="errores.apellido" class="texti">{{ errores.apellido }}</div>
-                                    </div>
-                                  </div>
-                                  
-                                  <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="form-group local-forms">
-                                      <label>Nombre <span class="login-danger">*</span></label>
-                                      <input class="form-control" type="text" placeholder="" id="nombre" name="nombre" [(ngModel)]="paciente.nombre"
-                                        (input)="limpiarErrores('nombre')">
-                                      <!-- Mensaje de error solo si el usuario ha intentado guardar sin completar el campo -->
-                                      <div *ngIf="errores.nombre"  class="texti">{{ errores.nombre }}</div>
-                                    </div>
-                                  </div>
-                                <div class="col-12 col-md-6 col-xl-3">
-                                    <div class="form-group local-forms">
-                                        <label>Tipo de documento <span class="login-danger">*</span></label>
+                                        <label class="local-top">Avatar <span class="login-danger">*</span></label>
 
-                                        <mat-select id="tipodocumento" name="tipodocumento"
-                                            [(ngModel)]="paciente.tipodocumento" placeholder=""
-                                            class="form-control select" placeholder="Seleccione"  (ngModelChange)="limpiarErrores('tipodocumento')">
-                                            <mat-option value="CC">CC</mat-option>
-                                            <mat-option value="CDI">CDI</mat-option>
-                                            <mat-option value="CI">CI</mat-option>
-                                            <mat-option value="CIC">CIC</mat-option>
-                                            <mat-option value="CIE">CIE</mat-option>
-                                            <mat-option value="CIP">CIP</mat-option>
-                                            <mat-option value="CUIL">CUIL</mat-option>
-                                            <mat-option value="CUIT">CUIT</mat-option>
-                                            <mat-option value="CURP">CURP</mat-option>
-                                            <mat-option value="DNI">DNI</mat-option>
-                                            <mat-option value="DPI">DPI</mat-option>
-                                            <mat-option value="DUI">DUI</mat-option>
-                                            <mat-option value="IMSS">IMSS</mat-option>
-                                            <mat-option value="LC">LC</mat-option>
-                                            <mat-option value="LE">LE</mat-option>
-                                            <mat-option value="NIE">NIE</mat-option>
-                                            <mat-option value="NIF">NIF</mat-option>
-                                            <mat-option value="PAS">PAS</mat-option>
-                                            <mat-option value="RG">RG</mat-option>
-                                            <mat-option value="RUN">RUN</mat-option>
-                                            <mat-option value="RUT">RUT</mat-option>
-                                        </mat-select>
-                                        <div *ngIf="errores.civil" class="texti">{{ errores.tipodocumento }}</div>
+                                        <div class="settings-btn upload-files-avator">
+                                            <input type="file" accept="image/*" name="image" id="file"
+                                                (change)="onFileChange($event)" class="hide-input">
+                                            <label for="file" class="upload">Choose File</label>
+                                        </div>
+
+                                        <div class="img-thumbnail mt-1" *ngIf="paciente.foto === ''">
+                                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                                alt="Avatar" class="imagen-pequena imagen-grande">
+                                        </div>
+
+                                        <div class="img-thumbnail mt-1" *ngIf="paciente.foto">
+                                            <img [src]="obtenerUrlSegura(paciente.foto)" alt="Avatar"
+                                                class="imagen-pequena imagen-grande">
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="form-group local-forms">
-                                      <label>Documento <span class="login-danger">*</span></label>
-                                      <input class="form-control" type="text" placeholder="" id="documento" name="documento"
-                                        [(ngModel)]="paciente.documento" (blur)="verificarCedulaExistente()" (input)="limpiarErrores('documento')">
-                                  
-                                      <!-- Mensaje de error solo si el usuario ha intentado guardar sin completar el campo -->
-                                      <div *ngIf="errores.documento" class="texti">
-                                        {{ errores.documento }}
-                                        <!-- Mostrar mensaje adicional si el número de cédula ya está registrado -->
-                                        <span *ngIf="errores.documento === 'El número de cédula ya está registrado.'">Por favor, ingrese un número de cédula único.</span>
-                                      </div>
+                                <div class=" cont d-block col align-self-start pb-md-2">
+                                    <div class="col-12 col-md-6 col-xl-12 mb-lg-4">
+                                        <div class="form-group local-forms">
+                                            <label>Nombre <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" placeholder="" id="nombre"
+                                                name="nombre" [(ngModel)]="paciente.nombre"
+                                                (input)="limpiarErrores('nombre')" onkeypress='return (event.charCode >= 65 && event.charCode <= 90)
+                                                || (event.charCode >= 97 && event.charCode <= 122)'
+                                                onselectstart="return false" onpaste="return false;"
+                                                onCopy="return false" onCut="return false">
+                                            <!-- Mensaje de error solo si el usuario ha intentado guardar sin completar el campo -->
+                                            <div *ngIf="errores.nombre" class="texti">{{ errores.nombre }}</div>
+                                        </div>
                                     </div>
-                                  </div>
-                                  
-                                        <div class="col-12 col-md-6 col-xl-4">
-                                            <div class="form-group local-forms">
-                                              <label>Estado Civil <span class="login-danger">*</span></label>
-                                              <mat-select id="civil" name="civil" [(ngModel)]="paciente.civil" class="form-control select" placeholder="Seleccione"
-                                                          (ngModelChange)="limpiarErrores('civil')">
+
+                                    <div class="col-12 col-md-6 col-xl-12">
+                                        <div class="form-group local-forms">
+                                            <label>Apellido <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" placeholder="" id="apellido"
+                                                name="apellido" [(ngModel)]="paciente.apellido"
+                                                (input)="limpiarErrores('apellido')" onkeypress='return (event.charCode >= 65 && event.charCode <= 90)
+                                                || (event.charCode >= 97 && event.charCode <= 122)'
+                                                onselectstart="return false" onpaste="return false;"
+                                                onCopy="return false" onCut="return false">
+                                            <!-- Mensaje de error solo si el usuario ha intentado guardar sin completar el campo -->
+                                            <div *ngIf="errores.apellido" class="texti">{{ errores.apellido }}</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-xl-12">
+                                        <div class="form-group local-forms">
+                                            <label>Tipo de documento <span class="login-danger">*</span></label>
+                                            <mat-select id="tipodocumento" name="tipodocumento"
+                                                [(ngModel)]="paciente.tipodocumento" placeholder=""
+                                                class="form-control select" placeholder="Seleccione"
+                                                (ngModelChange)="limpiarErrores('tipodocumento')">
+                                                <mat-option value="cedula">Cédula</mat-option>
+                                                <mat-option value="pasaporte">Pasaporte</mat-option>
+
+                                                <!--<mat-option value="CC">CC</mat-option>
+                                                <mat-option value="CC">CC</mat-option>
+                                                <mat-option value="CDI">CDI</mat-option>
+                                                <mat-option value="CI">CI</mat-option>
+                                                <mat-option value="CIC">CIC</mat-option>
+                                                <mat-option value="CIE">CIE</mat-option>
+                                                <mat-option value="CIP">CIP</mat-option>
+                                                <mat-option value="CUIL">CUIL</mat-option>
+                                                <mat-option value="CUIT">CUIT</mat-option>
+                                                <mat-option value="CURP">CURP</mat-option>
+                                                <mat-option value="DNI">DNI</mat-option>
+                                                <mat-option value="DPI">DPI</mat-option>
+                                                <mat-option value="DUI">DUI</mat-option>
+                                                <mat-option value="IMSS">IMSS</mat-option>
+                                                <mat-option value="LC">LC</mat-option>
+                                                <mat-option value="LE">LE</mat-option>
+                                                <mat-option value="NIE">NIE</mat-option>
+                                                <mat-option value="NIF">NIF</mat-option>
+                                                <mat-option value="PAS">PAS</mat-option>
+                                                <mat-option value="RG">RG</mat-option>
+                                                <mat-option value="RUN">RUN</mat-option>
+                                                <mat-option value="RUT">RUT</mat-option>-->
+                                            </mat-select>
+                                            <div *ngIf="errores.civil" class="texti">{{ errores.tipodocumento }}</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-xl-12">
+                                        <div class="form-group local-forms">
+                                            <label>Documento <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" placeholder="" id="documento"
+                                                name="documento" [(ngModel)]="paciente.documento"
+                                                (blur)="verificarCedulaExistente()"
+                                                (input)="limpiarErrores('documento')"
+                                                onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                                onselectstart="return false" onpaste="return false;"
+                                                onCopy="return false" onCut="return false" onDrag="return false">
+
+                                            <!-- Mensaje de error solo si el usuario ha intentado guardar sin completar el campo -->
+                                            <div *ngIf="errores.documento" class="texti">
+                                                {{ errores.documento }}
+                                                <!-- Mostrar mensaje adicional si el número de cédula ya está registrado -->
+                                                <span
+                                                    *ngIf="errores.documento === 'El número de cédula ya está registrado.'">Por
+                                                    favor, ingrese un número de cédula único.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-xl-12">
+                                        <div class="form-group local-forms">
+                                            <label>Estado Civil <span class="login-danger">*</span></label>
+                                            <mat-select id="civil" name="civil" [(ngModel)]="paciente.civil"
+                                                class="form-control select" placeholder="Seleccione"
+                                                (ngModelChange)="limpiarErrores('civil')">
                                                 <mat-option value="Soltero">Soltero</mat-option>
                                                 <mat-option value="Casado">Casado</mat-option>
                                                 <mat-option value="Divorciado">Divorciado</mat-option>
                                                 <mat-option value="Viudo">Viudo</mat-option>
                                                 <mat-option value="Unión libre">Unión libre</mat-option>
-                                              </mat-select>
-                                              <!-- Mensajes de error -->
-                                              <div *ngIf="errores.civil" class="texti">{{ errores.civil }}</div>
-                                            </div>
-                                          </div>
-
-                                          <div class="col-12 col-md-6 col-xl-3">
-                                            <div class="form-group local-forms">
-                                              <label>Fecha de nacimiento <span class="login-danger">*</span></label>
-                                              <input class="form-control datetimepicker" type="text" placeholder="" matInput
-                                                     [matDatepicker]="picker" [(ngModel)]="paciente.fechanacimiento" name="fechanacimiento"
-                                                     (input)="limpiarErrores('fechanacimiento')"
-                                                     (ngModelChange)="limpiarErrores('fechanacimiento')">
-                                              <mat-datepicker #picker></mat-datepicker>
-                                              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                                              <!-- Mensajes de error -->
-                                              <div *ngIf="errores.fechanacimiento" class="texti">{{ errores.fechanacimiento }}</div>
-                                            </div>
-                                          </div>
-                                          
-
-                                <div class="col-12 col-md-6 col-xl-3">
-                                    <div class="form-group local-forms">
-                                        <label>Grupo sanguíneo <span class="login-danger">*</span></label>
-
-                                        <mat-select id="grupo" name="grupo" [(ngModel)]="paciente.grupo"
-                                            class="form-control select" placeholder="Seleccione">
-                                            <mat-option value="A+">A+</mat-option>
-                                            <mat-option value="A-">A-</mat-option>
-                                            <mat-option value="B+">B+</mat-option>
-                                            <mat-option value="B-">B-</mat-option>
-                                            <mat-option value="AB+">AB+</mat-option>
-                                            <mat-option value="AB-">AB-</mat-option>
-                                            <mat-option value="O+">O+</mat-option>
-
-
-
-
-                                        </mat-select>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-md-6 col-xl-3">
-                                    <div class="form-group select-gender">
-                                        <label class="gen-label">Genero<span class="login-danger">*</span></label>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" name="gender" class="form-check-input"
-                                                    value="masculino" [(ngModel)]="paciente.sexo">Masculino
-                                            </label>
-                                        </div>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" name="gender" class="form-check-input"
-                                                    value="femenino" [(ngModel)]="paciente.sexo">Femenino
-                                            </label>
+                                            </mat-select>
+                                            <!-- Mensajes de error -->
+                                            <div *ngIf="errores.civil" class="texti">{{ errores.civil }}</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="form-group local-forms">
-                                        <label>Direccion <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" placeholder="" id="direccion"
-                                            name="direccion" [(ngModel)]="paciente.direccion">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-xl-6">
-                                    <div class="form-group local-forms">
-                                        <label>Correo <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" placeholder="" id="cp" name="cp"
-                                            [(ngModel)]="paciente.cp">
-                                    </div>
-                                </div>
 
+                                <div class="d-flex row">
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="form-group local-forms">
+                                            <label>Fecha de nacimiento <span class="login-danger">*</span></label>
+                                            <input class="form-control datetimepicker" type="text" placeholder=""
+                                                matInput [matDatepicker]="picker" [(ngModel)]="paciente.fechanacimiento"
+                                                name="fechanacimiento" (input)="limpiarErrores('fechanacimiento')"
+                                                (ngModelChange)="limpiarErrores('fechanacimiento')"
+                                                onselectstart="return false" onpaste="return false;"
+                                                onCopy="return false" onCut="return false" disabled="true">
+                                            <mat-datepicker #picker disabled="false"></mat-datepicker>
+                                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <!-- Mensajes de error -->
+                                            <div *ngIf="errores.fechanacimiento" class="texti">{{
+                                                errores.fechanacimiento }}
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-dark" (click)="fechaTest()">Test</button>
+                                    </div>
+
+                                    <div class=" col-12 col-md-6 col-xl-4">
+                                        <div class="form-group local-forms">
+                                            <label>Grupo sanguíneo <span class="login-danger">*</span></label>
+
+                                            <mat-select id="grupo" name="grupo" [(ngModel)]="paciente.grupo"
+                                                class="form-control select" placeholder="Seleccione">
+                                                <mat-option value="A+">A+</mat-option>
+                                                <mat-option value="A-">A-</mat-option>
+                                                <mat-option value="B+">B+</mat-option>
+                                                <mat-option value="B-">B-</mat-option>
+                                                <mat-option value="AB+">AB+</mat-option>
+                                                <mat-option value="AB-">AB-</mat-option>
+                                                <mat-option value="O+">O+</mat-option>
+                                            </mat-select>
+                                            <div *ngIf="errores.grupo" class="texti">{{ errores.grupo }}</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="form-group local-forms">
+                                            <label class="gen-label">Sexo<span class="login-danger">*</span></label>
+                                            <mat-select id="gender" name="gender" [(ngModel)]="paciente.sexo"
+                                                class="form-control select" placeholder="Seleccione"
+                                                (ngModelChange)="limpiarErrores('sexo')">
+                                                <mat-option value="masculino">Masculino</mat-option>
+                                                <mat-option value="femenino">Femenino</mat-option>
+                                            </mat-select>
+                                            <div *ngIf="errores.sexo" class="texti">{{ errores.sexo }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="form-group local-forms">
+                                            <label>Dirección <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" placeholder="" id="direccion"
+                                                name="direccion" [(ngModel)]="paciente.direccion">
+                                            <div *ngIf="errores.direccion" class="texti">{{ errores.direccion }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="form-group local-forms">
+                                            <label>Correo <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" placeholder="example@gmail.com"
+                                                id="cp" name="cp" [(ngModel)]="paciente.cp">
+                                            <div *ngIf="errores.email" class="texti">{{ errores.email }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="form-group local-forms">
+                                            <label>Teléfono <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" placeholder="" id="telefono1"
+                                                name="telefono1" [(ngModel)]="paciente.telefono1"
+                                                onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                                onselectstart="return false" onpaste="return false;"
+                                                onCopy="return false" onCut="return false" onDrag="return false">
+                                                <div *ngIf="errores.telefono" class="texti">{{ errores.telefono }}</div>
+
+                                            <button type="submit" class="btn btn-primary submit-form me-2 mt-2"
+                                                (click)="redirectMessage(paciente.telefono1)">WhatsApp</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--
                                 <div class="col-12 col-md-6 col-xl-3">
                                     <div class="form-group local-forms">
                                         <label>Obra social <span class="login-danger">*</span></label>
@@ -251,6 +293,8 @@
                                         </mat-select>
                                     </div>
                                 </div>
+                                -->
+                                <!-- 
                                 <div class="col-12 col-md-6 col-xl-3">
                                     <div class="form-group local-forms">
                                         <label>Numero de Afiliado <span class="login-danger">*</span></label>
@@ -258,21 +302,16 @@
                                             name="afiliado" [(ngModel)]="paciente.afiliado">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 col-xl-4">
-                                    <div class="form-group local-forms">
-                                        <label>Telofono 1 <span class="login-danger">*</span></label>
-                                        <input class="form-control" type="text" placeholder="" id="telefono1"
-                                            name="telefono1" [(ngModel)]="paciente.telefono1">
-                                    </div>
-                                </div>
+                            -->
+
+                                <!--
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Telofono 2 <span class="login-danger">*</span></label>
                                         <input class="form-control" type="text" placeholder="" id="telefono2"
                                             name="telefono2" [(ngModel)]="paciente.telefono2">
-                                            <button type="submit" class="btn btn-primary submit-form me-2"
-                                            (click)="redirectMessage(paciente.telefono2)"
-                                            >Whatsapp</button>
+                                        <button type="submit" class="btn btn-primary submit-form me-2"
+                                            (click)="redirectMessage(paciente.telefono2)">WhatsApp</button>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
@@ -303,16 +342,13 @@
                                             name="campoCfg3" [(ngModel)]="paciente.campoCfg3">
                                     </div>
                                 </div>
-
-
-
-
-
+                                -->
 
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
                                         <!-- <button type="submit"  class="btn btn-primary submit-form me-2" (click)="descargarImagen ('paciente.id')">Descargar Imagen</button> -->
-                                        <button type="submit" class="btn btn-primary submit-form me-2" (click)="guardarPersona()">Guardar</button>
+                                        <button type="submit" class="btn btn-primary submit-form me-2"
+                                            (click)="guardarPersona()">Guardar</button>
 
                                         <button type="submit" class="btn btn-primary cancel-form"
                                             [routerLink]="routes.patientsList">Lista</button>
@@ -329,12 +365,10 @@
 <!-- <app-localization-details [hidden]="!bCompntAntece"></app-localization-details>
 <app-payment-settings [hidden]="!bCompntClinc"></app-payment-settings>
 <app-email-settings [hidden]="!bCompontGmail"></app-email-settings> -->
-<div class="page-wrapper correctMargin" [hidden]="!bCompntAntece" >
+<div class="page-wrapper correctMargin" [hidden]="!bCompntAntece">
     <div class="content correctMargin">
-
         <div class="row">
             <div class="col-sm-12">
-
                 <div class="card">
                     <div class="card-body">
                         <form>
@@ -344,44 +378,44 @@
                                         <h4>Antecedentes del paciente</h4>
                                     </div>
                                 </div>
-                              
+
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Antecedentes clinicos <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" id="clinicos" name="clinicos"[(ngModel)]="paciente.clinicos"  rows="3" cols="30"></textarea>
-                                        
+                                        <textarea class="form-control" id="clinicos" name="clinicos"
+                                            [(ngModel)]="paciente.clinicos" rows="3" cols="30"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Antecedentes familiares <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" id="familiar" name="familiar"[(ngModel)]="paciente.familiar"  rows="3" cols="30"></textarea>
-                                        
+                                        <textarea class="form-control" id="familiar" name="familiar"
+                                            [(ngModel)]="paciente.familiar" rows="3" cols="30"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Diagnostico principal <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" id="diagnostico" name="diagnostico"[(ngModel)]="paciente.diagnostico"  rows="3" cols="30"></textarea>
-                                        
+                                        <textarea class="form-control" id="diagnostico" name="diagnostico"
+                                            [(ngModel)]="paciente.diagnostico" rows="3" cols="30"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Cormobilidades <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" id="cormobilidades" name="cormobilidades"[(ngModel)]="paciente.cormobilidades"  rows="3" cols="30"></textarea>
-                                        
+                                        <textarea class="form-control" id="cormobilidades" name="cormobilidades"
+                                            [(ngModel)]="paciente.cormobilidades" rows="3" cols="30"></textarea>
+
                                     </div>
                                 </div>
-                                
-
-
 
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
-                                        <button type="submit" class="btn btn-primary submit-form me-2" (click)="guardarPersona()">Guardar</button>
-                                         
-                                        <button type="submit" class="btn btn-primary cancel-form"[routerLink]="routes.patientsList">Lista</button>
+                                        <button type="submit" class="btn btn-primary submit-form me-2"
+                                            (click)="guardarPersona()">Guardar</button>
+
+                                        <button type="submit" class="btn btn-primary cancel-form"
+                                            [routerLink]="routes.patientsList">Lista</button>
                                     </div>
                                 </div>
                             </div>
@@ -392,12 +426,11 @@
         </div>
     </div>
 </div>
-<div class="page-wrapper correctMargin"[hidden]="!bCompntClinc">
-    <div class="content correctMargin">
 
+<div class="page-wrapper correctMargin" [hidden]="!bCompntClinc">
+    <div class="content correctMargin">
         <div class="row">
             <div class="col-sm-12">
-
                 <div class="card">
                     <div class="card-body">
                         <form>
@@ -407,87 +440,88 @@
                                         <h4>Detalles de paciente</h4>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Hepatitis <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" id="extra1" name="extra1"[(ngModel)]="paciente.extra1"  rows="3" cols="30"></textarea>
-                                        
+                                        <textarea class="form-control" id="extra1" name="extra1"
+                                            [(ngModel)]="paciente.extra1" rows="3" cols="30"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Enf infecciosas <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" id="extra2" name="extra2"[(ngModel)]="paciente.extra2"  rows="3" cols="30"></textarea>
-                                        
+                                        <textarea class="form-control" id="extra2" name="extra2"
+                                            [(ngModel)]="paciente.extra2" rows="3" cols="30"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Alergias <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" id="extra3" name="extra3"[(ngModel)]="paciente.extra3"  rows="3" cols="30"></textarea>
-                                        
+                                        <textarea class="form-control" id="extra3" name="extra3"
+                                            [(ngModel)]="paciente.extra3" rows="3" cols="30"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Enf Neurologicas <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" id="extra4" name="extra4"[(ngModel)]="paciente.extra4"  rows="3" cols="30"></textarea>
-                                        
+                                        <textarea class="form-control" id="extra4" name="extra4"
+                                            [(ngModel)]="paciente.extra4" rows="3" cols="30"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Medicamentos <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" id="extra5" name="extra5"[(ngModel)]="paciente.extra5"  rows="3" cols="30"></textarea>
-                                        
+                                        <textarea class="form-control" id="extra5" name="extra5"
+                                            [(ngModel)]="paciente.extra5" rows="3" cols="30"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Cardiopatías <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" id="extra6" name="extra6"[(ngModel)]="paciente.extra6"  rows="3" cols="30"></textarea>
-                                        
+                                        <textarea class="form-control" id="extra6" name="extra6"
+                                            [(ngModel)]="paciente.extra6" rows="3" cols="30"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Diabetes <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" id="extra7" name="extra7"[(ngModel)]="paciente.extra7"  rows="3" cols="30"></textarea>
-                                        
+                                        <textarea class="form-control" id="extra7" name="extra7"
+                                            [(ngModel)]="paciente.extra7" rows="3" cols="30"></textarea>
+
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Intev Quirurgicas <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" id="extra8" name="extra8"[(ngModel)]="paciente.extra8"  rows="3" cols="30"></textarea>
-                                        
+                                        <textarea class="form-control" id="extra8" name="extra8"
+                                            [(ngModel)]="paciente.extra8" rows="3" cols="30"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Adicciones <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" id="extra9" name="extra9"[(ngModel)]="paciente.extra9"  rows="3" cols="30"></textarea>
-                                        
+                                        <textarea class="form-control" id="extra9" name="extra9"
+                                            [(ngModel)]="paciente.extra9" rows="3" cols="30"></textarea>
+
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Otros <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" id="extra10" name="extra10"[(ngModel)]="paciente.extra10"  rows="3" cols="30"></textarea>
-                                        
+                                        <textarea class="form-control" id="extra10" name="extra10"
+                                            [(ngModel)]="paciente.extra10" rows="3" cols="30"></textarea>
+
                                     </div>
                                 </div>
-                         
-
-
-
 
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
-                                        <button type="submit" class="btn btn-primary submit-form me-2" (click)="guardarPersona()">Guardar</button>
-                                         
-                                        <button type="submit" class="btn btn-primary cancel-form"[routerLink]="routes.patientsList">Lista</button>
+                                        <button type="submit" class="btn btn-primary submit-form me-2"
+                                            (click)="guardarPersona()">Guardar</button>
+
+                                        <button type="submit" class="btn btn-primary cancel-form"
+                                            [routerLink]="routes.patientsList">Lista</button>
                                     </div>
                                 </div>
                             </div>
@@ -498,7 +532,7 @@
         </div>
     </div>
 </div>
-<div class="page-wrapper correctMargin"[hidden]="!bCompontGmail">
+<div class="page-wrapper correctMargin" [hidden]="!bCompontGmail">
     <div class="content correctMargin">
 
 
@@ -514,24 +548,27 @@
                                         <h4>Detalles de paciente</h4>
                                     </div>
                                 </div>
-                              
-                                
-                                <div class="col-12 col-md-6 col-xl-4">
+
+
+                                <div class="col-12 mx-0">
                                     <div class="form-group local-forms">
                                         <label>Comentarios <span class="login-danger">*</span></label>
-                                        <textarea class="form-control" id="comentarios" name="comentarios"[(ngModel)]="paciente.comentarios"  rows="3" cols="30"></textarea>
-                                        
+                                        <textarea class="form-control" id="comentarios" name="comentarios"
+                                            [(ngModel)]="paciente.comentarios" rows="3" cols="30"></textarea>
+
                                     </div>
                                 </div>
-                                
+
 
 
 
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
-                                        <button type="submit" class="btn btn-primary submit-form me-2" (click)="guardarPersona()">Guardar</button>
-                                         
-                                        <button type="submit" class="btn btn-primary cancel-form"[routerLink]="routes.patientsList">Lista</button>
+                                        <button type="submit" class="btn btn-primary submit-form me-2"
+                                            (click)="guardarPersona()">Guardar</button>
+
+                                        <button type="submit" class="btn btn-primary cancel-form"
+                                            [routerLink]="routes.patientsList">Lista</button>
                                     </div>
                                 </div>
                             </div>

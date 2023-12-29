@@ -24,25 +24,28 @@ export class AddPatientComponent {
   validador: boolean = false;
   // identificacion: String;
   //change components
-  bCompntNew:boolean =true;
-  bCompntAntece:boolean=false;
-  bCompntClinc:boolean=false;
-  bCompontGmail:boolean=false;
+  bCompntNew: boolean = true;
+  bCompntAntece: boolean = false;
+  bCompntClinc: boolean = false;
+  bCompontGmail: boolean = false;
   showModalWhatsapp: boolean = false;
   errores = {
     apellido: '',
     nombre: '',
     documento: '',
     civil: '',
-    tipodocumento:'',
-    fechanacimiento: ''
+    tipodocumento: '',
+    fechanacimiento: '',
+    grupo: '',
+    sexo: '',
+    direccion: '',
+    email: '',
+    telefono: '',
   };
   constructor(private auth: AuthService, private personaServicio: patientService, private router: Router, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.obtenerpersona();
-   
-
   }
 
   obtenerpersona() {
@@ -53,10 +56,10 @@ export class AddPatientComponent {
   public redirectMessage(phoneNumber: string): void {
     // Reemplaza el "0" al principio del número con "593"
     const formattedPhoneNumber: string = phoneNumber.replace(/^0/, '593');
-  
+
     const encodedMessage: string = encodeURIComponent("Hola cual es tu consulta?");
     const whatsappURL: string = `https://api.whatsapp.com/send?phone=${formattedPhoneNumber}&text=${encodedMessage}`;
-    
+
     window.open(whatsappURL, "_blank");
     this.showModalWhatsapp = false;
   }
@@ -76,40 +79,36 @@ export class AddPatientComponent {
     }
   }
 
-
   // Método para obtener la URL segura (trusted) para la imagen
   obtenerUrlSegura(url: string): any {
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
-  
-  
-  
-  changeInterface(interfaceSelec: string){
+  changeInterface(interfaceSelec: string) {
     switch (interfaceSelec) {
       case "new":
-        this.bCompntNew=true;
-        this.bCompntAntece=false;
-        this.bCompntClinc=false;
-        this.bCompontGmail=false;
+        this.bCompntNew = true;
+        this.bCompntAntece = false;
+        this.bCompntClinc = false;
+        this.bCompontGmail = false;
         break;
       case "antecedentes":
-        this.bCompntNew=false;
-        this.bCompntAntece=true;
-        this.bCompntClinc=false;
-        this.bCompontGmail=false;
+        this.bCompntNew = false;
+        this.bCompntAntece = true;
+        this.bCompntClinc = false;
+        this.bCompontGmail = false;
         break;
       case "clinico":
-        this.bCompntNew=false;
-        this.bCompntAntece=false;
-        this.bCompntClinc=true;
-        this.bCompontGmail=false;
+        this.bCompntNew = false;
+        this.bCompntAntece = false;
+        this.bCompntClinc = true;
+        this.bCompontGmail = false;
         break
       case "gmail":
-        this.bCompntNew=false;
-        this.bCompntAntece=false;
-        this.bCompntClinc=false;
-        this.bCompontGmail=true;
+        this.bCompntNew = false;
+        this.bCompntAntece = false;
+        this.bCompntClinc = false;
+        this.bCompontGmail = true;
         break;
       default:
         break;
@@ -167,8 +166,6 @@ export class AddPatientComponent {
     var comentarios = this.paciente.comentarios;
     var fotos = this.paciente.foto;
 
-
-
     this.router.navigate([this.routes.patientsList]).then(() => {
       window.location.reload();
     });
@@ -183,7 +180,7 @@ export class AddPatientComponent {
 
       // Llamada al método para obtener la lista de personas después de guardar una nueva persona
     },
-    
+
 
 
     );
@@ -236,106 +233,169 @@ export class AddPatientComponent {
 
   }
 
-// descargarArchivo(filename: string): void {
-//     this.pacienteService.descargarArchivo(filename).subscribe((response) => {
-//       const blob = new Blob([response.body], { type: response.headers.get('Content-Type') || 'application/octet-stream' });
-//       const url = window.URL.createObjectURL(blob);
-//       const a = document.createElement('a');
-//       document.body.appendChild(a);
-//       a.href = url;
-//       a.download = filename;
-//       a.click();
-//       window.URL.revokeObjectURL(url);
-//     });
-//   }
+  // descargarArchivo(filename: string): void {
+  //     this.pacienteService.descargarArchivo(filename).subscribe((response) => {
+  //       const blob = new Blob([response.body], { type: response.headers.get('Content-Type') || 'application/octet-stream' });
+  //       const url = window.URL.createObjectURL(blob);
+  //       const a = document.createElement('a');
+  //       document.body.appendChild(a);
+  //       a.href = url;
+  //       a.download = filename;
+  //       a.click();
+  //       window.URL.revokeObjectURL(url);
+  //     });
+  //   }
 
-vvalidarCampos(): boolean {
-  let camposInvalidos = false;
-  
-  if (!this.paciente.apellido) {
-    this.errores.apellido = 'Ingrese el apellido';
-    camposInvalidos = true;
-  } else {
-    this.errores.apellido = '';
-  }
+  vvalidarCampos(): boolean {
+    let camposInvalidos = false;
 
-  if (!this.paciente.nombre) {
-    this.errores.nombre = 'Ingrese el nombre';
-    camposInvalidos = true;
-  } else {
-    this.errores.nombre = '';
-  }
-  if (!this.paciente.documento) {
-    this.errores.documento = 'Ingrese la cedula';
-    camposInvalidos = true;
-  } else {
-    this.errores.documento = '';
-  }
-  if (!this.paciente.civil) {
-    this.errores.civil = 'Por favor, seleccione un estado civil.';
-  } else {
-    this.errores.civil = '';
-  }
-  if (!this.paciente.tipodocumento) {
-    this.errores.tipodocumento = 'Por favor, seleccione el tipo de documento.';
-  } else {
-    this.errores.tipodocumento = '';
-  }
-  if (!this.paciente.fechanacimiento) {
-    this.errores.fechanacimiento = 'Por favor, seleccione la fecha de nacimiento.';
-  } else {
+    if (!this.paciente.apellido.trim()) {
+      this.errores.apellido = 'Por favor, ingrese el apellido';
+      camposInvalidos = true;
+    } else {
+      this.errores.apellido = '';
+    }
+
+    if (!this.paciente.nombre) {
+      this.errores.nombre = 'Por favor, ingrese el nombre';
+      camposInvalidos = true;
+    } else {
+      this.errores.nombre = '';
+    }
+
+    if (!this.paciente.civil) {
+      this.errores.civil = 'Por favor, seleccione un estado civil';
+      camposInvalidos = true;
+    } else {
+      this.errores.civil = '';
+    }
+    if (!this.paciente.tipodocumento) {
+      this.errores.tipodocumento = 'Por favor, seleccione el tipo de documento';
+      camposInvalidos = true;
+    } else {
+      this.errores.tipodocumento = '';
+    }
+
     if (!this.paciente.documento) {
-      this.errores.documento = 'Ingrese la cedula';
+      this.errores.documento = 'Por favor, ingrese el número de documento';
       camposInvalidos = true;
     } else {
       // Verificar si la cédula ya está registrada
       const cedulaExistente = this.pacientes.some(p => p.documento === this.paciente.documento);
       if (cedulaExistente) {
-        this.errores.documento = 'El número de cédula ya está registrado.';
+        this.errores.documento = 'El número de documento ya está registrado';
         camposInvalidos = true;
       } else {
         this.errores.documento = '';
       }
     }
-    this.errores.fechanacimiento = '';
-  }
-  return camposInvalidos;
-}
-limpiarErrores(campo: string): void {
-  if (campo === 'apellido') {
-    this.errores.apellido = '';
-  } else if (campo === 'nombre') {
-    this.errores.nombre = '';
-  }else if (campo === 'documento') {
-    this.errores.documento = '';
-  }else if (campo === 'civil') {
-    this.errores.civil = '';
-  }else if (campo === 'tipodocumento') {
-    this.errores.tipodocumento = '';
-  }else if (campo === 'fechanacimiento') {
-    this.errores.fechanacimiento = '';
-  }
-  
-}
-verificarCedulaExistente() {
-  // Realiza la llamada al servicio para verificar si la cédula ya está registrada
-  this.personaServicio.Buscarid(this.paciente.id).subscribe(
-    (respuesta: any) => {
-      if (respuesta.existe) {
-        this.errores.documento = 'El número de cédula ya está registrado.';
+
+    if (!this.paciente.fechanacimiento) {
+      this.errores.fechanacimiento = 'Por favor, seleccione la fecha de nacimiento';
+      camposInvalidos = true;
+      const fechaNacimiento = this.paciente.fechanacimiento;
+      console.log(fechaNacimiento);
+    } else {
+      const fechaNacimiento = new Date(this.paciente.fechanacimiento);
+      const todayDate = new Date();
+      const edad = todayDate.getFullYear() - fechaNacimiento.getFullYear();
+      console.log(fechaNacimiento);
+      if (edad > 100 || edad < 0) {
+        this.errores.fechanacimiento = 'Por favor, ingrese una fecha de nacimiento válida';
+        camposInvalidos = true;
+      } else {
+        this.errores.fechanacimiento = '';
       }
-    },
-    (error: any) => {
-      console.error('Error al verificar la cédula:', error);
     }
-  );
-}
+
+    //New Validations
+    if (!this.paciente.grupo) {
+      this.errores.grupo = 'Por favor, seleccione un grupo sanguíneo';
+      camposInvalidos = true;
+    } else {
+      this.errores.grupo = '';
+    }
+
+    if (!this.paciente.sexo) {
+      this.errores.sexo = 'Por favor, seleccione el sexo del paciente';
+      camposInvalidos = true;
+    } else {
+      this.errores.sexo = '';
+    }
+
+    if (!this.paciente.direccion) {
+      this.errores.direccion = 'Por favor, ingrese la dirección';
+      camposInvalidos = true;
+    } else {
+      this.errores.direccion = '';
+    }
+
+    if (!this.paciente.cp) {
+      this.errores.email = 'Por favor, ingrese una dirección de correo electrónico';
+      camposInvalidos = true;
+    } else {
+      this.errores.email = '';
+    }
+
+    if (!this.paciente.telefono1) {
+      this.errores.telefono = 'Por favor, ingrese un número telefónico';
+      camposInvalidos = true;
+    } else {
+      this.errores.telefono = '';
+    }
+
+    return camposInvalidos;
+  }
+  limpiarErrores(campo: string): void {
+    if (campo === 'apellido') {
+      this.errores.apellido = '';
+    } else if (campo === 'nombre') {
+      this.errores.nombre = '';
+    } else if (campo === 'documento') {
+      this.errores.documento = '';
+    } else if (campo === 'civil') {
+      this.errores.civil = '';
+    } else if (campo === 'tipodocumento') {
+      this.errores.tipodocumento = '';
+    } else if (campo === 'fechanacimiento') {
+      this.errores.fechanacimiento = '';
+    }
+  }
+
+  fechaTest(): void {
+    if (this.paciente.fechanacimiento !== null) {
+      const fechaNacimiento = new Date(this.paciente.fechanacimiento as string);
+      const todayDate = new Date();
+      const edad = todayDate.getFullYear() - fechaNacimiento.getFullYear();
+      console.log(fechaNacimiento);
+      console.log(edad);
+      if (edad > 100 || edad <= 0) {
+        console.log('Por favor, ingrese una fecha de nacimiento válida');
+      } else {
+        this.errores.fechanacimiento = '';
+        console.log('Es válido');
+      }
+    }
+  }
+
+  verificarCedulaExistente() {
+    // Realiza la llamada al servicio para verificar si la cédula ya está registrada
+    this.personaServicio.Buscarid(this.paciente.id).subscribe(
+      (respuesta: any) => {
+        if (respuesta.existe) {
+          this.errores.documento = 'El número de cédula ya está registrado.';
+        }
+      },
+      (error: any) => {
+        console.error('Error al verificar la cédula:', error);
+      }
+    );
+  }
   onSubmit() {
     if (!this.vvalidarCampos()) {
       // Si la validación falla, no continuar con el envío
       return;
     }
-
     // Resto del código para guardar el paciente
     this.guardarPersona();
   }
