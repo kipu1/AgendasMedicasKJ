@@ -116,7 +116,7 @@ export class AddPatientComponent {
   }
 
   guardarPersona() {
-    if (this.vvalidarCampos()) {
+    if (this.validarCampos()) {
       // Mostrar un mensaje de error o realizar otra acción
       return;
     }
@@ -246,7 +246,7 @@ export class AddPatientComponent {
   //     });
   //   }
 
-  vvalidarCampos(): boolean {
+  validarCampos(): boolean {
     let camposInvalidos = false;
 
     if (!this.paciente.apellido.trim()) {
@@ -293,14 +293,8 @@ export class AddPatientComponent {
     if (!this.paciente.fechanacimiento) {
       this.errores.fechanacimiento = 'Por favor, seleccione la fecha de nacimiento';
       camposInvalidos = true;
-      const fechaNacimiento = this.paciente.fechanacimiento;
-      console.log(fechaNacimiento);
     } else {
-      const fechaNacimiento = new Date(this.paciente.fechanacimiento);
-      const todayDate = new Date();
-      const edad = todayDate.getFullYear() - fechaNacimiento.getFullYear();
-      console.log(fechaNacimiento);
-      if (edad > 100 || edad < 0) {
+      if (this.fechaValidator()) {
         this.errores.fechanacimiento = 'Por favor, ingrese una fecha de nacimiento válida';
         camposInvalidos = true;
       } else {
@@ -362,20 +356,12 @@ export class AddPatientComponent {
     }
   }
 
-  fechaTest(): void {
-    if (this.paciente.fechanacimiento !== null) {
-      const fechaNacimiento = new Date(this.paciente.fechanacimiento as string);
-      const todayDate = new Date();
-      const edad = todayDate.getFullYear() - fechaNacimiento.getFullYear();
-      console.log(fechaNacimiento);
-      console.log(edad);
-      if (edad > 100 || edad <= 0) {
-        console.log('Por favor, ingrese una fecha de nacimiento válida');
-      } else {
-        this.errores.fechanacimiento = '';
-        console.log('Es válido');
-      }
-    }
+  fechaValidator(): boolean {
+    const fechaNacimiento = new Date(this.paciente.fechanacimiento as string);
+    const todayDate = new Date();
+    const edad = todayDate.getFullYear() - fechaNacimiento.getFullYear();
+    console.log(fechaNacimiento);
+    return (edad > 100 || edad < 0);
   }
 
   verificarCedulaExistente() {
@@ -392,7 +378,7 @@ export class AddPatientComponent {
     );
   }
   onSubmit() {
-    if (!this.vvalidarCampos()) {
+    if (!this.validarCampos()) {
       // Si la validación falla, no continuar con el envío
       return;
     }
