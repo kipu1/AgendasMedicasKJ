@@ -1,0 +1,14 @@
+.header-left {
+    display: flex;
+    align-items: center;
+    margin-right: 0%;
+}
+
+.logo img {
+    margin-left: 0px; 
+}
+
+.titulo h4 {
+    margin-left: 10px; 
+
+}

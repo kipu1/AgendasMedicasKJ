@@ -48,8 +48,9 @@ export class AuthService {
          
           localStorage.setItem('token', response.token);
           localStorage.setItem('authenticated', 'true');
-          Swal.fire('Bienvenido'+ nombre);
-          this.loggedInDoctorName= response.nombre;
+          Swal.fire('Bienvenido '+ nombre);
+          this.loggedInDoctorName = "Dr. "+nombre;
+          localStorage.setItem('loggedInDoctorName', this.loggedInDoctorName);
           this.router.navigate([routes.adminDashboard]);
         } else {
           localStorage.removeItem('token');
@@ -66,8 +67,10 @@ export class AuthService {
     );
   }
 
-  getLoggedInDoctorName(): string | null{
-    return this.loggedInDoctorName;
+ 
+  getLoggedInDoctorName(): string | null {
+    // Obtener el nombre del doctor desde localStorage
+    return localStorage.getItem('loggedInDoctorName') || null;
   }
   setLoggedInDoctorName(doctorName:string): void{
      this.loggedInDoctorName =doctorName;

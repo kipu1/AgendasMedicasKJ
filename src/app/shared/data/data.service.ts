@@ -195,12 +195,12 @@ export class DataService {
   }
   public sideBar = [
     {
-      tittle: 'Main',
+      tittle: 'Menú',
       showAsTab: false,
       separateRoute: false,
       menu: [
         {
-          menuValue: 'Dashboard',
+          menuValue: 'Tablero',
           hasSubRoute: true,
           showSubRoute: false,
           base: 'dashboard',
@@ -208,11 +208,11 @@ export class DataService {
           img: 'assets/img/icons/menu-icon-01.svg',
           subMenus: [
             {
-              menuValue: 'Admin Dashboard',
+              menuValue: 'Tablero Doctor',
               route: routes.adminDashboard,
               base: routes.adminDashboard,
             },
-            {
+           /* {
               menuValue: 'Doctor Dashboard',
               route: routes.doctorDashboard,
               base: routes.doctorDashboard,
@@ -221,23 +221,14 @@ export class DataService {
               menuValue: 'Paciente Dashboard',
               route: routes.patientDashboard,
               base: routes.patientDashboard,
-            },
+            },*/
           ],
         },
 
 
+       
         {
-          menuValue: 'Buscar',
-          route: routes.patientsList,
-          hasSubRoute: false,
-          showSubRoute: false,
-          icon: 'fa-search',
-          faIcon: true,
-          base: 'paciente',
-          subMenus: [],
-        },
-        {
-          menuValue: 'Paciente',
+          menuValue: 'Pacientes',
           hasSubRoute: true,
           showSubRoute: false,
           base: 'patient',
@@ -249,7 +240,13 @@ export class DataService {
             //   base: routes.patientsList,
             // },
             {
-              menuValue: 'Agregar Paciente',
+
+              menuValue: 'Mis Pacientes',
+              route: routes.patientsList,
+              base: routes.patientsList,
+            },
+            {
+              menuValue: 'Nuevo Paciente',
               route: routes.addPatient,
               base: routes.addPatient,
             },
@@ -268,11 +265,11 @@ export class DataService {
               route: routes.payments,
               base: routes.payments,
             },
-            // {
-            //   menuValue: 'Odontologia',
-            //   route: routes.addDepartment,
-            //   base: routes.addDepartment,
-            // },
+            {
+              menuValue: 'Odontologia',
+              route: routes.addDepartment,
+              base: routes.addDepartment,
+            },
             // {
             //   menuValue: ' Lista Odontologia',
             //   route: routes.departmentList,
@@ -329,24 +326,28 @@ export class DataService {
           subMenus: [],
         },
         {
-          menuValue: 'Libreta',
-          route: routes.addSchedule,
-          hasSubRoute: false,
+          menuValue: 'Proveedores',
+          hasSubRoute: true,
           showSubRoute: false,
-          icon: 'fa-calendar',
-          faIcon: true,
-          base: 'doctor-schedule',
-          subMenus: [],
+          base: 'libreta',
+          img: 'assets/img/icons/proveedor.svg',
+          subMenus: [
+            {
+            menuValue: 'Nuevo Proveedor',
+            route: routes.addSchedule,
+            base: routes.addSchedule,
+          }
+          ],
         },
         {
-          menuValue: 'Doctors',
+          menuValue: 'Doctores',
           hasSubRoute: true,
           showSubRoute: false,
           base: 'doctor',
           img: 'assets/img/icons/health-img.svg',
           subMenus: [
             {
-              menuValue: 'Doctor List',
+              menuValue: 'Comunidad',
               route: routes.doctorsList,
               base: routes.doctorsList,
             },

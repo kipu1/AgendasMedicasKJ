@@ -7,19 +7,19 @@ import { AuthService } from 'src/app/shared/auth/auth.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
   public routes = routes;
   public openBox = false;
   public miniSidebar  = false;
   public addClass = false;
-  public loggedInDoctorName: string | null = null;
-
+   public loggedInDoctorName: string | null = "null";
+ 
   constructor(
     public router: Router,
     private sideBar: SideBarService, 
-    private authService: AuthService
+    private authService: AuthService,
     ) {
     this.sideBar.toggleSideBar.subscribe((res: string) => {
       if (res == 'true') {

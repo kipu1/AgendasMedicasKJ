@@ -164,6 +164,9 @@ export class routes {
   public static get schedule(): string {
     return this.baseUrl + '/doctor-schedule/schedule';
   }
+  public static get addschedule(): string {
+    return this.baseUrl + '/doctor-schedule/add-schedule';
+  }
   public static get email(): string {
     return this.baseUrl + '/email';
   }

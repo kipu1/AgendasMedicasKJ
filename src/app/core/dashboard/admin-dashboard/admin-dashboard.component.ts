@@ -1,5 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild , OnInit} from '@angular/core';
 import { routes } from 'src/app/shared/routes/routes';
+import { AuthService} from 'src/app/shared/auth/auth.service';
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -51,19 +52,28 @@ interface data {
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
-  styleUrls: ['./admin-dashboard.component.scss'],
+  styleUrls: ['./admin-dashboard.component.css'],
+
 })
-export class AdminDashboardComponent {
+export class AdminDashboardComponent  implements OnInit {
   public routes = routes;
   public selectedValue ! : string  ;
+  public loggedInDoctorName: string | null = null;
   @ViewChild('chart') chart!: ChartComponent;
   public chartOptionsOne: Partial<ChartOptions>;
   public chartOptionsTwo: Partial<ChartOptions>;
 
   public recentPatients: Array<recentPatients> = [];
   public upcomingAppointments: Array<upcomingAppointments> = [];
- 
-  constructor(public data : DataService) {
+  
+  
+    
+  ngOnInit(): void {
+    // Obtener el nombre del doctor al cargar el encabezado
+    this.loggedInDoctorName = this.authService.getLoggedInDoctorName();
+  }
+  constructor(public data : DataService, private authService:AuthService) {
+    
     this.chartOptionsOne = {
       chart: {
         height: 230,
@@ -209,4 +219,6 @@ export class AdminDashboardComponent {
     {value: '2020'},
     {value: '2019'},
   ];
+ 
+  
 }
