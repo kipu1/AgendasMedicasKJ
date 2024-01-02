@@ -90,7 +90,13 @@
 
                   <div class="form-group">
                     <label for="clavesecreta">Clave Secreta</label>
-                    <input type="password" id="clavesecreta" name="clavesecreta" class="form-control" formControlName="clavesecreta" required>
+                    <input type="password" id="clavesecreta" name="clavesecreta" 
+                    class="form-control" formControlName="clavesecreta" required type="{{ passwordClass ? 'text' : 'password' }}">
+                    <div class="axe">
+                      <icon (click)="showPassword()"
+                      [ngClass]="passwordClass ? 'feather icon-eye' : 'feather icon-eye-off'"
+                      class="profile-views toggle-password" ></icon>
+                    </div>
                   </div>
                   
 

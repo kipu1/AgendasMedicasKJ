@@ -203,7 +203,6 @@
                                                 errores.fechanacimiento }}
                                             </div>
                                         </div>
-                                        <button class="btn btn-dark" (click)="fechaTest()">Test</button>
                                     </div>
 
                                     <div class=" col-12 col-md-6 col-xl-4">
@@ -226,7 +225,7 @@
 
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="form-group local-forms">
-                                            <label class="gen-label">Sexo<span class="login-danger">*</span></label>
+                                            <label class="gen-label">Sexo <span class="login-danger">*</span></label>
                                             <mat-select id="gender" name="gender" [(ngModel)]="paciente.sexo"
                                                 class="form-control select" placeholder="Seleccione"
                                                 (ngModelChange)="limpiarErrores('sexo')">
@@ -260,14 +259,13 @@
                                                 onkeypress='return event.charCode >= 48 && event.charCode <= 57'
                                                 onselectstart="return false" onpaste="return false;"
                                                 onCopy="return false" onCut="return false" onDrag="return false">
-                                                <div *ngIf="errores.telefono" class="texti">{{ errores.telefono }}</div>
+                                            <div *ngIf="errores.telefono" class="texti">{{ errores.telefono }}</div>
 
                                             <button type="submit" class="btn btn-primary submit-form me-2 mt-2"
                                                 (click)="redirectMessage(paciente.telefono1)">WhatsApp</button>
                                         </div>
                                     </div>
-                                </div>
-                                <!--
+                                    <!--
                                 <div class="col-12 col-md-6 col-xl-3">
                                     <div class="form-group local-forms">
                                         <label>Obra social <span class="login-danger">*</span></label>
@@ -294,7 +292,7 @@
                                     </div>
                                 </div>
                                 -->
-                                <!-- 
+                                    <!-- 
                                 <div class="col-12 col-md-6 col-xl-3">
                                     <div class="form-group local-forms">
                                         <label>Numero de Afiliado <span class="login-danger">*</span></label>
@@ -304,7 +302,7 @@
                                 </div>
                             -->
 
-                                <!--
+                                    <!--
                                 <div class="col-12 col-md-6 col-xl-4">
                                     <div class="form-group local-forms">
                                         <label>Telofono 2 <span class="login-danger">*</span></label>
@@ -344,14 +342,15 @@
                                 </div>
                                 -->
 
-                                <div class="col-12">
-                                    <div class="doctor-submit text-end">
-                                        <!-- <button type="submit"  class="btn btn-primary submit-form me-2" (click)="descargarImagen ('paciente.id')">Descargar Imagen</button> -->
-                                        <button type="submit" class="btn btn-primary submit-form me-2"
-                                            (click)="guardarPersona()">Guardar</button>
+                                    <div class="col-12">
+                                        <div class="doctor-submit text-end">
+                                            <!-- <button type="submit"  class="btn btn-primary submit-form me-2" (click)="descargarImagen ('paciente.id')">Descargar Imagen</button> -->
+                                            <button type="submit" class="btn btn-primary submit-form me-2"
+                                                (click)="guardarPersona()">Guardar</button>
 
-                                        <button type="submit" class="btn btn-primary cancel-form"
-                                            [routerLink]="routes.patientsList">Lista</button>
+                                            <button type="submit" class="btn btn-primary cancel-form"
+                                                [routerLink]="routes.patientsList">Lista</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

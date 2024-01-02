@@ -64,4 +64,8 @@ export class LoginComponent implements OnInit {
     }
   }
   
+  showPassword() {
+    this.passwordClass = !this.passwordClass;
+  }
+
 }
