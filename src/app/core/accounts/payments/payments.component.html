@@ -42,11 +42,12 @@
                   <div class="form-group local-forms">
                     <label>Examenes <span class="login-danger">*</span></label>
                     <mat-select id="medicamento" name="medicamento" [(ngModel)]="oftamologia.examenes"
-                      (ngModelChange)="onOpcionSeleccionadaChange()" placeholder="Seleccione"
-                      class="form-control select">
+                     (ngModelChange)="onOpcionSeleccionadaChange()" (selectionChange)="limpiarErrores('examenes')" placeholder="Seleccione"
+                      class="form-control select" required="">
                       <mat-option *ngFor="let opcion of medicamentosFiltrados" [value]="opcion">{{ opcion
                         }}</mat-option>
                     </mat-select>
+                    <div *ngIf="errores.examenes" class="texti">{{ errores.examenes}}</div>
                   </div>
 
                 </div>
@@ -56,11 +57,11 @@
                   <div class="form-group local-forms">
                     <label>Exploracion <span class="login-danger">*</span></label>
                     <mat-select id="medicamento" name="medicamento" [(ngModel)]="oftamologia.exploracion"
-                      (ngModelChange)="onOpcionSeleccionadaChange()" placeholder="Seleccione"
-                      class="form-control select">
+                     (ngModelChange)="onOpcionSeleccionadaChange()" (selectionChange)="limpiarErrores('exploracion')" placeholder="Seleccione"
+                      class="form-control select" required>
                       <mat-option *ngFor="let opcion of exploracionOptions" [value]="opcion">{{ opcion }}</mat-option>
                     </mat-select>
-
+                    <div *ngIf="errores.exploracion" class="texti">{{ errores.exploracion}}</div>
                   </div>
                 </div>
 
@@ -81,7 +82,9 @@
                   <div class="form-group local-forms">
                     <label>Resultado <span class="login-danger">*</span></label>
                     <input class="form-control" type="text" placeholder="" id="resultado" name="resultado"
-                      [(ngModel)]="oftamologia.resultado">
+                    [(ngModel)]="oftamologia.resultado" (input)="limpiarErrores('resultado')" 
+                    required onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false">
+                      <div *ngIf="errores.resultado" class="texti">{{ errores.resultado}}</div>
                   </div>
                 </div>
 
@@ -89,7 +92,9 @@
                   <div class="form-group local-forms">
                     <label>ojoizquierdo <span class="login-danger">*</span></label>
                     <input class="form-control" type="text" placeholder="" id="ojoizquierdo" name="ojoizquierdo"
-                      [(ngModel)]="oftamologia.ojoizquierdo">
+                      [(ngModel)]="oftamologia.ojoizquierdo" (input)="limpiarErrores('ojoizquierdo')"
+                      required onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false">
+                      <div *ngIf="errores.ojoizquierdo" class="texti">{{ errores.ojoizquierdo }}</div>
                   </div>
                 </div>
 
@@ -97,7 +102,9 @@
                   <div class="form-group local-forms">
                     <label>ojoderecho <span class="login-danger">*</span></label>
                     <input class="form-control" type="text" placeholder="" id="ojoderecho" name="ojoderecho"
-                      [(ngModel)]="oftamologia.ojoderecho">
+                    [(ngModel)]="oftamologia.ojoderecho" (input)="limpiarErrores('ojoderecho')" 
+                    required onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false">
+                      <div *ngIf="errores.ojoderecho" class="texti">{{ errores.ojoderecho }}</div>
                   </div>
                 </div>
 
@@ -108,7 +115,7 @@
                            [matDatepicker]="picker" [(ngModel)]="oftamologia.fecha" name="fecha"
                            (input)="limpiarErrores('fecha')"
                            (ngModelChange)="limpiarErrores('fecha')">
-                    <mat-datepicker #picker></mat-datepicker>
+                   <mat-datepicker #picker></mat-datepicker>
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <!-- Mensajes de error -->
                     <div *ngIf="errores.fecha" class="texti">{{ errores.fecha }}</div>
@@ -117,7 +124,7 @@
 
                 <div class="col-12 col-md-6 col-xl-4">
                   <div class="form-group local-forms">
-                    <label>Anotaciones <span class="login-danger">*</span></label>
+                    <label>Anotaciones <span class="login-danger"></span></label>
                     <textarea class="form-control" id="anotaciones" name="anotaciones"
                       [(ngModel)]="oftamologia.anotaciones" rows="3" cols="30"></textarea>
 

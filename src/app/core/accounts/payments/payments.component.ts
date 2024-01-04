@@ -29,7 +29,12 @@ export class PaymentsComponent {
   //change components
   errores = {
    
-    fecha: ''
+    fecha: '',
+    resultado:'',
+    ojoderecho:'',
+    ojoizquierdo:'',
+    examenes:'',
+    exploracion:''
   };
 
   constructor(private auth: AuthService, private oftamologiaService: OftamologiaService, private router: Router) { }
@@ -139,11 +144,29 @@ export class PaymentsComponent {
   // Método para manejar cambios en el cuadro de búsqueda
  
   guardardoctor() {
+    console.log(this.oftamologia); // Verificar los valores de los campos
+    if (!this.vvalidarCampos()) {
+      // Código para guardar la persona
+    this.oftamologiaService.registrarPersona(this.oftamologia).subscribe(dato => {
+      this.obtenerpersona();
+    }, error => {
+
+      // console.log(error);
+      // alert('La persona ha sido guardada correctamente');
+
+      // Llamada al método para obtener la lista de personas después de guardar una nueva persona
+    },
+
+    );
+    }else {
+      // Manejar el caso en que el formulario no esté completo
+      //Swal.fire('Verifique todos los campos');
+    }
     if (this.vvalidarCampos()) {
       // Mostrar un mensaje de error o realizar otra acción
       return;
     }
-    console.log(this.oftamologia); // Verificar los valores de los campos
+   
 
     var nombre = this.oftamologia.fecha;
     var clavesecreta = this.oftamologia.resultado;
@@ -159,18 +182,7 @@ export class PaymentsComponent {
 
 
 
-    // Código para guardar la persona
-    this.oftamologiaService.registrarPersona(this.oftamologia).subscribe(dato => {
-      this.obtenerpersona();
-    }, error => {
-
-      // console.log(error);
-      // alert('La persona ha sido guardada correctamente');
-
-      // Llamada al método para obtener la lista de personas después de guardar una nueva persona
-    },
-
-    );
+    
 
     this.oftamologia.fecha = '';
     this.oftamologia.resultado = '';
@@ -186,24 +198,71 @@ export class PaymentsComponent {
   vvalidarCampos(): boolean {
     let camposInvalidos = false;
     
+    if (!this.oftamologia.examenes) {
+      this.errores.examenes = 'Seleccione un examen';
+      camposInvalidos = true;
+    } else {
+      this.errores.examenes = '';
+    }
+    if (!this.oftamologia.exploracion) {
+      this.errores.exploracion = 'Seleccione una exploracion';
+      camposInvalidos = true;
+    } else {
+      this.errores.exploracion = '';
+    }
+    if (!this.oftamologia.resultado) {
+      this.errores.resultado = 'Ingrese el resultado';
+      camposInvalidos = true;
+    } else {
+      this.errores.resultado = '';
+    }
+    if (!this.oftamologia.ojoderecho) {
+      this.errores.ojoderecho = 'Ingrese campo ojo derecho';
+      camposInvalidos = true;
+    } else {
+      this.errores.ojoderecho = '';
+    }
+    if (!this.oftamologia.ojoizquierdo) {
+      this.errores.ojoizquierdo = 'Ingrese campo ojo izquierdo';
+      camposInvalidos = true;
+    } else {
+      this.errores.ojoizquierdo = '';
+    }
     if (!this.oftamologia.fecha) {
       this.errores.fecha = 'Ingrese la fecha';
       camposInvalidos = true;
     } else {
       this.errores.fecha = '';
     }
-  
-   
     return camposInvalidos;
   }
-  limpiarErrores(campo: string): void {
+  /*limpiarErrores(campo: string): void {
     if (campo === 'fecha') {
       this.errores.fecha = '';
     } 
-  
-    
+  }*/
+  limpiarErrores(campo: string): void {
+    switch (campo) {
+      case 'examenes':
+        this.errores.examenes = '';
+        break;
+      case 'exploracion':
+        this.errores.exploracion = '';
+        break;
+      case 'resultado':
+        this.errores.resultado = '';
+        break;
+      case 'ojoizquierdo':
+        this.errores.ojoizquierdo = '';
+        break;
+      case 'ojoderecho':
+        this.errores.ojoderecho = '';
+        break;
+      case 'fecha':
+        this.errores.fecha = '';
+        break;
+    }
   }
-  
     onSubmit() {
       if (!this.vvalidarCampos()) {
         // Si la validación falla, no continuar con el envío
