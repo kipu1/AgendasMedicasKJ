@@ -65,6 +65,7 @@
                     <th mat-sort-header="nombre">Nombre</th>
                     <!-- <th mat-sort-header="tipodocumento">Tipo de documento</th> -->
                     <th mat-sort-header="documento">Documento</th>
+                    <th mat-sort-header="documento">Foto</th>
                     <th mat-sort-header="Editar">Editar</th>
                     <th mat-sort-header="eliminar">Eliminar</th>
                 
@@ -76,6 +77,9 @@
                     <td>{{ pacientes.apellido }}</td>
                     <td>{{ pacientes.nombre }}</td>
                     <td>{{ pacientes.documento }}</td>
+                    <td>
+                      <img [src]="pacientes.foto" alt="Foto del paciente" style="max-width: 100px; max-height: 100px;">
+                    </td>
 
                     <div class="dropdown dropdown-action">
                       <td class="text-end">
