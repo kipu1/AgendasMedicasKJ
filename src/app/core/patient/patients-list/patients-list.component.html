@@ -30,8 +30,8 @@
                     <div class="doctor-search-blk">
                       <div class="top-nav-search table-search-blk">
 
-                        <input matInput (keyup)="applyFilter($event)" [placeholder]="'Buscar registros'"
-                          class="form-control" #input>
+                        <input matInput (keyup)="applyFilter($event)" [placeholder]="'Nombre | Apellido | Documento'"
+                          class="form-control" #input [title]="'Nombre | Apellido | Documento'">
                         <a class="btn"><img src="assets/img/icons/search-normal.svg" alt=""></a>
                       </div>
                       <div class="add-group">
