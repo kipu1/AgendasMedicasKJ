@@ -10,41 +10,28 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+
   public routes = routes;
   public passwordClass = false;
 
   form = new FormGroup({
-   /* email: new FormControl('jenny', [
-      Validators.required,
-      //Validators.email,
-    ]),
-    password: new FormControl('1234', [Validators.required]),*/
-
-    nombreUsuario: new FormControl,
-    clavesecreta: new FormControl
+    username: new FormControl,
+    userPassword: new FormControl
   });
 
   get f() {
     return this.form.controls;
   }
 
-  constructor(public auth: AuthService) {}
+  constructor(public auth: AuthService) { }
   ngOnInit(): void {
     if (localStorage.getItem('authenticated')) {
       localStorage.removeItem('authenticated');
     }
   }
 
-  /*loginFormSubmit() {
-    if (this.form.valid) {
-      this.auth.login;
-    }
-  }
-  togglePassword() {
-    this.passwordClass = !this.passwordClass;
-  }*/
-
   public InicioSesion() {
+<<<<<<< Updated upstream
     const nombreUsuario = this.form.get('nombreUsuario')?.value as string;
     const clavesecreta = this.form.get('clavesecreta')?.value as string;
   
@@ -59,7 +46,34 @@ export class LoginComponent implements OnInit {
         Swal.fire('Por favor ingrese su clave');
       }
       // Puedes agregar más mensajes según sea necesario
+=======
+    const user = this.form.get('username')?.value as string;
+    const pass = this.form.get('userPassword')?.value as string;
+
+    if (!user && !pass) {
+      Swal.fire('Por favor ingrese su usuario y contraseña.');
+>>>>>>> Stashed changes
     }
+    if (!user) {
+      Swal.fire('Por favor ingrese su usuario.');
+    }
+
+    if (!pass) {
+      Swal.fire('Por favor ingrese su contraseña.');
+    }
+
+    if (user && pass) {
+      this.auth.login(user, pass);
+      this.auth.setLoggedInDoctorName(user);
+    }
+
   }
+<<<<<<< Updated upstream
   
+=======
+
+  showPassword() {
+    this.passwordClass = !this.passwordClass;
+  }
+>>>>>>> Stashed changes
 }

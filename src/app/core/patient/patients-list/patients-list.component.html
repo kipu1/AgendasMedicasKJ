@@ -72,14 +72,28 @@
                   </tr>
                 </thead>
                 <tbody>
+<<<<<<< Updated upstream
                   <tr *ngFor="let pacientes of paciente">
                     <td>{{ pacientes.apellido }}</td>
                     <td>{{ pacientes.nombre }}</td>
                     <td>{{ pacientes.documento }}</td>
+=======
+                  <tr *ngFor="let person of personList">
+                    <td>{{ person.primerNombre }} {{person.segundoNombre}}</td>
+                    <td>{{ person.primerApellido }} {{ person.segundoApellido }}</td>
+                    <td>{{ person.documento }}</td>
+                    <td>
+                      <!--<img [src]="pacientes.foto" alt="Foto del paciente" style="max-width: 100px; max-height: 100px;">-->
+                    </td>
+>>>>>>> Stashed changes
 
                     <div class="dropdown dropdown-action">
                       <td class="text-end">
-                        <button class="dropdown-item" (click)= "actualizarPersona(pacientes.id)" [routerLink]="routes.editPatient"
+                       <!--<button class="dropdown-item" (click)= "actualizarPersona(person.idPersona)" [routerLink]="routes.editPatient"
+                          class="btn btn-custom" >
+                          <i class="fa-solid fa-pen-to-square m-r-5"></i>
+                        </button>-->
+                        <button class="dropdown-item" [routerLink]="routes.editPatient"
                           class="btn btn-custom" >
                           <i class="fa-solid fa-pen-to-square m-r-5"></i>
                         </button>
@@ -96,9 +110,9 @@
                       </div>
                       
                       <!-- Tu botón para eliminar -->
-                      <button class="dropdown-item btn btn-custom" (click)="eliminarPersona(pacientes.id)">
+                      <!--<button class="dropdown-item btn btn-custom" (click)="eliminarPersona(pacientes.id)">
                         <i class="fa fa-trash-alt m-r-5"></i>
-                      </button>
+                      </button>-->
                     </td>
                     <!-- <td class="text-end">
                                             <div class="dropdown dropdown-action">

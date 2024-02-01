@@ -7,6 +7,8 @@ import { AuthService } from 'src/app/shared/auth/auth.service';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { patientService } from '../../services/patient.service';
+import { persona } from 'src/app/authentication/register/Models/persona';
+import { PersonaService } from '../../services/persona.service';
 interface data {
   value: string;
 }
@@ -21,6 +23,7 @@ export class AddPatientComponent {
   public routes = routes;
   paciente: Paciente = new Paciente();
   pacientes: Paciente[] = [];
+  person: persona = new persona();
   validador: boolean = false;
   // identificacion: String;
   //change components
@@ -37,7 +40,11 @@ export class AddPatientComponent {
     tipodocumento:'',
     fechanacimiento: ''
   };
-  constructor(private auth: AuthService, private personaServicio: patientService, private router: Router, private sanitizer: DomSanitizer) { }
+  constructor(private auth: AuthService,
+    private patientServicio: patientService,
+    private personService: PersonaService,
+    private router: Router,
+    private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.obtenerpersona();
@@ -46,7 +53,7 @@ export class AddPatientComponent {
   }
 
   obtenerpersona() {
-    this.personaServicio.obtenerListaPersona().subscribe(dato => {
+    this.patientServicio.obtenerListaPersona().subscribe(dato => {
       this.pacientes = dato;
     });
   }
@@ -64,7 +71,7 @@ export class AddPatientComponent {
     const file = event.target.files[0];
 
     if (file) {
-      this.personaServicio.subirOActualizarFoto(null, file).subscribe(
+      this.patientServicio.subirOActualizarFoto(null, file).subscribe(
         (response: any) => {
           const imageUrl = response.url;
           this.paciente.foto = imageUrl;
@@ -117,29 +124,33 @@ export class AddPatientComponent {
   }
 
   guardarPersona() {
+<<<<<<< Updated upstream
     if (this.vvalidarCampos()) {
       // Mostrar un mensaje de error o realizar otra acción
+=======
+    if (this.validarCampos()) {
+>>>>>>> Stashed changes
       return;
     }
     console.log(this.paciente); // Verificar los valores de los campos
-    var apellido = this.paciente.apellido;
-    var nombre = this.paciente.nombre;
-    var tipodocumento = this.paciente.tipodocumento;
-    var documento = this.paciente.documento;
-    var civil = this.paciente.civil;
-    var fechanacimiento = this.paciente.fechanacimiento;
-    var direccion = this.paciente.direccion;
-    var telefono = this.paciente.grupo;
-    var sexo = this.paciente.sexo;
-    var direccion = this.paciente.direccion;
+    var apellido = this.person.primerApellido;
+    var nombre = this.person.primerNombre;
+    var tipodocumento = this.person.tipoDocumento;
+    var documento = this.person.documento;
+    var civil = this.person.estadoCivil;
+    var fechanacimiento = this.person.fechanacimiento;
+    var direccion = this.person.direccion;
+    var telefono = this.person.telefono;
+    var sexo = this.person.genero;
+    // var direccion = this.paciente.direccion;
 
-    var cp = this.paciente.cp;
-    var direccion = this.paciente.direccion;
+    var email = this.person.email;
+    //var direccion = this.paciente.direccion;
     var obra = this.paciente.obra;
     var afiliado = this.paciente.afiliado;
-    var telefono1 = this.paciente.telefono1;
-    var telefono2 = this.paciente.telefono2;
-    var telefono3 = this.paciente.telefono3;
+    //var telefono1 = this.paciente.telefono1;
+    //var telefono2 = this.paciente.telefono2;
+    //var telefono3 = this.paciente.telefono3;
 
     var campoCfg1 = this.paciente.campoCfg1;
     var campoCfg2 = this.paciente.campoCfg2;
@@ -165,7 +176,7 @@ export class AddPatientComponent {
     var extra10 = this.paciente.extra10;
 
     var comentarios = this.paciente.comentarios;
-    var fotos = this.paciente.foto;
+    var fotos = this.person.foto;
 
 
 
@@ -174,7 +185,7 @@ export class AddPatientComponent {
     });
 
     // Código para guardar la persona
-    this.personaServicio.registrarPersona(this.paciente).subscribe(dato => {
+    this.personService.createPersonByObject(this.person).subscribe(dato => {
       this.obtenerpersona();
     }, error => {
 
@@ -183,11 +194,13 @@ export class AddPatientComponent {
 
       // Llamada al método para obtener la lista de personas después de guardar una nueva persona
     },
+<<<<<<< Updated upstream
     
 
 
+=======
+>>>>>>> Stashed changes
     );
-
     this.paciente.apellido = '';
     this.paciente.nombre = '';
     this.paciente.tipodocumento = '';
@@ -198,7 +211,6 @@ export class AddPatientComponent {
     this.paciente.grupo = '';
     this.paciente.sexo = '';
     this.paciente.direccion = '';
-
     this.paciente.cp = '';
     this.paciente.direccion = '';
     this.paciente.obra = '';
@@ -206,34 +218,24 @@ export class AddPatientComponent {
     this.paciente.telefono1 = '';
     this.paciente.telefono2 = '';
     this.paciente.telefono3 = '';
-
     this.paciente.campoCfg1 = '';
     this.paciente.campoCfg2 = '';
-
     this.paciente.campoCfg3 = '';
     this.paciente.clinicos = '';
-
     this.paciente.familiar = '';
     this.paciente.diagnostico = '';
     this.paciente.cormobilidades = '';
     this.paciente.extra1 = '';
     this.paciente.extra2 = '';
-
     this.paciente.extra3 = '';
     this.paciente.extra4 = '';
-
     this.paciente.extra5 = '';
     this.paciente.extra6 = '';
-
     this.paciente.extra7 = '';
     this.paciente.extra8 = '';
     this.paciente.extra9 = '';
     this.paciente.extra10 = '';
-
     this.paciente.comentarios = '';
-
-
-
   }
 
 // descargarArchivo(filename: string): void {
@@ -249,6 +251,7 @@ export class AddPatientComponent {
 //     });
 //   }
 
+<<<<<<< Updated upstream
 vvalidarCampos(): boolean {
   let camposInvalidos = false;
   
@@ -286,6 +289,40 @@ vvalidarCampos(): boolean {
   } else {
     if (!this.paciente.documento) {
       this.errores.documento = 'Ingrese la cedula';
+=======
+  validarCampos(): boolean {
+    let camposInvalidos = false;
+
+    if (!this.person.primerApellido?.trim()) {
+      this.errores.apellido = 'Por favor, ingrese el apellido';
+      camposInvalidos = true;
+    } else {
+      this.errores.apellido = '';
+    }
+
+    if (!this.person.primerNombre) {
+      this.errores.nombre = 'Por favor, ingrese el nombre';
+      camposInvalidos = true;
+    } else {
+      this.errores.nombre = '';
+    }
+
+    if (!this.person.estadoCivil) {
+      this.errores.civil = 'Por favor, seleccione un estado civil';
+      camposInvalidos = true;
+    } else {
+      this.errores.civil = '';
+    }
+    if (!this.person.tipoDocumento) {
+      this.errores.tipodocumento = 'Por favor, seleccione el tipo de documento';
+      camposInvalidos = true;
+    } else {
+      this.errores.tipodocumento = '';
+    }
+
+    if (!this.person.documento) {
+      this.errores.documento = 'Por favor, ingrese el número de documento';
+>>>>>>> Stashed changes
       camposInvalidos = true;
     } else {
       // Verificar si la cédula ya está registrada
@@ -297,6 +334,7 @@ vvalidarCampos(): boolean {
         this.errores.documento = '';
       }
     }
+<<<<<<< Updated upstream
     this.errores.fechanacimiento = '';
   }
   return camposInvalidos;
@@ -330,6 +368,96 @@ verificarCedulaExistente() {
     }
   );
 }
+=======
+
+    if (!this.person.fechanacimiento) {
+      this.errores.fechanacimiento = 'Por favor, seleccione la fecha de nacimiento';
+      camposInvalidos = true;
+    } else {
+      /*if (!this.fechaValidator()) {
+        this.errores.fechanacimiento = 'Por favor, ingrese una fecha de nacimiento válida';
+        camposInvalidos = true;
+      } else {
+        this.errores.fechanacimiento = '';
+      }*/
+    }
+
+    //New Validations
+    if (!this.person.grupoSanguineo) {
+      this.errores.grupo = 'Por favor, seleccione un grupo sanguíneo';
+      camposInvalidos = true;
+    } else {
+      this.errores.grupo = '';
+    }
+
+    if (!this.person.genero) {
+      this.errores.sexo = 'Por favor, seleccione el sexo del paciente';
+      camposInvalidos = true;
+    } else {
+      this.errores.sexo = '';
+    }
+
+    if (!this.person.direccion) {
+      this.errores.direccion = 'Por favor, ingrese la dirección';
+      camposInvalidos = true;
+    } else {
+      this.errores.direccion = '';
+    }
+
+    if (!this.person.email) {
+      this.errores.email = 'Por favor, ingrese una dirección de correo electrónico';
+      camposInvalidos = true;
+    } else {
+      this.errores.email = '';
+    }
+
+    if (!this.person.telefono) {
+      this.errores.telefono = 'Por favor, ingrese un número telefónico';
+      camposInvalidos = true;
+    } else {
+      this.errores.telefono = '';
+    }
+
+    return camposInvalidos;
+  }
+  limpiarErrores(campo: string): void {
+    if (campo === 'apellido') {
+      this.errores.apellido = '';
+    } else if (campo === 'nombre') {
+      this.errores.nombre = '';
+    } else if (campo === 'documento') {
+      this.errores.documento = '';
+    } else if (campo === 'civil') {
+      this.errores.civil = '';
+    } else if (campo === 'tipodocumento') {
+      this.errores.tipodocumento = '';
+    } else if (campo === 'fechanacimiento') {
+      this.errores.fechanacimiento = '';
+    }
+  }
+/*
+  fechaValidator(): boolean {
+    const fechaNacimiento = new Date(this.paciente.fechanacimiento as string);
+    const todayDate = new Date();
+    const edad = todayDate.getFullYear() - fechaNacimiento.getFullYear();
+    console.log(fechaNacimiento);
+    return (edad > 100 || edad < 0);
+  }*/
+
+  verificarCedulaExistente() {
+    // Realiza la llamada al servicio para verificar si la cédula ya está registrada
+    this.patientServicio.Buscarid(this.paciente.id).subscribe(
+      (respuesta: any) => {
+        if (respuesta.existe) {
+          this.errores.documento = 'El número de cédula ya está registrado.';
+        }
+      },
+      (error: any) => {
+        console.error('Error al verificar la cédula:', error);
+      }
+    );
+  }
+>>>>>>> Stashed changes
   onSubmit() {
     if (!this.vvalidarCampos()) {
       // Si la validación falla, no continuar con el envío

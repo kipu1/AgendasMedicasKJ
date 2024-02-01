@@ -98,6 +98,7 @@
                                     <div class="form-group local-forms">
                                         <label>Tipo de documento <span class="login-danger">*</span></label>
 
+<<<<<<< Updated upstream
                                         <mat-select id="tipodocumento" name="tipodocumento"
                                             [(ngModel)]="paciente.tipodocumento" placeholder=""
                                             class="form-control select" placeholder="Seleccione"  (ngModelChange)="limpiarErrores('tipodocumento')">
@@ -147,6 +148,120 @@
                                               <label>Estado Civil <span class="login-danger">*</span></label>
                                               <mat-select id="civil" name="civil" [(ngModel)]="paciente.civil" class="form-control select" placeholder="Seleccione"
                                                           (ngModelChange)="limpiarErrores('civil')">
+=======
+                                        <div class="settings-btn upload-files-avator">
+                                            <input type="file" accept="image/*" name="image" id="file"
+                                                (change)="onFileChange($event)" class="hide-input">
+                                            <label for="file" class="upload">Choose File</label>
+                                        </div>
+
+                                        <div class="img-thumbnail mt-1" *ngIf="person.foto === ''">
+                                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                                alt="Avatar" class="imagen-pequena imagen-grande">
+                                        </div>
+
+                                        <div class="img-thumbnail mt-1" *ngIf="person.foto">
+                                            <img [src]="obtenerUrlSegura(person.foto)" alt="Avatar"
+                                                class="imagen-pequena imagen-grande">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class=" cont d-block col align-self-start pb-md-2">
+                                    <div class="col-12 col-md-6 col-xl-12 mb-lg-4">
+                                        <div class="form-group local-forms">
+                                            <label>Nombre <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" placeholder="" id="nombre"
+                                                name="nombre" [(ngModel)]="person.primerNombre"
+                                                (input)="limpiarErrores('nombre')" onkeypress='return (event.charCode >= 65 && event.charCode <= 90)
+                                                || (event.charCode >= 97 && event.charCode <= 122)'
+                                                onselectstart="return false" onpaste="return false;"
+                                                onCopy="return false" onCut="return false">
+                                            <!-- Mensaje de error solo si el usuario ha intentado guardar sin completar el campo -->
+                                            <div *ngIf="errores.nombre" class="texti">{{ errores.nombre }}</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-xl-12">
+                                        <div class="form-group local-forms">
+                                            <label>Apellido <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" placeholder="" id="apellido"
+                                                name="apellido" [(ngModel)]="person.primerApellido"
+                                                (input)="limpiarErrores('apellido')" onkeypress='return (event.charCode >= 65 && event.charCode <= 90)
+                                                || (event.charCode >= 97 && event.charCode <= 122)'
+                                                onselectstart="return false" onpaste="return false;"
+                                                onCopy="return false" onCut="return false">
+                                            <!-- Mensaje de error solo si el usuario ha intentado guardar sin completar el campo -->
+                                            <div *ngIf="errores.apellido" class="texti">{{ errores.apellido }}</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-xl-12">
+                                        <div class="form-group local-forms">
+                                            <label>Tipo de documento <span class="login-danger">*</span></label>
+                                            <mat-select id="tipodocumento" name="tipodocumento"
+                                                [(ngModel)]="person.tipoDocumento" placeholder=""
+                                                class="form-control select" placeholder="Seleccione"
+                                                (ngModelChange)="limpiarErrores('tipodocumento')">
+                                                <mat-option value="cedula">Cédula</mat-option>
+                                                <mat-option value="pasaporte">Pasaporte</mat-option>
+
+                                                <!--<mat-option value="CC">CC</mat-option>
+                                                <mat-option value="CC">CC</mat-option>
+                                                <mat-option value="CDI">CDI</mat-option>
+                                                <mat-option value="CI">CI</mat-option>
+                                                <mat-option value="CIC">CIC</mat-option>
+                                                <mat-option value="CIE">CIE</mat-option>
+                                                <mat-option value="CIP">CIP</mat-option>
+                                                <mat-option value="CUIL">CUIL</mat-option>
+                                                <mat-option value="CUIT">CUIT</mat-option>
+                                                <mat-option value="CURP">CURP</mat-option>
+                                                <mat-option value="DNI">DNI</mat-option>
+                                                <mat-option value="DPI">DPI</mat-option>
+                                                <mat-option value="DUI">DUI</mat-option>
+                                                <mat-option value="IMSS">IMSS</mat-option>
+                                                <mat-option value="LC">LC</mat-option>
+                                                <mat-option value="LE">LE</mat-option>
+                                                <mat-option value="NIE">NIE</mat-option>
+                                                <mat-option value="NIF">NIF</mat-option>
+                                                <mat-option value="PAS">PAS</mat-option>
+                                                <mat-option value="RG">RG</mat-option>
+                                                <mat-option value="RUN">RUN</mat-option>
+                                                <mat-option value="RUT">RUT</mat-option>-->
+                                            </mat-select>
+                                            <div *ngIf="errores.civil" class="texti">{{ errores.tipodocumento }}</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-xl-12">
+                                        <div class="form-group local-forms">
+                                            <label>Documento <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" placeholder="" id="documento"
+                                                name="documento" [(ngModel)]="person.documento"
+                                                (blur)="verificarCedulaExistente()"
+                                                (input)="limpiarErrores('documento')"
+                                                onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                                onselectstart="return false" onpaste="return false;"
+                                                onCopy="return false" onCut="return false" onDrag="return false">
+
+                                            <!-- Mensaje de error solo si el usuario ha intentado guardar sin completar el campo -->
+                                            <div *ngIf="errores.documento" class="texti">
+                                                {{ errores.documento }}
+                                                <!-- Mostrar mensaje adicional si el número de cédula ya está registrado -->
+                                                <span
+                                                    *ngIf="errores.documento === 'El número de cédula ya está registrado.'">Por
+                                                    favor, ingrese un número de cédula único.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-xl-12">
+                                        <div class="form-group local-forms">
+                                            <label>Estado Civil <span class="login-danger">*</span></label>
+                                            <mat-select id="civil" name="civil" [(ngModel)]="person.estadoCivil"
+                                                class="form-control select" placeholder="Seleccione"
+                                                (ngModelChange)="limpiarErrores('civil')">
+>>>>>>> Stashed changes
                                                 <mat-option value="Soltero">Soltero</mat-option>
                                                 <mat-option value="Casado">Casado</mat-option>
                                                 <mat-option value="Divorciado">Divorciado</mat-option>
@@ -194,6 +309,7 @@
                                     </div>
                                 </div>
 
+<<<<<<< Updated upstream
                                 <div class="col-12 col-md-6 col-xl-3">
                                     <div class="form-group select-gender">
                                         <label class="gen-label">Genero<span class="login-danger">*</span></label>
@@ -208,6 +324,24 @@
                                                 <input type="radio" name="gender" class="form-check-input"
                                                     value="femenino" [(ngModel)]="paciente.sexo">Femenino
                                             </label>
+=======
+                                <div class="d-flex row">
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="form-group local-forms">
+                                            <label>Fecha de nacimiento <span class="login-danger">*</span></label>
+                                            <input class="form-control datetimepicker" type="text" placeholder=""
+                                                matInput [matDatepicker]="picker" [(ngModel)]="person.fechanacimiento"
+                                                name="fechanacimiento" (input)="limpiarErrores('fechanacimiento')"
+                                                (ngModelChange)="limpiarErrores('fechanacimiento')"
+                                                onselectstart="return false" onpaste="return false;"
+                                                onCopy="return false" onCut="return false" disabled="true">
+                                            <mat-datepicker #picker disabled="false"></mat-datepicker>
+                                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <!-- Mensajes de error -->
+                                            <div *ngIf="errores.fechanacimiento" class="texti">{{
+                                                errores.fechanacimiento }}
+                                            </div>
+>>>>>>> Stashed changes
                                         </div>
                                     </div>
                                 </div>
@@ -226,6 +360,70 @@
                                     </div>
                                 </div>
 
+<<<<<<< Updated upstream
+=======
+                                    <div class=" col-12 col-md-6 col-xl-4">
+                                        <div class="form-group local-forms">
+                                            <label>Grupo sanguíneo <span class="login-danger">*</span></label>
+
+                                            <mat-select id="grupo" name="grupo" [(ngModel)]="person.grupoSanguineo"
+                                                class="form-control select" placeholder="Seleccione">
+                                                <mat-option value="A+">A+</mat-option>
+                                                <mat-option value="A-">A-</mat-option>
+                                                <mat-option value="B+">B+</mat-option>
+                                                <mat-option value="B-">B-</mat-option>
+                                                <mat-option value="AB+">AB+</mat-option>
+                                                <mat-option value="AB-">AB-</mat-option>
+                                                <mat-option value="O+">O+</mat-option>
+                                            </mat-select>
+                                            <div *ngIf="errores.grupo" class="texti">{{ errores.grupo }}</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="form-group local-forms">
+                                            <label class="gen-label">Sexo <span class="login-danger">*</span></label>
+                                            <mat-select id="gender" name="gender" [(ngModel)]="person.genero"
+                                                class="form-control select" placeholder="Seleccione"
+                                                (ngModelChange)="limpiarErrores('sexo')">
+                                                <mat-option value="masculino">Masculino</mat-option>
+                                                <mat-option value="femenino">Femenino</mat-option>
+                                            </mat-select>
+                                            <div *ngIf="errores.sexo" class="texti">{{ errores.sexo }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="form-group local-forms">
+                                            <label>Dirección <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" placeholder="" id="direccion"
+                                                name="direccion" [(ngModel)]="person.direccion">
+                                            <div *ngIf="errores.direccion" class="texti">{{ errores.direccion }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="form-group local-forms">
+                                            <label>Correo <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" placeholder="example@gmail.com"
+                                                id="cp" name="cp" [(ngModel)]="person.email">
+                                            <div *ngIf="errores.email" class="texti">{{ errores.email }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="form-group local-forms">
+                                            <label>Teléfono <span class="login-danger">*</span></label>
+                                            <input class="form-control" type="text" placeholder="" id="telefono1"
+                                                name="telefono1" [(ngModel)]="person.telefono"
+                                                onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                                onselectstart="return false" onpaste="return false;"
+                                                onCopy="return false" onCut="return false" onDrag="return false">
+                                            <div *ngIf="errores.telefono" class="texti">{{ errores.telefono }}</div>
+
+                                            <button type="submit" class="btn btn-primary submit-form me-2 mt-2"
+                                                (click)="redirectMessage(paciente.telefono1)">WhatsApp</button>
+                                        </div>
+                                    </div>
+                                    <!--
+>>>>>>> Stashed changes
                                 <div class="col-12 col-md-6 col-xl-3">
                                     <div class="form-group local-forms">
                                         <label>Obra social <span class="login-danger">*</span></label>
@@ -523,9 +721,12 @@
                                         
                                     </div>
                                 </div>
+<<<<<<< Updated upstream
                                 
 
 
+=======
+>>>>>>> Stashed changes
 
                                 <div class="col-12">
                                     <div class="doctor-submit text-end">
