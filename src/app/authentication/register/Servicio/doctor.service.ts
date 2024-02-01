@@ -9,10 +9,13 @@ import { Observable } from 'rxjs';
 })
 export class DoctorService {
 
-  private url: string = 'http://localhost:8080/auth/registers';
+  //private url: string = 'http://localhost:8080/auth/registers';
   private url1: string = 'http://localhost:8080/auth/listarr';
   private url2: string = 'http://localhost:8080/auth/listar';
   // private url1: string = 'http://localhost:8080/api/auths';
+
+  private url: string = 'http://localhost:8080/api/doctor/crear';
+  private url3: string = 'http://localhost:8080/api/doctor/actualizar';
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
@@ -33,6 +36,9 @@ export class DoctorService {
     return this.http.get<Doctor[]>(this.url2,{headers: this.httpHeaders})
   }  
  
-
+  updateDoctor(id: number, doc: Doctor): Observable<Doctor> {
+    const url = `${this.url3}/${id}`;
+    return this.http.put<Doctor>(url, doc, { headers: this.httpHeaders });
+  }
 
 }

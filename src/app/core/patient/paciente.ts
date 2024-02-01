@@ -1,3 +1,4 @@
+import { persona } from "src/app/authentication/register/Models/persona";
 import { Antropometria } from "../staff/antropometria";
 
 
@@ -34,7 +35,7 @@ export class Paciente {
     extra9: string='';
     extra10: string='';
     civil: string='';
-   
+    persona!: persona;
     idDoctor?: number;
     campoCfg1: string='';
     campoCfg2: string='';
@@ -43,6 +44,4 @@ export class Paciente {
     tipodocumento: string='';
     abrir: string='';
     antropometria!:  Antropometria[];
-   
-
 }

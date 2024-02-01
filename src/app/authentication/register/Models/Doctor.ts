@@ -1,17 +1,8 @@
+import { Especialidad } from "./Especialidad.model";
+import { persona } from "./persona";
 export class Doctor {
     id?: number;
-    nombre?: string;
-    clavesecreta?: string;
-    comentarios?: string;
-    direccion?: string;
-    especialidad?: string;
-    telefono?: string;
-    clave?: string;
-    notaAuto?: string;
-    nota?: string;
-    comparte?: string;
-    cfg?: string;
-    cfgsec?: string;
-    email?: string;
+    persona?: persona;
+    especialidad?: Especialidad;
     matricula?: string;
 }
