@@ -5,7 +5,7 @@ import { Antropometria } from "../../../core/staff/antropometria";
 export class Paciente {
 
     id!: number;
-    
+
     obra: string='';
     afiliado : string='';   
     telefono1: string='';
