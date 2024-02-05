@@ -1,18 +1,11 @@
-import { Antropometria } from "../staff/antropometria";
+import { persona } from "src/app/authentication/register/Models/persona";
+import { Antropometria } from "../../../core/staff/antropometria";
 
 
 export class Paciente {
 
     id!: number;
-    idRol?: number;
-    apellido: string='';
-    nombre: string='';
-    documento: string='';
-    fechanacimiento ?: string='';   
-    grupo: string='';
-    sexo: string='';
-    direccion: string='';
-    cp: string='';
+    
     obra: string='';
     afiliado : string='';   
     telefono1: string='';
@@ -33,16 +26,10 @@ export class Paciente {
     extra8: string='';
     extra9: string='';
     extra10: string='';
-    civil: string='';
-   
-    idDoctor?: number;
+    persona!: persona;
     campoCfg1: string='';
     campoCfg2: string='';
     campoCfg3: string='';   
-    foto: string='';
-    tipodocumento: string='';
     abrir: string='';
     antropometria!:  Antropometria[];
-   
-
 }

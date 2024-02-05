@@ -19,94 +19,33 @@
             <div class="login-right">
               <div class="login-right-wrap">
                 <div class="account-logo">
-                  <a [routerLink]="routes.adminDashboard"
-                    ><img src="assets/img/login-logo.png" alt=""
-                  /></a>
+                  <a [routerLink]="routes.adminDashboard"><img src="assets/img/login-logo.png" alt="" /></a>
                 </div>
                 <h2>Login</h2>
                 <!-- Form -->
-                
-                <form [formGroup]="form" (ngSubmit) = "InicioSesion()" >
-                 
-                 <!-- <div class="form-group">
-                    <label>Email <span class="login-danger">*</span></label>
-                    <input
-                      class="form-control"
-                      formControlName="email"
-                      type="text"
-                      [ngClass]="{
-                        'is-invalid': f['email'].touched && f['email'].invalid
-                      }"
-                    />
-                    <div
-                    *ngIf="f['email'].touched && f['email'].invalid"
-                    class="invalid-feedback"
-                    >
-                      <div
-                      *ngIf="f['email'].errors && f['email'].errors['required']"
-                      >
-                        Email is required.
-                      </div>
-                      <div
-                        *ngIf="f['email'].errors && f['email'].errors['email']"
-                      >
-                        Please, enter valid email address.
-                      </div>
-                    </div>
-                  </div>  -->
-                  <!--  <div class="form-group">
-                    <label>Password <span class="login-danger">*</span></label>
-                    <input
-                      class="form-control pass-input"
-                      [type]="passwordClass ? 'text' : 'password'"
-                      formControlName="password"
-                      [ngClass]="{
-                        'is-invalid':
-                          f['password'].touched && f['password'].invalid
-                      }"
-                    />
-                    <div
-                      *ngIf="f['password'].touched && f['password'].invalid"
-                      class="invalid-feedback"
-                    >
-                      <div
-                        *ngIf="
-                          f['password'].errors &&
-                          f['password'].errors['required']
-                        "
-                      >
-                        Password is required.
-                      </div>
-                    </div>
-                    <span (click)="togglePassword()" [ngClass] = "passwordClass ? 'feather icon-eye' : 'feather icon-eye-off'"
-                      class="profile-views toggle-password"
-                    ></span>
-                  </div> -->
+
+                <form [formGroup]="form" (ngSubmit)="InicioSesion()">
 
                   <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" class="form-control" formControlName="nombreUsuario" required>
+                    <label for="username">Nombre</label>
+                    <input type="text" id="username" name="username" class="form-control" formControlName="username"
+                      required>
                   </div>
 
                   <div class="form-group">
-                    <label for="clavesecreta">Clave Secreta</label>
-                    <input type="password" id="clavesecreta" name="clavesecreta" 
-                    class="form-control" formControlName="clavesecreta" required type="{{ passwordClass ? 'text' : 'password' }}">
+                    <label for="userPassword">Contraseña</label>
+                    <input type="password" id="userPassword" name="userPassword" class="form-control"
+                      formControlName="userPassword" required type="{{ passwordClass ? 'text' : 'password' }}">
                     <div class="axe">
                       <icon (click)="showPassword()"
-                      [ngClass]="passwordClass ? 'feather icon-eye' : 'feather icon-eye-off'"
-                      class="profile-views toggle-password" ></icon>
+                        [ngClass]="passwordClass ? 'feather icon-eye' : 'feather icon-eye-off'"
+                        class="profile-views toggle-password"></icon>
                     </div>
                   </div>
-                  
-
-
 
                   <div class="forgotpass">
                     <div class="remember-me">
-                      <label
-                        class="custom_check mr-2 mb-0 d-inline-flex remember-me"
-                      >
+                      <label class="custom_check mr-2 mb-0 d-inline-flex remember-me">
                         Remember me
                         <input type="checkbox" name="radio" />
                         <span class="checkmark"></span>
@@ -115,11 +54,7 @@
                     <a [routerLink]="routes.forgotPassword">Forgot Password?</a>
                   </div>
                   <div class="form-group login-btn">
-                    <button
-                      
-                      class="btn btn-primary btn-block"
-                      
-                    >
+                    <button class="btn btn-primary btn-block">
                       Login
                     </button>
                   </div>
@@ -134,15 +69,9 @@
 
                   <!-- Social Login -->
                   <div class="social-login">
-                    <a href="javascript:;" 
-                      ><img src="assets/img/icons/login-icon-01.svg" alt=""
-                    /></a>
-                    <a href="javascript:;"
-                      ><img src="assets/img/icons/login-icon-02.svg" alt=""
-                    /></a>
-                    <a href="javascript:;"
-                      ><img src="assets/img/icons/login-icon-03.svg" alt=""
-                    /></a>
+                    <a href="javascript:;"><img src="assets/img/icons/login-icon-01.svg" alt="" /></a>
+                    <a href="javascript:;"><img src="assets/img/icons/login-icon-02.svg" alt="" /></a>
+                    <a href="javascript:;"><img src="assets/img/icons/login-icon-03.svg" alt="" /></a>
                   </div>
                   <!-- /Social Login -->
                 </div>

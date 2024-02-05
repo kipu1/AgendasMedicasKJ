@@ -1,4 +1,4 @@
-import { Paciente } from "../patient/paciente";
+import { Paciente } from "../../authentication/register/Models/paciente";
 
 export class Antropometria {
     idAntropometria!: number;

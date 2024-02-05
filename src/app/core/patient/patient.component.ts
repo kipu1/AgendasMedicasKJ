@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Paciente } from './paciente';
+import { Paciente } from '../../authentication/register/Models/paciente';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 
 import { Router } from '@angular/router';

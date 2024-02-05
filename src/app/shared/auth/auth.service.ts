@@ -41,7 +41,7 @@ export class AuthService {
   
 
   public login(nombre?: string, clavesecreta?: string): void {
-    this.http.post('http://localhost:8080/auth/sign', { nombre, clavesecreta}).subscribe(
+    this.http.post('http://localhost:8080/auth/login', { nombre, clavesecreta}).subscribe(
       (response: any) => {
         if (response.token) {
           console.log(response);

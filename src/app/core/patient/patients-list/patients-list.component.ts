@@ -7,9 +7,11 @@ import { DataService } from 'src/app/shared/data/data.service';
 
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { Router } from '@angular/router';
-import { Paciente } from '../paciente';
+import { Paciente } from '../../../authentication/register/Models/paciente';
 import { DatePipe } from '@angular/common';
 import { patientService } from '../../services/patient.service';
+import { PersonaService } from '../../services/persona.service';
+import { persona } from 'src/app/authentication/register/Models/persona';
 
 
 @Component({
@@ -26,6 +28,7 @@ export class PatientsListComponent implements OnInit {
 
 
   pacientes: Paciente[] = [];
+  personsList: persona[] = [];
 
   public showFilter = false;
   public searchDataValue = '';
@@ -41,13 +44,26 @@ export class PatientsListComponent implements OnInit {
   public pageSelection: Array<pageSelection> = [];
   public totalPages = 0;
 
-  constructor(public data: DataService, private auth: AuthService, private pacienteService: patientService, private router: Router) {
+  constructor(public data: DataService, 
+    private auth: AuthService, 
+    private pacienteService: patientService, 
+    private router: Router, 
+    private personService: PersonaService) {
     this.pacientes = [];
     this.dataSource = new MatTableDataSource<Paciente>(this.pacientes);
   }
 
   ngOnInit() {
-    this.getTableData();
+    //this.getTableData();
+    this.getPersonsPatient();
+  }
+
+
+  getPersonsPatient(): void {
+    this.personService.getPersons().subscribe(persons => { 
+      this.personsList = persons;
+      console.log(this.personsList);
+    });
   }
 
   private getTableData(): void {

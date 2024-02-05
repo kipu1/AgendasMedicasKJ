@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { routes } from 'src/app/shared/routes/routes';
-import { Paciente } from '../../patient/paciente';
+import { Paciente } from '../../../authentication/register/Models/paciente';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 
 import { Router } from '@angular/router';
@@ -30,7 +30,7 @@ export class PaymentSettingsComponent {
     });
   }
 
- 
+ /*
 
   guardarPersona() {
     console.log(this.paciente); // Verificar los valores de los campos
@@ -149,6 +149,6 @@ export class PaymentSettingsComponent {
 
   onSubmit() {
     this.guardarPersona();
-  }
+  }*/
 }
 

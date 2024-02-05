@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { routes } from 'src/app/shared/routes/routes';
 
-import { Paciente } from '../paciente';
+import { Paciente } from '../../../authentication/register/Models/paciente';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
@@ -17,6 +17,7 @@ interface data {
   styleUrls: ['./edit-patient.component.scss']
 })
 export class EditPatientComponent {
+  /*
   public routes = routes;
   id!: number;
   paciente: Paciente = new Paciente();
@@ -304,5 +305,5 @@ export class EditPatientComponent {
     const edad = todayDate.getFullYear() - fechaNacimiento.getFullYear();
     console.log(fechaNacimiento);
     return (edad > 100 || edad < 0);
-  }
+  }*/
 }

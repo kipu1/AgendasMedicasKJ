@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { routes } from 'src/app/shared/routes/routes';
-import { Paciente } from '../../patient/paciente';
+import { Paciente } from '../../../authentication/register/Models/paciente';
 import { patientService } from '../../services/patient.service';
 
 
@@ -34,6 +34,7 @@ export class EmailSettingsComponent {
  
 
   guardarPersona() {
+    /*
     console.log(this.paciente); // Verificar los valores de los campos
     var apellido = this.paciente.apellido;
     var nombre = this.paciente.nombre;
@@ -79,7 +80,7 @@ export class EmailSettingsComponent {
 
     var comentarios = this.paciente.comentarios;
 
-
+*/
 
 
 
@@ -96,9 +97,7 @@ export class EmailSettingsComponent {
 
     );
 
-    
-
-
+    /*
     this.paciente.apellido = '';
     this.paciente.nombre = '';
     this.paciente.tipodocumento = '';
@@ -142,7 +141,7 @@ export class EmailSettingsComponent {
     this.paciente.extra10 = '';
 
     this.paciente.comentarios = '';
-
+*/
 
   }
 

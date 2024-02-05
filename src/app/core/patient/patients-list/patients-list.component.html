@@ -61,8 +61,8 @@
                 <thead>
                   <tr>
 
-                    <th mat-sort-header="apellido">Apellido</th>
-                    <th mat-sort-header="nombre">Nombre</th>
+                    <th mat-sort-header="apellido">Nombre</th>
+                    <th mat-sort-header="nombre">Apellido</th>
                     <!-- <th mat-sort-header="tipodocumento">Tipo de documento</th> -->
                     <th mat-sort-header="documento">Documento</th>
                     <th mat-sort-header="documento">Foto</th>
@@ -73,20 +73,20 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let pacientes of paciente">
-                    <td>{{ pacientes.apellido }}</td>
-                    <td>{{ pacientes.nombre }}</td>
-                    <td>{{ pacientes.documento }}</td>
+                  <tr *ngFor="let person of personsList">
+                    <td>{{ person.primerNombre }}</td>
+                    <td>{{ person.primerApellido }}</td>
+                    <td>{{ person.documento }}</td>
                     <td>
-                      <img [src]="pacientes.foto" alt="Foto del paciente" style="max-width: 100px; max-height: 100px;">
+                     <!-- <img [src]="pacientes.foto" alt="Foto del paciente" style="max-width: 100px; max-height: 100px;">-->
                     </td>
 
                     <div class="dropdown dropdown-action">
                       <td class="text-end">
-                        <button class="dropdown-item" (click)= "actualizarPersona(pacientes.id)" [routerLink]="routes.editPatient"
+                       <!--<button class="dropdown-item" (click)= "actualizarPersona(pacientes.id)" [routerLink]="routes.editPatient"
                           class="btn btn-custom" >
                           <i class="fa-solid fa-pen-to-square m-r-5"></i>
-                        </button>
+                        </button>--> 
                       </td>
                     </div>
 
@@ -100,9 +100,9 @@
                       </div>
                       
                       <!-- Tu botón para eliminar -->
-                      <button class="dropdown-item btn btn-custom" (click)="eliminarPersona(pacientes.id)">
+                      <!--<button class="dropdown-item btn btn-custom" (click)="eliminarPersona(pacientes.id)">
                         <i class="fa fa-trash-alt m-r-5"></i>
-                      </button>
+                      </button>-->
                     </td>
                     <!-- <td class="text-end">
                                             <div class="dropdown dropdown-action">

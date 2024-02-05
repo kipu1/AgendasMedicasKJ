@@ -68,13 +68,13 @@
                                             <label for="file" class="upload">Choose File</label>
                                         </div>
 
-                                        <div class="img-thumbnail mt-1" *ngIf="paciente.foto === ''">
+                                        <div class="img-thumbnail mt-1" *ngIf="person.foto === ''">
                                             <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
                                                 alt="Avatar" class="imagen-pequena imagen-grande">
                                         </div>
 
-                                        <div class="img-thumbnail mt-1" *ngIf="paciente.foto">
-                                            <img [src]="obtenerUrlSegura(paciente.foto)" alt="Avatar"
+                                        <div class="img-thumbnail mt-1" *ngIf="person.foto">
+                                            <img [src]="obtenerUrlSegura(person.foto)" alt="Avatar"
                                                 class="imagen-pequena imagen-grande">
                                         </div>
                                     </div>
@@ -85,7 +85,7 @@
                                         <div class="form-group local-forms">
                                             <label>Nombre <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" placeholder="" id="nombre"
-                                                name="nombre" [(ngModel)]="paciente.nombre"
+                                                name="nombre" [(ngModel)]="person.primerNombre"
                                                 (input)="limpiarErrores('nombre')" onkeypress='return (event.charCode >= 65 && event.charCode <= 90)
                                                 || (event.charCode >= 97 && event.charCode <= 122)'
                                                 onselectstart="return false" onpaste="return false;"
@@ -99,7 +99,7 @@
                                         <div class="form-group local-forms">
                                             <label>Apellido <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" placeholder="" id="apellido"
-                                                name="apellido" [(ngModel)]="paciente.apellido"
+                                                name="apellido" [(ngModel)]="person.primerApellido"
                                                 (input)="limpiarErrores('apellido')" onkeypress='return (event.charCode >= 65 && event.charCode <= 90)
                                                 || (event.charCode >= 97 && event.charCode <= 122)'
                                                 onselectstart="return false" onpaste="return false;"
@@ -113,7 +113,7 @@
                                         <div class="form-group local-forms">
                                             <label>Tipo de documento <span class="login-danger">*</span></label>
                                             <mat-select id="tipodocumento" name="tipodocumento"
-                                                [(ngModel)]="paciente.tipodocumento" placeholder=""
+                                                [(ngModel)]="person.tipoDocumento" placeholder=""
                                                 class="form-control select" placeholder="Seleccione"
                                                 (ngModelChange)="limpiarErrores('tipodocumento')">
                                                 <mat-option value="cedula">Cédula</mat-option>
@@ -150,7 +150,7 @@
                                         <div class="form-group local-forms">
                                             <label>Documento <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" placeholder="" id="documento"
-                                                name="documento" [(ngModel)]="paciente.documento"
+                                                name="documento" [(ngModel)]="person.documento"
                                                 (blur)="verificarCedulaExistente()"
                                                 (input)="limpiarErrores('documento')"
                                                 onkeypress='return event.charCode >= 48 && event.charCode <= 57'
@@ -171,7 +171,7 @@
                                     <div class="col-12 col-md-6 col-xl-12">
                                         <div class="form-group local-forms">
                                             <label>Estado Civil <span class="login-danger">*</span></label>
-                                            <mat-select id="civil" name="civil" [(ngModel)]="paciente.civil"
+                                            <mat-select id="civil" name="civil" [(ngModel)]="person.estadoCivil"
                                                 class="form-control select" placeholder="Seleccione"
                                                 (ngModelChange)="limpiarErrores('civil')">
                                                 <mat-option value="Soltero">Soltero</mat-option>
@@ -191,7 +191,7 @@
                                         <div class="form-group local-forms">
                                             <label>Fecha de nacimiento <span class="login-danger">*</span></label>
                                             <input class="form-control datetimepicker" type="text" placeholder=""
-                                                matInput [matDatepicker]="picker" [(ngModel)]="paciente.fechanacimiento"
+                                                matInput [matDatepicker]="picker" [(ngModel)]="person.fechanacimiento"
                                                 name="fechanacimiento" (input)="limpiarErrores('fechanacimiento')"
                                                 (ngModelChange)="limpiarErrores('fechanacimiento')"
                                                 onselectstart="return false" onpaste="return false;"
@@ -209,7 +209,7 @@
                                         <div class="form-group local-forms">
                                             <label>Grupo sanguíneo <span class="login-danger">*</span></label>
 
-                                            <mat-select id="grupo" name="grupo" [(ngModel)]="paciente.grupo"
+                                            <mat-select id="grupo" name="grupo" [(ngModel)]="person.grupoSanguineo"
                                                 class="form-control select" placeholder="Seleccione">
                                                 <mat-option value="A+">A+</mat-option>
                                                 <mat-option value="A-">A-</mat-option>
@@ -226,7 +226,7 @@
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="form-group local-forms">
                                             <label class="gen-label">Sexo <span class="login-danger">*</span></label>
-                                            <mat-select id="gender" name="gender" [(ngModel)]="paciente.sexo"
+                                            <mat-select id="gender" name="gender" [(ngModel)]="person.genero"
                                                 class="form-control select" placeholder="Seleccione"
                                                 (ngModelChange)="limpiarErrores('sexo')">
                                                 <mat-option value="masculino">Masculino</mat-option>
@@ -239,7 +239,7 @@
                                         <div class="form-group local-forms">
                                             <label>Dirección <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" placeholder="" id="direccion"
-                                                name="direccion" [(ngModel)]="paciente.direccion">
+                                                name="direccion" [(ngModel)]="person.direccion">
                                             <div *ngIf="errores.direccion" class="texti">{{ errores.direccion }}</div>
                                         </div>
                                     </div>
@@ -247,7 +247,7 @@
                                         <div class="form-group local-forms">
                                             <label>Correo <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" placeholder="example@gmail.com"
-                                                id="cp" name="cp" [(ngModel)]="paciente.cp">
+                                                id="cp" name="cp" [(ngModel)]="person.email">
                                             <div *ngIf="errores.email" class="texti">{{ errores.email }}</div>
                                         </div>
                                     </div>
@@ -255,7 +255,7 @@
                                         <div class="form-group local-forms">
                                             <label>Teléfono <span class="login-danger">*</span></label>
                                             <input class="form-control" type="text" placeholder="" id="telefono1"
-                                                name="telefono1" [(ngModel)]="paciente.telefono1"
+                                                name="telefono1" [(ngModel)]="person.telefono"
                                                 onkeypress='return event.charCode >= 48 && event.charCode <= 57'
                                                 onselectstart="return false" onpaste="return false;"
                                                 onCopy="return false" onCut="return false" onDrag="return false">

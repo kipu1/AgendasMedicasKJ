@@ -21,75 +21,141 @@
                 <div class="account-logo">
                   <a [routerLink]="routes.adminDashboard"><img src="assets/img/login-logo.png" alt="" /></a>
                 </div>
-                <h2>Registro de Doctor</h2>
+                <h2>Registro</h2>
                 <!-- Form -->
                 <form (ngSubmit)="create()">
                   <div class="row">
                     <div class="col">
                       <div class="form-group">
-                        <label for="nombre">Nombre y Apellido <span class="login-danger">*</span></label>
-                        <input type="text" id="nombre" name="nombre" class="form-control" [(ngModel)]="doctor.nombre" (input)="limpiarErrores('nombre')"
-                          required onkeypress='return (event.charCode >= 65 && event.charCode <= 90)
+                        <label for="primerNombre">Primer Nombre <span class="login-danger">*</span></label>
+                        <input type="text" id="primerNombre" name="primerNombre" class="form-control"
+                          [(ngModel)]="persona.primerNombre" (input)="limpiarErrores('nombre')" required onkeypress='return (event.charCode >= 65 && event.charCode <= 90)
                           || (event.charCode >= 97 && event.charCode <= 122) || event.charCode == 32'
-                          onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false">
-                          <div *ngIf="errores.nombre" class="texti" >
-                            {{ errores.nombre }}
-                          </div>
+                          onselectstart="return false" onpaste="return false;" onCopy="return false"
+                          onCut="return false">
+                        <div *ngIf="errores.nombre" class="texti">
+                          {{ errores.nombre }}
+                        </div>
                       </div>
                     </div>
+
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="segundoNombre">Segundo Nombre <span class="login-danger">*</span></label>
+                        <input type="text" id="segundoNombre" name="segundoNombre" class="form-control"
+                          [(ngModel)]="persona.segundoNombre" (input)="limpiarErrores('nombre')" required onkeypress='return (event.charCode >= 65 && event.charCode <= 90)
+                          || (event.charCode >= 97 && event.charCode <= 122) || event.charCode == 32'
+                          onselectstart="return false" onpaste="return false;" onCopy="return false"
+                          onCut="return false">
+                        <div *ngIf="errores.nombre" class="texti">
+                          {{ errores.nombre }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="primerApellido">Primer Apellido <span class="login-danger">*</span></label>
+                        <input type="text" id="primerApellido" name="primerApellido" class="form-control"
+                          [(ngModel)]="persona.primerApellido" (input)="limpiarErrores('nombre')" required onkeypress='return (event.charCode >= 65 && event.charCode <= 90)
+                          || (event.charCode >= 97 && event.charCode <= 122) || event.charCode == 32'
+                          onselectstart="return false" onpaste="return false;" onCopy="return false"
+                          onCut="return false">
+                        <div *ngIf="errores.nombre" class="texti">
+                          {{ errores.nombre }}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="segundoApellido">Segundo Apellido <span class="login-danger">*</span></label>
+                        <input type="text" id="segundoApellido" name="segundoApellido" class="form-control"
+                          [(ngModel)]="persona.segundoApellido" (input)="limpiarErrores('nombre')" required onkeypress='return (event.charCode >= 65 && event.charCode <= 90)
+                          || (event.charCode >= 97 && event.charCode <= 122) || event.charCode == 32'
+                          onselectstart="return false" onpaste="return false;" onCopy="return false"
+                          onCut="return false">
+                        <div *ngIf="errores.nombre" class="texti">
+                          {{ errores.nombre }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div class="form-group">
+                      <label>Tipo de documento <span class="login-danger">*</span></label>
+
+                      <mat-select id="tipoDoc" name="tipoDoc" (selectionChange)="limpiarErrores('espe')"
+                        [(ngModel)]="persona.tipoDocumento" class="form-control select" placeholder="Seleccione"
+                        required>
+                        <mat-option value="cedula">Cédula</mat-option>
+                        <mat-option value="pasaporte">Pasaporte</mat-option>
+                      </mat-select>
+                      <div *ngIf="errores.especialidad" class="texti">
+                        {{ errores.especialidad }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+
                     <div class="col">
                       <div class="form-group">
                         <label>Especialidad <span class="login-danger">*</span></label>
 
                         <mat-select id="especialidad" name="especialidad" (selectionChange)="limpiarErrores('espe')"
-                            [(ngModel)]="doctor.especialidad" class="form-control select"
-                            placeholder="Seleccione" required>
-                            <mat-option value="Andrologia">Andrología</mat-option>
-                            <mat-option value="Anesteologia">Anestesiología</mat-option>
-                            <mat-option value="Cardiologia">Cardiología</mat-option>
-                            <mat-option value="Cirugia">Cirugía</mat-option>
-                            <mat-option value="ClinicaMedica">Clínica Médica</mat-option>
-                            <mat-option value="Dermatologia">Dermatología</mat-option>
-                            <mat-option value="Diabetologia">Diabetología</mat-option>
-                            <mat-option value="Dietista">Dietista</mat-option>
-                            <mat-option value="Endocrinologia">Endocrinología</mat-option>
-                            <mat-option value="Estomatologia">Estomatología</mat-option>
-                            <mat-option value="Fisioterapia">Fisioterapia</mat-option>
-                            <mat-option value="Fonoaudiologia">Fonoaudiología</mat-option>
-                            <mat-option value="Gastroenterologia">Gastroenterología</mat-option>
-                            <mat-option value="Geriatria">Geriatría</mat-option>
-                            <mat-option value="Ginecologia">Ginecología</mat-option>
-                            <mat-option value="Hematologia">Hematología</mat-option>
-                            <mat-option value="Hepatologia">Hepatología</mat-option>
-                            <mat-option value="Kinesiologia">Kinesiología</mat-option>
-                            <mat-option value="Masoterapia">Masoterapia</mat-option>
-                            <mat-option value="MedicinaFamiliar">Medicina Familiar</mat-option>
-                            <mat-option value="Micologia">Micología</mat-option>
-                            <mat-option value="Nefrologia">Nefrología</mat-option>
-                            <mat-option value="Neonatologia">Neonatología</mat-option>
-                            <mat-option value="Neumonologia">Neumonología</mat-option>
-                            <mat-option value="Neurologia">Neurología</mat-option>
-                            <mat-option value="Nutricionista">Nutricionista</mat-option>
-                            <mat-option value="Obstetricia">Obstetricia</mat-option>
-                            <mat-option value="Odontologia">Odontología</mat-option>
-                            <mat-option value="Oftalmologia">Oftalmología</mat-option>
-                            <mat-option value="Optometria">Optometría</mat-option>
-                            <mat-option value="Oncologia">Oncología</mat-option>
-                            <mat-option value="Otorrinolaringologia">Otorrinolaringología</mat-option>
-                            <mat-option value="Pediatria">Pediatría</mat-option>
-                            <mat-option value="Proctologia">Proctología</mat-option>
-                            <mat-option value="Psicologia">Psicología</mat-option>
-                            <mat-option value="Psicopedagogia">Psicopedagogía</mat-option>
-                            <mat-option value="Psiquiatria">Psiquiatría</mat-option>
-                            <mat-option value="Reumatologia">Reumatología</mat-option>
-                            <mat-option value="Sexologia">Sexología</mat-option>
-                            <mat-option value="Toxicologia">Toxicología</mat-option>
-                            <mat-option value="Traumatologia">Traumatología</mat-option>
-                            <mat-option value="Urologia">Urología</mat-option>
+                          [(ngModel)]="doctor.especialidad" class="form-control select" placeholder="Seleccione"
+                          required>
+                          <mat-option value="Andrologia">Andrología</mat-option>
+                          <mat-option value="Anesteologia">Anestesiología</mat-option>
+                          <mat-option value="Cardiologia">Cardiología</mat-option>
+                          <mat-option value="Cirugia">Cirugía</mat-option>
+                          <mat-option value="ClinicaMedica">Clínica Médica</mat-option>
+                          <mat-option value="Dermatologia">Dermatología</mat-option>
+                          <mat-option value="Diabetologia">Diabetología</mat-option>
+                          <mat-option value="Dietista">Dietista</mat-option>
+                          <mat-option value="Endocrinologia">Endocrinología</mat-option>
+                          <mat-option value="Estomatologia">Estomatología</mat-option>
+                          <mat-option value="Fisioterapia">Fisioterapia</mat-option>
+                          <mat-option value="Fonoaudiologia">Fonoaudiología</mat-option>
+                          <mat-option value="Gastroenterologia">Gastroenterología</mat-option>
+                          <mat-option value="Geriatria">Geriatría</mat-option>
+                          <mat-option value="Ginecologia">Ginecología</mat-option>
+                          <mat-option value="Hematologia">Hematología</mat-option>
+                          <mat-option value="Hepatologia">Hepatología</mat-option>
+                          <mat-option value="Kinesiologia">Kinesiología</mat-option>
+                          <mat-option value="Masoterapia">Masoterapia</mat-option>
+                          <mat-option value="MedicinaFamiliar">Medicina Familiar</mat-option>
+                          <mat-option value="Micologia">Micología</mat-option>
+                          <mat-option value="Nefrologia">Nefrología</mat-option>
+                          <mat-option value="Neonatologia">Neonatología</mat-option>
+                          <mat-option value="Neumonologia">Neumonología</mat-option>
+                          <mat-option value="Neurologia">Neurología</mat-option>
+                          <mat-option value="Nutricionista">Nutricionista</mat-option>
+                          <mat-option value="Obstetricia">Obstetricia</mat-option>
+                          <mat-option value="Odontologia">Odontología</mat-option>
+                          <mat-option value="Oftalmologia">Oftalmología</mat-option>
+                          <mat-option value="Optometria">Optometría</mat-option>
+                          <mat-option value="Oncologia">Oncología</mat-option>
+                          <mat-option value="Otorrinolaringologia">Otorrinolaringología</mat-option>
+                          <mat-option value="Pediatria">Pediatría</mat-option>
+                          <mat-option value="Proctologia">Proctología</mat-option>
+                          <mat-option value="Psicologia">Psicología</mat-option>
+                          <mat-option value="Psicopedagogia">Psicopedagogía</mat-option>
+                          <mat-option value="Psiquiatria">Psiquiatría</mat-option>
+                          <mat-option value="Reumatologia">Reumatología</mat-option>
+                          <mat-option value="Sexologia">Sexología</mat-option>
+                          <mat-option value="Toxicologia">Toxicología</mat-option>
+                          <mat-option value="Traumatologia">Traumatología</mat-option>
+                          <mat-option value="Urologia">Urología</mat-option>
                         </mat-select>
                         <div *ngIf="errores.especialidad" class="texti">
                           {{ errores.especialidad }}
                         </div>
+
                       </div>
                     </div>
                   </div>
@@ -99,25 +165,28 @@
                       <div class="form-group">
                         <label for="matricula">Matrícula <span class="login-danger">*</span></label>
                         <input type="text" id="matricula" name="matricula" class="form-control"
-                        [(ngModel)]="doctor.matricula" (input)="limpiarErrores('matricula')"
-                        required onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false">
-                                  
+                          [(ngModel)]="doctor.matricula" (input)="limpiarErrores('matricula')" required
+                          onselectstart="return false" onpaste="return false;" onCopy="return false"
+                          onCut="return false" onDrag="return false">
+
                         <!-- Mensaje de error solo si el usuario ha intentado guardar sin completar el campo -->
                         <div *ngIf="errores.matricula" class="texti">
                           {{ errores.matricula }}
                           <!-- Mostrar mensaje adicional si el número de cédula ya está registrado -->
-                          <span *ngIf="errores.matricula === 'El número de cédula ya está registrado.'">Por favor, ingrese un número de matricula único.</span>
+                          <span *ngIf="errores.matricula === 'El número de cédula ya está registrado.'">Por favor,
+                            ingrese un número de matricula único.</span>
                         </div>
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label for="direccion">Email<span class="login-danger">*</span></label>
-                        <input type="email" id="email" name="email" class="form-control" [(ngModel)]="doctor.email" (input)="limpiarErrores('email')"
-                         required onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false">
-                        <div *ngIf="errores.email" class="texti">
+                        <input type="email" id="email" name="email" class="form-control" [(ngModel)]="persona.email"
+                          (input)="limpiarErrores('email')" required onselectstart="return false"
+                          onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false">
+                        <!--<div *ngIf="errores.email" class="texti">
                           {{ errores.email }}
-                        </div>
+                        </div>-->
                       </div>
                     </div>
                   </div>
@@ -127,61 +196,69 @@
                       <div class="form-group">
                         <label for="telefono">Teléfono <span class="login-danger">*</span></label>
                         <input type="text" id="telefono" name="telefono" class="form-control"
-                          [(ngModel)]="doctor.telefono" (input)="limpiarErrores('telefono')" required 
-                          onkeypress='return event.charCode >= 48 && event.charCode <= 57' onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false">
-                          <div *ngIf="errores.telefono" class="texti">
-                            {{ errores.telefono }}
-                          </div>
+                          [(ngModel)]="persona.telefono" (input)="limpiarErrores('telefono')" required
+                          onkeypress='return event.charCode >= 48 && event.charCode <= 57' onselectstart="return false"
+                          onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false">
+                        <!--<div *ngIf="errores.telefono" class="texti">
+                          {{ errores.telefono }}
+                        </div>-->
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label for="direccion">Dirección<span class="login-danger">*</span></label>
-                        <input type="text" id="direccion" name="direccion" (input)="limpiarErrores('direccion')" class="form-control"
-                          [(ngModel)]="doctor.direccion" required onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false">
-                          <div *ngIf="errores.direccion" class="texti">
-                            {{ errores.direccion }}
-                          </div>
+                        <input type="text" id="direccion" name="direccion" (input)="limpiarErrores('direccion')"
+                          class="form-control" [(ngModel)]="persona.direccion" required onselectstart="return false"
+                          onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false">
+                        <!--<div *ngIf="errores.direccion" class="texti">
+                          {{ errores.direccion }}
+                        </div>-->
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="username">Nombre de usuario <span class="login-danger">*</span></label>
+                        <input type="text" id="username" name="username" class="form-control"
+                          [(ngModel)]="usuario.username" (input)="limpiarErrores('telefono')" required onkeypress='return (event.charCode >= 65 && event.charCode <= 90)
+                          || (event.charCode >= 97 && event.charCode <= 122) || event.charCode == 32'
+                          onselectstart="return false" onpaste="return false;" onCopy="return false"
+                          onCut="return false" onDrag="return false">
+                        
                       </div>
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="col">
-                <!--      <div class="form-group">
-                        <label for="cla">Clave <span class="login-danger">*</span></label>
-                        <input type="password" id="cla" name="cla" class="form-control" [(ngModel)]="doctor.clavesecreta"
-                         (input)="limpiarErrores('clave')" type="{{ passwordClass ? 'text' : 'password' }}" 
-                         onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false">
-                        <div *ngIf="errores.clavesecreta" class="texti">
-                          {{ errores.clavesecreta }}
-                        </div>
-                        <icon (click)="passwordFunc()"
-                          [ngClass]="passwordClass ? 'feather icon-eye' : 'feather icon-eye-off'"
-                          class="profile-views toggle-password"></icon>
-                      </div>-->
+
                       <div class="form-group" style="max-width: 350px;">
                         <label for="cla">Clave <span class="login-danger">*</span></label>
                         <div style="position: relative;">
-                            <input type="password" id="cla" name="cla" class="form-control" [(ngModel)]="doctor.clavesecreta"
-                                (input)="limpiarErrores('clave')" type="{{ passwordClass ? 'text' : 'password' }}" 
-                                onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false">
-                            <icon (click)="passwordFunc()"
-                                [ngClass]="passwordClass ? 'feather icon-eye' : 'feather icon-eye-off'"
-                                class="profile-views toggle-password" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);"></icon>
+                          <input type="password" id="cla" name="cla" class="form-control"
+                            [(ngModel)]="usuario.password" (input)="limpiarErrores('clave')"
+                            type="{{ passwordClass ? 'text' : 'password' }}" onselectstart="return false"
+                            onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false">
+                          <icon (click)="passwordFunc()"
+                            [ngClass]="passwordClass ? 'feather icon-eye' : 'feather icon-eye-off'"
+                            class="profile-views toggle-password"
+                            style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);"></icon>
                         </div>
-                        <div *ngIf="errores.clavesecreta" class="texti">
-                            {{ errores.clavesecreta }}
-                        </div>
+                        <!--<div *ngIf="errores.clavesecreta" class="texti">
+                          {{ errores.clavesecreta }}
+                        </div>-->
+                      </div>
                     </div>
-                    
-                    </div>
+
                     <div class="col">
                       <div class="form-group">
                         <label for="comentarios">Repetir Clave <span class="login-danger">*</span></label>
                         <input type="password" id="repclave" name="rep" class="form-control" required
-                        [(ngModel)]="repetirClave" type="{{ passwordClass ? 'text' : 'password' }}" 
-                        onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false">
+                          [(ngModel)]="repetirClave" type="{{ passwordClass ? 'text' : 'password' }}"
+                          onselectstart="return false" onpaste="return false;" onCopy="return false"
+                          onCut="return false" onDrag="return false">
                         <div *ngIf="errores.claveDiferente" class="texti">
                           {{ errores.claveDiferente }}
                         </div>
@@ -193,17 +270,17 @@
                     <div class="col">
                       <div class="form-group">
                         <label for="cfg">PIN <span class="login-danger">*</span></label>
-                        <input type="password" id="cfg" name="cfg" class="form-control" [(ngModel)]="doctor.cfg" required
-                         onkeypress='return event.charCode >= 48 && event.charCode <= 57' type="{{ pinClass ? 'text' : 'password' }}"
-                         onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false"
-                         (input)="limpiarErrores('pin')" >
+                        <input type="password" id="cfg" name="cfg" class="form-control" [(ngModel)]="usuario.pin"
+                          required onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                          type="{{ pinClass ? 'text' : 'password' }}" onselectstart="return false"
+                          onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false"
+                          (input)="limpiarErrores('pin')">
                         <div *ngIf="errores.cfg" class="texti">
                           {{ errores.cfg }}
                         </div>
                         <div class="axe">
-                          <icon (click)="showPIN()"
-                          [ngClass]="pinClass ? 'feather icon-eye' : 'feather icon-eye-off'"
-                          class="profile-views toggle-password" ></icon>
+                          <icon (click)="showPIN()" [ngClass]="pinClass ? 'feather icon-eye' : 'feather icon-eye-off'"
+                            class="profile-views toggle-password"></icon>
                         </div>
                       </div>
                     </div>
@@ -211,9 +288,10 @@
                       <div class="form-group">
                         <label for="cfgsec">Repetir PIN <span class="login-danger">*</span></label>
                         <input type="password" id="cfgsec" name="cfgsec" class="form-control" required
-                         onkeypress='return event.charCode >= 48 && event.charCode <= 57'
-                         [(ngModel)]="repetirPIN" type="{{ pinClass ? 'text' : 'password' }}" (input)="limpiarErrores('rePin')" 
-                         onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false">
+                          onkeypress='return event.charCode >= 48 && event.charCode <= 57' [(ngModel)]="repetirPIN"
+                          type="{{ pinClass ? 'text' : 'password' }}" (input)="limpiarErrores('rePin')"
+                          onselectstart="return false" onpaste="return false;" onCopy="return false"
+                          onCut="return false" onDrag="return false">
                         <div *ngIf="errores.pinDiferente" class="texti">
                           {{ errores.pinDiferente }}
                         </div>
@@ -226,70 +304,6 @@
                       Sign up
                     </button>
                   </div>
-
-                  <!-- Contraseña -->
-                  <!--  <div class="form-group">
-                    <label>Password <span class="login-danger">*</span></label>
-                    <input class="form-control pass-input" [type]="passwordClass ? 'text' : 'password'"
-                      formControlName="password" [ngClass]="{
-                        'is-invalid':
-                          f['password'].touched && f['password'].invalid
-                      }" />
-                    <div *ngIf="f['password'].touched && f['password'].invalid" class="invalid-feedback">
-                      <div *ngIf="
-                          f['password'].errors &&
-                          f['password'].errors['required']
-                        ">
-                        Password is required.
-                      </div>
-                    </div>
-                    <span (click)="passwordFunc()"
-                      [ngClass]="passwordClass ? 'feather icon-eye' : 'feather icon-eye-off'"
-                      class="profile-views toggle-password"></span>
-                  </div>
-                  <div class="form-group">
-                    <label>Confirm Password
-                      <span class="login-danger">*</span></label>
-                    <input class="form-control pass-input-confirm" [type]="passwordClass ? 'text' : 'password'"
-                      formControlName="confirmPassword" [ngClass]="{
-                        'is-invalid':
-                          f['confirmPassword'].touched &&
-                          f['confirmPassword'].invalid
-                      }" />
-                    <div *ngIf="
-                        f['confirmPassword'].touched &&
-                        f['confirmPassword'].invalid
-                      " class="invalid-feedback">
-                      <div *ngIf="
-                          f['confirmPassword'].errors &&
-                          f['confirmPassword'].errors['required']
-                        ">
-                        Confirm Password is required.
-                      </div>
-                    </div>
-                    <div *ngIf="isValidConfirmPassword" class="invalid-feedback">
-                      Password not matching
-                    </div>
-                    <span (click)="confirmPasswordFunc()"
-                      [ngClass]="confirmPasswordClass ? 'feather icon-eye' : 'feather icon-eye-off'"
-                      class="profile-views confirm-password"></span>
-                  </div> 
-                  <div class="forgotpass">
-                    <div class="remember-me">
-                      <label class="custom_check mr-2 mb-0 d-inline-flex remember-me">
-                        I agree to the
-                        <a href="javascript:;">&nbsp; terms of service </a>&nbsp; and
-                        <a href="javascript:;">&nbsp; privacy policy </a>
-                        <input type="checkbox" name="radio" />
-                        <span class="checkmark"></span>
-                      </label>
-                    </div>
-                  </div>
-                  <div class="form-group login-btn">
-                    <button [disabled]="form.invalid" class="btn btn-primary btn-block" type="submit">
-                      Sign up
-                    </button>
-                  </div>-->
                 </form>
                 <!-- /Form -->
 

@@ -8,7 +8,7 @@ import { routes } from 'src/app/shared/routes/routes';
 import { AntropometriaService } from '../../services/antropometria.service';
 import { Router } from '@angular/router';
 import { Antropometria } from '../antropometria';
-import { Paciente } from '../../patient/paciente';
+import { Paciente } from '../../../authentication/register/Models/paciente';
 import { DatePipe } from '@angular/common';
 
 @Component({

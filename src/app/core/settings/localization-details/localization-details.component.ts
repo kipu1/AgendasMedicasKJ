@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { routes } from 'src/app/shared/routes/routes';
-import { Paciente } from '../../patient/paciente';
+import { Paciente } from '../../../authentication/register/Models/paciente';
 
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { Router } from '@angular/router';
@@ -38,6 +38,7 @@ export class LocalizationDetailsComponent {
  
 
   guardarPersona() {
+    /*
     console.log(this.paciente); // Verificar los valores de los campos
     var apellido = this.paciente.apellido;
     var nombre = this.paciente.nombre;
@@ -82,7 +83,7 @@ export class LocalizationDetailsComponent {
     var extra10 = this.paciente.extra10;
 
     var comentarios = this.paciente.comentarios;
-
+*/
 
 
 
@@ -102,7 +103,7 @@ export class LocalizationDetailsComponent {
 
     
 
-
+/*
     this.paciente.apellido = '';
     this.paciente.nombre = '';
     this.paciente.tipodocumento = '';
@@ -146,7 +147,7 @@ export class LocalizationDetailsComponent {
     this.paciente.extra10 = '';
 
     this.paciente.comentarios = '';
-
+*/
 
   }
 
